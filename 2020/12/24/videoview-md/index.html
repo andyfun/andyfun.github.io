@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="因为需要做Window和 Mac 插件，且iOS和Android 用 UnitySendMessage，所以为了统一 pc端也用次回调。这里做下记录方便改进。 如果你是OSX系统，那么Unity可以在编辑器里面直接使用OSX插件。OSX插件是bundle文件，放在Assets&#x2F;Plugins目录下。 跟iOS插件差不多，不过OSX没有UnitySendMessage函数，所以要用另外一种途经来实现">
+  <meta name="description" content="VideoView 测试链接 https:&#x2F;&#x2F;media.w3.org&#x2F;2010&#x2F;05&#x2F;sintel&#x2F;trailer.mp4  12345678910111213141516171819202122232425262728 mediaController &#x3D; MediaController(this)        videoView.setMediaController(mediaControl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UnityPluginForMac">
-<meta property="og:url" content="http://yoursite.com/2019/06/09/UnityPluginForMac/index.html">
+<meta property="og:title" content="videoview.md">
+<meta property="og:url" content="http://yoursite.com/2020/12/24/videoview-md/index.html">
 <meta property="og:site_name" content="andyFun">
-<meta property="og:description" content="因为需要做Window和 Mac 插件，且iOS和Android 用 UnitySendMessage，所以为了统一 pc端也用次回调。这里做下记录方便改进。 如果你是OSX系统，那么Unity可以在编辑器里面直接使用OSX插件。OSX插件是bundle文件，放在Assets&#x2F;Plugins目录下。 跟iOS插件差不多，不过OSX没有UnitySendMessage函数，所以要用另外一种途经来实现">
+<meta property="og:description" content="VideoView 测试链接 https:&#x2F;&#x2F;media.w3.org&#x2F;2010&#x2F;05&#x2F;sintel&#x2F;trailer.mp4  12345678910111213141516171819202122232425262728 mediaController &#x3D; MediaController(this)        videoView.setMediaController(mediaControl">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-06-09T14:34:24.000Z">
-<meta property="article:modified_time" content="2020-12-23T06:54:18.698Z">
+<meta property="article:published_time" content="2020-12-24T10:42:18.000Z">
+<meta property="article:modified_time" content="2020-12-24T10:51:15.930Z">
 <meta property="article:author" content="andy">
-<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="VideoView">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/06/09/UnityPluginForMac/">
+<link rel="canonical" href="http://yoursite.com/2020/12/24/videoview-md/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>UnityPluginForMac | andyFun</title>
+  <title>videoview.md | andyFun</title>
   
 
 
@@ -167,7 +167,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/09/UnityPluginForMac/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/24/videoview-md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -180,7 +180,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          UnityPluginForMac
+          videoview.md
         </h1>
 
         <div class="post-meta">
@@ -189,24 +189,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-06-09 22:34:24" itemprop="dateCreated datePublished" datetime="2019-06-09T22:34:24+08:00">2019-06-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-23 14:54:18" itemprop="dateModified" datetime="2020-12-23T14:54:18+08:00">2020-12-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a>
-                </span>
+              <time title="创建时间：2020-12-24 18:42:18 / 修改时间：18:51:15" itemprop="dateCreated datePublished" datetime="2020-12-24T18:42:18+08:00">2020-12-24</time>
             </span>
 
           
@@ -225,8 +210,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/06/09/UnityPluginForMac/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/09/UnityPluginForMac/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/12/24/videoview-md/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/24/videoview-md/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -236,7 +221,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -255,23 +240,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>因为需要做Window和 Mac 插件，且iOS和Android 用 UnitySendMessage，所以为了统一 pc端也用次回调。这里做下记录方便改进。</p>
-<p>如果你是OSX系统，那么Unity可以在编辑器里面直接使用OSX插件。OSX插件是bundle文件，放在Assets/Plugins目录下。</p>
-<p>跟iOS插件差不多，不过OSX没有UnitySendMessage函数，所以要用另外一种途经来实现OC -&gt; C#</p>
-<p>方法就是用C语言的函数指针。</p>
-<p>首先在头文件声明一个函数指针和声明两个函数</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//函数指针</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*UnitySendMessage)</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* objectName, <span class="keyword">const</span> <span class="keyword">char</span>* methodName, <span class="keyword">const</span> <span class="keyword">char</span>* msg)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !TARGET_OS_IPHONE</span></span><br><span class="line">    <span class="comment">//C#调用的，参数是一个回调函数。</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">RegisterCallback</span><span class="params">(UnitySendMessage callbackMethod)</span></span>;</span><br><span class="line">    <span class="comment">//调用回调函数的函数。</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">CallbackToUnity</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* msg)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接着在mm文件里面实现</p>
-<figure class="highlight mm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !TARGET_OS_IPHONE</span></span><br><span class="line"><span class="keyword">static</span> UnitySendMessage lastCallback = <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">void</span> RegisterCallback(UnitySendMessage callbackMethod)</span><br><span class="line">&#123;</span><br><span class="line">    lastCallback = callbackMethod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> CallbackToUnity(<span class="keyword">const</span> <span class="keyword">char</span>* msg)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (lastCallback != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        lastCallback(sUnityGameObjectName, sUnityMethodName, msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">//mm 中声明改方法，cshap通过dllimport调用传递参数</span></span><br><span class="line">    <span class="keyword">void</span> Demo_nativeRegister(<span class="keyword">const</span> <span class="keyword">char</span>* unityGameObjectName, <span class="keyword">const</span> <span class="keyword">char</span>* unityMethodName);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>C#这边加上声明：</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">region</span> Mac PC 回调</span></span><br><span class="line">       <span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX</span></span><br><span class="line">               <span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">UnityCallbackDelegate</span>(<span class="params">IntPtr objName, IntPtr methodName, IntPtr msg</span>)</span>;</span><br><span class="line"></span><br><span class="line">               [<span class="meta">DllImport(GiantSDKUtil.GIANTSDK_PLATFORM)</span>]</span><br><span class="line">               <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">RegisterCallback</span>(<span class="params">[MarshalAs(UnmanagedType.FunctionPtr</span>)] UnityCallbackDelegate callback)</span>;</span><br><span class="line">       <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">       <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br></pre></td></tr></table></figure>
-<p>然后就是设置回调函数，在Start函数或者自己需求的任意位置</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//统一注册和接收</span></span><br><span class="line">  Demo_nativeRegister(<span class="keyword">this</span>.gameObject.name, functionName);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX</span></span><br><span class="line">            RegisterCallback(<span class="built_in">delegate</span> (IntPtr objName, IntPtr methodName, IntPtr msg) &#123;</span><br><span class="line">                <span class="built_in">string</span> objN = Marshal.PtrToStringAuto(objName);</span><br><span class="line">                <span class="built_in">string</span> methodN = Marshal.PtrToStringAuto(methodName);</span><br><span class="line">                <span class="built_in">string</span> message = Marshal.PtrToStringAuto(msg);</span><br><span class="line">                GameObject founded = GameObject.Find(objN);</span><br><span class="line">                <span class="keyword">if</span> (founded != <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    founded.SendMessage(methodN, message);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    Debug.LogError(<span class="string">&quot;&quot;</span> + objN + <span class="string">&quot; Not Found!&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>IntPtr是C#里面的指针，Marshal类用来在托管对象和非托管对象相互转换，像上面的PtrToStringAuto把一个非托管的C指针转换成C#的托管对象string。</p>
-<p>参考：<br><br><br><a target="_blank" rel="noopener" href="http://skyhacker2.github.io/blog/?articles/U3D/2016-08-15-%E7%BB%99U3D%E7%BC%96%E5%86%99OSX%E6%8F%92%E4%BB%B6.md#">UnityPluginForMac</a></p>
-<p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/Manual/PluginInspector.html">Plugins</a></p>
-<p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/Manual/PluginsForIOS.html">PluginsForIOS</a></p>
-
+        <h5 id="VideoView"><a href="#VideoView" class="headerlink" title="VideoView"></a>VideoView</h5><blockquote>
+<p>测试链接 <strong><a target="_blank" rel="noopener" href="https://media.w3.org/2010/05/sintel/trailer.mp4">https://media.w3.org/2010/05/sintel/trailer.mp4</a></strong></p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"> mediaController = MediaController(<span class="keyword">this</span>)</span><br><span class="line">        videoView.setMediaController(mediaController)</span><br><span class="line">        mediaController.show(<span class="number">0</span>)</span><br><span class="line">        <span class="comment">//complete</span></span><br><span class="line">        videoView.setOnCompletionListener &#123; MediaPlayer.OnCompletionListener &#123;</span><br><span class="line">           Log.e(<span class="string">&quot;TAG&quot;</span>,<span class="string">&quot;播放 完成&quot;</span>)</span><br><span class="line">        &#125; &#125;</span><br><span class="line">        videoView.setOnErrorListener(MediaPlayer.OnErrorListener &#123; mp, what, extra -&gt;</span><br><span class="line">            println(<span class="string">&quot;<span class="variable">$mp</span>,what = <span class="variable">$what</span>,extra = <span class="variable">$extra</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span><span class="symbol">@OnErrorListener</span> <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line">        videoView.setOnPreparedListener &#123;</span><br><span class="line">            videoView.start()</span><br><span class="line">            progressBar.visibility = View.GONE</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//设置videoView 的点击监听</span></span><br><span class="line">        videoView.setOnTouchListener(View.OnTouchListener &#123; v, event -&gt;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span><span class="symbol">@OnTouchListener</span> <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        <span class="comment">//http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4</span></span><br><span class="line">        <span class="keyword">val</span> mp4id = resources.getIdentifier(<span class="string">&quot;trailer&quot;</span>,<span class="string">&quot;raw&quot;</span>,<span class="keyword">this</span>.packageName)</span><br><span class="line">     <span class="comment">//   val uri = Uri.parse(&quot;android.resource://com.bytedance.scenedemo/$mp4id&quot;)</span></span><br><span class="line">        <span class="keyword">val</span> uri = Uri.parse(<span class="string">&quot;http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4&quot;</span>)</span><br><span class="line"><span class="comment">//        videoView.setVideoPath()</span></span><br><span class="line">        videoView.setVideoURI(uri)</span><br><span class="line">        setVideoViewLayoutParams(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>view宽和高</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setVideoViewLayoutParams</span><span class="params">(x: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">//全屏</span></span><br><span class="line">        <span class="keyword">val</span> layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)</span><br><span class="line">        videoView.layoutParams = layoutParams</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//窗口模式</span></span><br><span class="line">        <span class="keyword">val</span> display = DisplayMetrics()</span><br><span class="line">        windowManager.defaultDisplay.getMetrics(display)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> vHeight = DisplayMetrics.DENSITY_HIGH</span><br><span class="line">        <span class="keyword">val</span> vWidth = DisplayMetrics.DENSITY_DEFAULT</span><br><span class="line">        <span class="keyword">val</span> layoutParams = RelativeLayout.LayoutParams(vWidth,vHeight)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_TOP)</span><br><span class="line">        videoView.layoutParams = layoutParams</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>布局</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;VideoView</span><br><span class="line">       android:id=&quot;@+id/videoVideo&quot;</span><br><span class="line">       android:layout_width=&quot;match_parent&quot;</span><br><span class="line">       android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">       /&gt;</span><br><span class="line">   &lt;ProgressBar</span><br><span class="line">       android:id=&quot;@+id/progress_circular&quot;</span><br><span class="line">       android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">       android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">       android:layout_centerInParent=&quot;true&quot;</span><br><span class="line">       /&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>我测试的是本地视频</strong></p>
+<blockquote>
+<p>获取Raw资源</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> mp4id = resources.getIdentifier(<span class="string">&quot;trailer&quot;</span>,<span class="string">&quot;raw&quot;</span>,<span class="keyword">this</span>.packageName)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -300,7 +281,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Unity/" rel="tag"># Unity</a>
+              <a href="/tags/VideoView/" rel="tag"># VideoView</a>
           </div>
 
         
@@ -309,13 +290,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/05/14/javaClass/" rel="prev" title="Java-Class">
-      <i class="fa fa-chevron-left"></i> Java-Class
+    <a href="/2020/12/23/LeanCloud-md/" rel="prev" title="评论配置">
+      <i class="fa fa-chevron-left"></i> 评论配置
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/12/21/webrtc-md/" rel="next" title="webrtc.md">
-      webrtc.md <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -375,6 +353,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#VideoView"><span class="nav-number">1.</span> <span class="nav-text">VideoView</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
