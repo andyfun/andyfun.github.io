@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2021/01/18/RecordUe4/Lark_gradle.png">
 <meta property="article:published_time" content="2021-01-18T08:41:37.000Z">
-<meta property="article:modified_time" content="2021-03-25T08:50:59.943Z">
+<meta property="article:modified_time" content="2021-03-25T09:09:50.230Z">
 <meta property="article:author" content="andy">
 <meta property="article:tag" content="UE4,WebView">
 <meta name="twitter:card" content="summary">
@@ -174,7 +174,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="心如止水般平静看待股票">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -199,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-25 16:50:59" itemprop="dateModified" datetime="2021-03-25T16:50:59+08:00">2021-03-25</time>
+                <time title="修改时间：2021-03-25 17:09:50" itemprop="dateModified" datetime="2021-03-25T17:09:50+08:00">2021-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,7 +238,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>904</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -300,7 +300,15 @@
 <h5 id="游戏多次收到回调问题"><a href="#游戏多次收到回调问题" class="headerlink" title="游戏多次收到回调问题"></a>游戏多次收到回调问题</h5><blockquote>
 <p>SDK消息分发这里 打印日志 只发了一次 游戏收到多次说明多次注册 或者多次调用</p>
 </blockquote>
-<h5 id="aapt和aapt2-区别-为什么会有aapt2"><a href="#aapt和aapt2-区别-为什么会有aapt2" class="headerlink" title="aapt和aapt2 区别 为什么会有aapt2"></a>aapt和aapt2 区别 为什么会有aapt2</h5><p>1.</p>
+<h5 id="aapt和aapt2-区别-为什么会有aapt2"><a href="#aapt和aapt2-区别-为什么会有aapt2" class="headerlink" title="aapt和aapt2 区别 为什么会有aapt2"></a>aapt和aapt2 区别 为什么会有aapt2</h5><blockquote>
+<p>1.<strong>编译</strong>：将资源文件编译为二进制格式文件<br> <strong>链接</strong>：将编译后的所有文件合并，打包成一个单独文件</p>
+</blockquote>
+<blockquote>
+<p>2.在aapt基础上做了优化</p>
+</blockquote>
+<blockquote>
+<p>3.这种方式可以很好的提升资源的编译性能，比如只有一个资源文件发生改变时，你只需要重新编译改变的文件，然后将其与其他未改变的资源进行链接即可。而之前的aapt是将所有资源进行merge，merge完后将所有资源进行编译，产生一个资源ap_文件，该文件是一个压缩包，这样带来的后果就是即使只改变了一个资源文件，也要进行全量编译。</p>
+</blockquote>
 
     </div>
 
@@ -412,7 +420,7 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">andy</p>
-  <div class="site-description" itemprop="description">心如止水般平静看待股票</div>
+  <div class="site-description" itemprop="description">stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
