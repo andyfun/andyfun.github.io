@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Android架构</title>
+    <url>/2018/08/07/Android-Jetpack/</url>
+    <content><![CDATA[<h3 id="Android移动app架构设计浅谈"><a href="#Android移动app架构设计浅谈" class="headerlink" title="Android移动app架构设计浅谈"></a>Android移动app架构设计浅谈</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>架构，又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计。</p>
+<h4 id="软件架构设计目标："><a href="#软件架构设计目标：" class="headerlink" title="软件架构设计目标："></a>软件架构设计目标：</h4><p>1.可靠性（Reliable）。软件架构的可靠是产品设计的前提。<br>2.安全性（Secure）。软件架构的安全性是产品可持续发展的条件。<br>3.可扩展性（Scalable）。软件架构必须能够不同的功能需求情况下，支持可扩散性。<br>4.可定制化（Customizable）。同样的一套软件，可以根据客户群的不同和市场需求的变化进行调整。<br>5.可伸缩 （Extensible）。在新技术出现的时候，一个软件架构应当允许导入新技术，从而对现有系统进行功能和性能的扩展。<br>6.可维护性（Maintainable）。软件系统的维护包括两方面，一是排除现有的错误，二是将新的软件需求反映到现有系统中去。一个易于维护的系统可以有效地降低技术支持的花费。</p>
+<p>架构是项目形成到一定阶段的趋势。是对整个产品是否合格的有效保证。对于很多项目设计人员，在不考虑产品本身，不考虑团队，不考虑时间周期的前提下，一味的强调软件构架，是不合理的，也不利于整个产品的发展。当然，一个好的项目架构师，是很能清楚，项目在不同阶段，所需要处理的不同职责。能够最大限度的发挥能效，将产品周期，与功能模块做出最合适的匹配规划，这才是一个架构师所必须追求的。</p>
+<p>以下是个人对Android移动项目架构设计简单的经验之谈。欢迎与更多的朋友交流，若有疑问，或不合理之处，都可以随时交流。</p>
+<h4 id="从项目功能开始"><a href="#从项目功能开始" class="headerlink" title="从项目功能开始"></a>从项目功能开始</h4><p>每一个项目架构师，在拿到一个新项目的时候，都会不同的着重点。在项目规划风格上，都会有不同的考虑。而我个人在着手项目时，都会从功能上去着手。先了解项目整体的功能模块，区分出主体功能模块有哪些类，对不同的功能模块进行细致的划分。这是我开始的第一步。因为，只有对项目整体有个把握，才能更快的对项目有了解，才能知道怎样去合理安排项目的研发，才能更好的去安排项目进度流程，和人员的安排调度。</p>
+<p>功能划分之后，接下来就是项目的实际研发阶段。这个阶段就是项目实际进展阶段了。必须要有合理的安排调度，才是保证项目的高效。比如：我们进行的大部分项目，都有网络交互的部分，也有本地功能部分，还有一些基础数据模块部分，这些功能必须要有合理的时间安排。</p>
+<p>项目研发之前，几点提要说明：<br>一、团队之间统一编码规范。<br>二、需求文档统一管理。<br>三、多人协同开发，根据文档开发（一切以文档为主）。</p>
+<p>项目以功能划分，功能以模块划分。在项目初期，除了产品原型可能是提前设计成形外，其它的项目文档都还未出来，产品也是有个确定功能，但是细节文档还未成形，这个时候已经是项目开始阶段，即使在有一些文档还未成形前，也可以开始项目的基础开发了。</p>
+<h4 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h4><p>网络模块，数据库存储模块，数据加密模块，数据缓存模块，数据解析器，日志信息收集模块等。这些都是项目的基本模块，也可以独立于功能的模块，可以提前开发，测试。便于后期直接使用。</p>
+<h4 id="移动安全机制"><a href="#移动安全机制" class="headerlink" title="移动安全机制"></a>移动安全机制</h4><p>做过移动项目的都知道，移动安全是项目前期需要考虑的一个重要环节。所以，在项目之初，就应该对自身的数据存储做必要的数据加密，对网络传输的数据进行必要加密。<br>移动数据加密分为两种：<br>一种是本地数据加密，只是本机存储的信息，本地加密保存。<br>一种是网络传输数据加密，这是涉及到网络协议，与服务器之间的加密协议。</p>
+<p>本地加密方式有很多种：<br>一、MD5加密算法。 MD5是个不可逆的算法 没有解密的算法（目前据说也有方法破解）。<br>二、DES加密。可逆。<br>三、RSA加密。可逆<br>对于不是需要绝对足够安全的项目，以上三种加密足够用。</p>
+<p>网络数据加密主要从两个方面考虑： </p>
+<ol>
+<li>保证API的调用者是经过自己授权的App； </li>
+<li>保证数据传输的安全。</li>
+</ol>
+<p>保证API是自己授权的App，采用设计签名的方式。对每个移动平台，都会有不同的AppKey和AppSecret。在调用API时，将AppKey加入到请求参数中，然后，把AppSecret与其它参数，通过某种签名算法生成一个签名字符串，把数据传输给服务器端。而服务器根据AppKey和AppSecret，用相同的签名算法生成的签名与之一致，则说明请求安全。签名算法可以采用自己规定的一套签名算法（更安全），也可采用外部公开的签名算法（初期使用）。另外，在参数列表中再加入一个时间戳，还可以防止部分重放攻击。<br>对于数据传输安全，可以使用HTTPS。因为HTTPS添加了ssl安全协议。但是android项目开发，大部分都没有去实现。主要是没有对ssl证书进行安全性检查。</p>
+<h4 id="API协议标准化"><a href="#API协议标准化" class="headerlink" title="API协议标准化"></a>API协议标准化</h4><p>项目开发，协议一定需要标准化，并且需要严格执行接口协议。完成每个版本的协议文档更新，方便后续使用者查看。<br>目前协议都是使用Json格式传输。需要注意的是，JSON数据和实体对象在传输时，序列化和反序列化因平台不同，会产生不同的区别。比如：JSON库将Date类型的数据序列化时会转为String，传输到服务器时，服务器反序列化经常会出现不同的结果。</p>
+<h4 id="API接口版本控制"><a href="#API接口版本控制" class="headerlink" title="API接口版本控制"></a>API接口版本控制</h4><p>一般解决接口更新变化问题，我们采取的做法是，每个API接口，都会带有协议的版本，若是协议发生改变，则版本号相应改变，在处理数据请求时，则可以根据不同协议的版本进行处理，解决了版本的兼容性问题。</p>
+<h4 id="架构分层"><a href="#架构分层" class="headerlink" title="架构分层"></a>架构分层</h4><p>架构设计，主要的目的就解决功能和代码的复用，减少重复开发，方便功能扩展，降低功能和代码层级的耦合。<br>目前移动设计框架，主流的有三种：MVC、MVP、MVVM三种方式（具体详情，请参考框架小结）。<br>任何的框架设计都是在满足开发需求为前提，千万不能为了设计而设计，不要问我这三种设计，哪种最合适开发？如果你还这样去问，那只能说你还不是一个成熟的产品设计者。三种框架都有各自的利弊，是应该在不同的阶段和不同人员的配备情况下，选择更合理的方式。我曾经参与一个创业团队开发视频项目，前期只有两个移动开发人员，项目时间紧的情况下。项目负责人就只会天天在那里修改需求，谈项目架构。初期的项目，在产品验证功能阶段，在项目需要快速迭代阶段，应该使用最有效的框架，才是合理的选择。而且项目的发展，一定是随着项目功能的确立，产品的定型和需求完善，对项目本身的稳定性和性能的要求，才是一个逐步提高的过程。想要一步达到完美的产品，不仅是在设计上很难做到，而且在目前所有的产品中，都是很难达到的。</p>
+<p>任何框架都是在此三层数据模型上。View，Model，Controller/Presenter/ViewModel。上层View：用户行为操作，数据结果显示。底层Model：数据处理，提供显示数据。中间的就是业务逻辑层。<br>Android项目设计，重在对项目的理解，重在对需求功能的划分，重在对团队合理分配。高效的产出，快速的迭代，才是移动项目的生存之道。</p>
+<h4 id="Android测试"><a href="#Android测试" class="headerlink" title="Android测试"></a>Android测试</h4><p>移动开发，为保证质量产出，需要进行必须要逻辑测试。而在项目框架设计中，简单的mvc模式，若view和model中混有业务逻辑，则不利于接口测试。所以，在后续版本的迭代中，需要逐渐使用mvp或mvvm框架设计，让view和model与业务逻辑实现完整的解耦合。</p>
+<h4 id="Android环境"><a href="#Android环境" class="headerlink" title="Android环境"></a>Android环境</h4><p>自从Android提供了更高效稳定的android studio之后，对于开发者来说是更便捷，更方便了。在android gradle多平台打包。proguard代码优化，混淆。随着android studio的越来越强大，越来越稳定，相信开发android项目也会变得越来越so easy了。</p>
+<h4 id="总结在最后"><a href="#总结在最后" class="headerlink" title="总结在最后"></a>总结在最后</h4><p>一个合格的移动项目架构师，必须是在不断的项目开发中成长的。不仅仅懂得项目的高效快速部署，也懂得怎样合理优化团队，才能有更优质的产品产出。移动产品，是一个快速产出的产品，怎样做出适合团队产出的产品，才是移动架构师的学习之道</p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Jetpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>android编译</title>
+    <url>/2020/12/21/Android/</url>
+    <content><![CDATA[<h4 id="1-编译错误-Failed-to-apply-plugin"><a href="#1-编译错误-Failed-to-apply-plugin" class="headerlink" title="1.编译错误 Failed to apply plugin"></a>1.编译错误 Failed to apply plugin</h4><blockquote>
+<p>一般gradle会有提示，根据提示解决<br>例如:<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">An exception occurred applying plugin request [id: &#39;com.android.application&#39;]</span><br><span class="line">&gt; Failed to apply plugin [id &#39;com.android.internal.application&#39;]</span><br><span class="line">   &gt; The option &#39;android.enableUnitTestBinaryResources&#39; is deprecated.</span><br><span class="line">     The current default is &#39;false&#39;.</span><br><span class="line">     It has been removed from the current version of the Android Gradle plugin.</span><br><span class="line">     The raw resource for unit test functionality is removed.</span><br></pre></td></tr></table></figure><br> 根据日志 显示 <strong>android.enableUnitTestBinaryResources</strong> 这个配置文件 有问题，找到改为 <strong>false</strong><br>还有不能找到 pluginid的 可能路径有中文（<strong>android.overridePathCheck=true</strong>）或者gradle.properties 文件里面报错</p>
+</blockquote>
+<h4 id="2-Activity-和-Service的区别"><a href="#2-Activity-和-Service的区别" class="headerlink" title="2.Activity 和 Service的区别"></a>2.Activity 和 Service的区别</h4><blockquote>
+<p>1.Activity 用户交互管理者，有一个 可视界面，Service是后台运行的 没有界面呈现</p>
+</blockquote>
+<blockquote>
+<p>2.生命周期不一样， Activity生命周期由系统 控制，service是程序控制 ，service不能自己启动，而且不能和用户交互。</p>
+</blockquote>
+<blockquote>
+<p>3.intent就是传值区别</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   &#123;</span><br><span class="line">    也可以从<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">onStartCommand</span><span class="params">(Intent intent, <span class="keyword">int</span> flags, intstartId)</span>中取出从activity中传过来的值。intent.<span class="title">getExtra</span><span class="params">()</span>获得bundle对象，可从中取值。</span></span><br><span class="line"><span class="function">也可以用<span class="title">bindService</span><span class="params">(intent,conn,BIND_AUTO_CREATE)</span></span>;传值，把要传的值绑定在intent里，在service的<span class="function"><span class="keyword">public</span> <span class="title">IBinderonBind</span><span class="params">(Intent intent)</span> 方法里取得intent。</span></span><br><span class="line"><span class="function">可以在service里面注册一个广播，在activity里sendbroadcast（intent）传值。</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-android-知识碎片整理"><a href="#3-android-知识碎片整理" class="headerlink" title="3.android 知识碎片整理"></a>3.android 知识碎片整理</h4><blockquote>
+<p> 创建 onCreate - 启动onStart – 开始 onResume – 暂停 onPause – 结束 &gt;     onStop – 销毁onDestroy</p>
+<blockquote>
+<p>•onCreate ：当活动第一次启动的时候，触发该方法，可以在此时完成活动的初始化工作。 onCreate 方法有一个参数，该参数可以为空（ null ），也可以是之前调用 onSaveInstanceState（）方法保存的状态信息。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>onStart ：该方法的触发表示所属活动将被展现给用户。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>•onResume ：当一个活动和用户发生交互的时候，触发该方法。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>•onPause ：当一个正在前台运行的活动因为其他的活动需要前台运行而转入后台运行的时候，触发该方法。这时候需要将活动的状态持久化，比如正在编辑的数据库记录等。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>•onStop ：当一个活动不再需要展示给用户的时候，触发该方法。如果内存紧张，系统会直接结束这个活动，而不会触发 onStop 方法。 所以保存状态信息是应该在onPause时做，而不是onStop时做。活动如果没有在前台运行，都将被停止或者Linux管理进程为了给新的活动预留足够的存储空间而随时结束这些活动。因此对于开发者来说，在设计应用程序的时候，必须时刻牢记这一原则。在一些情况下，onPause方法或许是活动触发的最后的方法，因此开发者需要在这个时候保存需要保存的信息。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>•onRestart ：当处于停止状态的活动需要再次展现给用户的时候，触发该方法。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>•onDestroy ：当活动销毁的时候，触发该方法。和 onStop 方法一样，如果内存紧张，系统会直接结束这个活动而不会触发该方法。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>•onSaveInstanceState ：系统调用该方法，允许活动保存之前的状态，比如说在一串字符串中的光标所处的位置等。 通常情况下，开发者不需要重写覆盖该方法，在默认的实现中，已经提供了自动保存活动所涉及到的用户界面组件的所有状态信息。</p>
+</blockquote>
+</blockquote>
+<h4 id="4-Content-Provider"><a href="#4-Content-Provider" class="headerlink" title="4.Content Provider"></a>4.Content Provider</h4><h4 id="5-JobScheduler"><a href="#5-JobScheduler" class="headerlink" title="5.JobScheduler"></a>5.JobScheduler</h4>]]></content>
+  </entry>
+  <entry>
+    <title>Csharp——lua记录</title>
+    <url>/2021/01/22/Csharp/</url>
+    <content><![CDATA[<h5 id="记录一下"><a href="#记录一下" class="headerlink" title="记录一下"></a>记录一下</h5><blockquote>
+<p>Lua 内部方法调用 使用 self:Funct()</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">local</span> Luck = &#123;&#125;</span><br><span class="line"><span class="built_in">self</span>.arrayList  = &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>  <span class="title">Luck:uiShow</span><span class="params">()</span></span></span><br><span class="line">   <span class="built_in">self</span>.arrayList  = &#123;<span class="string">&quot;key&quot;</span>,<span class="string">&quot;key2&quot;</span>&#125;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;ui show&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Luck:Close</span><span class="params">()</span></span></span><br><span class="line">   <span class="comment">--调用的地方 </span></span><br><span class="line">   <span class="built_in">self</span>:uiShow()</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> Luck</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ui 判断为空</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="literal">true</span> <span class="keyword">then</span></span><br><span class="line">      <span class="comment">--显示</span></span><br><span class="line">      num.gameobject:SetActive(<span class="literal">true</span>);</span><br><span class="line"><span class="keyword">else</span>  </span><br><span class="line">      <span class="comment">--隐藏</span></span><br><span class="line">      num.gameobject:SetActive(<span class="literal">false</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="GameOject-静态方法"><a href="#GameOject-静态方法" class="headerlink" title="GameOject 静态方法"></a>GameOject 静态方法</h5><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">GameObject 基类 是 Object ,命名空间 <span class="keyword">namespace</span>  <span class="title">UnityEngine</span>&#123;&#125;</span><br><span class="line">游戏内都是GameObject</span><br><span class="line">Object 命名空间 <span class="keyword">namespace</span> <span class="title">System</span>&#123;&#125; csharp自带的</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Lua</category>
+      </categories>
+      <tags>
+        <tag>Lua</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java通用代码分装</title>
+    <url>/2021/01/05/GeneralCode/</url>
+    <content><![CDATA[<h4 id="封装通用类型"><a href="#封装通用类型" class="headerlink" title="封装通用类型"></a>封装通用类型</h4><blockquote>
+<p>csharp 通过jni调用Java   </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">Show</span><span class="params">(String methodName, String args)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (!TextUtils.isEmpty(methodName) &amp;&amp; methodName.equals(<span class="string">&quot;RegCallback&quot;</span>))&#123;</span><br><span class="line">           GiantSDK.athenaCallback(args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">0</span>],args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">1</span>]);</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       ReflectUtils mReflectUtils = <span class="keyword">null</span>;</span><br><span class="line">       Method mReflectMothod = <span class="keyword">null</span>;</span><br><span class="line">       <span class="keyword">int</span> length = JumpArgs(args);</span><br><span class="line">       Log.e(TAG, <span class="string">&quot;args = &quot;</span> + args);</span><br><span class="line">       <span class="keyword">if</span> (mGaSdkClass != <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="comment">//无返回值的方法</span></span><br><span class="line">           mReflectUtils = ReflectUtils.reflect(mGaSdkClass).newInstance();</span><br><span class="line"></span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">1</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">2</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   classes[<span class="number">1</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (mReflectMothod.getReturnType().equals(Void.TYPE)) &#123;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                       <span class="comment">//无参数</span></span><br><span class="line">                       mReflectUtils.method(methodName);</span><br><span class="line">                       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                       <span class="comment">//一个参数</span></span><br><span class="line">                       mReflectUtils.method(methodName, args);</span><br><span class="line">                   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                       String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                       mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]);</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="comment">//有返回值</span></span><br><span class="line">               String result = <span class="keyword">null</span>;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, args).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               Log.d(TAG, <span class="string">&quot;result = &quot;</span> + result);</span><br><span class="line">               <span class="keyword">return</span> result;</span><br><span class="line">           &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Kotlin学习记录</title>
+    <url>/2018/08/07/Kotlin-Null/</url>
+    <content><![CDATA[<h3 id="可空类型-和非空类型"><a href="#可空类型-和非空类型" class="headerlink" title="可空类型 和非空类型"></a>可空类型 和非空类型</h3><p> kotlin 的类型系统在消除代码的NullPointerExcepion NPE</p>
+<p> 安全调用符：?.<br> b?.length</p>
+<p>第三种 是为NPE爱好者准备的<br> 非空断言 运算符（!!）操作符 将任何值 转换为非空类型， 如果</p>
+<h4 id="NULL-和-nullptr"><a href="#NULL-和-nullptr" class="headerlink" title="NULL 和 nullptr"></a>NULL 和 nullptr</h4><blockquote>
+<p>在C的头文件中</p>
+</blockquote>
+ <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NULL ((void*)0)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在C++ 中</p>
+</blockquote>
+ <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NULL 0</span></span><br></pre></td></tr></table></figure>
+<p><strong>如果你想表示空指针，那么使用nullptr，而不是NULL。</strong><br><strong>注：nullptr在C++ 11中才出现。</strong></p>
+]]></content>
+      <categories>
+        <category>Kotlin</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>评论配置</title>
+    <url>/2020/12/23/LeanCloud-md/</url>
+    <content><![CDATA[<p><strong>Hexo的Next主题集成了多种评论系统，在这里介绍两种个人感觉还不错的评论系统：Valine和Gitment。这里介绍前者</strong></p>
+<h4 id="Valine-评论系统"><a href="#Valine-评论系统" class="headerlink" title="Valine 评论系统"></a>Valine 评论系统</h4><blockquote>
+<p>使用 Valine 评论系统，这款系统不需要登录便可以登录，没有后端，Next 主题最新已经支持安装。</p>
+</blockquote>
+<ul>
+<li>基于 Leancloud 的系统</li>
+<li>支持 MarkDown 语法</li>
+<li>无后端实现，快速高效</li>
+</ul>
+<h4 id="关于配置"><a href="#关于配置" class="headerlink" title="关于配置"></a>关于配置</h4><blockquote>
+<p>注册 LeanCloud<br>因为 Valine 是基于 LeanCloud 系统的，所以先在 LeanCloud 中注册账号</p>
+</blockquote>
+<ul>
+<li><a href="https://leancloud.cn/dashboard/login.html#/signin">官网入口</a></li>
+</ul>
+<h4 id="关于设置-Next-主题"><a href="#关于设置-Next-主题" class="headerlink" title="关于设置 Next 主题"></a>关于设置 Next 主题</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># Valine.</span><br><span class="line"># You can get your appid and appkey from https://leancloud.cn</span><br><span class="line"># more info please open https://valine.js.org</span><br><span class="line">valine:</span><br><span class="line">  enable: true # 是否开启</span><br><span class="line">  appid:   # 上一步获取的 App ID</span><br><span class="line">  appkey:  # 上一步获取的 App Key</span><br><span class="line">  notify: false # 新留言是否需要通知 https://github.com/xCss/Valine/wiki</span><br><span class="line">  verify: false # 是否需要验证，验证比较反人类建议false关闭</span><br><span class="line">  placeholder: 请在此输入您的留言 # 默认留言框内的文字</span><br><span class="line">  avatar: mm # 默认头像</span><br><span class="line">  guest_info: nick,mail # 默认留言框的头部需要访问者输入的信息</span><br><span class="line">  pageSize: 10 # pagination size #默认单页的留言条数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="关于评论"><a href="#关于评论" class="headerlink" title="关于评论"></a>关于评论</h4><blockquote>
+<p>如果想要管理评论，进入 leancloud 官网，找到 控制台-&gt;存储-&gt;结构化数据-&gt;Commet 中进行管理</p>
+</blockquote>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">INFO  Deploying: git</span><br><span class="line">INFO  Clearing .deploy_git folder...</span><br><span class="line">INFO  Copying files from public folder...</span><br><span class="line">fatal: 位于未检出的子模组 &#39;.deploy_git&#39;</span><br><span class="line">Maybe you can find the solution here: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;troubleshooting.html</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>直接删除 <strong>.deploy_git</strong> 即可</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Hexo评论</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Java想到的问题</title>
+    <url>/2019/05/14/Java/</url>
+    <content><![CDATA[<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><h3 id="hash碰撞-解决方案"><a href="#hash碰撞-解决方案" class="headerlink" title="hash碰撞 解决方案"></a>hash碰撞 解决方案</h3><blockquote>
+<p>比较常用的算法是链地址法和开放地址法</p>
+</blockquote>
+<h3 id="java-位运算"><a href="#java-位运算" class="headerlink" title="java 位运算"></a>java 位运算</h3><blockquote>
+<p>1 左移(&lt;&lt;)</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println(<span class="number">5</span>&lt;&lt;<span class="number">2</span>);<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span>           然后左移<span class="number">2</span>位后，低位补<span class="number">0</span>：</span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0001</span> <span class="number">01</span> <span class="string">&quot;00&quot;</span>           换算成<span class="number">10</span>进制为<span class="number">20</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>2 右移（&gt;&gt;）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println(<span class="number">5</span>&lt;&lt;<span class="number">2</span>);<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span>           然后右移<span class="number">2</span>位后，高位补<span class="number">0</span>：</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;00&quot;</span><span class="number">00</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">00000</span>  <span class="number">0001</span>           换算成<span class="number">10</span>进制为<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>3 无符号右移( &gt;&gt;&gt; )</p>
+</blockquote>
+<p>1.我们知道在Java中int类型占32位，可以表示一个正数，也可以表示一个负数。正数换算成二进制后的最高位为0，负数的二进制最高为为1</p>
+<blockquote>
+<p>4 位与( &amp; )</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>&amp;<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0001</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>5 位或( | )</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>|<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">7</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0111</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>6 位异或( ^ )</p>
+</blockquote>
+<blockquote>
+<p>Java异或是Java二进制的一种运算规则。两个相同的操作位相同则为0，不同则为1。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>^<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0110</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>7 位非( ~ )           位非是一元操作符</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( ~<span class="number">5</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">-<span class="number">6</span>转换为二进制：-<span class="number">6</span>转换为二进制：<span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1110</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>8 负数计算（负数转二进制规律：</p>
+</blockquote>
+<p>1、取负数的绝对值的原码；</p>
+<p>2、计算原码的反码；</p>
+<p>3、对反码加一，获取补码。</p>
+<p>）</p>
+<blockquote>
+<p>9 概念如下<br>首先我们要对原码、反码和补码有个了解：<br>1、所谓原码就是二进制定点表示法，即最高位为符号位，“0”表示正，“1”表示负，其余位表示数值的大小。<br>2、反码表示法规定：正数的反码与其原码相同；负数的反码是对其原码逐位取反，但符号位除外。<br>原码10010= 反码11101 （10010，1为符号码，故为负）<br>(11101) 二进制= -13 十进制<br>3、补码表示法规定：正数的补码与其原码相同；负数的补码是在其反码的末位加1</p>
+</blockquote>
+<h3 id="java-内部类"><a href="#java-内部类" class="headerlink" title="java 内部类"></a>java 内部类</h3><p> 结构清晰，可读性好，代码好维护</p>
+<blockquote>
+<p>内部类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;User Outer&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UInner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;UInner UInner&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line">User user = <span class="keyword">new</span> User();</span><br><span class="line"><span class="comment">//依赖外部实例化</span></span><br><span class="line">User.UInner iner = user.<span class="function">new <span class="title">UInner</span><span class="params">()</span></span>;</span><br><span class="line">inter.display();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>匿名内部类（没有类名，常见于接口）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ILoad</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadMap</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//正常情况</span></span><br><span class="line"><span class="comment">// public class User implements ILoad&#123;</span></span><br><span class="line"><span class="comment">//     @override</span></span><br><span class="line"><span class="comment">//     public void loadMap()&#123;</span></span><br><span class="line"><span class="comment">//         System.out.println(&quot;User Outer&quot;);</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line"></span><br><span class="line">ILoad iner = <span class="keyword">new</span> ILoad()&#123;</span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;loadMap&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">iner.loadMap();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>静态内部类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;User Outer&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">UInner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;UInner UInner&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line">User user = <span class="keyword">new</span> User();</span><br><span class="line"><span class="comment">//不依赖外部实例化</span></span><br><span class="line">User.UInner iner = <span class="keyword">new</span> User.UInner();</span><br><span class="line">inter.display();</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>调研记录一下</title>
+    <url>/2020/12/21/MoreLear/</url>
+    <content><![CDATA[<h4 id="1-上海职业能力考试院"><a href="#1-上海职业能力考试院" class="headerlink" title="1.上海职业能力考试院"></a>1.上海职业能力考试院</h4><blockquote>
+<p><a href="http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384">http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384</a> </p>
+</blockquote>
+<h4 id="2-事业单位查询"><a href="#2-事业单位查询" class="headerlink" title="2.事业单位查询"></a>2.事业单位查询</h4><blockquote>
+<p><a href="http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/">http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://sh.offcn.com/html/2020/11/191560.html">http://sh.offcn.com/html/2020/11/191560.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://sh.offcn.com/zg/shsydwdg/">http://sh.offcn.com/zg/shsydwdg/</a></p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
+    <title>UE4遇到的WebView问题</title>
+    <url>/2021/01/18/RecordUe4/</url>
+    <content><![CDATA[<h5 id="UE4-24-4版本最新-Android机-少数有webcrash"><a href="#UE4-24-4版本最新-Android机-少数有webcrash" class="headerlink" title="UE4-24-4版本最新 Android机 少数有webcrash"></a>UE4-24-4版本最新 Android机 少数有webcrash</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2021-01-18 18:20:23.149 4886-4886&#x2F;? E&#x2F;chromium: [ERROR:aw_browser_terminator.cc(125)] Renderer process (6237) crash detected (code -1).</span><br><span class="line">2021-01-18 18:20:23.149 4886-4886&#x2F;? E&#x2F;chromium: [ERROR:aw_browser_terminator.cc(90)] Render process (6237) kill (OOM or update) wasn&#39;t handed by all associated webviews, killing application.</span><br></pre></td></tr></table></figure>
+<h5 id="推理测试"><a href="#推理测试" class="headerlink" title="推理测试"></a>推理测试</h5><blockquote>
+<p>1.web内容改为本地 依然crash</p>
+</blockquote>
+<blockquote>
+<p>2.改变web创建方式 代码创建 和布局中 依然无效</p>
+</blockquote>
+<blockquote>
+<p>3.zipalign内存字节对齐 这是磁盘对齐，是在打完apk后<br> 在android中，资源文件通过内存映射对齐到4字节边界时，访问资源文件的代码才是有效率的<br> zipalign -c -v 4 xxx.apk</p>
+</blockquote>
+<p> <strong>优化出包</strong><br> zipalign -v 4  xx.apk havedGood.apk</p>
+<blockquote>
+<p>4.采用V2签名</p>
+</blockquote>
+<blockquote>
+<p>5.关闭aapt2,开启aapt </p>
+</blockquote>
+<blockquote>
+<p>6.修改对应的ue4-24版本对应的gradle插件 3.2.1  发现游戏包大于2G 出现OOM,放弃<br> OOM 问题无法解决</p>
+</blockquote>
+<blockquote>
+<p>7.游戏里添加按钮直接调用接口测试  或者跳转空白页面还是crash</p>
+</blockquote>
+<blockquote>
+<p>8.Gradle版本 低于3.5.3  或者高于 如4.0.1 都是内存溢出 OOM（array to large ）越界<br><img src="RecordUe4/Lark_gradle.png" alt="gradle"><br>9.游戏 包重新签名</p>
+</blockquote>
+<p>以上都无效</p>
+<h5 id="apktool-反编译-回编重写签名"><a href="#apktool-反编译-回编重写签名" class="headerlink" title="apktool 反编译  回编重写签名"></a>apktool 反编译  回编重写签名</h5><blockquote>
+<p>测试正常 apktool d xx.apk -o test/<br>apktool b test/ -o unsign.apk</p>
+</blockquote>
+<blockquote>
+<p>apktool原理没有 特殊处理，小端字节等<br>apktool原理 编译和反编译 smalli 字节码</p>
+</blockquote>
+<blockquote>
+<p>最后用apktool 反编译 回编出包</p>
+</blockquote>
+<h5 id="游戏多次收到回调问题"><a href="#游戏多次收到回调问题" class="headerlink" title="游戏多次收到回调问题"></a>游戏多次收到回调问题</h5><blockquote>
+<p>SDK消息分发这里 打印日志 只发了一次 游戏收到多次说明多次注册 或者多次调用</p>
+</blockquote>
+<h5 id="aapt和aapt2-区别-为什么会有aapt2"><a href="#aapt和aapt2-区别-为什么会有aapt2" class="headerlink" title="aapt和aapt2 区别 为什么会有aapt2"></a>aapt和aapt2 区别 为什么会有aapt2</h5><blockquote>
+<p>1.<strong>编译</strong>：将资源文件编译为二进制格式文件<br> <strong>链接</strong>：将编译后的所有文件合并，打包成一个单独文件</p>
+</blockquote>
+<blockquote>
+<p>2.在aapt基础上做了优化</p>
+</blockquote>
+<blockquote>
+<p>3.这种方式可以很好的提升资源的编译性能，比如只有一个资源文件发生改变时，你只需要重新编译改变的文件，然后将其与其他未改变的资源进行链接即可。而之前的aapt是将所有资源进行merge，merge完后将所有资源进行编译，产生一个资源ap_文件，该文件是一个压缩包，这样带来的后果就是即使只改变了一个资源文件，也要进行全量编译。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>UE4</category>
+      </categories>
+      <tags>
+        <tag>UE4,WebView</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unity游戏开发记录</title>
+    <url>/2021/01/29/Unity-Game/</url>
+    <content><![CDATA[<h4 id="Unity-热更中断"><a href="#Unity-热更中断" class="headerlink" title="Unity 热更中断"></a>Unity 热更中断</h4><blockquote>
+<p>热更包10MB，下载到大概2MB中端</p>
+</blockquote>
+<blockquote>
+<p>中断发现无效文件 FileState.Error&gt;0 后面对比文件MD5  不一致文件 可以正常下载</p>
+</blockquote>
+<blockquote>
+<p>下载 逻辑 在version/18.60.0 目录没有放最新的 MAX_VERSION_0.json  和FileVersionList.txt  所以出错，对比旧的资源 发现无效。</p>
+</blockquote>
+<h4 id="Unitiy-Button点击无响应"><a href="#Unitiy-Button点击无响应" class="headerlink" title="Unitiy Button点击无响应"></a>Unitiy Button点击无响应</h4><blockquote>
+<p>有遮罩 比如Image</p>
+</blockquote>
+<blockquote>
+<p>按钮没有实例化</p>
+</blockquote>
+<blockquote>
+<p>lua方法用错</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="built_in">self</span>.mainUI.CloseBtn:GetCompoment(<span class="string">&quot;Button&quot;</span>).onClick:AddListener(<span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;打印&quot;</span>)</span><br><span class="line"><span class="keyword">end</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="ScreenSpace-Camera"><a href="#ScreenSpace-Camera" class="headerlink" title="ScreenSpace-Camera"></a>ScreenSpace-Camera</h4><blockquote>
+<p>首先还是Order In Layer，还是一样，数值越大，越在上层</p>
+</blockquote>
+<h4 id="Unity-Prefab-和-Scene区别"><a href="#Unity-Prefab-和-Scene区别" class="headerlink" title="Unity Prefab 和 Scene区别"></a>Unity Prefab 和 Scene区别</h4><blockquote>
+<p>Prefab可以被看做是对scene（场景）中game object（游戏物体）的描述文件，可以被储存在Assets文件夹内，以方便在其他scene中重复利用。Prefab实际上并不包含任何模型、贴图等真正的素材文件，只是一个虚拟的“参考”。</p>
+</blockquote>
+<blockquote>
+<p>我们可以把prefab当做一种特殊的“资源素材”，在场景中引用prefab，相当于按照这个prefab所描述的规范引用其涉及到的“真实素材”。如果我们不小心删除掉了这些“真实素材”，那么prefab就失去了作用。</p>
+</blockquote>
+<h4 id="Unity-程序框架"><a href="#Unity-程序框架" class="headerlink" title="Unity 程序框架"></a>Unity 程序框架</h4><blockquote>
+<p>事件中心<br>UI管理器<br>场景管理器<br>资源管理器（加载资源）<br>音乐管理器<br>MonoMgr<br>缓冲池</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Unity加载AB包</title>
+    <url>/2021/02/01/Unity-AssetBundle/</url>
+    <content><![CDATA[<h4 id="AssetBundle"><a href="#AssetBundle" class="headerlink" title="AssetBundle"></a>AssetBundle</h4><blockquote>
+<p>加载AB包</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + <span class="string">&quot;/&quot;</span>+ <span class="string">&quot;test&quot;</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>加载AB包资源 <strong>用泛型 或者 typeof 类型</strong><br><strong>AB包不能重复加载否则报错</strong></p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">GameObject gameobject =  ab.LoadAsset&lt;GameObject&gt;(<span class="string">&quot;cube&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GameObject gameobject2 = ab.LoadAsset(<span class="string">&quot;cube&quot;</span>,<span class="keyword">typeof</span>(GameObject)) <span class="keyword">as</span> GameObject;</span><br><span class="line"></span><br><span class="line">Instantiate(gameobject);</span><br><span class="line"><span class="comment">// false 卸载ab 包但 不卸载资源</span></span><br><span class="line">ab.unpack(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Video记录</title>
+    <url>/2020/12/24/Videoview/</url>
+    <content><![CDATA[<h5 id="VideoView"><a href="#VideoView" class="headerlink" title="VideoView"></a>VideoView</h5><blockquote>
+<p>测试链接 <strong><a href="https://media.w3.org/2010/05/sintel/trailer.mp4">https://media.w3.org/2010/05/sintel/trailer.mp4</a></strong></p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">lateinit</span> <span class="keyword">var</span> progressBar: ProgressBar</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> videoView: VideoView</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> mediaController: MediaController</span><br><span class="line">    <span class="keyword">var</span> positionWhenPause: <span class="built_in">Int</span> = -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_audio)</span><br><span class="line"></span><br><span class="line">        videoView  = findViewById(R.id.videoVideo)</span><br><span class="line">        progressBar = findViewById(R.id.progress_circular)</span><br><span class="line"></span><br><span class="line"> mediaController = MediaController(<span class="keyword">this</span>)</span><br><span class="line">        videoView.setMediaController(mediaController)</span><br><span class="line">        mediaController.show(<span class="number">0</span>)</span><br><span class="line">        <span class="comment">//complete</span></span><br><span class="line">        videoView.setOnCompletionListener &#123; MediaPlayer.OnCompletionListener &#123;</span><br><span class="line">           Log.e(<span class="string">&quot;TAG&quot;</span>,<span class="string">&quot;播放 完成&quot;</span>)</span><br><span class="line">        &#125; &#125;</span><br><span class="line">        videoView.setOnErrorListener(MediaPlayer.OnErrorListener &#123; mp, what, extra -&gt;</span><br><span class="line">            println(<span class="string">&quot;<span class="variable">$mp</span>,what = <span class="variable">$what</span>,extra = <span class="variable">$extra</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span><span class="symbol">@OnErrorListener</span> <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line">        videoView.setOnPreparedListener &#123;</span><br><span class="line">            videoView.start()</span><br><span class="line">            progressBar.visibility = View.GONE</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//设置videoView 的点击监听</span></span><br><span class="line">        videoView.setOnTouchListener(View.OnTouchListener &#123; v, event -&gt;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span><span class="symbol">@OnTouchListener</span> <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        <span class="comment">//http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4</span></span><br><span class="line">        <span class="keyword">val</span> mp4id = resources.getIdentifier(<span class="string">&quot;trailer&quot;</span>,<span class="string">&quot;raw&quot;</span>,<span class="keyword">this</span>.packageName)</span><br><span class="line">     <span class="comment">//   val uri = Uri.parse(&quot;android.resource://com.bytedance.scenedemo/$mp4id&quot;)</span></span><br><span class="line">        <span class="keyword">val</span> uri = Uri.parse(<span class="string">&quot;http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4&quot;</span>)</span><br><span class="line"><span class="comment">//        videoView.setVideoPath()</span></span><br><span class="line">        videoView.setVideoURI(uri)</span><br><span class="line">        setVideoViewLayoutParams(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>view宽和高</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setVideoViewLayoutParams</span><span class="params">(x: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">//全屏</span></span><br><span class="line">        <span class="keyword">val</span> layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)</span><br><span class="line">        videoView.layoutParams = layoutParams</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//窗口模式</span></span><br><span class="line">        <span class="keyword">val</span> display = DisplayMetrics()</span><br><span class="line">        windowManager.defaultDisplay.getMetrics(display)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> vHeight = DisplayMetrics.DENSITY_HIGH</span><br><span class="line">        <span class="keyword">val</span> vWidth = DisplayMetrics.DENSITY_DEFAULT</span><br><span class="line">        <span class="keyword">val</span> layoutParams = RelativeLayout.LayoutParams(vWidth,vHeight)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_TOP)</span><br><span class="line">        videoView.layoutParams = layoutParams</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>布局</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">&lt;VideoView</span><br><span class="line">       android:id=&quot;@+id/videoVideo&quot;</span><br><span class="line">       android:layout_width=&quot;match_parent&quot;</span><br><span class="line">       android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">       /&gt;</span><br><span class="line">   &lt;ProgressBar</span><br><span class="line">       android:id=&quot;@+id/progress_circular&quot;</span><br><span class="line">       android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">       android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">       android:layout_centerInParent=&quot;true&quot;</span><br><span class="line">       /&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>我测试的是本地视频</strong></p>
+<blockquote>
+<p>获取Raw资源</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> mp4id = resources.getIdentifier(<span class="string">&quot;trailer&quot;</span>,<span class="string">&quot;raw&quot;</span>,<span class="keyword">this</span>.packageName)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>VideoView</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>webrtc记录</title>
+    <url>/2020/12/21/Webrtc/</url>
+    <content><![CDATA[<h3 id="WebRtc-简介"><a href="#WebRtc-简介" class="headerlink" title="WebRtc 简介"></a>WebRtc 简介</h3><blockquote>
+<p>WebRTC名称源自网页实时通信(Web Real-Time Communication)的缩写，是一个支持网页浏览器进行实时语音对话或视频对话的技术，是谷歌2010年以6820万美元收购Global IP Solutions公司而获得的一项技术。Google于2011年6月3日开源的即时通讯项目，旨在使其成为客户端视频通话的标准。其实在Google将WebRTC开源之前，微软和苹果各自的通讯产品已占用很大市场份额（如Skype），Google`也是为了快速扩大市场，所以将他给开源。在行业内得到了广泛的支持和应用，成为下一代视频通话的标准。更多介绍可以自行去官网上看。</p>
+</blockquote>
+<blockquote>
+<p>WebRTC被誉为是web长期开源开发的一个新启元，是近年来Web开发的最重要创新。WebRTC允许Web开发者在其web应用中添加视频聊天或者点对点数据传输，不需要复杂的代码或者昂贵的配置。目前支持Chrome、Firefox和Opera，后续会支持更多的浏览器，它有能力达到数十亿的设备。</p>
+</blockquote>
+<h3 id="编译WebRTC"><a href="#编译WebRTC" class="headerlink" title="编译WebRTC"></a>编译WebRTC</h3><blockquote>
+<p>参考声网的国内镜像（我试图编译 镜像下载失败）<strong><a href="https://webrtc.org.cn/mirror/">https://webrtc.org.cn/mirror/</a></strong></p>
+</blockquote>
+<h3 id="Android-webrtc"><a href="#Android-webrtc" class="headerlink" title="Android-webrtc"></a>Android-webrtc</h3><blockquote>
+<p>android依赖</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">implementation &#x27;org.webrtc:google-webrtc:1.0.26131&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>1.打开摄像头<br>2.本地回环<br>3.信令<br>4.多人视频</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>UnityPluginForMac</title>
+    <url>/2019/06/09/UnityPluginForMac/</url>
+    <content><![CDATA[<p>因为需要做Window和 Mac 插件，且iOS和Android 用 UnitySendMessage，所以为了统一 pc端也用次回调。这里做下记录方便改进。</p>
+<p>如果你是OSX系统，那么Unity可以在编辑器里面直接使用OSX插件。OSX插件是bundle文件，放在Assets/Plugins目录下。</p>
+<p>跟iOS插件差不多，不过OSX没有UnitySendMessage函数，所以要用另外一种途经来实现OC -&gt; C#</p>
+<p>方法就是用C语言的函数指针。</p>
+<p>首先在头文件声明一个函数指针和声明两个函数</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数指针</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*UnitySendMessage)</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* objectName, <span class="keyword">const</span> <span class="keyword">char</span>* methodName, <span class="keyword">const</span> <span class="keyword">char</span>* msg)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !TARGET_OS_IPHONE</span></span><br><span class="line">    <span class="comment">//C#调用的，参数是一个回调函数。</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">RegisterCallback</span><span class="params">(UnitySendMessage callbackMethod)</span></span>;</span><br><span class="line">    <span class="comment">//调用回调函数的函数。</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">CallbackToUnity</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* msg)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接着在mm文件里面实现</p>
+<figure class="highlight mm"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !TARGET_OS_IPHONE</span></span><br><span class="line"><span class="keyword">static</span> UnitySendMessage lastCallback = <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">void</span> RegisterCallback(UnitySendMessage callbackMethod)</span><br><span class="line">&#123;</span><br><span class="line">    lastCallback = callbackMethod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> CallbackToUnity(<span class="keyword">const</span> <span class="keyword">char</span>* msg)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (lastCallback != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        lastCallback(sUnityGameObjectName, sUnityMethodName, msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">//mm 中声明改方法，cshap通过dllimport调用传递参数</span></span><br><span class="line">    <span class="keyword">void</span> Demo_nativeRegister(<span class="keyword">const</span> <span class="keyword">char</span>* unityGameObjectName, <span class="keyword">const</span> <span class="keyword">char</span>* unityMethodName);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>C#这边加上声明：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">region</span> Mac PC 回调</span></span><br><span class="line">       <span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX</span></span><br><span class="line">               <span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">UnityCallbackDelegate</span>(<span class="params">IntPtr objName, IntPtr methodName, IntPtr msg</span>)</span>;</span><br><span class="line"></span><br><span class="line">               [<span class="meta">DllImport(GiantSDKUtil.GIANTSDK_PLATFORM)</span>]</span><br><span class="line">               <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">RegisterCallback</span>(<span class="params">[MarshalAs(UnmanagedType.FunctionPtr</span>)] UnityCallbackDelegate callback)</span>;</span><br><span class="line">       <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">       <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br></pre></td></tr></table></figure>
+<p>然后就是设置回调函数，在Start函数或者自己需求的任意位置</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//统一注册和接收</span></span><br><span class="line">  Demo_nativeRegister(<span class="keyword">this</span>.gameObject.name, functionName);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX</span></span><br><span class="line">            RegisterCallback(<span class="built_in">delegate</span> (IntPtr objName, IntPtr methodName, IntPtr msg) &#123;</span><br><span class="line">                <span class="built_in">string</span> objN = Marshal.PtrToStringAuto(objName);</span><br><span class="line">                <span class="built_in">string</span> methodN = Marshal.PtrToStringAuto(methodName);</span><br><span class="line">                <span class="built_in">string</span> message = Marshal.PtrToStringAuto(msg);</span><br><span class="line">                GameObject founded = GameObject.Find(objN);</span><br><span class="line">                <span class="keyword">if</span> (founded != <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    founded.SendMessage(methodN, message);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    Debug.LogError(<span class="string">&quot;&quot;</span> + objN + <span class="string">&quot; Not Found!&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>IntPtr是C#里面的指针，Marshal类用来在托管对象和非托管对象相互转换，像上面的PtrToStringAuto把一个非托管的C指针转换成C#的托管对象string。</p>
+<p>参考：<br><br><br><a href="http://skyhacker2.github.io/blog/?articles/U3D/2016-08-15-%E7%BB%99U3D%E7%BC%96%E5%86%99OSX%E6%8F%92%E4%BB%B6.md#">UnityPluginForMac</a></p>
+<p><a href="https://docs.unity3d.com/Manual/PluginInspector.html">Plugins</a></p>
+<p><a href="https://docs.unity3d.com/Manual/PluginsForIOS.html">PluginsForIOS</a></p>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android二维码扫描</title>
+    <url>/2021/02/09/scans-md/</url>
+    <content><![CDATA[<h4 id="二维码扫描"><a href="#二维码扫描" class="headerlink" title="二维码扫描"></a>二维码扫描</h4><blockquote>
+<p>zxing 和华为的扫描控件 大为方便<br> 下面是一些文章对比<br> <strong><a href="https://my.oschina.net/u/4496016/blog/4285663">https://my.oschina.net/u/4496016/blog/4285663</a></strong></p>
+</blockquote>
+<blockquote>
+<p>我自己集成了 10分钟 搞定一个扫描控件 还是很方便的。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>zxing,scan</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Steam接入记录</title>
+    <url>/2021/01/26/steam/</url>
+    <content><![CDATA[<h5 id="Steam-for-Mac"><a href="#Steam-for-Mac" class="headerlink" title="Steam for Mac"></a>Steam for Mac</h5><p>SDK <strong><a href="http://steamworks.github.io/installation">http://steamworks.github.io/installation</a></strong></p>
+<blockquote>
+<p>steam_appid,在asset同级目录</p>
+</blockquote>
+<blockquote>
+<p>init 初始化</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Steam</tag>
+      </tags>
+  </entry>
+</search>
