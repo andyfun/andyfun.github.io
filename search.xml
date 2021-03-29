@@ -129,57 +129,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Kotlin学习记录</title>
-    <url>/2018/08/07/Kotlin-Null/</url>
-    <content><![CDATA[<h3 id="可空类型-和非空类型"><a href="#可空类型-和非空类型" class="headerlink" title="可空类型 和非空类型"></a>可空类型 和非空类型</h3><p> kotlin 的类型系统在消除代码的NullPointerExcepion NPE</p>
-<p> 安全调用符：?.<br> b?.length</p>
-<p>第三种 是为NPE爱好者准备的<br> 非空断言 运算符（!!）操作符 将任何值 转换为非空类型， 如果</p>
-<h4 id="NULL-和-nullptr"><a href="#NULL-和-nullptr" class="headerlink" title="NULL 和 nullptr"></a>NULL 和 nullptr</h4><blockquote>
-<p>在C的头文件中</p>
-</blockquote>
- <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NULL ((void*)0)</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在C++ 中</p>
-</blockquote>
- <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NULL 0</span></span><br></pre></td></tr></table></figure>
-<p><strong>如果你想表示空指针，那么使用nullptr，而不是NULL。</strong><br><strong>注：nullptr在C++ 11中才出现。</strong></p>
-]]></content>
-      <categories>
-        <category>Kotlin</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>评论配置</title>
-    <url>/2020/12/23/LeanCloud-md/</url>
-    <content><![CDATA[<p><strong>Hexo的Next主题集成了多种评论系统，在这里介绍两种个人感觉还不错的评论系统：Valine和Gitment。这里介绍前者</strong></p>
-<h4 id="Valine-评论系统"><a href="#Valine-评论系统" class="headerlink" title="Valine 评论系统"></a>Valine 评论系统</h4><blockquote>
-<p>使用 Valine 评论系统，这款系统不需要登录便可以登录，没有后端，Next 主题最新已经支持安装。</p>
-</blockquote>
-<ul>
-<li>基于 Leancloud 的系统</li>
-<li>支持 MarkDown 语法</li>
-<li>无后端实现，快速高效</li>
-</ul>
-<h4 id="关于配置"><a href="#关于配置" class="headerlink" title="关于配置"></a>关于配置</h4><blockquote>
-<p>注册 LeanCloud<br>因为 Valine 是基于 LeanCloud 系统的，所以先在 LeanCloud 中注册账号</p>
-</blockquote>
-<ul>
-<li><a href="https://leancloud.cn/dashboard/login.html#/signin">官网入口</a></li>
-</ul>
-<h4 id="关于设置-Next-主题"><a href="#关于设置-Next-主题" class="headerlink" title="关于设置 Next 主题"></a>关于设置 Next 主题</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># Valine.</span><br><span class="line"># You can get your appid and appkey from https://leancloud.cn</span><br><span class="line"># more info please open https://valine.js.org</span><br><span class="line">valine:</span><br><span class="line">  enable: true # 是否开启</span><br><span class="line">  appid:   # 上一步获取的 App ID</span><br><span class="line">  appkey:  # 上一步获取的 App Key</span><br><span class="line">  notify: false # 新留言是否需要通知 https://github.com/xCss/Valine/wiki</span><br><span class="line">  verify: false # 是否需要验证，验证比较反人类建议false关闭</span><br><span class="line">  placeholder: 请在此输入您的留言 # 默认留言框内的文字</span><br><span class="line">  avatar: mm # 默认头像</span><br><span class="line">  guest_info: nick,mail # 默认留言框的头部需要访问者输入的信息</span><br><span class="line">  pageSize: 10 # pagination size #默认单页的留言条数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="关于评论"><a href="#关于评论" class="headerlink" title="关于评论"></a>关于评论</h4><blockquote>
-<p>如果想要管理评论，进入 leancloud 官网，找到 控制台-&gt;存储-&gt;结构化数据-&gt;Commet 中进行管理</p>
-</blockquote>
-<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">INFO  Deploying: git</span><br><span class="line">INFO  Clearing .deploy_git folder...</span><br><span class="line">INFO  Copying files from public folder...</span><br><span class="line">fatal: 位于未检出的子模组 &#39;.deploy_git&#39;</span><br><span class="line">Maybe you can find the solution here: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;troubleshooting.html</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>直接删除 <strong>.deploy_git</strong> 即可</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Hexo评论</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Java想到的问题</title>
     <url>/2019/05/14/Java/</url>
     <content><![CDATA[<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><h3 id="hash碰撞-解决方案"><a href="#hash碰撞-解决方案" class="headerlink" title="hash碰撞 解决方案"></a>hash碰撞 解决方案</h3><blockquote>
@@ -247,6 +196,57 @@
       </tags>
   </entry>
   <entry>
+    <title>Kotlin学习记录</title>
+    <url>/2018/08/07/Kotlin-Null/</url>
+    <content><![CDATA[<h3 id="可空类型-和非空类型"><a href="#可空类型-和非空类型" class="headerlink" title="可空类型 和非空类型"></a>可空类型 和非空类型</h3><p> kotlin 的类型系统在消除代码的NullPointerExcepion NPE</p>
+<p> 安全调用符：?.<br> b?.length</p>
+<p>第三种 是为NPE爱好者准备的<br> 非空断言 运算符（!!）操作符 将任何值 转换为非空类型， 如果</p>
+<h4 id="NULL-和-nullptr"><a href="#NULL-和-nullptr" class="headerlink" title="NULL 和 nullptr"></a>NULL 和 nullptr</h4><blockquote>
+<p>在C的头文件中</p>
+</blockquote>
+ <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NULL ((void*)0)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在C++ 中</p>
+</blockquote>
+ <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NULL 0</span></span><br></pre></td></tr></table></figure>
+<p><strong>如果你想表示空指针，那么使用nullptr，而不是NULL。</strong><br><strong>注：nullptr在C++ 11中才出现。</strong></p>
+]]></content>
+      <categories>
+        <category>Kotlin</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>评论配置</title>
+    <url>/2020/12/23/LeanCloud-md/</url>
+    <content><![CDATA[<p><strong>Hexo的Next主题集成了多种评论系统，在这里介绍两种个人感觉还不错的评论系统：Valine和Gitment。这里介绍前者</strong></p>
+<h4 id="Valine-评论系统"><a href="#Valine-评论系统" class="headerlink" title="Valine 评论系统"></a>Valine 评论系统</h4><blockquote>
+<p>使用 Valine 评论系统，这款系统不需要登录便可以登录，没有后端，Next 主题最新已经支持安装。</p>
+</blockquote>
+<ul>
+<li>基于 Leancloud 的系统</li>
+<li>支持 MarkDown 语法</li>
+<li>无后端实现，快速高效</li>
+</ul>
+<h4 id="关于配置"><a href="#关于配置" class="headerlink" title="关于配置"></a>关于配置</h4><blockquote>
+<p>注册 LeanCloud<br>因为 Valine 是基于 LeanCloud 系统的，所以先在 LeanCloud 中注册账号</p>
+</blockquote>
+<ul>
+<li><a href="https://leancloud.cn/dashboard/login.html#/signin">官网入口</a></li>
+</ul>
+<h4 id="关于设置-Next-主题"><a href="#关于设置-Next-主题" class="headerlink" title="关于设置 Next 主题"></a>关于设置 Next 主题</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># Valine.</span><br><span class="line"># You can get your appid and appkey from https://leancloud.cn</span><br><span class="line"># more info please open https://valine.js.org</span><br><span class="line">valine:</span><br><span class="line">  enable: true # 是否开启</span><br><span class="line">  appid:   # 上一步获取的 App ID</span><br><span class="line">  appkey:  # 上一步获取的 App Key</span><br><span class="line">  notify: false # 新留言是否需要通知 https://github.com/xCss/Valine/wiki</span><br><span class="line">  verify: false # 是否需要验证，验证比较反人类建议false关闭</span><br><span class="line">  placeholder: 请在此输入您的留言 # 默认留言框内的文字</span><br><span class="line">  avatar: mm # 默认头像</span><br><span class="line">  guest_info: nick,mail # 默认留言框的头部需要访问者输入的信息</span><br><span class="line">  pageSize: 10 # pagination size #默认单页的留言条数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="关于评论"><a href="#关于评论" class="headerlink" title="关于评论"></a>关于评论</h4><blockquote>
+<p>如果想要管理评论，进入 leancloud 官网，找到 控制台-&gt;存储-&gt;结构化数据-&gt;Commet 中进行管理</p>
+</blockquote>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">INFO  Deploying: git</span><br><span class="line">INFO  Clearing .deploy_git folder...</span><br><span class="line">INFO  Copying files from public folder...</span><br><span class="line">fatal: 位于未检出的子模组 &#39;.deploy_git&#39;</span><br><span class="line">Maybe you can find the solution here: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;troubleshooting.html</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>直接删除 <strong>.deploy_git</strong> 即可</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Hexo评论</category>
+      </categories>
+  </entry>
+  <entry>
     <title>调研记录一下</title>
     <url>/2020/12/21/MoreLear/</url>
     <content><![CDATA[<h4 id="1-上海职业能力考试院"><a href="#1-上海职业能力考试院" class="headerlink" title="1.上海职业能力考试院"></a>1.上海职业能力考试院</h4><blockquote>
@@ -290,7 +290,11 @@
 <p>7.游戏里添加按钮直接调用接口测试  或者跳转空白页面还是crash</p>
 </blockquote>
 <blockquote>
-<p>8.Gradle版本 低于3.5.3  或者高于 如4.0.1 都是内存溢出 OOM（array to large ）越界<br><img src="RecordUe4/Lark_gradle.png" alt="gradle"><br>9.游戏 包重新签名</p>
+<p>8.Gradle版本 低于3.5.3  或者高于 如4.0.1 都是内存溢出 OOM（array to large ）越界 </p>
+</blockquote>
+<img src="/2021/01/18/RecordUe4/Lark_gradle.png" class="" title="gradle">
+<blockquote>
+<p>9.游戏 包重新签名</p>
 </blockquote>
 <p>以上都无效</p>
 <h5 id="apktool-反编译-回编重写签名"><a href="#apktool-反编译-回编重写签名" class="headerlink" title="apktool 反编译  回编重写签名"></a>apktool 反编译  回编重写签名</h5><blockquote>
@@ -320,6 +324,25 @@
       </categories>
       <tags>
         <tag>UE4,WebView</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unity加载AB包</title>
+    <url>/2021/02/01/Unity-AssetBundle/</url>
+    <content><![CDATA[<h4 id="AssetBundle"><a href="#AssetBundle" class="headerlink" title="AssetBundle"></a>AssetBundle</h4><blockquote>
+<p>加载AB包</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + <span class="string">&quot;/&quot;</span>+ <span class="string">&quot;test&quot;</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>加载AB包资源 <strong>用泛型 或者 typeof 类型</strong><br><strong>AB包不能重复加载否则报错</strong></p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">GameObject gameobject =  ab.LoadAsset&lt;GameObject&gt;(<span class="string">&quot;cube&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GameObject gameobject2 = ab.LoadAsset(<span class="string">&quot;cube&quot;</span>,<span class="keyword">typeof</span>(GameObject)) <span class="keyword">as</span> GameObject;</span><br><span class="line"></span><br><span class="line">Instantiate(gameobject);</span><br><span class="line"><span class="comment">// false 卸载ab 包但 不卸载资源</span></span><br><span class="line">ab.unpack(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
       </tags>
   </entry>
   <entry>
@@ -362,16 +385,26 @@
       </categories>
   </entry>
   <entry>
-    <title>Unity加载AB包</title>
-    <url>/2021/02/01/Unity-AssetBundle/</url>
-    <content><![CDATA[<h4 id="AssetBundle"><a href="#AssetBundle" class="headerlink" title="AssetBundle"></a>AssetBundle</h4><blockquote>
-<p>加载AB包</p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + <span class="string">&quot;/&quot;</span>+ <span class="string">&quot;test&quot;</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>加载AB包资源 <strong>用泛型 或者 typeof 类型</strong><br><strong>AB包不能重复加载否则报错</strong></p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">GameObject gameobject =  ab.LoadAsset&lt;GameObject&gt;(<span class="string">&quot;cube&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GameObject gameobject2 = ab.LoadAsset(<span class="string">&quot;cube&quot;</span>,<span class="keyword">typeof</span>(GameObject)) <span class="keyword">as</span> GameObject;</span><br><span class="line"></span><br><span class="line">Instantiate(gameobject);</span><br><span class="line"><span class="comment">// false 卸载ab 包但 不卸载资源</span></span><br><span class="line">ab.unpack(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+    <title>UnityPluginForMac</title>
+    <url>/2019/06/09/UnityPluginForMac/</url>
+    <content><![CDATA[<p>因为需要做Window和 Mac 插件，且iOS和Android 用 UnitySendMessage，所以为了统一 pc端也用次回调。这里做下记录方便改进。</p>
+<p>如果你是OSX系统，那么Unity可以在编辑器里面直接使用OSX插件。OSX插件是bundle文件，放在Assets/Plugins目录下。</p>
+<p>跟iOS插件差不多，不过OSX没有UnitySendMessage函数，所以要用另外一种途经来实现OC -&gt; C#</p>
+<p>方法就是用C语言的函数指针。</p>
+<p>首先在头文件声明一个函数指针和声明两个函数</p>
+<!-- more  -->
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数指针</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*UnitySendMessage)</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* objectName, <span class="keyword">const</span> <span class="keyword">char</span>* methodName, <span class="keyword">const</span> <span class="keyword">char</span>* msg)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !TARGET_OS_IPHONE</span></span><br><span class="line">    <span class="comment">//C#调用的，参数是一个回调函数。</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">RegisterCallback</span><span class="params">(UnitySendMessage callbackMethod)</span></span>;</span><br><span class="line">    <span class="comment">//调用回调函数的函数。</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">CallbackToUnity</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* msg)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接着在mm文件里面实现</p>
+<figure class="highlight mm"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !TARGET_OS_IPHONE</span></span><br><span class="line"><span class="keyword">static</span> UnitySendMessage lastCallback = <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">void</span> RegisterCallback(UnitySendMessage callbackMethod)</span><br><span class="line">&#123;</span><br><span class="line">    lastCallback = callbackMethod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> CallbackToUnity(<span class="keyword">const</span> <span class="keyword">char</span>* msg)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (lastCallback != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        lastCallback(sUnityGameObjectName, sUnityMethodName, msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">//mm 中声明改方法，cshap通过dllimport调用传递参数</span></span><br><span class="line">    <span class="keyword">void</span> Demo_nativeRegister(<span class="keyword">const</span> <span class="keyword">char</span>* unityGameObjectName, <span class="keyword">const</span> <span class="keyword">char</span>* unityMethodName);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>C#这边加上声明：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">region</span> Mac PC 回调</span></span><br><span class="line">       <span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX</span></span><br><span class="line">               <span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">UnityCallbackDelegate</span>(<span class="params">IntPtr objName, IntPtr methodName, IntPtr msg</span>)</span>;</span><br><span class="line"></span><br><span class="line">               [<span class="meta">DllImport(GiantSDKUtil.GIANTSDK_PLATFORM)</span>]</span><br><span class="line">               <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">RegisterCallback</span>(<span class="params">[MarshalAs(UnmanagedType.FunctionPtr</span>)] UnityCallbackDelegate callback)</span>;</span><br><span class="line">       <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">       <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br></pre></td></tr></table></figure>
+<p>然后就是设置回调函数，在Start函数或者自己需求的任意位置</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//统一注册和接收</span></span><br><span class="line">  Demo_nativeRegister(<span class="keyword">this</span>.gameObject.name, functionName);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX</span></span><br><span class="line">            RegisterCallback(<span class="built_in">delegate</span> (IntPtr objName, IntPtr methodName, IntPtr msg) &#123;</span><br><span class="line">                <span class="built_in">string</span> objN = Marshal.PtrToStringAuto(objName);</span><br><span class="line">                <span class="built_in">string</span> methodN = Marshal.PtrToStringAuto(methodName);</span><br><span class="line">                <span class="built_in">string</span> message = Marshal.PtrToStringAuto(msg);</span><br><span class="line">                GameObject founded = GameObject.Find(objN);</span><br><span class="line">                <span class="keyword">if</span> (founded != <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    founded.SendMessage(methodN, message);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    Debug.LogError(<span class="string">&quot;&quot;</span> + objN + <span class="string">&quot; Not Found!&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>IntPtr是C#里面的指针，Marshal类用来在托管对象和非托管对象相互转换，像上面的PtrToStringAuto把一个非托管的C指针转换成C#的托管对象string。</p>
+<p>参考：<br><br><br><a href="http://skyhacker2.github.io/blog/?articles/U3D/2016-08-15-%E7%BB%99U3D%E7%BC%96%E5%86%99OSX%E6%8F%92%E4%BB%B6.md#">UnityPluginForMac</a></p>
+<p><a href="https://docs.unity3d.com/Manual/PluginInspector.html">Plugins</a></p>
+<p><a href="https://docs.unity3d.com/Manual/PluginsForIOS.html">PluginsForIOS</a></p>
 ]]></content>
       <categories>
         <category>Unity</category>
@@ -421,35 +454,6 @@
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">implementation &#x27;org.webrtc:google-webrtc:1.0.26131&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>1.打开摄像头<br>2.本地回环<br>3.信令<br>4.多人视频</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>UnityPluginForMac</title>
-    <url>/2019/06/09/UnityPluginForMac/</url>
-    <content><![CDATA[<p>因为需要做Window和 Mac 插件，且iOS和Android 用 UnitySendMessage，所以为了统一 pc端也用次回调。这里做下记录方便改进。</p>
-<p>如果你是OSX系统，那么Unity可以在编辑器里面直接使用OSX插件。OSX插件是bundle文件，放在Assets/Plugins目录下。</p>
-<p>跟iOS插件差不多，不过OSX没有UnitySendMessage函数，所以要用另外一种途经来实现OC -&gt; C#</p>
-<p>方法就是用C语言的函数指针。</p>
-<p>首先在头文件声明一个函数指针和声明两个函数</p>
-<!-- more  -->
-
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数指针</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*UnitySendMessage)</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* objectName, <span class="keyword">const</span> <span class="keyword">char</span>* methodName, <span class="keyword">const</span> <span class="keyword">char</span>* msg)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !TARGET_OS_IPHONE</span></span><br><span class="line">    <span class="comment">//C#调用的，参数是一个回调函数。</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">RegisterCallback</span><span class="params">(UnitySendMessage callbackMethod)</span></span>;</span><br><span class="line">    <span class="comment">//调用回调函数的函数。</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">CallbackToUnity</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* msg)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接着在mm文件里面实现</p>
-<figure class="highlight mm"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !TARGET_OS_IPHONE</span></span><br><span class="line"><span class="keyword">static</span> UnitySendMessage lastCallback = <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">void</span> RegisterCallback(UnitySendMessage callbackMethod)</span><br><span class="line">&#123;</span><br><span class="line">    lastCallback = callbackMethod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> CallbackToUnity(<span class="keyword">const</span> <span class="keyword">char</span>* msg)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (lastCallback != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        lastCallback(sUnityGameObjectName, sUnityMethodName, msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">//mm 中声明改方法，cshap通过dllimport调用传递参数</span></span><br><span class="line">    <span class="keyword">void</span> Demo_nativeRegister(<span class="keyword">const</span> <span class="keyword">char</span>* unityGameObjectName, <span class="keyword">const</span> <span class="keyword">char</span>* unityMethodName);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>C#这边加上声明：</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">region</span> Mac PC 回调</span></span><br><span class="line">       <span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX</span></span><br><span class="line">               <span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">UnityCallbackDelegate</span>(<span class="params">IntPtr objName, IntPtr methodName, IntPtr msg</span>)</span>;</span><br><span class="line"></span><br><span class="line">               [<span class="meta">DllImport(GiantSDKUtil.GIANTSDK_PLATFORM)</span>]</span><br><span class="line">               <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">RegisterCallback</span>(<span class="params">[MarshalAs(UnmanagedType.FunctionPtr</span>)] UnityCallbackDelegate callback)</span>;</span><br><span class="line">       <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">       <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br></pre></td></tr></table></figure>
-<p>然后就是设置回调函数，在Start函数或者自己需求的任意位置</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//统一注册和接收</span></span><br><span class="line">  Demo_nativeRegister(<span class="keyword">this</span>.gameObject.name, functionName);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX</span></span><br><span class="line">            RegisterCallback(<span class="built_in">delegate</span> (IntPtr objName, IntPtr methodName, IntPtr msg) &#123;</span><br><span class="line">                <span class="built_in">string</span> objN = Marshal.PtrToStringAuto(objName);</span><br><span class="line">                <span class="built_in">string</span> methodN = Marshal.PtrToStringAuto(methodName);</span><br><span class="line">                <span class="built_in">string</span> message = Marshal.PtrToStringAuto(msg);</span><br><span class="line">                GameObject founded = GameObject.Find(objN);</span><br><span class="line">                <span class="keyword">if</span> (founded != <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    founded.SendMessage(methodN, message);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    Debug.LogError(<span class="string">&quot;&quot;</span> + objN + <span class="string">&quot; Not Found!&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>IntPtr是C#里面的指针，Marshal类用来在托管对象和非托管对象相互转换，像上面的PtrToStringAuto把一个非托管的C指针转换成C#的托管对象string。</p>
-<p>参考：<br><br><br><a href="http://skyhacker2.github.io/blog/?articles/U3D/2016-08-15-%E7%BB%99U3D%E7%BC%96%E5%86%99OSX%E6%8F%92%E4%BB%B6.md#">UnityPluginForMac</a></p>
-<p><a href="https://docs.unity3d.com/Manual/PluginInspector.html">Plugins</a></p>
-<p><a href="https://docs.unity3d.com/Manual/PluginsForIOS.html">PluginsForIOS</a></p>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-      </tags>
   </entry>
   <entry>
     <title>Android二维码扫描</title>
