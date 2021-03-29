@@ -5,6 +5,7 @@
     <url>/2018/08/07/Android-Jetpack/</url>
     <content><![CDATA[<h3 id="Android移动app架构设计浅谈"><a href="#Android移动app架构设计浅谈" class="headerlink" title="Android移动app架构设计浅谈"></a>Android移动app架构设计浅谈</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>架构，又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计。</p>
 <h4 id="软件架构设计目标："><a href="#软件架构设计目标：" class="headerlink" title="软件架构设计目标："></a>软件架构设计目标：</h4><p>1.可靠性（Reliable）。软件架构的可靠是产品设计的前提。<br>2.安全性（Secure）。软件架构的安全性是产品可持续发展的条件。<br>3.可扩展性（Scalable）。软件架构必须能够不同的功能需求情况下，支持可扩散性。<br>4.可定制化（Customizable）。同样的一套软件，可以根据客户群的不同和市场需求的变化进行调整。<br>5.可伸缩 （Extensible）。在新技术出现的时候，一个软件架构应当允许导入新技术，从而对现有系统进行功能和性能的扩展。<br>6.可维护性（Maintainable）。软件系统的维护包括两方面，一是排除现有的错误，二是将新的软件需求反映到现有系统中去。一个易于维护的系统可以有效地降低技术支持的花费。</p>
+<a id="more"></a>
 <p>架构是项目形成到一定阶段的趋势。是对整个产品是否合格的有效保证。对于很多项目设计人员，在不考虑产品本身，不考虑团队，不考虑时间周期的前提下，一味的强调软件构架，是不合理的，也不利于整个产品的发展。当然，一个好的项目架构师，是很能清楚，项目在不同阶段，所需要处理的不同职责。能够最大限度的发挥能效，将产品周期，与功能模块做出最合适的匹配规划，这才是一个架构师所必须追求的。</p>
 <p>以下是个人对Android移动项目架构设计简单的经验之谈。欢迎与更多的朋友交流，若有疑问，或不合理之处，都可以随时交流。</p>
 <h4 id="从项目功能开始"><a href="#从项目功能开始" class="headerlink" title="从项目功能开始"></a>从项目功能开始</h4><p>每一个项目架构师，在拿到一个新项目的时候，都会不同的着重点。在项目规划风格上，都会有不同的考虑。而我个人在着手项目时，都会从功能上去着手。先了解项目整体的功能模块，区分出主体功能模块有哪些类，对不同的功能模块进行细致的划分。这是我开始的第一步。因为，只有对项目整体有个把握，才能更快的对项目有了解，才能知道怎样去合理安排项目的研发，才能更好的去安排项目进度流程，和人员的安排调度。</p>
@@ -41,6 +42,8 @@
     <content><![CDATA[<h4 id="1-编译错误-Failed-to-apply-plugin"><a href="#1-编译错误-Failed-to-apply-plugin" class="headerlink" title="1.编译错误 Failed to apply plugin"></a>1.编译错误 Failed to apply plugin</h4><blockquote>
 <p>一般gradle会有提示，根据提示解决<br>例如:<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">An exception occurred applying plugin request [id: &#39;com.android.application&#39;]</span><br><span class="line">&gt; Failed to apply plugin [id &#39;com.android.internal.application&#39;]</span><br><span class="line">   &gt; The option &#39;android.enableUnitTestBinaryResources&#39; is deprecated.</span><br><span class="line">     The current default is &#39;false&#39;.</span><br><span class="line">     It has been removed from the current version of the Android Gradle plugin.</span><br><span class="line">     The raw resource for unit test functionality is removed.</span><br></pre></td></tr></table></figure><br> 根据日志 显示 <strong>android.enableUnitTestBinaryResources</strong> 这个配置文件 有问题，找到改为 <strong>false</strong><br>还有不能找到 pluginid的 可能路径有中文（<strong>android.overridePathCheck=true</strong>）或者gradle.properties 文件里面报错</p>
 </blockquote>
+<a id="more"></a>
+
 <h4 id="2-Activity-和-Service的区别"><a href="#2-Activity-和-Service的区别" class="headerlink" title="2.Activity 和 Service的区别"></a>2.Activity 和 Service的区别</h4><blockquote>
 <p>1.Activity 用户交互管理者，有一个 可视界面，Service是后台运行的 没有界面呈现</p>
 </blockquote>
@@ -102,6 +105,7 @@
 <p>Lua 内部方法调用 使用 self:Funct()</p>
 </blockquote>
 <figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">local</span> Luck = &#123;&#125;</span><br><span class="line"><span class="built_in">self</span>.arrayList  = &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>  <span class="title">Luck:uiShow</span><span class="params">()</span></span></span><br><span class="line">   <span class="built_in">self</span>.arrayList  = &#123;<span class="string">&quot;key&quot;</span>,<span class="string">&quot;key2&quot;</span>&#125;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;ui show&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Luck:Close</span><span class="params">()</span></span></span><br><span class="line">   <span class="comment">--调用的地方 </span></span><br><span class="line">   <span class="built_in">self</span>:uiShow()</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> Luck</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <blockquote>
 <p>ui 判断为空</p>
 </blockquote>
@@ -117,7 +121,8 @@
   <entry>
     <title>Java通用代码分装</title>
     <url>/2021/01/05/GeneralCode/</url>
-    <content><![CDATA[<h4 id="封装通用类型"><a href="#封装通用类型" class="headerlink" title="封装通用类型"></a>封装通用类型</h4><blockquote>
+    <content><![CDATA[<h4 id="封装通用类型"><a href="#封装通用类型" class="headerlink" title="封装通用类型"></a>封装通用类型</h4><a id="more"></a>
+<blockquote>
 <p>csharp 通过jni调用Java   </p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">Show</span><span class="params">(String methodName, String args)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (!TextUtils.isEmpty(methodName) &amp;&amp; methodName.equals(<span class="string">&quot;RegCallback&quot;</span>))&#123;</span><br><span class="line">           GiantSDK.athenaCallback(args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">0</span>],args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">1</span>]);</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       ReflectUtils mReflectUtils = <span class="keyword">null</span>;</span><br><span class="line">       Method mReflectMothod = <span class="keyword">null</span>;</span><br><span class="line">       <span class="keyword">int</span> length = JumpArgs(args);</span><br><span class="line">       Log.e(TAG, <span class="string">&quot;args = &quot;</span> + args);</span><br><span class="line">       <span class="keyword">if</span> (mGaSdkClass != <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="comment">//无返回值的方法</span></span><br><span class="line">           mReflectUtils = ReflectUtils.reflect(mGaSdkClass).newInstance();</span><br><span class="line"></span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">1</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">2</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   classes[<span class="number">1</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (mReflectMothod.getReturnType().equals(Void.TYPE)) &#123;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                       <span class="comment">//无参数</span></span><br><span class="line">                       mReflectUtils.method(methodName);</span><br><span class="line">                       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                       <span class="comment">//一个参数</span></span><br><span class="line">                       mReflectUtils.method(methodName, args);</span><br><span class="line">                   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                       String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                       mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]);</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="comment">//有返回值</span></span><br><span class="line">               String result = <span class="keyword">null</span>;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, args).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               Log.d(TAG, <span class="string">&quot;result = &quot;</span> + result);</span><br><span class="line">               <span class="keyword">return</span> result;</span><br><span class="line">           &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
@@ -138,6 +143,7 @@
 <p>1 左移(&lt;&lt;)</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println(<span class="number">5</span>&lt;&lt;<span class="number">2</span>);<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span>           然后左移<span class="number">2</span>位后，低位补<span class="number">0</span>：</span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0001</span> <span class="number">01</span> <span class="string">&quot;00&quot;</span>           换算成<span class="number">10</span>进制为<span class="number">20</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <blockquote>
 <p>2 右移（&gt;&gt;）</p>
 </blockquote>
@@ -201,6 +207,7 @@
     <content><![CDATA[<h3 id="可空类型-和非空类型"><a href="#可空类型-和非空类型" class="headerlink" title="可空类型 和非空类型"></a>可空类型 和非空类型</h3><p> kotlin 的类型系统在消除代码的NullPointerExcepion NPE</p>
 <p> 安全调用符：?.<br> b?.length</p>
 <p>第三种 是为NPE爱好者准备的<br> 非空断言 运算符（!!）操作符 将任何值 转换为非空类型， 如果</p>
+<a id="more"></a>
 <h4 id="NULL-和-nullptr"><a href="#NULL-和-nullptr" class="headerlink" title="NULL 和 nullptr"></a>NULL 和 nullptr</h4><blockquote>
 <p>在C的头文件中</p>
 </blockquote>
@@ -223,15 +230,18 @@
 <p>使用 Valine 评论系统，这款系统不需要登录便可以登录，没有后端，Next 主题最新已经支持安装。</p>
 </blockquote>
 <ul>
-<li>基于 Leancloud 的系统</li>
-<li>支持 MarkDown 语法</li>
-<li>无后端实现，快速高效</li>
-</ul>
+<li><p>基于 Leancloud 的系统</p>
+</li>
+<li><p>支持 MarkDown 语法</p>
+</li>
+<li><p>无后端实现，快速高效</p>
+<a id="more"></a>
 <h4 id="关于配置"><a href="#关于配置" class="headerlink" title="关于配置"></a>关于配置</h4><blockquote>
 <p>注册 LeanCloud<br>因为 Valine 是基于 LeanCloud 系统的，所以先在 LeanCloud 中注册账号</p>
 </blockquote>
-<ul>
-<li><a href="https://leancloud.cn/dashboard/login.html#/signin">官网入口</a></li>
+</li>
+<li><p><a href="https://leancloud.cn/dashboard/login.html#/signin">官网入口</a></p>
+</li>
 </ul>
 <h4 id="关于设置-Next-主题"><a href="#关于设置-Next-主题" class="headerlink" title="关于设置 Next 主题"></a>关于设置 Next 主题</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># Valine.</span><br><span class="line"># You can get your appid and appkey from https://leancloud.cn</span><br><span class="line"># more info please open https://valine.js.org</span><br><span class="line">valine:</span><br><span class="line">  enable: true # 是否开启</span><br><span class="line">  appid:   # 上一步获取的 App ID</span><br><span class="line">  appkey:  # 上一步获取的 App Key</span><br><span class="line">  notify: false # 新留言是否需要通知 https://github.com/xCss/Valine/wiki</span><br><span class="line">  verify: false # 是否需要验证，验证比较反人类建议false关闭</span><br><span class="line">  placeholder: 请在此输入您的留言 # 默认留言框内的文字</span><br><span class="line">  avatar: mm # 默认头像</span><br><span class="line">  guest_info: nick,mail # 默认留言框的头部需要访问者输入的信息</span><br><span class="line">  pageSize: 10 # pagination size #默认单页的留言条数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h4 id="关于评论"><a href="#关于评论" class="headerlink" title="关于评论"></a>关于评论</h4><blockquote>
@@ -249,10 +259,11 @@
   <entry>
     <title>调研记录一下</title>
     <url>/2020/12/21/MoreLear/</url>
-    <content><![CDATA[<h4 id="1-上海职业能力考试院"><a href="#1-上海职业能力考试院" class="headerlink" title="1.上海职业能力考试院"></a>1.上海职业能力考试院</h4><blockquote>
+    <content><![CDATA[<h4 id="1-能力考试院"><a href="#1-能力考试院" class="headerlink" title="1.能力考试院"></a>1.能力考试院</h4><a id="more"></a>
+<blockquote>
 <p><a href="http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384">http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384</a> </p>
 </blockquote>
-<h4 id="2-事业单位查询"><a href="#2-事业单位查询" class="headerlink" title="2.事业单位查询"></a>2.事业单位查询</h4><blockquote>
+<h4 id="2-查询"><a href="#2-查询" class="headerlink" title="2.查询"></a>2.查询</h4><blockquote>
 <p><a href="http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/">http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/</a></p>
 </blockquote>
 <blockquote>
@@ -303,6 +314,8 @@
 <blockquote>
 <p>apktool原理没有 特殊处理，小端字节等<br>apktool原理 编译和反编译 smalli 字节码</p>
 </blockquote>
+<a id="more"></a>
+
 <blockquote>
 <p>最后用apktool 反编译 回编出包</p>
 </blockquote>
@@ -337,6 +350,8 @@
 <p>加载AB包资源 <strong>用泛型 或者 typeof 类型</strong><br><strong>AB包不能重复加载否则报错</strong></p>
 </blockquote>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">GameObject gameobject =  ab.LoadAsset&lt;GameObject&gt;(<span class="string">&quot;cube&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GameObject gameobject2 = ab.LoadAsset(<span class="string">&quot;cube&quot;</span>,<span class="keyword">typeof</span>(GameObject)) <span class="keyword">as</span> GameObject;</span><br><span class="line"></span><br><span class="line">Instantiate(gameobject);</span><br><span class="line"><span class="comment">// false 卸载ab 包但 不卸载资源</span></span><br><span class="line">ab.unpack(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
 ]]></content>
       <categories>
         <category>Unity</category>
@@ -367,6 +382,7 @@
 <p>lua方法用错</p>
 </blockquote>
 <figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="built_in">self</span>.mainUI.CloseBtn:GetCompoment(<span class="string">&quot;Button&quot;</span>).onClick:AddListener(<span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;打印&quot;</span>)</span><br><span class="line"><span class="keyword">end</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h4 id="ScreenSpace-Camera"><a href="#ScreenSpace-Camera" class="headerlink" title="ScreenSpace-Camera"></a>ScreenSpace-Camera</h4><blockquote>
 <p>首先还是Order In Layer，还是一样，数值越大，越在上层</p>
 </blockquote>
@@ -420,6 +436,7 @@
 <p>测试链接 <strong><a href="https://media.w3.org/2010/05/sintel/trailer.mp4">https://media.w3.org/2010/05/sintel/trailer.mp4</a></strong></p>
 </blockquote>
 <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">lateinit</span> <span class="keyword">var</span> progressBar: ProgressBar</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> videoView: VideoView</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> mediaController: MediaController</span><br><span class="line">    <span class="keyword">var</span> positionWhenPause: <span class="built_in">Int</span> = -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_audio)</span><br><span class="line"></span><br><span class="line">        videoView  = findViewById(R.id.videoVideo)</span><br><span class="line">        progressBar = findViewById(R.id.progress_circular)</span><br><span class="line"></span><br><span class="line"> mediaController = MediaController(<span class="keyword">this</span>)</span><br><span class="line">        videoView.setMediaController(mediaController)</span><br><span class="line">        mediaController.show(<span class="number">0</span>)</span><br><span class="line">        <span class="comment">//complete</span></span><br><span class="line">        videoView.setOnCompletionListener &#123; MediaPlayer.OnCompletionListener &#123;</span><br><span class="line">           Log.e(<span class="string">&quot;TAG&quot;</span>,<span class="string">&quot;播放 完成&quot;</span>)</span><br><span class="line">        &#125; &#125;</span><br><span class="line">        videoView.setOnErrorListener(MediaPlayer.OnErrorListener &#123; mp, what, extra -&gt;</span><br><span class="line">            println(<span class="string">&quot;<span class="variable">$mp</span>,what = <span class="variable">$what</span>,extra = <span class="variable">$extra</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span><span class="symbol">@OnErrorListener</span> <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line">        videoView.setOnPreparedListener &#123;</span><br><span class="line">            videoView.start()</span><br><span class="line">            progressBar.visibility = View.GONE</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//设置videoView 的点击监听</span></span><br><span class="line">        videoView.setOnTouchListener(View.OnTouchListener &#123; v, event -&gt;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span><span class="symbol">@OnTouchListener</span> <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        <span class="comment">//http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4</span></span><br><span class="line">        <span class="keyword">val</span> mp4id = resources.getIdentifier(<span class="string">&quot;trailer&quot;</span>,<span class="string">&quot;raw&quot;</span>,<span class="keyword">this</span>.packageName)</span><br><span class="line">     <span class="comment">//   val uri = Uri.parse(&quot;android.resource://com.bytedance.scenedemo/$mp4id&quot;)</span></span><br><span class="line">        <span class="keyword">val</span> uri = Uri.parse(<span class="string">&quot;http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4&quot;</span>)</span><br><span class="line"><span class="comment">//        videoView.setVideoPath()</span></span><br><span class="line">        videoView.setVideoURI(uri)</span><br><span class="line">        setVideoViewLayoutParams(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p><strong>view宽和高</strong></p>
 <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setVideoViewLayoutParams</span><span class="params">(x: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">//全屏</span></span><br><span class="line">        <span class="keyword">val</span> layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)</span><br><span class="line">        videoView.layoutParams = layoutParams</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//窗口模式</span></span><br><span class="line">        <span class="keyword">val</span> display = DisplayMetrics()</span><br><span class="line">        windowManager.defaultDisplay.getMetrics(display)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> vHeight = DisplayMetrics.DENSITY_HIGH</span><br><span class="line">        <span class="keyword">val</span> vWidth = DisplayMetrics.DENSITY_DEFAULT</span><br><span class="line">        <span class="keyword">val</span> layoutParams = RelativeLayout.LayoutParams(vWidth,vHeight)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_TOP)</span><br><span class="line">        videoView.layoutParams = layoutParams</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>布局</strong></p>
@@ -448,6 +465,7 @@
 <h3 id="编译WebRTC"><a href="#编译WebRTC" class="headerlink" title="编译WebRTC"></a>编译WebRTC</h3><blockquote>
 <p>参考声网的国内镜像（我试图编译 镜像下载失败）<strong><a href="https://webrtc.org.cn/mirror/">https://webrtc.org.cn/mirror/</a></strong></p>
 </blockquote>
+ <a id="more"></a>
 <h3 id="Android-webrtc"><a href="#Android-webrtc" class="headerlink" title="Android-webrtc"></a>Android-webrtc</h3><blockquote>
 <p>android依赖</p>
 </blockquote>
@@ -464,6 +482,7 @@
 <blockquote>
 <p>我自己集成了 10分钟 搞定一个扫描控件 还是很方便的。</p>
 </blockquote>
+<a id="more"></a>
 ]]></content>
       <categories>
         <category>Android</category>
@@ -482,6 +501,7 @@
 <blockquote>
 <p>init 初始化</p>
 </blockquote>
+<a id="more"></a>
 ]]></content>
       <categories>
         <category>Unity</category>
