@@ -28,7 +28,7 @@
 <meta property="og:description" content="Unity 热更中断 热更包10MB，下载到大概2MB中端   中断发现无效文件 FileState.Error&gt;0 后面对比文件MD5  不一致文件 可以正常下载   下载 逻辑 在version&#x2F;18.60.0 目录没有放最新的 MAX_VERSION_0.json  和FileVersionList.txt  所以出错，对比旧的资源 发现无效。  Unitiy Button点击无响应">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-29T03:46:17.000Z">
-<meta property="article:modified_time" content="2021-03-29T07:48:16.575Z">
+<meta property="article:modified_time" content="2021-03-29T10:59:15.006Z">
 <meta property="article:author" content="andy">
 <meta name="twitter:card" content="summary">
 
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-29 15:48:16" itemprop="dateModified" datetime="2021-03-29T15:48:16+08:00">2021-03-29</time>
+                <time title="修改时间：2021-03-29 18:59:15" itemprop="dateModified" datetime="2021-03-29T18:59:15+08:00">2021-03-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -267,14 +267,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>654</span>
+              <span>1.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -315,6 +315,76 @@
 <blockquote>
 <p>我们可以把prefab当做一种特殊的“资源素材”，在场景中引用prefab，相当于按照这个prefab所描述的规范引用其涉及到的“真实素材”。如果我们不小心删除掉了这些“真实素材”，那么prefab就失去了作用。</p>
 </blockquote>
+<h4 id="Unity-Canvas"><a href="#Unity-Canvas" class="headerlink" title="Unity Canvas"></a>Unity Canvas</h4><blockquote>
+<p>Render Mode<br>1.ScreenSpace-overlay<br>  Canvas 覆盖屏幕，且永远覆盖在其它元素的上层，也就是说 UI 会遮挡场景中的其它元素。<br>当 RenderMode 为 Screen Space - Overlay时，Canvas的其它参数包括：</p>
+<blockquote>
+<p>Pixel Perfect：UI元素精确到像素对齐，边缘更清晰，但是在UI调整和适配时会有更大的计算量（个人理解）</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>Sort Order：Canvas 的深度。多个 存在多个Canvas时，Sort Order 值更大的Canvas会遮盖住 Sort Order 值小的 Canvas</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>注：多个 Canvas 深度取值相等时，Hierarchy 视图中后面的 Canvas 显示在下，这一点与 UI 元素（如Image的规则相反）</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>2.Screen Space - Camera 模式</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>和 Overlay 模式相仿，Canvas覆盖整个屏幕空间画布也是填满整个屏幕空间。不同之处在于，Canvas 被放置于指定摄像机的前方。 </p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>(1) 必须在摄像机的远近平面之间才会被渲染</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>(2) 即使摄像机是 Perspective 模式，Canvas 距离摄像机的远近依然不会影响其显示大小</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>(3) 其它3元素可以和 Canvas 产生遮挡关系，距离摄像机更近的元素会遮盖住 Canvas 上面的 UI</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>(4) 摄像机的缩放/平移/旋转，以及 fov 的变化，不会影响 Canvas 显示结果，Canvas 永远是放置在距离摄像机视口一定距离的地方，且与摄像机水平视线垂直</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<pre><code>  Pixel Perfect ：同 Overlay 模式含义
+
+  Render Camera ：指定的用来渲染 Canvas 的摄像机
+
+  Plane Distance：Canvas 平面距离摄像机的距离
+
+  Sorting Layer：指示 Canvas 的深度，可以手动添加。当存在多个模式为 Screen Space 的 Canvas 时，Sorting Layer 决定了显示的优先级。
+
+  Order in Layer：多个 Canvas 具有相同的 Sorting Layer 时，根据 Order in Layer 来确定显示优先级。</code></pre>
+<blockquote>
+<p>3.World Space 模式</p>
+</blockquote>
+<p>  此种模式下，Canvas 与场景中其它3D元素没有区别</p>
+<blockquote>
+<p>4.总结<br> 不同模式的 Canvas之间，Screen Space - Overlay 的 Canvas 永远显示在最前面，Screen Space - Camera 和 World 的显示关系决定于 World Canvas 距离摄像机的位置以及 Screen Space - Camera Canvas 的 Plane Distance</p>
+</blockquote>
+<p>相同的 Screen Space - Overlay Canvas ：显示优先级由 Sort Order 确定</p>
+<p>相同的 Screen Space - Camera：显示优先级由 Sorting Layer 和 Order in Layer 确定</p>
 <h4 id="Unity-程序框架"><a href="#Unity-程序框架" class="headerlink" title="Unity 程序框架"></a>Unity 程序框架</h4><blockquote>
 <p>事件中心<br>UI管理器<br>场景管理器<br>资源管理器（加载资源）<br>音乐管理器<br>MonoMgr<br>缓冲池</p>
 </blockquote>
@@ -419,7 +489,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-%E7%83%AD%E6%9B%B4%E4%B8%AD%E6%96%AD"><span class="nav-number">1.</span> <span class="nav-text">Unity 热更中断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unitiy-Button%E7%82%B9%E5%87%BB%E6%97%A0%E5%93%8D%E5%BA%94"><span class="nav-number">2.</span> <span class="nav-text">Unitiy Button点击无响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ScreenSpace-Camera"><span class="nav-number">3.</span> <span class="nav-text">ScreenSpace-Camera</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-Prefab-%E5%92%8C-Scene%E5%8C%BA%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">Unity Prefab 和 Scene区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6"><span class="nav-number">5.</span> <span class="nav-text">Unity 程序框架</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-%E7%83%AD%E6%9B%B4%E4%B8%AD%E6%96%AD"><span class="nav-number">1.</span> <span class="nav-text">Unity 热更中断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unitiy-Button%E7%82%B9%E5%87%BB%E6%97%A0%E5%93%8D%E5%BA%94"><span class="nav-number">2.</span> <span class="nav-text">Unitiy Button点击无响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ScreenSpace-Camera"><span class="nav-number">3.</span> <span class="nav-text">ScreenSpace-Camera</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-Prefab-%E5%92%8C-Scene%E5%8C%BA%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">Unity Prefab 和 Scene区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-Canvas"><span class="nav-number">5.</span> <span class="nav-text">Unity Canvas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6"><span class="nav-number">6.</span> <span class="nav-text">Unity 程序框架</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -483,13 +553,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">19k</span>
+    <span title="站点总字数">21k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">18 分钟</span>
+    <span title="站点阅读时长">19 分钟</span>
 </div>
 
         
