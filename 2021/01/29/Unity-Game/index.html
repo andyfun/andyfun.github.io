@@ -27,10 +27,13 @@
 <meta property="og:site_name" content="andyFun">
 <meta property="og:description" content="Unity 热更中断 热更包10MB，下载到大概2MB中端   中断发现无效文件 FileState.Error&gt;0 后面对比文件MD5  不一致文件 可以正常下载   下载 逻辑 在version&#x2F;18.60.0 目录没有放最新的 MAX_VERSION_0.json  和FileVersionList.txt  所以出错，对比旧的资源 发现无效。  Unitiy Button点击无响应">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2021/01/29/Unity-Game/Unity-Game/12.png">
+<meta property="og:image" content="http://yoursite.com/2021/01/29/Unity-Game/Unity-Game/38.png">
 <meta property="article:published_time" content="2021-01-29T03:46:17.000Z">
-<meta property="article:modified_time" content="2021-03-29T10:59:15.006Z">
+<meta property="article:modified_time" content="2021-04-01T14:44:31.293Z">
 <meta property="article:author" content="andy">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2021/01/29/Unity-Game/Unity-Game/12.png">
 
 <link rel="canonical" href="http://yoursite.com/2021/01/29/Unity-Game/">
 
@@ -228,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-29 18:59:15" itemprop="dateModified" datetime="2021-03-29T18:59:15+08:00">2021-03-29</time>
+                <time title="修改时间：2021-04-01 22:44:31" itemprop="dateModified" datetime="2021-04-01T22:44:31+08:00">2021-04-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -267,14 +270,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.8k</span>
+              <span>4.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -385,7 +388,83 @@
 </blockquote>
 <p>相同的 Screen Space - Overlay Canvas ：显示优先级由 Sort Order 确定</p>
 <p>相同的 Screen Space - Camera：显示优先级由 Sorting Layer 和 Order in Layer 确定</p>
-<h4 id="Unity-程序框架"><a href="#Unity-程序框架" class="headerlink" title="Unity 程序框架"></a>Unity 程序框架</h4><blockquote>
+<h4 id="Rx-via-UniRx"><a href="#Rx-via-UniRx" class="headerlink" title="Rx via UniRx"></a>Rx via UniRx</h4><p>   <a href="%22https://zhuanlan.zhihu.com/p/35189325%22">Rx via UniRx</a></p>
+<h4 id="Unity-实用技巧"><a href="#Unity-实用技巧" class="headerlink" title="Unity 实用技巧"></a>Unity 实用技巧</h4><blockquote>
+<ol>
+<li>Pixel Perfect Camera</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>在摄像机上挂载Pixel Perfect Camera组件能够使2D像素风格的游戏画面更加整洁清晰。此组件需要使用Package Manager安装2D Pixel Perfect包。</p>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>以Y轴为依据进行Sprite排序</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>对于2D游戏，将Transparency Sort Mode (Edit &gt; Project Settings &gt; Graphics ) 设置为Custom Axis，然后设置Transparency Sort Axis，场景中的Sprite可以根据Y轴进行排序。如下图所示，当设置为（0,1,0）时，Y坐标相对较大的Sprite排在Y坐标相对较小的Sprite之下，当设置为(0,-1,0)时，则相反。</p>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>延迟销毁游戏对象</li>
+</ol>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Destroy(gameObject,<span class="number">2f</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="4">
+<li>快速新建基于自定义Shader的材质</li>
+</ol>
+</blockquote>
+<p>在Project面板中选中一个自定义Shader，右键选择新建材质（Create&gt;Material），则材质默认使用的着色器为z之前选择的Shader，同时材质名称为Shader的名称。</p>
+<!-- 
+https://www.cnblogs.com/unity3ds/p/11047784.html
+-->
+<blockquote>
+<ol start="5">
+<li>脚本不挂载到游戏对象执行</li>
+</ol>
+</blockquote>
+<p>通常情况下，新建的脚本要挂载到游戏对象上才能运行，如果在脚本中的方法前使用[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]，可以不用挂载到任何游戏对象上即可在程序运行时执行此方法，方便在在程序初始化前做一些额外的初始化工作。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">  [<span class="meta">RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">DoSomething</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Debug.Log(<span class="string">&quot;It&#x27;s the start of the game&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="7">
+<li>保存程序运行时组件属性的改变</li>
+</ol>
+</blockquote>
+<p>在程序运行时改变组件的各属性值，当停止运行后，这些改变将重置为编辑状态下的数值，。程序运行时改变了组件的属性值，可以点击组件右上角的齿轮按钮，选择Copy Component命令，停止播放后，在相同的组件上，执行Paste Component Value，从而能够保存在运行时对该组件做出的改变。</p>
+<ol start="8">
+<li>获取一个随机布尔值</li>
+</ol>
+<p>我们知道Random.value能够返回0~1之间的随机数，所以让此随机数与0.5f进行比较，就能够获取一个随机的布尔值True或者False，如下代码所示：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bool</span> trueOrFalse = (Random.<span class="keyword">value</span> &gt; <span class="number">0.5f</span>);</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>使用Struct代替Class<br>如果数据结构仅保存了有限的几个数值变量，可以考虑使用struct代替Class，因为Class实例由垃圾回收机制来保证内存的回收处理;而struct变量使用完后立即自动解除内存分配。</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test</span> :<span class="title">MonoBehavor</span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">struct</span> Data&#123;</span><br><span class="line">     <span class="keyword">public</span>  <span class="built_in">int</span> age;</span><br><span class="line">     <span class="keyword">public</span>  <span class="built_in">string</span> name;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">start</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      Data da = <span class="keyword">new</span> Data()&#123;</span><br><span class="line">         age = <span class="number">23</span>,name=<span class="string">&quot;cai&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">      print(da.age);</span><br><span class="line">      print(da.name);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>Visual Studio 自动语句补全</li>
+</ol>
+<p>当使用Visual Studio进行代码编写时，可双击Tab键来辅助完成像if、for、switch等语句的补全。</p>
+<blockquote>
+<ol start="11">
+<li>协程嵌套</li>
+</ol>
+</blockquote>
+<p>在一个协程里开启另外一个协程，可使用以下方法</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    StartCoroutine(FirstCo());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IEnumerator <span class="title">FirstCo</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">yield</span> <span class="keyword">return</span> <span class="title">StartCoroutine</span>(<span class="params">SecondCo(</span>))</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IEnumerator <span class="title">SecondCo</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>12.脚本变量参与动画制作<br><img src="Unity-Game/12.png"></p>
+<p>13/14. Animation窗口快捷键</p>
+<p>在Animation窗口中，按下Ctrl+A，所有关键帧将集中显示在窗口中；选择某些关键帧，按下F键，可将它们居中显示在窗口中；按下C键，可以在曲线视图和关键帧视图间切换；按下K键添加关键帧。</p>
+<p>18.在Inspector面板中显示私有变量<br>将私有变量标记为SerializeField，可在Inspector面板中将其显示。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">SerializeField</span>]</span><br><span class="line"><span class="keyword">private</span> <span class="built_in">int</span> myNumber = <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<ol start="19">
+<li>在Inspector面板中隐藏公有变量<br>如果不希望在Inspector面板中显示公有变量，可将其标记为[HideInInspector]。<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HideInInspector</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="built_in">int</span> myNumber = <span class="number">20</span>;</span><br></pre></td></tr></table></figure></li>
+<li>MenuItem属性<br>要在编辑器的菜单栏中选择执行编写的函数，可在函数前添加MenuItem属性，如下代码所示：<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">MenuItem(<span class="meta-string">&quot;MyMenu/Do Something&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">DoSomething</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>ContextMenu<br>使用ContextMenu属性标记函数，能够在脚本所在的上下文菜单中调用，如下代码所示：<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">ContextMenu(<span class="meta-string">&quot;Do Something&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DoSomething</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="Unity-Game/38.png"><h4 id="Unity-程序框架"><a href="#Unity-程序框架" class="headerlink" title="Unity 程序框架"></a>Unity 程序框架</h4></li>
+</ol>
+<blockquote>
 <p>事件中心<br>UI管理器<br>场景管理器<br>资源管理器（加载资源）<br>音乐管理器<br>MonoMgr<br>缓冲池</p>
 </blockquote>
 
@@ -489,7 +568,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-%E7%83%AD%E6%9B%B4%E4%B8%AD%E6%96%AD"><span class="nav-number">1.</span> <span class="nav-text">Unity 热更中断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unitiy-Button%E7%82%B9%E5%87%BB%E6%97%A0%E5%93%8D%E5%BA%94"><span class="nav-number">2.</span> <span class="nav-text">Unitiy Button点击无响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ScreenSpace-Camera"><span class="nav-number">3.</span> <span class="nav-text">ScreenSpace-Camera</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-Prefab-%E5%92%8C-Scene%E5%8C%BA%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">Unity Prefab 和 Scene区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-Canvas"><span class="nav-number">5.</span> <span class="nav-text">Unity Canvas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6"><span class="nav-number">6.</span> <span class="nav-text">Unity 程序框架</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-%E7%83%AD%E6%9B%B4%E4%B8%AD%E6%96%AD"><span class="nav-number">1.</span> <span class="nav-text">Unity 热更中断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unitiy-Button%E7%82%B9%E5%87%BB%E6%97%A0%E5%93%8D%E5%BA%94"><span class="nav-number">2.</span> <span class="nav-text">Unitiy Button点击无响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ScreenSpace-Camera"><span class="nav-number">3.</span> <span class="nav-text">ScreenSpace-Camera</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-Prefab-%E5%92%8C-Scene%E5%8C%BA%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">Unity Prefab 和 Scene区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-Canvas"><span class="nav-number">5.</span> <span class="nav-text">Unity Canvas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rx-via-UniRx"><span class="nav-number">6.</span> <span class="nav-text">Rx via UniRx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="nav-number">7.</span> <span class="nav-text">Unity 实用技巧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6"><span class="nav-number">8.</span> <span class="nav-text">Unity 程序框架</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -553,13 +632,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">21k</span>
+    <span title="站点总字数">54k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">19 分钟</span>
+    <span title="站点阅读时长">49 分钟</span>
 </div>
 
         
