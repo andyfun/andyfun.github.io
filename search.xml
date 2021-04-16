@@ -664,4 +664,11 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
         <tag>Steam</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Git相关</title>
+    <url>/2021/04/16/Git/</url>
+    <content><![CDATA[<h5 id="关于Merge"><a href="#关于Merge" class="headerlink" title="关于Merge"></a>关于Merge</h5><p>1&gt;从其他地方 负责了一个覆盖本地 出行 未合并报错<br><strong>您尚未结束您的合并（存在 MERGE_HEAD</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -rf .git&#x2F;MERGE*</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
 </search>
