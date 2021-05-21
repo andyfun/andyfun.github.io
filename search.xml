@@ -538,6 +538,28 @@
 <h4 id="ScreenSpace-Camera"><a href="#ScreenSpace-Camera" class="headerlink" title="ScreenSpace-Camera"></a>ScreenSpace-Camera</h4><blockquote>
 <p>首先还是Order In Layer，还是一样，数值越大，越在上层</p>
 </blockquote>
+<blockquote>
+<p>UGUI 拖动时候锚点 改变 水平滑动LoopScrollRect 缓存池创建卡顿</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>原因 创建Item的时候位置改变误以为卡顿，<br>解决：改变 content 锚点</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>UGUI 导出相同文件  导致 prefab 相同 图片missing<br>解决：回退之前的版本,相同文件不替换</p>
+</blockquote>
+<blockquote>
+<p>scrollView 里面内容不能滑动，content高度设置的不正确<br> 搭配contentSizeFitter（自动算高）和VerticalLayoutGroup(竖直方向)<br>  controle size 控制子物体大小<br>  force Expand 控制子物体填充父容器空间</p>
+</blockquote>
+<blockquote>
+<p>自适应 可以通有HorizontalLayoutGroup实现</p>
+</blockquote>
+<blockquote>
+<p>通一个活动配置多个，需要通过act_id,config_id来匹配一下</p>
+</blockquote>
 <h4 id="Unity-Prefab-和-Scene区别"><a href="#Unity-Prefab-和-Scene区别" class="headerlink" title="Unity Prefab 和 Scene区别"></a>Unity Prefab 和 Scene区别</h4><blockquote>
 <p>Prefab可以被看做是对scene（场景）中game object（游戏物体）的描述文件，可以被储存在Assets文件夹内，以方便在其他scene中重复利用。Prefab实际上并不包含任何模型、贴图等真正的素材文件，只是一个虚拟的“参考”。</p>
 </blockquote>
@@ -679,7 +701,9 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
 </blockquote>
 <p>在一个协程里开启另外一个协程，可使用以下方法</p>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    StartCoroutine(FirstCo());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IEnumerator <span class="title">FirstCo</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">yield</span> <span class="keyword">return</span> <span class="title">StartCoroutine</span>(<span class="params">SecondCo(</span>))</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IEnumerator <span class="title">SecondCo</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>12.脚本变量参与动画制作<br><img src="Unity-Game/12.png"></p>
+<p>12.脚本变量参与动画制作</p>
+<img src="/2021/01/29/Unity-Game/12.png" class="">
+
 <p>13/14. Animation窗口快捷键</p>
 <p>在Animation窗口中，按下Ctrl+A，所有关键帧将集中显示在窗口中；选择某些关键帧，按下F键，可将它们居中显示在窗口中；按下C键，可以在曲线视图和关键帧视图间切换；按下K键添加关键帧。</p>
 <p>18.在Inspector面板中显示私有变量<br>将私有变量标记为SerializeField，可在Inspector面板中将其显示。</p>
@@ -688,7 +712,8 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
 <li>在Inspector面板中隐藏公有变量<br>如果不希望在Inspector面板中显示公有变量，可将其标记为[HideInInspector]。<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">HideInInspector</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="built_in">int</span> myNumber = <span class="number">20</span>;</span><br></pre></td></tr></table></figure></li>
 <li>MenuItem属性<br>要在编辑器的菜单栏中选择执行编写的函数，可在函数前添加MenuItem属性，如下代码所示：<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">MenuItem(<span class="meta-string">&quot;MyMenu/Do Something&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">DoSomething</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>ContextMenu<br>使用ContextMenu属性标记函数，能够在脚本所在的上下文菜单中调用，如下代码所示：<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">ContextMenu(<span class="meta-string">&quot;Do Something&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DoSomething</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="Unity-Game/38.png"><h4 id="Unity-程序框架"><a href="#Unity-程序框架" class="headerlink" title="Unity 程序框架"></a>Unity 程序框架</h4></li>
+<img src="/2021/01/29/Unity-Game/38.png" class="">
+<h4 id="Unity-程序框架"><a href="#Unity-程序框架" class="headerlink" title="Unity 程序框架"></a>Unity 程序框架</h4></li>
 </ol>
 <blockquote>
 <p>事件中心<br>UI管理器<br>场景管理器<br>资源管理器（加载资源）<br>音乐管理器<br>MonoMgr<br>缓冲池</p>
@@ -835,7 +860,14 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
 <blockquote>
 <p>#pragma mark - 产生分割线</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h5><blockquote>
+<p>方法定义@interface  实现在@implement</p>
+</blockquote>
+<blockquote>
+<p>函数 调用不 一样   可以写在  类 中除了 大括号<br>类的声明和 实现 都要有， 声明要在前  实现 可以放在使用类的后面 </p>
+</blockquote>
+]]></content>
       <tags>
         <tag>ios</tag>
       </tags>

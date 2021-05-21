@@ -27,13 +27,13 @@
 <meta property="og:site_name" content="andyFun">
 <meta property="og:description" content="Unity 热更中断 热更包10MB，下载到大概2MB中端   中断发现无效文件 FileState.Error&gt;0 后面对比文件MD5  不一致文件 可以正常下载   下载 逻辑 在version&#x2F;18.60.0 目录没有放最新的 MAX_VERSION_0.json  和FileVersionList.txt  所以出错，对比旧的资源 发现无效。  Unitiy Button点击无响应">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2021/01/29/Unity-Game/Unity-Game/12.png">
-<meta property="og:image" content="http://yoursite.com/2021/01/29/Unity-Game/Unity-Game/38.png">
+<meta property="og:image" content="http://yoursite.com/2021/01/29/Unity-Game/12.png">
+<meta property="og:image" content="http://yoursite.com/2021/01/29/Unity-Game/38.png">
 <meta property="article:published_time" content="2021-01-29T03:46:17.000Z">
-<meta property="article:modified_time" content="2021-04-01T14:44:31.293Z">
+<meta property="article:modified_time" content="2021-05-21T10:31:40.706Z">
 <meta property="article:author" content="andy">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2021/01/29/Unity-Game/Unity-Game/12.png">
+<meta name="twitter:image" content="http://yoursite.com/2021/01/29/Unity-Game/12.png">
 
 <link rel="canonical" href="http://yoursite.com/2021/01/29/Unity-Game/">
 
@@ -231,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-01 22:44:31" itemprop="dateModified" datetime="2021-04-01T22:44:31+08:00">2021-04-01</time>
+                <time title="修改时间：2021-05-21 18:31:40" itemprop="dateModified" datetime="2021-05-21T18:31:40+08:00">2021-05-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -270,7 +270,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.1k</span>
+              <span>4.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -311,6 +311,28 @@
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">self</span>.mainUI.CloseBtn:GetCompoment(<span class="string">&quot;Button&quot;</span>).onClick:AddListener(<span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;打印&quot;</span>)</span><br><span class="line"><span class="keyword">end</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h4 id="ScreenSpace-Camera"><a href="#ScreenSpace-Camera" class="headerlink" title="ScreenSpace-Camera"></a>ScreenSpace-Camera</h4><blockquote>
 <p>首先还是Order In Layer，还是一样，数值越大，越在上层</p>
+</blockquote>
+<blockquote>
+<p>UGUI 拖动时候锚点 改变 水平滑动LoopScrollRect 缓存池创建卡顿</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>原因 创建Item的时候位置改变误以为卡顿，<br>解决：改变 content 锚点</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>UGUI 导出相同文件  导致 prefab 相同 图片missing<br>解决：回退之前的版本,相同文件不替换</p>
+</blockquote>
+<blockquote>
+<p>scrollView 里面内容不能滑动，content高度设置的不正确<br> 搭配contentSizeFitter（自动算高）和VerticalLayoutGroup(竖直方向)<br>  controle size 控制子物体大小<br>  force Expand 控制子物体填充父容器空间</p>
+</blockquote>
+<blockquote>
+<p>自适应 可以通有HorizontalLayoutGroup实现</p>
+</blockquote>
+<blockquote>
+<p>通一个活动配置多个，需要通过act_id,config_id来匹配一下</p>
 </blockquote>
 <h4 id="Unity-Prefab-和-Scene区别"><a href="#Unity-Prefab-和-Scene区别" class="headerlink" title="Unity Prefab 和 Scene区别"></a>Unity Prefab 和 Scene区别</h4><blockquote>
 <p>Prefab可以被看做是对scene（场景）中game object（游戏物体）的描述文件，可以被储存在Assets文件夹内，以方便在其他scene中重复利用。Prefab实际上并不包含任何模型、贴图等真正的素材文件，只是一个虚拟的“参考”。</p>
@@ -453,7 +475,9 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
 </blockquote>
 <p>在一个协程里开启另外一个协程，可使用以下方法</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    StartCoroutine(FirstCo());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IEnumerator <span class="title">FirstCo</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">yield</span> <span class="keyword">return</span> <span class="title">StartCoroutine</span>(<span class="params">SecondCo(</span>))</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IEnumerator <span class="title">SecondCo</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>12.脚本变量参与动画制作<br><img src="Unity-Game/12.png"></p>
+<p>12.脚本变量参与动画制作</p>
+<img src="/2021/01/29/Unity-Game/12.png" class="">
+
 <p>13/14. Animation窗口快捷键</p>
 <p>在Animation窗口中，按下Ctrl+A，所有关键帧将集中显示在窗口中；选择某些关键帧，按下F键，可将它们居中显示在窗口中；按下C键，可以在曲线视图和关键帧视图间切换；按下K键添加关键帧。</p>
 <p>18.在Inspector面板中显示私有变量<br>将私有变量标记为SerializeField，可在Inspector面板中将其显示。</p>
@@ -462,7 +486,8 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
 <li>在Inspector面板中隐藏公有变量<br>如果不希望在Inspector面板中显示公有变量，可将其标记为[HideInInspector]。<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HideInInspector</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="built_in">int</span> myNumber = <span class="number">20</span>;</span><br></pre></td></tr></table></figure></li>
 <li>MenuItem属性<br>要在编辑器的菜单栏中选择执行编写的函数，可在函数前添加MenuItem属性，如下代码所示：<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">MenuItem(<span class="meta-string">&quot;MyMenu/Do Something&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">DoSomething</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>ContextMenu<br>使用ContextMenu属性标记函数，能够在脚本所在的上下文菜单中调用，如下代码所示：<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">ContextMenu(<span class="meta-string">&quot;Do Something&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DoSomething</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="Unity-Game/38.png"><h4 id="Unity-程序框架"><a href="#Unity-程序框架" class="headerlink" title="Unity 程序框架"></a>Unity 程序框架</h4></li>
+<img src="/2021/01/29/Unity-Game/38.png" class="">
+<h4 id="Unity-程序框架"><a href="#Unity-程序框架" class="headerlink" title="Unity 程序框架"></a>Unity 程序框架</h4></li>
 </ol>
 <blockquote>
 <p>事件中心<br>UI管理器<br>场景管理器<br>资源管理器（加载资源）<br>音乐管理器<br>MonoMgr<br>缓冲池</p>
@@ -638,7 +663,7 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:52</span>
+    <span title="站点阅读时长">1:53</span>
 </div>
 
         
