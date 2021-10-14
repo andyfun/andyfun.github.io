@@ -96,7 +96,19 @@
 <p>•onSaveInstanceState ：系统调用该方法，允许活动保存之前的状态，比如说在一串字符串中的光标所处的位置等。 通常情况下，开发者不需要重写覆盖该方法，在默认的实现中，已经提供了自动保存活动所涉及到的用户界面组件的所有状态信息。</p>
 </blockquote>
 </blockquote>
-<h4 id="4-Content-Provider"><a href="#4-Content-Provider" class="headerlink" title="4.Content Provider"></a>4.Content Provider</h4><h4 id="5-JobScheduler"><a href="#5-JobScheduler" class="headerlink" title="5.JobScheduler"></a>5.JobScheduler</h4>]]></content>
+<h4 id="4-Content-Provider"><a href="#4-Content-Provider" class="headerlink" title="4.Content Provider"></a>4.Content Provider</h4><h4 id="5-JobScheduler"><a href="#5-JobScheduler" class="headerlink" title="5.JobScheduler"></a>5.JobScheduler</h4><h4 id="6-android-asop-编译扩容"><a href="#6-android-asop-编译扩容" class="headerlink" title="6.android asop 编译扩容"></a>6.android asop 编译扩容</h4><blockquote>
+<p><strong><a href="https://source.android.com/source/initializing?hl=zh-cn#setting-up-a-mac-os-x-build-environment">https://source.android.com/source/initializing?hl=zh-cn#setting-up-a-mac-os-x-build-environment</a></strong></p>
+</blockquote>
+<blockquote>
+<p>hdiutil create -type SPARSE -fs ‘Case-sensitive Journaled HFS+’ -size 40g ~/android.dmg</p>
+</blockquote>
+<blockquote>
+<p>hdiutil resize -size 200g ~/xxx.dmg   <strong>大小为总大小 扩容比较容易 缩减要用另外的方式</strong></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Android</tag>
+      </tags>
   </entry>
   <entry>
     <title>Csharp——lua记录</title>
@@ -745,6 +757,23 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
 ]]></content>
       <tags>
         <tag>charles</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UnityBase</title>
+    <url>/2021/10/14/UnityBase/</url>
+    <content><![CDATA[<h4 id="1-Unity基础-ref-和-out"><a href="#1-Unity基础-ref-和-out" class="headerlink" title="1.Unity基础  ref 和 out"></a>1.Unity基础  ref 和 out</h4><p>影响外部传入，让其被修改</p>
+<p>ref: 变量先初始化</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueRef</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> a</span>)</span>&#123;</span><br><span class="line">  a = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> b = <span class="number">99</span>;</span><br><span class="line">ChagneValueRef(<span class="keyword">ref</span> b);</span><br><span class="line">Debug.Log(b);<span class="comment">//b = 9</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>out: 方法里初始化</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueOut</span>(<span class="params"><span class="keyword">out</span> <span class="built_in">int</span> <span class="keyword">value</span></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">value</span> = <span class="number">88</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> cc ;</span><br><span class="line">ChangeValueOut(<span class="keyword">out</span> cc);</span><br><span class="line">Debug.Log(cc);<span class="comment">//b = 88</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="2-冒泡排序优化"><a href="#2-冒泡排序优化" class="headerlink" title="2.冒泡排序优化"></a>2.冒泡排序优化</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span>[] arrs = &#123;<span class="number">7</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">bool</span> isShot = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> m =<span class="number">0</span>;m &lt; arrs.Length;m++)&#123;</span><br><span class="line">    isShot = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> n =<span class="number">0</span>;n&lt;arrs.Length<span class="number">-1</span>-m;n++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arrs[n]&gt; arrs[n+<span class="number">1</span>])&#123;</span><br><span class="line">            isShot = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">int</span> temp =  arrs[n];</span><br><span class="line">            arrs[n] = arrs[n+<span class="number">1</span>];</span><br><span class="line">            arrs[n+<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//正常情况 每次都交换，如果达到 没有进入交换 就不需要了</span></span><br><span class="line">    <span class="keyword">if</span>(!isShot)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
       </tags>
   </entry>
 </search>
