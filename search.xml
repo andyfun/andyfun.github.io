@@ -1062,4 +1062,119 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
         <tag>Android</tag>
       </tags>
   </entry>
+  <entry>
+    <title>iosThread</title>
+    <url>/2021/10/20/iosThread/</url>
+    <content><![CDATA[<h4 id="Unity-UE-调用iOS接口-crash"><a href="#Unity-UE-调用iOS接口-crash" class="headerlink" title="Unity /UE 调用iOS接口 crash"></a>Unity /UE 调用iOS接口 crash</h4><pre><code>带UI的接口 要回到主线程</code></pre>
+<h4 id="Unity-iOS包切后台-没有回调"><a href="#Unity-iOS包切后台-没有回调" class="headerlink" title="Unity iOS包切后台 没有回调"></a>Unity iOS包切后台 没有回调</h4><pre><code>回调被替换或者重置  查看代码</code></pre>
+]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>IOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>network</title>
+    <url>/2021/10/20/network/</url>
+    <content><![CDATA[<h4 id="短连方案-域名合并"><a href="#短连方案-域名合并" class="headerlink" title="短连方案 域名合并"></a>短连方案 域名合并</h4><h4 id="短连方案-IP-直联方案"><a href="#短连方案-IP-直联方案" class="headerlink" title="短连方案 IP 直联方案"></a>短连方案 IP 直联方案</h4><pre><code>方案很简单：程序启动的时候拉取”api.dianping.com”对应的所有的IP列表；对所有IP进行跑马测试，找
+到速度最快的IP。后续所有的HTTPS请求都将域名更换为跑马最快的IP即可。
+
+举个例子，假如：经过跑马测试发现域名”api.dianping.com”对应最快的IP是”1.23.456.789”。
+URL”http://api.dianping.com/ad/command?param1=123&quot;将被替换为&quot;http://1.23.456.789/ad/com
+mand?param1=123&quot;
+IP直连方案有下面几大优势： 1. 摒弃了系统DNS，减少外界干扰，摆脱DNS劫持困扰。 2. 自建DNS更
+新时机可以控制。 3. IP列表更换方便。
+
+HTTP短连的端到端成功率从95%提升到97.5%，网络延时从1500
+毫秒降低到了1000毫秒，可谓小投入大产出
+
+接下来要想进一步提升端到端成功率，就要开始进行长连通道建设了。
+提到长连通道建设，首先让人想到的应该是HTTP/2技术。它具有异步连接多路复用、头部压缩、请求响
+应管线化等众多优点。
+
+
+如果查看HTTP/2的拓扑结构，其实非常简单：[](&#39;network/img.png&#39;)
+
+HTTP/2在客户端与服务器之间建立长连通道，将同一域名的请求都放在长连通道上进行。这种拓扑结构有如下一些缺点： 
+1. 请求基于DNS，仍将面临DNS劫持风险。 
+2. 不同域名的请求需要建立多条连接。
+3. 网络通道难以优化。客户端与服务器之间是公网链路。如果在多地部署服务器，成本消耗又会很大。
+4. 业务改造难度大。部署HTTP/2，需要对业务服务器进行改造，而且使用的业务服务器越多，需要改造的成本也越大。
+5. 网络协议可订制程度小。
+
+与HTTP/2相区别，我们这里推荐另一种代理长连的模式。这种模式的拓扑图如下：
+&#123;% asset_img img_1.png' img_1.png %&#125;
+
+基本思路为：在客户端与业务服务器之间架设代理长连服务器，客户端与代理服务器建立TCP长连通道，客户端的HTTP请求被转换为了TCP通道上的二进制数据包。
+代理服务器负责与业务服务器进行HTTP请求，请求的结果通过长连通道送回客户端。
+
+与HTTP/2模式对比，代理长连模式具有下面一些优势： 1. 对DNS无依赖。客户端与代理服务器之间的长连通道是通过IP建立的，与DNS没有关系。客户端的HTTP请求被转换为二进制数据流送到代理服务
+器，也不需要进行DNS解析。代理服务器转发请求到业务服务器时，都处于同一内网，因此可以自己搭建DNS服务，减少对公网DNS服务的依赖。从这个层面上说，代理长连模式天生具有防DNS劫持的能
+力。 
+2. 不同域名的请求可以复用同一条长连通道。 3. 通道易优化。与部署业务服务器相比，部署代理长连服务器的代价就小了很多，可以在全国甚至全世界多地部署代理长连服务器。客户端在选择代理长连服务器时，可以通过跑马找到最快的服务器IP进行连接。
+另一方面，代理服务器与业务服务器之间的网络通道也可以进行优化，通过架设专线或者租用腾讯云等方式可以大大提升通道服务质量。 4. 对业务完全透明。客户端的业务代码只要接入网络层的SDK即可，完全不用关心网络请求使用的是长连通道还是短连通道。代理服务器将客户端的请求还原为HTTP短连方式送到业务服务器，业务服务器不需要进行任何改造。 5. 网络协议完全自定义。
+
+出于快速推进的目的，同时受限于建设代理长连服务器需要投入大量资金，我们首先接入使用了腾讯的维纳斯（WNS）服务</code></pre>
+<h5 id="开发阶段"><a href="#开发阶段" class="headerlink" title="开发阶段"></a>开发阶段</h5><pre><code>&#123;% asset_img img_2.png' img_2.png %&#125;
+代理服务器和业务服务器之间有专线
+4.自动降级Failover建设
+&#123;% asset_img img_3.png' img_3.png %&#125;
+
+由于客户端的请求都放在TCP通道上进行，当代理长连服务器需要升级或者由于极端情况发生了故障
+时，将会造成客户端的整体网络服务不可用。为了解决这个问题，我们准备了Failover降级方案。当TCP 通道无法建立或者发生故障时，可以使用UDP面向无连接的特性提供另一条请求通道，
+或者绕过代理长连服务器之间向业务服务器发起HTTP公网请求。本文的后面章节有展示Failover机制的实际效果。
+
+在全国多地部署代理长连接入点。客户端与接入点建立长连通道时，可以选择最快的服务器就近接入，从而大大降低通道连接速度并提升通信质量。
+我们在近两年的网络优化实践中，将客户端的网络通道服务整理成了一个独立的SDK，SDK内除了包含了自建的长连通信服务，也包含了WNS等网络通道。
+
+&#123;% asset_img img_4.png' img_4.png %&#125;
+
+ 1. CIP通道：CIP通道就是上文中提到的自建代理长连通道。
+    CIP是China Internet Plus的缩写，为网络优化集团的注册英文名称。App中绝大部分的请求通过CIP通道中的TCP子通道与长连服务器（CIP Connection Server）通信，
+长连服务器将收到的请求代理转发到业务服务器（API Server）。由于TCP子通道在一些极端情况下可能会无法工作，我们在CIP通道中额外部署了UDP子通道和HTTP子通道，
+其中HTTP子通道通过公网绕过长连服务器与业务服务器进行直接请求。CIP通道的平均端到端成功率目前已达99.7%，耗时平均在350毫秒左右。 
+2. WNS通道：出于灾备的需要，腾讯的WNS目前仍被包含在网络通道SDK中。当极端情况发生，CIP通道不可用时，WNS通道还可以作为备用的长连替代方案。
+3. HTTP通道：此处的HTTP通道是在公网直接请求API Server的网络通道。出于长连通道重要性的考虑，上传和下载大数据包的请求如果放在长连上进行都有可能导致长连通道的拥堵，
+因此我们将CDN访问、文件上传和频繁的日志上报等放在公网利用HTTP短连进行请求，同时也减轻代理长连服务器的负担。</code></pre>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>messenger</title>
+    <url>/2021/10/20/messenger/</url>
+    <content><![CDATA[<h4 id="Messenger"><a href="#Messenger" class="headerlink" title="Messenger"></a>Messenger</h4><p>   服务端<br>   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 服务端</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessagerService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">&quot;MessagerService&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> what_to_server = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> what_to_client = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">private</span> Handler handerServer = <span class="keyword">new</span> Handler(<span class="keyword">new</span> Handler.Callback() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> </span>&#123;</span><br><span class="line">            <span class="comment">//fase 继续想下传递</span></span><br><span class="line">            <span class="comment">//true 不传递自己消费</span></span><br><span class="line">            <span class="keyword">switch</span> (msg.what)&#123;</span><br><span class="line">                <span class="keyword">case</span> what_to_server:</span><br><span class="line">                    System.out.println(<span class="string">&quot;---&gt;client = &quot;</span>+msg.what);</span><br><span class="line">                    Log.e(TAG, <span class="string">&quot;---&gt;client: &quot;</span> +msg.what +<span class="string">&quot;,obj = &quot;</span>+msg.obj);</span><br><span class="line">                    Messenger client = msg.replyTo;</span><br><span class="line">                    <span class="keyword">if</span> (client == <span class="keyword">null</span>) &#123;</span><br><span class="line">                        System.out.println(<span class="string">&quot;---&gt;client null&quot;</span>);</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    Message toClient = Message.obtain(<span class="keyword">null</span>,what_to_client);</span><br><span class="line">                    toClient.arg1 = <span class="number">101</span>;</span><br><span class="line">                    toClient.obj = <span class="string">&quot;服务器发送消息&quot;</span>;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        client.send(toClient);</span><br><span class="line">                        System.out.println(<span class="string">&quot;---&gt;server send &gt;&gt;&gt;&gt;&quot;</span>);</span><br><span class="line">                    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">private</span> Messenger serverMessenger = <span class="keyword">new</span> Messenger(handerServer);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MessagerService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onBind: &quot;</span>+serverMessenger.getBinder() );</span><br><span class="line">        <span class="keyword">return</span> serverMessenger.getBinder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>   客户端</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private Handler clientHandler &#x3D; new Handler(new Handler.Callback() &#123;</span><br><span class="line">       @Override</span><br><span class="line">       public boolean handleMessage(@NonNull Message msg) &#123;</span><br><span class="line">           switch (msg.what)&#123;</span><br><span class="line">               case WHAT_TO_CLIENT:</span><br><span class="line">                   System.out.println(&quot; client from server &quot;+msg.arg1+&quot;,&quot;+msg.obj);</span><br><span class="line">                   &#x2F;&#x2F;TODO 向服务端发送消息</span><br><span class="line">                   break;</span><br><span class="line">               default:</span><br><span class="line">                   break;</span><br><span class="line">           &#125;</span><br><span class="line">           return false;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br><span class="line">   &#x2F;**</span><br><span class="line">    *  信使</span><br><span class="line">    *&#x2F;</span><br><span class="line">   private Messenger clientMessenger &#x3D; new Messenger(clientHandler);</span><br><span class="line">   &#x2F;&#x2F;连接远程服务</span><br><span class="line">   private Messenger serverMessager;</span><br><span class="line"></span><br><span class="line">   private ServiceConnection messengerConnection &#x3D; new ServiceConnection() &#123;</span><br><span class="line">       @Override</span><br><span class="line">       public void onServiceConnected(ComponentName name, IBinder service) &#123;</span><br><span class="line">           System.out.println(&quot;Success  name &#x3D; &quot; + name + &quot;, service &#x3D; &quot; + service);</span><br><span class="line">           Log.e(TAG, &quot;onServiceConnected: &quot;);</span><br><span class="line">           serverMessager &#x3D; new Messenger(service);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       @Override</span><br><span class="line">       public void onServiceDisconnected(ComponentName name) &#123;</span><br><span class="line">           System.out.println(&quot; disconnected name &#x3D; &quot; + name);</span><br><span class="line">           Log.e(TAG, &quot;onServiceDisconnected: &quot; );</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   private void bindServer1()&#123;</span><br><span class="line">       Log.e(TAG, &quot;bindServer1: &quot; );</span><br><span class="line">       Intent intent &#x3D; new Intent();</span><br><span class="line">       intent.setAction(&quot;com.example.service&quot;);</span><br><span class="line">       intent.setPackage(&quot;com.example.webrtc&quot;);</span><br><span class="line">       bindService(intent,messengerConnection,BIND_AUTO_CREATE);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Message serverMessage &#x3D; Message.obtain(null,WHAT_TO_SERVER);</span><br><span class="line">serverMessage.arg1 &#x3D; 100;</span><br><span class="line">serverMessage.obj &#x3D; &quot;客户端发送消息&quot;;</span><br><span class="line">&#x2F;&#x2F;将toServer.replyTo &#x3D; clientMessager，这样，对应于服务端接收到此消息，获取到clientMessager，用此clientMessager向客户端回送消息</span><br><span class="line">serverMessage.replyTo &#x3D; clientMessenger;</span><br><span class="line">try &#123;</span><br><span class="line">    serverMessager.send(serverMessage);</span><br><span class="line">&#125; catch (RemoteException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>serialiable</title>
+    <url>/2021/10/20/serialiable/</url>
+    <content><![CDATA[<h4 id="Serializable-："><a href="#Serializable-：" class="headerlink" title="Serializable ："></a>Serializable ：</h4><pre><code>Serializable 是Java中的序列化接口，其使用起来简单但开销很大，序列化与反序列化过程需要大量I/O操作。</code></pre>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Ball</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="Parcelable："><a href="#Parcelable：" class="headerlink" title="Parcelable："></a>Parcelable：</h4><pre><code>Parcelable是Android中的序列化方式，因此更适合用在Android平台上，他的缺点是使用起来稍微麻烦点，但他的效率很高。
+这是Android推荐的序列化方式，因此我们要首选Parcelable.Parcleable主要用在内存序列化上，
+通过Parcelable将对象序列化到是存储设备中或者将对象序列化后通过网络传输也是可以的，但这个过程会稍微复杂，因此在这两种情况下建议大家使用Serializable。</code></pre>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bird</span>  <span class="keyword">implements</span> <span class="title">Parcelable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Bird</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 反序列化  ：字节码 转 对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">Bird</span><span class="params">(Parcel in)</span> </span>&#123;</span><br><span class="line">        name = in.readString();</span><br><span class="line">        age = in.readInt();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Creator&lt;Bird&gt; CREATOR = <span class="keyword">new</span> Creator&lt;Bird&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Bird <span class="title">createFromParcel</span><span class="params">(Parcel in)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Bird(in);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Bird[] newArray(<span class="keyword">int</span> size) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Bird[size];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 序列化  ： 对象转字节码</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dest</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> flags</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(Parcel dest, <span class="keyword">int</span> flags)</span> </span>&#123;</span><br><span class="line">        dest.writeString(name);</span><br><span class="line">        dest.writeInt(age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
 </search>
