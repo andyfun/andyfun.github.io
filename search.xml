@@ -342,7 +342,12 @@
   <entry>
     <title>MonoBehaviourTree</title>
     <url>/2021/10/20/BehaviourTree/</url>
-    <content><![CDATA[<h4 id="Unity-AI-行为树"><a href="#Unity-AI-行为树" class="headerlink" title="Unity AI 行为树"></a>Unity AI 行为树</h4>]]></content>
+    <content><![CDATA[<h4 id="Unity-AI-行为树"><a href="#Unity-AI-行为树" class="headerlink" title="Unity AI 行为树"></a>Unity AI 行为树</h4><pre><code>遍历从左边 中 右  左边优先级最高，右边最低</code></pre>
+<h4 id="角色-吃饭-睡觉-地震"><a href="#角色-吃饭-睡觉-地震" class="headerlink" title="角色 吃饭 睡觉 地震"></a>角色 吃饭 睡觉 地震</h4><pre><code>地震 xxx　会中断 吃饭睡觉
+吃饭 xxx  会中断 睡觉
+睡觉 优先级最低</code></pre>
+<h4 id="Tools-操作"><a href="#Tools-操作" class="headerlink" title="Tools 操作"></a>Tools 操作</h4><pre><code>[](&#39;BehaviourTree/1.png&#39;)</code></pre>
+]]></content>
       <categories>
         <category>Unity</category>
       </categories>
@@ -1028,7 +1033,7 @@ HTTP/2在客户端与服务器之间建立长连通道，将同一域名的请�
 5. 网络协议可订制程度小。
 
 与HTTP/2相区别，我们这里推荐另一种代理长连的模式。这种模式的拓扑图如下：
-&#123;% asset_img img_1.png' img_1.png %&#125;
+[](&#39;network/img_1.png&#39;)
 
 基本思路为：在客户端与业务服务器之间架设代理长连服务器，客户端与代理服务器建立TCP长连通道，客户端的HTTP请求被转换为了TCP通道上的二进制数据包。
 代理服务器负责与业务服务器进行HTTP请求，请求的结果通过长连通道送回客户端。
@@ -1040,10 +1045,10 @@ HTTP/2在客户端与服务器之间建立长连通道，将同一域名的请�
 另一方面，代理服务器与业务服务器之间的网络通道也可以进行优化，通过架设专线或者租用腾讯云等方式可以大大提升通道服务质量。 4. 对业务完全透明。客户端的业务代码只要接入网络层的SDK即可，完全不用关心网络请求使用的是长连通道还是短连通道。代理服务器将客户端的请求还原为HTTP短连方式送到业务服务器，业务服务器不需要进行任何改造。 5. 网络协议完全自定义。
 
 出于快速推进的目的，同时受限于建设代理长连服务器需要投入大量资金，我们首先接入使用了腾讯的维纳斯（WNS）服务</code></pre>
-<h5 id="开发阶段"><a href="#开发阶段" class="headerlink" title="开发阶段"></a>开发阶段</h5><pre><code>&#123;% asset_img img_2.png' img_2.png %&#125;
+<h5 id="开发阶段"><a href="#开发阶段" class="headerlink" title="开发阶段"></a>开发阶段</h5><pre><code>[](&#39;network/img_2.png&#39;)
 代理服务器和业务服务器之间有专线
 4.自动降级Failover建设
-&#123;% asset_img img_3.png' img_3.png %&#125;
+[](&#39;network/img_3.png&#39;)
 
 由于客户端的请求都放在TCP通道上进行，当代理长连服务器需要升级或者由于极端情况发生了故障
 时，将会造成客户端的整体网络服务不可用。为了解决这个问题，我们准备了Failover降级方案。当TCP 通道无法建立或者发生故障时，可以使用UDP面向无连接的特性提供另一条请求通道，
@@ -1052,7 +1057,7 @@ HTTP/2在客户端与服务器之间建立长连通道，将同一域名的请�
 在全国多地部署代理长连接入点。客户端与接入点建立长连通道时，可以选择最快的服务器就近接入，从而大大降低通道连接速度并提升通信质量。
 我们在近两年的网络优化实践中，将客户端的网络通道服务整理成了一个独立的SDK，SDK内除了包含了自建的长连通信服务，也包含了WNS等网络通道。
 
-&#123;% asset_img img_4.png' img_4.png %&#125;
+[](&#39;network/img_4.png&#39;)
 
  1. CIP通道：CIP通道就是上文中提到的自建代理长连通道。
     CIP是China Internet Plus的缩写，为网络优化集团的注册英文名称。App中绝大部分的请求通过CIP通道中的TCP子通道与长连服务器（CIP Connection Server）通信，
