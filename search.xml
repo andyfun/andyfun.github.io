@@ -1209,4 +1209,30 @@ IP直连方案有下面几大优势：
         <tag>UE4,WebView</tag>
       </tags>
   </entry>
+  <entry>
+    <title>hook</title>
+    <url>/2021/10/20/hook/</url>
+    <content><![CDATA[<h4 id="Hook（勾子）"><a href="#Hook（勾子）" class="headerlink" title="Hook（勾子）"></a>Hook（勾子）</h4><pre><code>反射和动态代理（看成重写 super）  改变代码的正常流程</code></pre>
+<h4 id="查找Hook-点的原则"><a href="#查找Hook-点的原则" class="headerlink" title="查找Hook 点的原则"></a>查找Hook 点的原则</h4><pre><code>尽量静态变量或者单利对象
+尽量Hook </code></pre>
+<h4 id="Intrumation-java"><a href="#Intrumation-java" class="headerlink" title="Intrumation.java"></a>Intrumation.java</h4><pre><code>startactivity等方法都在这类里面    </code></pre>
+<h4 id="AMS-检查Activity"><a href="#AMS-检查Activity" class="headerlink" title="AMS 检查Activity"></a>AMS 检查Activity</h4>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Hook</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>shadowsocks 二次开发</title>
+    <url>/2021/10/20/shadowsocks/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>shadowsocks</tag>
+      </tags>
+  </entry>
 </search>

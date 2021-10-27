@@ -119,7 +119,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -129,7 +129,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -189,6 +189,207 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/14/UnityBase/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/14/UnityBase/" class="post-title-link" itemprop="url">UnityBase</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-14 14:51:12 / 修改时间：15:33:22" itemprop="dateCreated datePublished" datetime="2021-10-14T14:51:12+08:00">2021-10-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/10/14/UnityBase/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/14/UnityBase/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>602</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-Unity基础-ref-和-out"><a href="#1-Unity基础-ref-和-out" class="headerlink" title="1.Unity基础  ref 和 out"></a>1.Unity基础  ref 和 out</h4><p>影响外部传入，让其被修改</p>
+<p>ref: 变量先初始化</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueRef</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> a</span>)</span>&#123;</span><br><span class="line">  a = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> b = <span class="number">99</span>;</span><br><span class="line">ChagneValueRef(<span class="keyword">ref</span> b);</span><br><span class="line">Debug.Log(b);<span class="comment">//b = 9</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>out: 方法里初始化</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueOut</span>(<span class="params"><span class="keyword">out</span> <span class="built_in">int</span> <span class="keyword">value</span></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">value</span> = <span class="number">88</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> cc ;</span><br><span class="line">ChangeValueOut(<span class="keyword">out</span> cc);</span><br><span class="line">Debug.Log(cc);<span class="comment">//b = 88</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="2-冒泡排序优化"><a href="#2-冒泡排序优化" class="headerlink" title="2.冒泡排序优化"></a>2.冒泡排序优化</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span>[] arrs = &#123;<span class="number">7</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">bool</span> isShot = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> m =<span class="number">0</span>;m &lt; arrs.Length;m++)&#123;</span><br><span class="line">    isShot = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> n =<span class="number">0</span>;n&lt;arrs.Length<span class="number">-1</span>-m;n++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arrs[n]&gt; arrs[n+<span class="number">1</span>])&#123;</span><br><span class="line">            isShot = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">int</span> temp =  arrs[n];</span><br><span class="line">            arrs[n] = arrs[n+<span class="number">1</span>];</span><br><span class="line">            arrs[n+<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//正常情况 每次都交换，如果达到 没有进入交换 就不需要了</span></span><br><span class="line">    <span class="keyword">if</span>(!isShot)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/01/charles/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/01/charles/" class="post-title-link" itemprop="url">charles</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-01 16:29:28" itemprop="dateCreated datePublished" datetime="2021-06-01T16:29:28+08:00">2021-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-09 16:03:44" itemprop="dateModified" datetime="2021-06-09T16:03:44+08:00">2021-06-09</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/01/charles/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/01/charles/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="https-破解"><a href="#https-破解" class="headerlink" title="https 破解"></a>https 破解</h5><p> 1.基本配置  mac + android</p>
+<p> 2.手机浏览器  <strong><a target="_blank" rel="noopener" href="http://charlesproxy.com/getssl">http://charlesproxy.com/getssl</a></strong> 下载证书  Mac下面</p>
+<p><a href="'charles/txBDmwpCkj.png'"></a> 在钥匙串找到，双击选择信任</p>
+<p> 3.res/raw/charles.perm   res/xml/network_security_config.xml </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">network-security-config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">domain-config</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 域名--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>api.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>canye.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>felix.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>mori.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>jumbo.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>lynn.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>canye.milicat.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>s-cdn.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">trust-anchors</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">certificates</span> <span class="attr">src</span>=<span class="string">&quot;@raw/charles&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trust-anchors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">domain-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">network-security-config</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>4.官方描述<strong><a target="_blank" rel="noopener" href="https://developer.android.google.cn/training/articles/security-config.html">https://developer.android.google.cn/training/articles/security-config.html</a></strong></p>
+<p>5.在Android application标签配置</p>
+<p>6.去掉代理这个包无法使用，需要删除androidmanifest.xml配置</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1054,275 +1255,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/18/RecordUe4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/18/RecordUe4/" class="post-title-link" itemprop="url">UE4遇到的WebView问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-18 16:41:37" itemprop="dateCreated datePublished" datetime="2021-01-18T16:41:37+08:00">2021-01-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-27 15:09:42" itemprop="dateModified" datetime="2021-10-27T15:09:42+08:00">2021-10-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/UE4/" itemprop="url" rel="index"><span itemprop="name">UE4</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/01/18/RecordUe4/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/18/RecordUe4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>33k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>30 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h5 id="UE4-24-4版本最新-Android机-少数有webcrash"><a href="#UE4-24-4版本最新-Android机-少数有webcrash" class="headerlink" title="UE4-24-4版本最新 Android机 少数有webcrash"></a>UE4-24-4版本最新 Android机 少数有webcrash</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2021-01-18 18:20:23.149 4886-4886&#x2F;? E&#x2F;chromium: [ERROR:aw_browser_terminator.cc(125)] Renderer process (6237) crash detected (code -1).</span><br><span class="line">2021-01-18 18:20:23.149 4886-4886&#x2F;? E&#x2F;chromium: [ERROR:aw_browser_terminator.cc(90)] Render process (6237) kill (OOM or update) wasn&#39;t handed by all associated webviews, killing application.</span><br></pre></td></tr></table></figure>
-<h5 id="推理测试"><a href="#推理测试" class="headerlink" title="推理测试"></a>推理测试</h5><blockquote>
-<p>1.web内容改为本地 依然crash</p>
-</blockquote>
-<blockquote>
-<p>2.改变web创建方式 代码创建 和布局中 依然无效</p>
-</blockquote>
-<blockquote>
-<p>3.zipalign内存字节对齐 这是磁盘对齐，是在打完apk后<br> 在android中，资源文件通过内存映射对齐到4字节边界时，访问资源文件的代码才是有效率的<br> zipalign -c -v 4 xxx.apk</p>
-</blockquote>
-<p> <strong>优化出包</strong><br> zipalign -v 4  xx.apk havedGood.apk （文件大于2GB 无效)</p>
-<blockquote>
-<p>4.采用V2签名</p>
-</blockquote>
-<blockquote>
-<p>5.关闭aapt2,开启aapt （编译资源方面无影响)</p>
-</blockquote>
-<blockquote>
-<p>6.修改对应的ue4-24版本对应的gradle插件 3.2.1  发现游戏包大于2G 出现OOM,放弃<br> OOM 问题无法解决</p>
-</blockquote>
-<blockquote>
-<p>7.游戏里添加按钮直接调用接口测试  或者跳转空白页面还是crash</p>
-</blockquote>
-<blockquote>
-<p>8.Gradle版本 低于3.5.3  或者高于 如4.0.1 内存溢出 OOM（array to large ）越界 gralde.properties 里面内存加大<br><strong>org.gradle.jvmargs=-Xmx10240m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8</strong></p>
-</blockquote>
-<img src="/2021/01/18/RecordUe4/Lark_gradle.png" class="" title="gradle">
-<blockquote>
-<p>9.游戏 包重新签名</p>
-</blockquote>
-<blockquote>
-<p>10.游戏大于2GB有问题，对 taptap,es文件浏览器 引起crash,查询webview 推送漏洞 导致crash，如果绕开，让单个文件小于2GB。最终解决方法 升级chrome</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br></pre></td><td class="code"><pre><span class="line">--------- beginning of crash</span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.028</span> <span class="number">27559</span> <span class="number">29808</span> F libc    : Fatal signal <span class="number">6</span> (SIGABRT), code <span class="number">0</span> (SI_USER) in tid <span class="number">29808</span> (pool-<span class="number">17</span>-thread-), pid <span class="number">27559</span> (com.taptap)</span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.157</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***</span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.157</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   : Build fingerprint: <span class="string">&#x27;OnePlus/OnePlus8_CH/OnePlus8:10/QKQ1.191222.002/2004300255:user/release-keys&#x27;</span></span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.157</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   : Revision: <span class="string">&#x27;0&#x27;</span></span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.157</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   : ABI: <span class="string">&#x27;arm&#x27;</span></span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.158</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   : Timestamp: <span class="number">2021</span>-<span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33</span>+0800</span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.158</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   : pid: <span class="number">27559</span>, tid: <span class="number">29808</span>, name: pool-<span class="number">17</span>-thread-  &gt;&gt;&gt; com.taptap &lt;&lt;&lt;</span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.158</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   : uid: <span class="number">10462</span></span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.158</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   : signal <span class="number">6</span> (SIGABRT), code <span class="number">0</span> (SI_USER), fault addr --------</span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.158</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   : Abort message: <span class="string">&#x27;ubsan: implicit-conversion&#x27;</span></span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.158</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   :     r0  <span class="number">00000000</span>  r1  <span class="number">00007470</span>  r2  <span class="number">00000006</span>  r3  beeb5898</span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.158</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   :     r4  beeb58ac  r5  beeb5890  r6  00006ba7  r7  0000016b</span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.158</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   :     r8  beeb58a8  r9  beeb5898  r10 beeb58c8  r11 beeb58b8</span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.158</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   :     ip  <span class="number">00007470</span>  sp  beeb5868  lr  f2cf94cb  pc  f2cf94de</span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.427</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   : </span><br><span class="line"><span class="number">04</span>-<span class="number">02</span> <span class="number">19</span>:<span class="number">12</span>:<span class="number">33.427</span> <span class="number">29830</span> <span class="number">29830</span> F DEBUG   : backtrace:</span><br><span class="line">04-02 19:12:33.427 29830 29830 F DEBUG   :       #00 pc 000604de  /apex/com.android.runtime/lib/bionic/libc.so (abort+166) (BuildId: 821c77998fb681da63cc0cc2621d9479)</span><br><span class="line">04-02 19:12:33.427 29830 29830 F DEBUG   :       #01 pc 00011b60  /system/lib/libutils.so (abort_with_message(char const*)+24) (BuildId: 303a9d221465f0db9b5d760e0a0c6abe)</span><br><span class="line">04-02 19:12:33.427 29830 29830 F DEBUG   :       #02 pc 00011c58  /system/lib/libutils.so (__ubsan_handle_implicit_conversion_minimal_abort+24) (BuildId: 303a9d221465f0db9b5d760e0a0c6abe)</span><br><span class="line">04-02 19:12:33.427 29830 29830 F DEBUG   :       #03 pc 0000a1db  /system/lib/libutils.so (android::FileMap::create(char const*, int, long long, unsigned int, bool)+302) (BuildId: 303a9d221465f0db9b5d760e0a0c6abe)</span><br><span class="line">04-02 19:12:33.427 29830 29830 F DEBUG   :       #04 pc 00021d5b  /system/lib/libandroidfw.so (android::ApkAssets::Open(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, android::Asset::AccessMode) const+258) (BuildId: 21002c626ee1affa596c8d808483e06d)</span><br><span class="line">04-02 19:12:33.427 29830 29830 F DEBUG   :       #05 pc 00021255  /system/lib/libandroidfw.so (android::ApkAssets::LoadImpl(android::base::unique_fd_impl&lt;android::base::DefaultCloser&gt;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, std::__1::unique_ptr&lt;android::Asset, std::__1::default_delete&lt;android::Asset&gt;&gt;, std::__1::unique_ptr&lt;android::LoadedIdmap const, std::__1::default_delete&lt;android::LoadedIdmap const&gt;&gt;, bool, bool)+392) (BuildId: 21002c626ee1affa596c8d808483e06d)</span><br><span class="line">04-02 19:12:33.427 29830 29830 F DEBUG   :       #06 pc 00021069  /system/lib/libandroidfw.so (android::ApkAssets::Load(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, bool)+40) (BuildId: 21002c626ee1affa596c8d808483e06d)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #07 pc 0012ac6f  /system/lib/libandroid_runtime.so (android::NativeLoad(_JNIEnv*, _jclass*, _jstring*, unsigned char, unsigned char, unsigned char)+630) (BuildId: 9e49e3e1d0bfa227ee91d698b0542a69)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #08 pc 00292769  /system/framework/arm/boot-framework.oat (art_jni_trampoline+136) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #09 pc 003b4f29  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.loadApkAssets+440) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #10 pc 003b5f5b  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.createAssetManager+170) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #11 pc 003b39a7  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.createResourcesImpl+126) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #12 pc 003b4693  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.getOrCreateResources+1258) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #13 pc 003b6bc1  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.getResources+440) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #14 pc 0047066f  /system/framework/arm/boot-framework.oat (android.app.ApplicationPackageManager.getResourcesForApplication+414) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #15 pc 00470f99  /system/framework/arm/boot-framework.oat (android.app.ApplicationPackageManager.getText+192) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #16 pc 003d287b  /system/framework/arm/boot-framework.oat (android.content.pm.PackageItemInfo.loadUnsafeLabel+114) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #17 pc 003d2733  /system/framework/arm/boot-framework.oat (android.content.pm.PackageItemInfo.loadLabel+66) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #18 pc 0060e579  /data/app/com.taptap-RTdXAVrkrlThKgnAxoFGrg==/oat/arm/base.odex (com.play.taptap.apps.LocalGameManager.initLocalAppsInner+872)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #19 pc 0060c815  /data/app/com.taptap-RTdXAVrkrlThKgnAxoFGrg==/oat/arm/base.odex (com.play.taptap.apps.LocalGameManager$1.run+108)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #20 pc 0028df17  /system/framework/arm/boot.oat (java.util.concurrent.ThreadPoolExecutor.runWorker+1014) (BuildId: 42f5d5a67be30f16b4db28d01054b7acd1a9df82)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #21 pc 0028bb7f  /system/framework/arm/boot.oat (java.util.concurrent.ThreadPoolExecutor$Worker.run+54) (BuildId: 42f5d5a67be30f16b4db28d01054b7acd1a9df82)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #22 pc 001737b9  /system/framework/arm/boot.oat (java.lang.Thread.run+64) (BuildId: 42f5d5a67be30f16b4db28d01054b7acd1a9df82)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #23 pc 000d7bc5  /apex/com.android.runtime/lib/libart.so (art_quick_invoke_stub_internal+68) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #24 pc 0043cdfd  /apex/com.android.runtime/lib/libart.so (art_quick_invoke_stub+248) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #25 pc 000dff81  /apex/com.android.runtime/lib/libart.so (art::ArtMethod::Invoke(art::Thread*, unsigned int*, unsigned int, art::JValue*, char const*)+168) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-02 19:12:33.428 29830 29830 F DEBUG   :       #26 pc 0037d187  /apex/com.android.runtime/lib/libart.so (art::(anonymous namespace)::InvokeWithArgArray(art::ScopedObjectAccessAlreadyRunnable const&amp;, art::ArtMethod*, art::(anonymous namespace)::ArgArray*, art::JValue*, char const*)+54) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-02 19:12:33.429 29830 29830 F DEBUG   :       #27 pc 0037df1b  /apex/com.android.runtime/lib/libart.so (art::InvokeVirtualOrInterfaceWithJValues(art::ScopedObjectAccessAlreadyRunnable const&amp;, _jobject*, _jmethodID*, jvalue const*)+302) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-02 19:12:33.429 29830 29830 F DEBUG   :       #28 pc 003afb7f  /apex/com.android.runtime/lib/libart.so (art::Thread::CreateCallback(void*)+1018) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-02 19:12:33.429 29830 29830 F DEBUG   :       #29 pc 000ab3dd  /apex/com.android.runtime/lib/bionic/libc.so (__pthread_start(void*)+20) (BuildId: 821c77998fb681da63cc0cc2621d9479)</span><br><span class="line">04-02 19:12:33.429 29830 29830 F DEBUG   :       #30 pc 00061989  /apex/com.android.runtime/lib/bionic/libc.so (__start_thread+30) (BuildId: 821c77998fb681da63cc0cc2621d9479)</span><br><span class="line"><span class="number">04</span>-<span class="number">03</span> <span class="number">18</span>:<span class="number">45</span>:<span class="number">05.648</span> <span class="number">27558</span> <span class="number">31142</span> F libc    : Fatal signal <span class="number">6</span> (SIGABRT), code <span class="number">0</span> (SI_USER) in tid <span class="number">31142</span> (pool-<span class="number">16</span>-thread-), pid <span class="number">27558</span> (com.taptap)</span><br><span class="line"><span class="number">04</span>-<span class="number">03</span> <span class="number">18</span>:<span class="number">45</span>:<span class="number">05.766</span> <span class="number">31186</span> <span class="number">31186</span> F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***</span><br><span class="line"></span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.208</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.208</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   : Build fingerprint: <span class="string">&#x27;OnePlus/OnePlus8_CH/OnePlus8:10/QKQ1.191222.002/2004300255:user/release-keys&#x27;</span></span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.208</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   : Revision: <span class="string">&#x27;0&#x27;</span></span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.209</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   : ABI: <span class="string">&#x27;arm&#x27;</span></span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.214</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   : Timestamp: <span class="number">2021</span>-<span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11</span>+0800</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.214</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   : pid: <span class="number">19223</span>, tid: <span class="number">19321</span>, name: ocessService0:<span class="number">0</span>  &gt;&gt;&gt; com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:<span class="number">0</span> &lt;&lt;&lt;</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.214</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   : uid: <span class="number">99477</span></span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.214</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   : signal <span class="number">6</span> (SIGABRT), code -<span class="number">1</span> (SI_QUEUE), fault addr --------</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.214</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   : Abort message: <span class="string">&#x27;ubsan: implicit-conversion&#x27;</span></span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.214</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   :     r0  <span class="number">00000000</span>  r1  00004b79  r2  <span class="number">00000006</span>  r3  c5ee9778</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.214</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   :     r4  c5ee978c  r5  c5ee9770  r6  00004b17  r7  0000016b</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.214</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   :     r8  c5ee9788  r9  c5ee9778  r10 c5ee97a8  r11 c5ee9798</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.214</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   :     ip  00004b79  sp  c5ee9748  lr  f2cf94cb  pc  f2cf94de</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.523</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   : </span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">02</span>:<span class="number">11.523</span> <span class="number">19223</span> <span class="number">19321</span> F DEBUG   : backtrace:</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #00 pc 000604de  /apex/com.android.runtime/lib/bionic/libc.so (abort+166) (BuildId: 821c77998fb681da63cc0cc2621d9479)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #01 pc 00011b60  /system/lib/libutils.so (abort_with_message(char const*)+24) (BuildId: 303a9d221465f0db9b5d760e0a0c6abe)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #02 pc 00011c58  /system/lib/libutils.so (__ubsan_handle_implicit_conversion_minimal_abort+24) (BuildId: 303a9d221465f0db9b5d760e0a0c6abe)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #03 pc 0000a1db  /system/lib/libutils.so (android::FileMap::create(char const*, int, long long, unsigned int, bool)+302) (BuildId: 303a9d221465f0db9b5d760e0a0c6abe)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #04 pc 00021d5b  /system/lib/libandroidfw.so (android::ApkAssets::Open(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, android::Asset::AccessMode) const+258) (BuildId: 21002c626ee1affa596c8d808483e06d)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #05 pc 00021255  /system/lib/libandroidfw.so (android::ApkAssets::LoadImpl(android::base::unique_fd_impl&lt;android::base::DefaultCloser&gt;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, std::__1::unique_ptr&lt;android::Asset, std::__1::default_delete&lt;android::Asset&gt;&gt;, std::__1::unique_ptr&lt;android::LoadedIdmap const, std::__1::default_delete&lt;android::LoadedIdmap const&gt;&gt;, bool, bool)+392) (BuildId: 21002c626ee1affa596c8d808483e06d)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #06 pc 00021069  /system/lib/libandroidfw.so (android::ApkAssets::Load(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, bool)+40) (BuildId: 21002c626ee1affa596c8d808483e06d)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #07 pc 0012ac6f  /system/lib/libandroid_runtime.so (android::NativeLoad(_JNIEnv*, _jclass*, _jstring*, unsigned char, unsigned char, unsigned char)+630) (BuildId: 9e49e3e1d0bfa227ee91d698b0542a69)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #08 pc 00292769  /system/framework/arm/boot-framework.oat (art_jni_trampoline+136) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #09 pc 003b4f29  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.loadApkAssets+440) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #10 pc 003b5f5b  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.createAssetManager+170) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #11 pc 003b39a7  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.createResourcesImpl+126) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #12 pc 003b4693  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.getOrCreateResources+1258) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #13 pc 003b6bc1  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.getResources+440) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #14 pc 0047066f  /system/framework/arm/boot-framework.oat (android.app.ApplicationPackageManager.getResourcesForApplication+414) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #15 pc 00470f99  /system/framework/arm/boot-framework.oat (android.app.ApplicationPackageManager.getText+192) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #16 pc 003d287b  /system/framework/arm/boot-framework.oat (android.content.pm.PackageItemInfo.loadUnsafeLabel+114) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #17 pc 003d2733  /system/framework/arm/boot-framework.oat (android.content.pm.PackageItemInfo.loadLabel+66) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #18 pc 0046ebe5  /system/framework/arm/boot-framework.oat (android.app.ApplicationPackageManager.getApplicationLabel+44) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #19 pc 001f22ad  /data/dalvik-cache/arm/product@app@WebViewGoogle@WebViewGoogle.apk@classes.dex (org.chromium.base.BuildInfo.&lt;init&gt;+468)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #20 pc 000d7bc5  /apex/com.android.runtime/lib/libart.so (art_quick_invoke_stub_internal+68) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #21 pc 0043cdfd  /apex/com.android.runtime/lib/libart.so (art_quick_invoke_stub+248) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #22 pc 000dff81  /apex/com.android.runtime/lib/libart.so (art::ArtMethod::Invoke(art::Thread*, unsigned int*, unsigned int, art::JValue*, char const*)+168) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #23 pc 00214963  /apex/com.android.runtime/lib/libart.so (art::interpreter::ArtInterpreterToCompiledCodeBridge(art::Thread*, art::ArtMethod*, art::ShadowFrame*, unsigned short, art::JValue*)+270) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #24 pc 00210b57  /apex/com.android.runtime/lib/libart.so (bool art::interpreter::DoCall&lt;false, false&gt;(art::ArtMethod*, art::Thread*, art::ShadowFrame&amp;, art::Instruction const*, unsigned short, art::JValue*)+738) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #25 pc 00433fc3  /apex/com.android.runtime/lib/libart.so (MterpInvokeDirect+370) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #26 pc 000d2914  /apex/com.android.runtime/lib/libart.so (mterp_op_invoke_direct+20) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #27 pc 000cef4c  /data/dalvik-cache/arm/product@app@WebViewGoogle@WebViewGoogle.apk@classes.vdex (Mq.&lt;clinit&gt;+6)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #28 pc 001f097f  /apex/com.android.runtime/lib/libart.so (_ZN3art11interpreterL7ExecuteEPNS_6ThreadERKNS_20CodeItemDataAccessorERNS_11ShadowFrameENS_6JValueEbb.llvm.6076538161558136159+166) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #29 pc 001f5393  /apex/com.android.runtime/lib/libart.so (art::interpreter::EnterInterpreterFromEntryPoint(art::Thread*, art::CodeItemDataAccessor const&amp;, art::ShadowFrame*)+122) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #30 pc 00426857  /apex/com.android.runtime/lib/libart.so (artQuickToInterpreterBridge+866) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #31 pc 000dc5a1  /apex/com.android.runtime/lib/libart.so (art_quick_to_interpreter_bridge+32) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #32 pc 000d7bc5  /apex/com.android.runtime/lib/libart.so (art_quick_invoke_stub_internal+68) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #33 pc 0043cf0f  /apex/com.android.runtime/lib/libart.so (art_quick_invoke_static_stub+246) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #34 pc 000dff95  /apex/com.android.runtime/lib/libart.so (art::ArtMethod::Invoke(art::Thread*, unsigned int*, unsigned int, art::JValue*, char const*)+188) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #35 pc 00101405  /apex/com.android.runtime/lib/libart.so (art::ClassLinker::InitializeClass(art::Thread*, art::Handle&lt;art::mirror::Class&gt;, bool, bool)+1916) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #36 pc 000f1533  /apex/com.android.runtime/lib/libart.so (art::ClassLinker::EnsureInitialized(art::Thread*, art::Handle&lt;art::mirror::Class&gt;, bool, bool)+58) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #37 pc 0041cb7f  /apex/com.android.runtime/lib/libart.so (artInitializeStaticStorageFromCode+58) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.523 19223 19321 F DEBUG   :       #38 pc 000d7f4f  /apex/com.android.runtime/lib/libart.so (art_quick_initialize_static_storage+30) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.524 19223 19321 F DEBUG   :       #39 pc 001f2cad  /data/dalvik-cache/arm/product@app@WebViewGoogle@WebViewGoogle.apk@classes.dex (org.chromium.base.BuildInfo.getAll+1244)</span><br><span class="line">04-09 13:02:11.524 19223 19321 F DEBUG   :       #40 pc 000d7bc5  /apex/com.android.runtime/lib/libart.so (art_quick_invoke_stub_internal+68) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.524 19223 19321 F DEBUG   :       #41 pc 0043cf0f  /apex/com.android.runtime/lib/libart.so (art_quick_invoke_static_stub+246) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.524 19223 19321 F DEBUG   :       #42 pc 000dff95  /apex/com.android.runtime/lib/libart.so (art::ArtMethod::Invoke(art::Thread*, unsigned int*, unsigned int, art::JValue*, char const*)+188) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.524 19223 19321 F DEBUG   :       #43 pc 0037d187  /apex/com.android.runtime/lib/libart.so (art::(anonymous namespace)::InvokeWithArgArray(art::ScopedObjectAccessAlreadyRunnable const&amp;, art::ArtMethod*, art::(anonymous namespace)::ArgArray*, art::JValue*, char const*)+54) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.524 19223 19321 F DEBUG   :       #44 pc 0037cf23  /apex/com.android.runtime/lib/libart.so (art::InvokeWithVarArgs(art::ScopedObjectAccessAlreadyRunnable const&amp;, _jobject*, _jmethodID*, std::__va_list)+290) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.524 19223 19321 F DEBUG   :       #45 pc 002b9b7f  /apex/com.android.runtime/lib/libart.so (art::JNI::CallStaticObjectMethodV(_JNIEnv*, _jclass*, _jmethodID*, std::__va_list)+494) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.524 19223 19321 F DEBUG   :       #46 pc 00284481  /apex/com.android.runtime/lib/libart.so (art::(anonymous namespace)::CheckJNI::CallMethodV(char const*, _JNIEnv*, _jobject*, _jclass*, _jmethodID*, std::__va_list, art::Primitive::Type, art::InvokeType)+1156) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.524 19223 19321 F DEBUG   :       #47 pc 00276b9b  /apex/com.android.runtime/lib/libart.so (art::(anonymous namespace)::CheckJNI::CallStaticObjectMethodV(_JNIEnv*, _jclass*, _jmethodID*, std::__va_list)+38) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:02:11.524 19223 19321 F DEBUG   :       #48 pc 0181a5b7  /product/app/TrichromeLibrary/TrichromeLibrary.apk!libmonochrome.so (offset 0x665000) (BuildId: 18a4115359876ab8b15ee84fe29a2942a145ea8d)</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.142</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.143</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   : Build fingerprint: <span class="string">&#x27;OnePlus/OnePlus8_CH/OnePlus8:10/QKQ1.191222.002/2004300255:user/release-keys&#x27;</span></span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.143</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   : Revision: <span class="string">&#x27;0&#x27;</span></span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.143</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   : ABI: <span class="string">&#x27;arm&#x27;</span></span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.143</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   : Timestamp: <span class="number">2021</span>-<span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32</span>+0800</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.143</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   : pid: <span class="number">19701</span>, tid: <span class="number">19775</span>, name: ocessService0:<span class="number">0</span>  &gt;&gt;&gt; com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:<span class="number">0</span> &lt;&lt;&lt;</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.143</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   : uid: <span class="number">99479</span></span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.143</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   : signal <span class="number">6</span> (SIGABRT), code -<span class="number">1</span> (SI_QUEUE), fault addr --------</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.143</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   : Abort message: <span class="string">&#x27;ubsan: implicit-conversion&#x27;</span></span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.143</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   :     r0  <span class="number">00000000</span>  r1  00004d3f  r2  <span class="number">00000006</span>  r3  c5ee9778</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.143</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   :     r4  c5ee978c  r5  c5ee9770  r6  00004cf5  r7  0000016b</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.143</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   :     r8  c5ee9788  r9  c5ee9778  r10 c5ee97a8  r11 c5ee9798</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.143</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   :     ip  00004d3f  sp  c5ee9748  lr  f2cf94cb  pc  f2cf94de</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.395</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   : </span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">03</span>:<span class="number">32.395</span> <span class="number">19701</span> <span class="number">19775</span> F DEBUG   : backtrace:</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #00 pc 000604de  /apex/com.android.runtime/lib/bionic/libc.so (abort+166) (BuildId: 821c77998fb681da63cc0cc2621d9479)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #01 pc 00011b60  /system/lib/libutils.so (abort_with_message(char const*)+24) (BuildId: 303a9d221465f0db9b5d760e0a0c6abe)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #02 pc 00011c58  /system/lib/libutils.so (__ubsan_handle_implicit_conversion_minimal_abort+24) (BuildId: 303a9d221465f0db9b5d760e0a0c6abe)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #03 pc 0000a1db  /system/lib/libutils.so (android::FileMap::create(char const*, int, long long, unsigned int, bool)+302) (BuildId: 303a9d221465f0db9b5d760e0a0c6abe)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #04 pc 00021d5b  /system/lib/libandroidfw.so (android::ApkAssets::Open(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, android::Asset::AccessMode) const+258) (BuildId: 21002c626ee1affa596c8d808483e06d)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #05 pc 00021255  /system/lib/libandroidfw.so (android::ApkAssets::LoadImpl(android::base::unique_fd_impl&lt;android::base::DefaultCloser&gt;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, std::__1::unique_ptr&lt;android::Asset, std::__1::default_delete&lt;android::Asset&gt;&gt;, std::__1::unique_ptr&lt;android::LoadedIdmap const, std::__1::default_delete&lt;android::LoadedIdmap const&gt;&gt;, bool, bool)+392) (BuildId: 21002c626ee1affa596c8d808483e06d)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #06 pc 00021069  /system/lib/libandroidfw.so (android::ApkAssets::Load(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt;&gt; const&amp;, bool)+40) (BuildId: 21002c626ee1affa596c8d808483e06d)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #07 pc 0012ac6f  /system/lib/libandroid_runtime.so (android::NativeLoad(_JNIEnv*, _jclass*, _jstring*, unsigned char, unsigned char, unsigned char)+630) (BuildId: 9e49e3e1d0bfa227ee91d698b0542a69)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #08 pc 00292769  /system/framework/arm/boot-framework.oat (art_jni_trampoline+136) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #09 pc 003b4f29  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.loadApkAssets+440) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #10 pc 003b5f5b  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.createAssetManager+170) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #11 pc 003b39a7  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.createResourcesImpl+126) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #12 pc 003b4693  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.getOrCreateResources+1258) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #13 pc 003b6bc1  /system/framework/arm/boot-framework.oat (android.app.ResourcesManager.getResources+440) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #14 pc 0047066f  /system/framework/arm/boot-framework.oat (android.app.ApplicationPackageManager.getResourcesForApplication+414) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #15 pc 00470f99  /system/framework/arm/boot-framework.oat (android.app.ApplicationPackageManager.getText+192) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #16 pc 003d287b  /system/framework/arm/boot-framework.oat (android.content.pm.PackageItemInfo.loadUnsafeLabel+114) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #17 pc 003d2733  /system/framework/arm/boot-framework.oat (android.content.pm.PackageItemInfo.loadLabel+66) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #18 pc 0046ebe5  /system/framework/arm/boot-framework.oat (android.app.ApplicationPackageManager.getApplicationLabel+44) (BuildId: 5c92fc03b32dcdeb071c855019413ce105601b43)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #19 pc 001f22ad  /data/dalvik-cache/arm/product@app@WebViewGoogle@WebViewGoogle.apk@classes.dex (org.chromium.base.BuildInfo.&lt;init&gt;+468)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #20 pc 000d7bc5  /apex/com.android.runtime/lib/libart.so (art_quick_invoke_stub_internal+68) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #21 pc 0043cdfd  /apex/com.android.runtime/lib/libart.so (art_quick_invoke_stub+248) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #22 pc 000dff81  /apex/com.android.runtime/lib/libart.so (art::ArtMethod::Invoke(art::Thread*, unsigned int*, unsigned int, art::JValue*, char const*)+168) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #23 pc 00214963  /apex/com.android.runtime/lib/libart.so (art::interpreter::ArtInterpreterToCompiledCodeBridge(art::Thread*, art::ArtMethod*, art::ShadowFrame*, unsigned short, art::JValue*)+270) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #24 pc 00210b57  /apex/com.android.runtime/lib/libart.so (bool art::interpreter::DoCall&lt;false, false&gt;(art::ArtMethod*, art::Thread*, art::ShadowFrame&amp;, art::Instruction const*, unsigned short, art::JValue*)+738) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #25 pc 00433fc3  /apex/com.android.runtime/lib/libart.so (MterpInvokeDirect+370) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #26 pc 000d2914  /apex/com.android.runtime/lib/libart.so (mterp_op_invoke_direct+20) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #27 pc 000cef4c  /data/dalvik-cache/arm/product@app@WebViewGoogle@WebViewGoogle.apk@classes.vdex (Mq.&lt;clinit&gt;+6)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #28 pc 001f097f  /apex/com.android.runtime/lib/libart.so (_ZN3art11interpreterL7ExecuteEPNS_6ThreadERKNS_20CodeItemDataAccessorERNS_11ShadowFrameENS_6JValueEbb.llvm.6076538161558136159+166) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #29 pc 001f5393  /apex/com.android.runtime/lib/libart.so (art::interpreter::EnterInterpreterFromEntryPoint(art::Thread*, art::CodeItemDataAccessor const&amp;, art::ShadowFrame*)+122) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #30 pc 00426857  /apex/com.android.runtime/lib/libart.so (artQuickToInterpreterBridge+866) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.395 19701 19775 F DEBUG   :       #31 pc 000dc5a1  /apex/com.android.runtime/lib/libart.so (art_quick_to_interpreter_bridge+32) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #32 pc 000d7bc5  /apex/com.android.runtime/lib/libart.so (art_quick_invoke_stub_internal+68) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #33 pc 0043cf0f  /apex/com.android.runtime/lib/libart.so (art_quick_invoke_static_stub+246) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #34 pc 000dff95  /apex/com.android.runtime/lib/libart.so (art::ArtMethod::Invoke(art::Thread*, unsigned int*, unsigned int, art::JValue*, char const*)+188) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #35 pc 00101405  /apex/com.android.runtime/lib/libart.so (art::ClassLinker::InitializeClass(art::Thread*, art::Handle&lt;art::mirror::Class&gt;, bool, bool)+1916) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #36 pc 000f1533  /apex/com.android.runtime/lib/libart.so (art::ClassLinker::EnsureInitialized(art::Thread*, art::Handle&lt;art::mirror::Class&gt;, bool, bool)+58) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #37 pc 0041cb7f  /apex/com.android.runtime/lib/libart.so (artInitializeStaticStorageFromCode+58) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #38 pc 000d7f4f  /apex/com.android.runtime/lib/libart.so (art_quick_initialize_static_storage+30) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #39 pc 001f2cad  /data/dalvik-cache/arm/product@app@WebViewGoogle@WebViewGoogle.apk@classes.dex (org.chromium.base.BuildInfo.getAll+1244)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #40 pc 000d7bc5  /apex/com.android.runtime/lib/libart.so (art_quick_invoke_stub_internal+68) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #41 pc 0043cf0f  /apex/com.android.runtime/lib/libart.so (art_quick_invoke_static_stub+246) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #42 pc 000dff95  /apex/com.android.runtime/lib/libart.so (art::ArtMethod::Invoke(art::Thread*, unsigned int*, unsigned int, art::JValue*, char const*)+188) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #43 pc 0037d187  /apex/com.android.runtime/lib/libart.so (art::(anonymous namespace)::InvokeWithArgArray(art::ScopedObjectAccessAlreadyRunnable const&amp;, art::ArtMethod*, art::(anonymous namespace)::ArgArray*, art::JValue*, char const*)+54) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #44 pc 0037cf23  /apex/com.android.runtime/lib/libart.so (art::InvokeWithVarArgs(art::ScopedObjectAccessAlreadyRunnable const&amp;, _jobject*, _jmethodID*, std::__va_list)+290) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #45 pc 002b9b7f  /apex/com.android.runtime/lib/libart.so (art::JNI::CallStaticObjectMethodV(_JNIEnv*, _jclass*, _jmethodID*, std::__va_list)+494) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #46 pc 00284481  /apex/com.android.runtime/lib/libart.so (art::(anonymous namespace)::CheckJNI::CallMethodV(char const*, _JNIEnv*, _jobject*, _jclass*, _jmethodID*, std::__va_list, art::Primitive::Type, art::InvokeType)+1156) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #47 pc 00276b9b  /apex/com.android.runtime/lib/libart.so (art::(anonymous namespace)::CheckJNI::CallStaticObjectMethodV(_JNIEnv*, _jclass*, _jmethodID*, std::__va_list)+38) (BuildId: 9308663998d8b17a9d178f8a912ab83c)</span><br><span class="line">04-09 13:03:32.396 19701 19775 F DEBUG   :       #48 pc 0181a5b7  /product/app/TrichromeLibrary/TrichromeLibrary.apk!libmonochrome.so (offset 0x665000) (BuildId: 18a4115359876ab8b15ee84fe29a2942a145ea8d)</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">39</span>:<span class="number">09.679</span> <span class="number">16526</span> <span class="number">24176</span> F libc    : Fatal signal <span class="number">6</span> (SIGABRT), code <span class="number">0</span> (SI_USER) in tid <span class="number">24176</span> (thread_sp_norma), pid <span class="number">16526</span> (encent.mobileqq)</span><br><span class="line"><span class="number">04</span>-09 <span class="number">13</span>:<span class="number">39</span>:<span class="number">10.096</span> <span class="number">24236</span> <span class="number">24236</span> F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***</span><br></pre></td></tr></table></figure>
-<p><strong>ApplicationPackageManager.getApplicationLabel和PackageItemInfo.loadLabel</strong><br>获取 应用名有问题<br>11.游戏这边webview内部会调用这个接口<br>终极方案 升级系统可以解决或者包体小于 2GB 解决</p>
-<h5 id="chrome-版本"><a href="#chrome-版本" class="headerlink" title="chrome 版本"></a>chrome 版本</h5><p>1.oneplus8 </p>
-<blockquote>
-<p>04-10 17:13:48.169 18155 18175 I cr_LibraryLoader: Loaded native library version number “80.0.3987.99”<br><a target="_blank" rel="noopener" href="https://forums.oneplus.com/threads/are-the-apps-suddenly-crashing-heres-the-solution-update-android-system-webview.1405651/">社区反馈</a></p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://forums.oneplus.com/search/521198198/?q=webview&o=date&c%5Btitle_only%5D=1">过滤</a></p>
-<p>2.系统webview版本漏洞 手机问题</p>
-<p>3.Google Android System Bug<br><strong><a target="_blank" rel="noopener" href="https://source.android.com/security/bulletin/">https://source.android.com/security/bulletin/</a></strong><br>[Bug][<a target="_blank" rel="noopener" href="https://www.theverge.com/2021/3/22/22345696/google-android-apps-crashing-fix-system-webview]">https://www.theverge.com/2021/3/22/22345696/google-android-apps-crashing-fix-system-webview]</a></p>
-<h5 id="apktool-反编译-回编重写签名"><a href="#apktool-反编译-回编重写签名" class="headerlink" title="apktool 反编译  回编重写签名"></a>apktool 反编译  回编重写签名</h5><blockquote>
-<p>测试正常 apktool d xx.apk -o test/<br>apktool b test/ -o unsign.apk</p>
-</blockquote>
-<blockquote>
-<p>apktool原理没有 特殊处理，小端字节等<br>apktool原理 编译和反编译 smalli 字节码</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/18/RecordUe4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/05/GeneralCode/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/05/GeneralCode/" class="post-title-link" itemprop="url">Java通用代码分装</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-05 17:27:31" itemprop="dateCreated datePublished" datetime="2021-01-05T17:27:31+08:00">2021-01-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-29 15:42:49" itemprop="dateModified" datetime="2021-03-29T15:42:49+08:00">2021-03-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/01/05/GeneralCode/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/05/GeneralCode/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="封装通用类型"><a href="#封装通用类型" class="headerlink" title="封装通用类型"></a>封装通用类型</h4>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/05/GeneralCode/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1388,7 +1324,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1401,7 +1337,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
