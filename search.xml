@@ -1280,4 +1280,18 @@ IP直连方案有下面几大优势：
     <url>/2021/10/23/rePlugin/</url>
     <content><![CDATA[]]></content>
   </entry>
+  <entry>
+    <title>AndroidLog</title>
+    <url>/2021/11/02/AndroidLog/</url>
+    <content><![CDATA[<h4 id="街篮2-录频没有声音"><a href="#街篮2-录频没有声音" class="headerlink" title="街篮2 录频没有声音"></a>街篮2 录频没有声音</h4><p>反馈没有声音<br>解决：试了demo 正常，可能设备音频解码 丢包，重启设备解决</p>
+<h4 id="帕斯卡-云化探出框慢-概率出现"><a href="#帕斯卡-云化探出框慢-概率出现" class="headerlink" title="帕斯卡 云化探出框慢 概率出现"></a>帕斯卡 云化探出框慢 概率出现</h4><p>云化后咪咕反馈 弹出权限框慢<br>解决：添加日志 出现问题分析</p>
+<h4 id="街篮2-白屏"><a href="#街篮2-白屏" class="headerlink" title="街篮2 白屏"></a>街篮2 白屏</h4><p>安装后启动出现白屏</p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>问题记录</tag>
+      </tags>
+  </entry>
 </search>
