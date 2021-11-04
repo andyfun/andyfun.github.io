@@ -1021,8 +1021,21 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
   <entry>
     <title>iosThread</title>
     <url>/2021/10/20/iosThread/</url>
-    <content><![CDATA[<h4 id="Unity-UE-调用iOS接口-crash"><a href="#Unity-UE-调用iOS接口-crash" class="headerlink" title="Unity /UE 调用iOS接口 crash"></a>Unity /UE 调用iOS接口 crash</h4><pre><code>带UI的接口 要回到主线程</code></pre>
-<h4 id="Unity-iOS包切后台-没有回调"><a href="#Unity-iOS包切后台-没有回调" class="headerlink" title="Unity iOS包切后台 没有回调"></a>Unity iOS包切后台 没有回调</h4><pre><code>回调被替换或者重置  查看代码</code></pre>
+    <content><![CDATA[<h4 id="Unity-UE-调用iOS接口-crash"><a href="#Unity-UE-调用iOS接口-crash" class="headerlink" title="Unity /UE 调用iOS接口 crash"></a>Unity /UE 调用iOS接口 crash</h4><pre><code>带UI的接口 要回到主线程
+</code></pre>
+<h4 id="Unity-iOS包切后台-没有回调"><a href="#Unity-iOS包切后台-没有回调" class="headerlink" title="Unity iOS包切后台 没有回调"></a>Unity iOS包切后台 没有回调</h4><pre><code>回调被替换或者重置  查看代码
+</code></pre>
+<h4 id="警告-iOS-主线程问题-提醒Main-Thread-Checker-UI-API-called-on-a-background-thread的解释"><a href="#警告-iOS-主线程问题-提醒Main-Thread-Checker-UI-API-called-on-a-background-thread的解释" class="headerlink" title="警告 [iOS]主线程问题:提醒Main Thread Checker: UI API called on a background thread的解释"></a>警告 [iOS]主线程问题:提醒Main Thread Checker: UI API called on a background thread的解释</h4><p>没有在主线程操作</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">dispatch_async(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), <span class="operator">^</span>&#123;  </span><br><span class="line">    <span class="comment">// 处理耗时操作的代码块...  </span></span><br><span class="line">      </span><br><span class="line">    <span class="comment">//通知主线程刷新  </span></span><br><span class="line">    dispatch_async(dispatch_get_main_queue(), <span class="operator">^</span>&#123;  </span><br><span class="line">        <span class="comment">//回调或者说是通知主线程刷新，  </span></span><br><span class="line">    &#125;);  </span><br><span class="line">      </span><br><span class="line">&#125;);  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>dispatch_async开启一个异步操作，第一个参数是指定一个gcd队列，第二个参数是分配一个处理事物的程序块到该队列。<br>dispatch_get_global_queue(0, 0)，指用了全局队列。<br>一般来说系统本身会有3个队列。global_queue，current_queue,以及main_queue.</p>
+<p>获取一个全局队列是接受两个参数，第一个是我分配的事物处理程序块队列优先级。分高低和默认，0为默认2为高，-2为低</p>
+<p>处理完事物后，需要将结果返回给或者是刷新UI主线程，同样，和上面一样，抓取主线程，程序块操作。</p>
+<h4 id="ios-状态栏"><a href="#ios-状态栏" class="headerlink" title="ios 状态栏"></a>ios 状态栏</h4><p>在 Info.plist 文件中添加 Status bar is initially hidden 设置为 YES ，这个是隐藏 App 在 LunchScreen（欢迎界面）时的状态栏。</p>
+<p>在 Info.plist 文件中添加 View controller-based status bar appearance 设置为 NO，这个是隐藏 App 在所有 UIViewController 时的状态栏</p>
+<p>Status Bar 状态栏的颜色<br>状态栏分前后两部分，要分清这两个概念，后面会用到：</p>
+<blockquote>
+<p>文字部分：就是指的显示电池、时间等部分。<br>背景部分：就是显示黑色或者图片的背景部分</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>IOS</category>
