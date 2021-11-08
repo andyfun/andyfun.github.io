@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-05 10:24:21" itemprop="dateModified" datetime="2021-11-05T10:24:21+08:00">2021-11-05</time>
+                <time title="修改时间：2021-11-08 10:50:05" itemprop="dateModified" datetime="2021-11-08T10:50:05+08:00">2021-11-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -326,7 +326,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-20 21:59:51" itemprop="dateModified" datetime="2021-10-20T21:59:51+08:00">2021-10-20</time>
+                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -344,7 +344,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.2k</span>
+              <span>3.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -367,27 +367,33 @@
 
 app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app调用（本地更新）
 
-这里的某种方式，对本篇而言，就是使用Android的类加载器，通过类加载器加载这些修复好的class，覆盖对应有问题的class，理论上就能修复bug了。</code></pre>
+这里的某种方式，对本篇而言，就是使用Android的类加载器，通过类加载器加载这些修复好的class，覆盖对应有问题的class，理论上就能修复bug了。
+</code></pre>
 <h3 id="一、类加载机制"><a href="#一、类加载机制" class="headerlink" title="一、类加载机制"></a>一、类加载机制</h3><h4 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h4><p> 验证多个类是同一个类的成立条件：</p>
 <pre><code>相同的className
 相同的packageName
-被相同的classLoader加载</code></pre>
+被相同的classLoader加载
+</code></pre>
 <h4 id="loadClass"><a href="#loadClass" class="headerlink" title="loadClass()"></a>loadClass()</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> Class&lt;?&gt; loadClass(String name) <span class="keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">    <span class="keyword">return</span> loadClass(name, <span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="keyword">boolean</span> resolve)</span><br><span class="line">    <span class="keyword">throws</span> ClassNotFoundException</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// First, check if the class has already been loaded</span></span><br><span class="line">    Class&lt;?&gt; c = findLoadedClass(name);</span><br><span class="line">    <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (parent != <span class="keyword">null</span>) &#123;</span><br><span class="line">                c = parent.loadClass(name, <span class="keyword">false</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                c = findBootstrapClassOrNull(name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            <span class="comment">// ClassNotFoundException thrown if class not found</span></span><br><span class="line">            <span class="comment">// from the non-null parent class loader</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// If still not found, then invoke findClass in order</span></span><br><span class="line">            <span class="comment">// to find the class.</span></span><br><span class="line">            c = findClass(name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
 <h3 id="Android中的ClassLoader"><a href="#Android中的ClassLoader" class="headerlink" title="Android中的ClassLoader"></a>Android中的ClassLoader</h3><p>1、类加载器类型<br>Android跟java有很大的渊源，基于jvm的java应用是通过ClassLoader来加载应用中的class的，Android对jvm优化过，使用的是dalvik虚拟机，且class文件会被打包进一个dex文件中，底层虚拟机有所不同，那么它们的类加载器当然也是会有所区别。</p>
 <p>Android中最主要的类加载器有如下4个：</p>
 <p>BootClassLoader：加载Android Framework层中的class字节码文件（类似java的Bootstrap ClassLoader）<br>PathClassLoader：加载已经安装到系统中的Apk的class字节码文件（类似java的App ClassLoader）<br>DexClassLoader：加载制定目录的class字节码文件（类似java中的Custom ClassLoader）<br>BaseDexClassLoader：PathClassLoader和DexClassLoader的父类</p>
 <p>一个app一定会用到BootClassLoader、PathClassLoader这2个类加载器，可通过如下代码进行验证：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        ClassLoader classLoader &#x3D; getClassLoader();</span><br><span class="line">        if (classLoader !&#x3D; null) &#123;</span><br><span class="line">            Log.e(TAG, &quot;classLoader &#x3D; &quot; + classLoader);</span><br><span class="line">            while (classLoader.getParent() !&#x3D; null) &#123;</span><br><span class="line">                classLoader &#x3D; classLoader.getParent();</span><br><span class="line">                Log.e(TAG, &quot;classLoader &#x3D; &quot; + classLoader);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        ClassLoader classLoader = getClassLoader();</span><br><span class="line">        if (classLoader != null) &#123;</span><br><span class="line">            Log.e(TAG, &quot;classLoader = &quot; + classLoader);</span><br><span class="line">            while (classLoader.getParent() != null) &#123;</span><br><span class="line">                classLoader = classLoader.getParent();</span><br><span class="line">                Log.e(TAG, &quot;classLoader = &quot; + classLoader);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="热修复的实现原理"><a href="#热修复的实现原理" class="headerlink" title="热修复的实现原理"></a>热修复的实现原理</h3><p>经过对PathClassLoader、DexClassLoader、BaseDexClassLoader、DexPathList的分析，我们知道，安卓的类加载器在加载一个类时会先从自身DexPathList对象中的Element数组中获取（Element[] dexElements）到对应的类，之后再加载。采用的是数组遍历的方式，不过注意，遍历出来的是一个个的dex文件。在for循环中，首先遍历出来的是dex文件，然后再是从dex文件中获取class，所以，我们只要让修复好的class打包成一个dex文件，放于Element数组的第一个元素，这样就能保证获取到的class是最新修复好的class了（当然，有bug的class也是存在的，不过是放在了Element数组的最后一个元素中，所以没有机会被拿到而已。</p>
 <h3 id="Object类"><a href="#Object类" class="headerlink" title="Object类"></a>Object类</h3><p>(1) hashCode</p>
-<pre><code>    返回对象的哈希值（散列码），不是实际地址值，不过可以理解为地址值。</code></pre>
+<pre><code>    返回对象的哈希值（散列码），不是实际地址值，不过可以理解为地址值。
+</code></pre>
 <p>(2)finalize()</p>
-<pre><code>在对象将被垃圾回收器清除前调用，但不确定时间，并且对象的finalize()方法只会被调用一次，调用后也不一定马上清除该对象。</code></pre>
+<pre><code>在对象将被垃圾回收器清除前调用，但不确定时间，并且对象的finalize()方法只会被调用一次，调用后也不一定马上清除该对象。
+</code></pre>
 <p>(3)clone()</p>
 <pre><code>以实现对象的克隆，包括成员变量的数据复制，但是它和两个引用指向同一个对象是有区别的。
 分类：
 浅拷贝: 仅拷贝对象,不拷贝成员变量,仅复制了变量的引用,拷贝前后变量使用同一块内存,内存销毁后,必须重新定义(两者同生共死)
-深拷贝: 不仅拷贝对象,也拷贝成员变量(真正意义上的复制, 两者独立无关)</code></pre>
+深拷贝: 不仅拷贝对象,也拷贝成员变量(真正意义上的复制, 两者独立无关)
+</code></pre>
 <p>(4)toString()——重要</p>
 <p>(5)equals()——重要</p>
 <p>比较两个对象是否相同</p>
@@ -398,6 +404,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
 <p>我们可以将比较地址值转变为比较成员变量</p>
 <p>因为name为String类型，而String类型为引用类型，所以不能够用==比较，应该用equal()<br>String中默认重写过的equal()方法是用来比较字符串内容是否相同<br>我们要使用的是学生类的成员变量，所以父类 Object不能调用子类Student的特有功能<br>所以使用向下转型</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//重写v2.0 (可作为最终版)</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (<span class="keyword">this</span>.name == o) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//测试它左边的对象是否是它右边的类的实例，返回 boolean 的数据类型。</span></span><br><span class="line">       <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Student)) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       Student s = (Student) o;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">this</span>.name.equals(s.name) &amp;&amp; <span class="keyword">this</span>.age == s.age;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
 <p>equals() 和 == 的区别<br> == 的作用： 　　</p>
 <p>基本类型：比较值是否相同 　　</p>
 <p>引用类型：比较的就是堆内存地址是否相同</p>
@@ -454,7 +461,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-20 21:59:51" itemprop="dateModified" datetime="2021-10-20T21:59:51+08:00">2021-10-20</time>
+                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -472,14 +479,14 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.5k</span>
+              <span>3.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -525,9 +532,11 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
 <li>流程更加清晰可控；</li>
 <li>效率更高；</li>
 </ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function">jstring <span class="title">stringFromJNI</span><span class="params">(JNIEnv *env, jobject thiz)</span></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> hello = <span class="string">&quot;Hello from C++&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> env-&gt;NewStringUTF(hello.c_str());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> JNINativeMethod gMethods[] = &#123;</span><br><span class="line">        &#123;<span class="string">&quot;stringFromJNI&quot;</span>, <span class="string">&quot;()Ljava/lang/String;&quot;</span>, (jstring*)stringFromJNI&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">JNIEXPORT jint <span class="title">JNI_OnLoad</span><span class="params">(JavaVM* vm, <span class="keyword">void</span>* reserved)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    __android_log_print(ANDROID_LOG_INFO, <span class="string">&quot;native&quot;</span>, <span class="string">&quot;Jni_OnLoad&quot;</span>);</span><br><span class="line">    JNIEnv* env = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">if</span>(vm-&gt;GetEnv((<span class="keyword">void</span>**)&amp;env, JNI_VERSION_1_4) != JNI_OK) <span class="comment">//从JavaVM获取JNIEnv，一般使用1.4的版本</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    jclass clazz = env-&gt;FindClass(<span class="string">&quot;com/example/efan/jni_learn2/MainActivity&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!clazz)&#123;</span><br><span class="line">        __android_log_print(ANDROID_LOG_INFO, <span class="string">&quot;native&quot;</span>, <span class="string">&quot;cannot get class: com/example/efan/jni_learn2/MainActivity&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(env-&gt;RegisterNatives(clazz, gMethods, <span class="keyword">sizeof</span>(gMethods)/<span class="keyword">sizeof</span>(gMethods[<span class="number">0</span>])))</span><br><span class="line">    &#123;</span><br><span class="line">        __android_log_print(ANDROID_LOG_INFO, <span class="string">&quot;native&quot;</span>, <span class="string">&quot;register native method failed!\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> JNI_VERSION_1_4;</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">12345678910111213141516171819202122232425262728</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function">jstring <span class="title">stringFromJNI</span><span class="params">(JNIEnv *env, jobject thiz)</span></span>&#123;</span><br><span class="line">    std::string hello = <span class="string">&quot;Hello from C++&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> env-&gt;<span class="built_in">NewStringUTF</span>(hello.<span class="built_in">c_str</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> JNINativeMethod gMethods[] = &#123;</span><br><span class="line">        &#123;<span class="string">&quot;stringFromJNI&quot;</span>, <span class="string">&quot;()Ljava/lang/String;&quot;</span>, (jstring*)stringFromJNI&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">JNIEXPORT jint <span class="title">JNI_OnLoad</span><span class="params">(JavaVM* vm, <span class="keyword">void</span>* reserved)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    __android_log_print(ANDROID_LOG_INFO, <span class="string">&quot;native&quot;</span>, <span class="string">&quot;Jni_OnLoad&quot;</span>);</span><br><span class="line">    JNIEnv* env = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">if</span>(vm-&gt;<span class="built_in">GetEnv</span>((<span class="keyword">void</span>**)&amp;env, JNI_VERSION_1_4) != JNI_OK) <span class="comment">//从JavaVM获取JNIEnv，一般使用1.4的版本</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    jclass clazz = env-&gt;<span class="built_in">FindClass</span>(<span class="string">&quot;com/example/efan/jni_learn2/MainActivity&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!clazz)&#123;</span><br><span class="line">        __android_log_print(ANDROID_LOG_INFO, <span class="string">&quot;native&quot;</span>, <span class="string">&quot;cannot get class: com/example/efan/jni_learn2/MainActivity&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(env-&gt;<span class="built_in">RegisterNatives</span>(clazz, gMethods, <span class="built_in"><span class="keyword">sizeof</span></span>(gMethods)/<span class="built_in"><span class="keyword">sizeof</span></span>(gMethods[<span class="number">0</span>])))</span><br><span class="line">    &#123;</span><br><span class="line">        __android_log_print(ANDROID_LOG_INFO, <span class="string">&quot;native&quot;</span>, <span class="string">&quot;register native method failed!\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> JNI_VERSION_1_4;</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">12345678910111213141516171819202122232425262728</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="JNINativeMethod"><a href="#JNINativeMethod" class="headerlink" title="JNINativeMethod"></a>JNINativeMethod</h2><p>在动态注册的过程中使用到了结构体 JNINativeMethod 用于记录 java 方法与 jni 函数的对应关系</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* name;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* signature;</span><br><span class="line">    <span class="keyword">void</span>*       fnPtr;</span><br><span class="line">&#125; JNINativeMethod;<span class="number">12345</span></span><br></pre></td></tr></table></figure>
+
 <p>结构体的第一个参数 name 是java 方法名；</p>
 <p>第二个参数 signature 用于描述方法的参数与返回值；</p>
 <p>第三个参数 fnPtr 是函数指针，指向 jni 函数；</p>
@@ -703,6 +712,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
 </tbody></table>
 <h2 id="jni-函数默认参数"><a href="#jni-函数默认参数" class="headerlink" title="jni 函数默认参数"></a>jni 函数默认参数</h2><p>在 jni 函数中有两个默认参数</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JNIEnv *env, jobject thiz1</span><br></pre></td></tr></table></figure>
+
 <p>其中 JNIEnv 指代的是当前 java 环境，可以利用 JNIEnv 可以操作 java 层代码；jobject 指代的是 jni 函数对应的 java native 方法的类实例，如果 java 方法是 static，则代表的是 class 对象；</p>
 
       
@@ -754,7 +764,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-04 23:42:01" itemprop="dateModified" datetime="2021-11-04T23:42:01+08:00">2021-11-04</time>
+                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -772,7 +782,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>602</span>
+              <span>760</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -796,7 +806,9 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueRef</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> a</span>)</span>&#123;</span><br><span class="line">  a = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> b = <span class="number">99</span>;</span><br><span class="line">ChagneValueRef(<span class="keyword">ref</span> b);</span><br><span class="line">Debug.Log(b);<span class="comment">//b = 9</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>out: 方法里初始化</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueOut</span>(<span class="params"><span class="keyword">out</span> <span class="built_in">int</span> <span class="keyword">value</span></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">value</span> = <span class="number">88</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> cc ;</span><br><span class="line">ChangeValueOut(<span class="keyword">out</span> cc);</span><br><span class="line">Debug.Log(cc);<span class="comment">//b = 88</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <h3 id="2-冒泡排序优化"><a href="#2-冒泡排序优化" class="headerlink" title="2.冒泡排序优化"></a>2.冒泡排序优化</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span>[] arrs = &#123;<span class="number">7</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">bool</span> isShot = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> m =<span class="number">0</span>;m &lt; arrs.Length;m++)&#123;</span><br><span class="line">    isShot = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> n =<span class="number">0</span>;n&lt;arrs.Length<span class="number">-1</span>-m;n++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arrs[n]&gt; arrs[n+<span class="number">1</span>])&#123;</span><br><span class="line">            isShot = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">int</span> temp =  arrs[n];</span><br><span class="line">            arrs[n] = arrs[n+<span class="number">1</span>];</span><br><span class="line">            arrs[n+<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//正常情况 每次都交换，如果达到 没有进入交换 就不需要了</span></span><br><span class="line">    <span class="keyword">if</span>(!isShot)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -847,7 +859,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-04 23:43:20" itemprop="dateModified" datetime="2021-11-04T23:43:20+08:00">2021-11-04</time>
+                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -865,7 +877,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -942,7 +954,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-20 21:59:51" itemprop="dateModified" datetime="2021-10-20T21:59:51+08:00">2021-10-20</time>
+                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
               </span>
 
           <br>
@@ -1020,7 +1032,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-28 23:51:37" itemprop="dateModified" datetime="2021-10-28T23:51:37+08:00">2021-10-28</time>
+                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1038,7 +1050,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>861</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1076,6 +1088,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
 <p>#pragma mark - 产生分割线</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <h5 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h5><blockquote>
 <p>方法定义@interface  实现在@implement</p>
 </blockquote>
@@ -1133,7 +1146,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-04 23:43:37" itemprop="dateModified" datetime="2021-11-04T23:43:37+08:00">2021-11-04</time>
+                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1151,7 +1164,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>78</span>
+              <span>80</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1171,7 +1184,8 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
 
       
           <h5 id="关于Merge"><a href="#关于Merge" class="headerlink" title="关于Merge"></a>关于Merge</h5><p>1&gt;从其他地方 负责了一个覆盖本地 出行 未合并报错<br><strong>您尚未结束您的合并（存在 MERGE_HEAD</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf .git&#x2F;MERGE*</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf .git/MERGE*</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -1222,7 +1236,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-20 21:59:51" itemprop="dateModified" datetime="2021-10-20T21:59:51+08:00">2021-10-20</time>
+                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1240,7 +1254,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>149</span>
+              <span>158</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1260,7 +1274,10 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
 
       
           <h4 id="二维码扫描"><a href="#二维码扫描" class="headerlink" title="二维码扫描"></a>二维码扫描</h4><blockquote>
-<p>zxing 和华为的扫描控件 大为方便<br> 下面但功能也可以引入<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies&#123;</span><br><span class="line"> implementation <span class="string">&#x27;com.huawei.hms:scan:&#123;version&#125;&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>我自己集成了 10分钟 搞定一个扫描控件 还是很方便的。</p>
+<p>zxing 和华为的扫描控件 大为方便<br> 下面但功能也可以引入<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies&#123;</span><br><span class="line"> implementation <span class="string">&#x27;com.huawei.hms:scan:&#123;version&#125;&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>我自己集成了 10分钟 搞定一个扫描控件 还是很方便的。</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -1319,7 +1336,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-04 23:41:49" itemprop="dateModified" datetime="2021-11-04T23:41:49+08:00">2021-11-04</time>
+                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1337,7 +1354,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>836</span>
+              <span>941</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1509,13 +1526,13 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">93k</span>
+    <span title="站点总字数">109k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:24</span>
+    <span title="站点阅读时长">1:39</span>
 </div>
 
         
