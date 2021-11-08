@@ -603,7 +603,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>hook</title>
+    <title>Hook</title>
     <url>/2021/10/20/Android/hook/</url>
     <content><![CDATA[<h4 id="Hook（勾子）"><a href="#Hook（勾子）" class="headerlink" title="Hook（勾子）"></a>Hook（勾子）</h4><pre><code>反射和动态代理（看成重写 super）  改变代码的正常流程
 </code></pre>
@@ -626,7 +626,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       </tags>
   </entry>
   <entry>
-    <title>messenger</title>
+    <title>Messenger</title>
     <url>/2021/10/20/Android/messenger/</url>
     <content><![CDATA[<h4 id="Messenger"><a href="#Messenger" class="headerlink" title="Messenger"></a>Messenger</h4><p>   服务端<br>   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 服务端</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessagerService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">&quot;MessagerService&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> what_to_server = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> what_to_client = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">private</span> Handler handerServer = <span class="keyword">new</span> Handler(<span class="keyword">new</span> Handler.Callback() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> </span>&#123;</span><br><span class="line">            <span class="comment">//fase 继续想下传递</span></span><br><span class="line">            <span class="comment">//true 不传递自己消费</span></span><br><span class="line">            <span class="keyword">switch</span> (msg.what)&#123;</span><br><span class="line">                <span class="keyword">case</span> what_to_server:</span><br><span class="line">                    System.out.println(<span class="string">&quot;---&gt;client = &quot;</span>+msg.what);</span><br><span class="line">                    Log.e(TAG, <span class="string">&quot;---&gt;client: &quot;</span> +msg.what +<span class="string">&quot;,obj = &quot;</span>+msg.obj);</span><br><span class="line">                    Messenger client = msg.replyTo;</span><br><span class="line">                    <span class="keyword">if</span> (client == <span class="keyword">null</span>) &#123;</span><br><span class="line">                        System.out.println(<span class="string">&quot;---&gt;client null&quot;</span>);</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    Message toClient = Message.obtain(<span class="keyword">null</span>,what_to_client);</span><br><span class="line">                    toClient.arg1 = <span class="number">101</span>;</span><br><span class="line">                    toClient.obj = <span class="string">&quot;服务器发送消息&quot;</span>;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        client.send(toClient);</span><br><span class="line">                        System.out.println(<span class="string">&quot;---&gt;server send &gt;&gt;&gt;&gt;&quot;</span>);</span><br><span class="line">                    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">private</span> Messenger serverMessenger = <span class="keyword">new</span> Messenger(handerServer);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MessagerService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onBind: &quot;</span>+serverMessenger.getBinder() );</span><br><span class="line">        <span class="keyword">return</span> serverMessenger.getBinder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
 <p>   客户端</p>
@@ -641,7 +641,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       </tags>
   </entry>
   <entry>
-    <title>network</title>
+    <title>Network</title>
     <url>/2021/10/20/Android/network/</url>
     <content><![CDATA[<h4 id="短连方案-域名合并"><a href="#短连方案-域名合并" class="headerlink" title="短连方案 域名合并"></a>短连方案 域名合并</h4><pre><code> 合并域名
 </code></pre>
@@ -716,9 +716,31 @@ IP直连方案有下面几大优势：
       </tags>
   </entry>
   <entry>
-    <title>rePlugin</title>
+    <title>RePlugin(360)和 Shadow(tencent)</title>
     <url>/2021/10/23/Android/rePlugin/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h4 id="Replugin-AndroidPlugin-4-0-0-插件6-1-1"><a href="#Replugin-AndroidPlugin-4-0-0-插件6-1-1" class="headerlink" title="Replugin (AndroidPlugin 4.0.0,插件6.1.1)"></a>Replugin (AndroidPlugin 4.0.0,插件6.1.1)</h4><p>该插件很久没有更新，最新Androidstudio 需要降级，很麻烦 故不再研究 ，原理大概了解。</p>
+<h4 id="Shadow-更新维护"><a href="#Shadow-更新维护" class="headerlink" title="Shadow 更新维护"></a>Shadow 更新维护</h4><p>Java11 ：Android Studio Arctic Fox内置的JDK<br>File-&gt;prefenece-gradle<br>配置Android_HOME</p>
+<p>window:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./gradlew build</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>sample-host是宿主应用</p>
+</blockquote>
+<blockquote>
+<p>sample-manager是插件管理器的动态实现<br>sample-plugin/sample-loader是loader的动态实现，业务主要在这里定义插件组件和壳子代理组件的配对关系等。</p>
+</blockquote>
+<blockquote>
+<p>sample-constant是在前3者中共用的相同字符串常量。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-runtime是runtime的动态实现，业务主要在这里定义壳子代理组件的实际类。<br>sample-plugin/sample-app-lib是业务App的主要代码，是一个aar库。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-normal-app是一个apk模块壳子，将sample-app-lib打包在其中，演示业务App是可以正常安装运行的。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-plugin-app也是一个apk模块壳子，同样将sample-app-lib打包在其中，但是额外应用了Shadow插件，生成的apk不能正常安装运行。</p>
+</blockquote>
+]]></content>
   </entry>
   <entry>
     <title>Android二维码扫描</title>
@@ -767,44 +789,6 @@ IP直连方案有下面几大优势：
       </categories>
       <tags>
         <tag>shadowsocks</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>oc语法记录相关</title>
-    <url>/2021/05/07/IOS/ios/</url>
-    <content><![CDATA[<h5 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h5><blockquote>
-<p>引用类型用 oc的类指针 nil</p>
-</blockquote>
-<blockquote>
-<p>基本类型用 NULL</p>
-</blockquote>
-<blockquote>
-<p>本质上是一样的 ，都是宏定义 ，0</p>
-</blockquote>
-<blockquote>
-<p>Person *p = nil 代表不指向任何对象</p>
-</blockquote>
-<h5 id="2-分组导航标记"><a href="#2-分组导航标记" class="headerlink" title="2.分组导航标记"></a>2.分组导航标记</h5><blockquote>
-<p>#pragma mark 名字</p>
-</blockquote>
-<blockquote>
-<p>#pragma mark - 产生分割线</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h5 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h5><blockquote>
-<p>方法定义@interface  实现在@implement</p>
-</blockquote>
-<blockquote>
-<p>函数 调用不 一样   可以写在  类 中除了 大括号<br>类的声明和 实现 都要有， 声明要在前  实现 可以放在使用类的后面 </p>
-</blockquote>
-<h5 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h5><p><a href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
-]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>IOS</tag>
       </tags>
   </entry>
   <entry>
@@ -1393,6 +1377,44 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </categories>
       <tags>
         <tag>UE4WebView</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>oc语法记录相关</title>
+    <url>/2021/05/07/IOS/iosBase/</url>
+    <content><![CDATA[<h5 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h5><blockquote>
+<p>引用类型用 oc的类指针 nil</p>
+</blockquote>
+<blockquote>
+<p>基本类型用 NULL</p>
+</blockquote>
+<blockquote>
+<p>本质上是一样的 ，都是宏定义 ，0</p>
+</blockquote>
+<blockquote>
+<p>Person *p = nil 代表不指向任何对象</p>
+</blockquote>
+<h5 id="2-分组导航标记"><a href="#2-分组导航标记" class="headerlink" title="2.分组导航标记"></a>2.分组导航标记</h5><blockquote>
+<p>#pragma mark 名字</p>
+</blockquote>
+<blockquote>
+<p>#pragma mark - 产生分割线</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h5><blockquote>
+<p>方法定义@interface  实现在@implement</p>
+</blockquote>
+<blockquote>
+<p>函数 调用不 一样   可以写在  类 中除了 大括号<br>类的声明和 实现 都要有， 声明要在前  实现 可以放在使用类的后面 </p>
+</blockquote>
+<h5 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h5><p><a href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
+]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>IOS</tag>
       </tags>
   </entry>
 </search>
