@@ -119,7 +119,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">27</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -129,7 +129,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">34</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">35</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -189,6 +189,102 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/20/Android/serialiable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/20/Android/serialiable/" class="post-title-link" itemprop="url">serialiable</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-20 10:47:50" itemprop="dateCreated datePublished" datetime="2021-10-20T10:47:50+08:00">2021-10-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="Serializable-："><a href="#Serializable-：" class="headerlink" title="Serializable ："></a>Serializable ：</h4><pre><code>Serializable 是Java中的序列化接口，其使用起来简单但开销很大，序列化与反序列化过程需要大量I/O操作。
+</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Ball</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Parcelable："><a href="#Parcelable：" class="headerlink" title="Parcelable："></a>Parcelable：</h4><pre><code>Parcelable是Android中的序列化方式，因此更适合用在Android平台上，他的缺点是使用起来稍微麻烦点，但他的效率很高。
+这是Android推荐的序列化方式，因此我们要首选Parcelable.Parcleable主要用在内存序列化上，
+通过Parcelable将对象序列化到是存储设备中或者将对象序列化后通过网络传输也是可以的，但这个过程会稍微复杂，因此在这两种情况下建议大家使用Serializable。
+</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bird</span>  <span class="keyword">implements</span> <span class="title">Parcelable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Bird</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 反序列化  ：字节码 转 对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">Bird</span><span class="params">(Parcel in)</span> </span>&#123;</span><br><span class="line">        name = in.readString();</span><br><span class="line">        age = in.readInt();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Creator&lt;Bird&gt; CREATOR = <span class="keyword">new</span> Creator&lt;Bird&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Bird <span class="title">createFromParcel</span><span class="params">(Parcel in)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Bird(in);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Bird[] newArray(<span class="keyword">int</span> size) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Bird[size];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 序列化  ： 对象转字节码</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dest</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> flags</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(Parcel dest, <span class="keyword">int</span> flags)</span> </span>&#123;</span><br><span class="line">        dest.writeString(name);</span><br><span class="line">        dest.writeInt(age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1032,7 +1128,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-08 17:57:27" itemprop="dateModified" datetime="2021-11-08T17:57:27+08:00">2021-11-08</time>
+                <time title="修改时间：2021-11-09 19:02:13" itemprop="dateModified" datetime="2021-11-09T19:02:13+08:00">2021-11-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1050,14 +1146,14 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -1069,11 +1165,11 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
     <div class="post-body" itemprop="articleBody">
 
       
-          <h5 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h5><blockquote>
-<p>引用类型用 oc的类指针 nil</p>
+          <h4 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h4><blockquote>
+<p><code>引用类型用</code> oc的类指针 nil</p>
 </blockquote>
 <blockquote>
-<p>基本类型用 NULL</p>
+<p><code>基本类型用</code> NULL</p>
 </blockquote>
 <blockquote>
 <p>本质上是一样的 ，都是宏定义 ，0</p>
@@ -1081,13 +1177,13 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
 <blockquote>
 <p>Person *p = nil 代表不指向任何对象</p>
 </blockquote>
-<h5 id="2-分组导航标记"><a href="#2-分组导航标记" class="headerlink" title="2.分组导航标记"></a>2.分组导航标记</h5><blockquote>
+<h4 id="2-分组导航标记"><a href="#2-分组导航标记" class="headerlink" title="2.分组导航标记"></a>2.分组导航标记</h4><blockquote>
 <p>#pragma mark 名字</p>
 </blockquote>
 <blockquote>
 <p>#pragma mark - 产生分割线</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h5 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h5><blockquote>
 <p>方法定义@interface  实现在@implement</p>
@@ -1095,7 +1191,24 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
 <blockquote>
 <p>函数 调用不 一样   可以写在  类 中除了 大括号<br>类的声明和 实现 都要有， 声明要在前  实现 可以放在使用类的后面 </p>
 </blockquote>
-<h5 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h5><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
+<blockquote>
+<p><code>+</code> 方法就是类方法，<code>-</code> 方法就是实例方法</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)thisIsAClassMethod; <span class="comment">// 类方法，不需要实例化对象就可以调用</span></span><br><span class="line">- (<span class="keyword">void</span>)thisIsAnInstanceMethod; <span class="comment">// 实例方法，必须通过实例化的对象调用</span></span><br><span class="line"><span class="comment">// 对象的初始化 OC中以消息机制传递信息，发送 alloc 消息给类分配内存空间，发送 init 消息生成对象，指针指向对象本身。</span></span><br><span class="line">ClassName *obj = [[ClassName alloc] init];</span><br></pre></td></tr></table></figure>
+<p>类方法：<br>1、类方法可以调用类方法；<br>2、类方法不可以调用实例方法，但是类方法可以通过创建对象来访问实例方法；<br>3、类方法不可以使用实例变量。（可以使用self ，因为 self 不是实例变量。）<br>4、类方法作为消息，可以发送到类或者对象里面去（就是可以通过类或者对象调用类方法）<br>实例方法里面的 self ，是对象的首地址。<br>类方法里面的 self ，是 class 。</p>
+<p>用过程中既可以使用新定义的方法名，也可以使用以前的方法（点表示法）</p>
+<p>属性特征：readwrite readonly assign retain copy nonatomic</p>
+<p>assign：默认行为，使用 @property int num 就是使用了 assign 行为，就是给实例变量赋了一个值</p>
+<p>retain：实现了两个功能，一个是保留了赋值时传递的对象，一个是赋值前释放了以前的值，使用时加上 @property (retain) int num;</p>
+<p>copy：发送一条复制的消息给被传递的对象，保留它，并释放任何以前的值；</p>
+<p>nonatomic：非原子访问器，加上后可以保证属性在被一个线程使用时不被另一个线程访问，不存在 atomic 关键字，默认情况下，所有方法都是自动合成的。（类似Java中的线程锁机制 synchronised）<br>readwrite：可读写<br>readonly：只读</p>
+<h4 id="OC点和右箭头访问变量的区别"><a href="#OC点和右箭头访问变量的区别" class="headerlink" title="OC点和右箭头访问变量的区别"></a>OC点和右箭头访问变量的区别</h4><p>语法<br>OC中.语法实际上就是方法调用，比如通过self.deviceID访问属性，如果它出现在=的左边那么就是调用属性的setter方法，如果出现在=右边就是调用属性的getter方法。<br>所以如下所示的定义：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">self.deviceID = @<span class="string">&quot;123&quot;</span>;和[self setDeviceID:@<span class="string">&quot;123&quot;</span>];是等价的。</span><br><span class="line"></span><br><span class="line">NSString *str = self.deviceID;和NSString *str = [self deviceID];是等价的。</span><br></pre></td></tr></table></figure>
+<p> -&gt;语法<br>OC中-&gt;用于访问成员变量。所以：</p>
+<p>self-&gt;_deviceID和_deviceID是等价的。</p>
+<p>self-&gt;deviceType和deviceType是等价的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@interface Device : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    @<span class="keyword">public</span> NSString *deviceType;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="built_in">property</span> (nonatomic , strong) NSString *deviceID;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h4><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
 
       
     </div>
@@ -1301,112 +1414,6 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/01/Unity/Unity-AssetBundle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/01/Unity/Unity-AssetBundle/" class="post-title-link" itemprop="url">Unity加载AB包</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-01 22:59:52" itemprop="dateCreated datePublished" datetime="2021-02-01T22:59:52+08:00">2021-02-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>941</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="AssetBundle"><a href="#AssetBundle" class="headerlink" title="AssetBundle"></a>AssetBundle</h4><blockquote>
-<p>加载AB包</p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + <span class="string">&quot;/&quot;</span>+ <span class="string">&quot;model&quot;</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>加载AB包资源 <strong>用泛型 或者 typeof 类型</strong><br><strong>AB包不能重复加载否则报错</strong></p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GameObject gameobject =  ab.LoadAsset&lt;GameObject&gt;(<span class="string">&quot;cube&quot;</span>);</span><br><span class="line">GameObject gameobject2 = ab.LoadAsset(<span class="string">&quot;cube&quot;</span>,<span class="keyword">typeof</span>(GameObject)) <span class="keyword">as</span> GameObject;</span><br><span class="line">Instantiate(gameobject);</span><br><span class="line"><span class="comment">// false 卸载ab 包但 不卸载资源</span></span><br><span class="line">ab.unpack(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>利用主包获取依赖信息</p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  AssetBundle abMain = AssetBundle.LoadFromFile(Application.streamingAssetsPath + <span class="string">&quot;/&quot;</span>+ <span class="string">&quot;PC&quot;</span>);</span><br><span class="line">  </span><br><span class="line">        AssetBundleManifest asBundleManifest = abMain.LoadAsset&lt;AssetBundleManifest&gt;(<span class="string">&quot;AssetBundleManifest&quot;</span>);</span><br><span class="line"><span class="comment">//加载主包中的固定文件</span></span><br><span class="line"><span class="built_in">string</span>[] strs = asBundleManifest.GetAllDependencies(<span class="string">&quot;model&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; strs.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(strs[i]);</span><br><span class="line">            AssetBundle.LoadFromFile(Application.streamingAssetsPath+<span class="string">&quot;/&quot;</span>+strs[i]);</span><br><span class="line">        &#125;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/02/01/Unity/Unity-AssetBundle/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1476,7 +1483,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1489,7 +1496,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1526,13 +1533,13 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">109k</span>
+    <span title="站点总字数">111k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:40</span>
+    <span title="站点阅读时长">1:41</span>
 </div>
 
         
