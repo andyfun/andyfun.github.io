@@ -1392,8 +1392,8 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </tags>
   </entry>
   <entry>
-    <title>oc语法记录相关</title>
-    <url>/2021/05/07/IOS/oc-base/</url>
+    <title>语法记录相关</title>
+    <url>/2021/05/07/IOS/iosYufa/</url>
     <content><![CDATA[<h4 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h4><blockquote>
 <p><code>引用类型用</code> oc的类指针 nil</p>
 </blockquote>
