@@ -1,82 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Java想到的问题</title>
-    <url>/2019/05/14/JavaBase/Java/</url>
-    <content><![CDATA[<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><h3 id="hash碰撞-解决方案"><a href="#hash碰撞-解决方案" class="headerlink" title="hash碰撞 解决方案"></a>hash碰撞 解决方案</h3><blockquote>
-<p>比较常用的算法是链地址法和开放地址法</p>
-</blockquote>
-<h3 id="java-位运算"><a href="#java-位运算" class="headerlink" title="java 位运算"></a>java 位运算</h3><blockquote>
-<p>1 左移(&lt;&lt;)</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println(<span class="number">5</span>&lt;&lt;<span class="number">2</span>);<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span>           然后左移<span class="number">2</span>位后，低位补<span class="number">0</span>：</span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0001</span> <span class="number">01</span> <span class="string">&quot;00&quot;</span>           换算成<span class="number">10</span>进制为<span class="number">20</span></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<blockquote>
-<p>2 右移（&gt;&gt;）</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println(<span class="number">5</span>&lt;&lt;<span class="number">2</span>);<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span>           然后右移<span class="number">2</span>位后，高位补<span class="number">0</span>：</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;00&quot;</span><span class="number">00</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">00000</span>  <span class="number">0001</span>           换算成<span class="number">10</span>进制为<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>3 无符号右移( &gt;&gt;&gt; )</p>
-</blockquote>
-<p>1.我们知道在Java中int类型占32位，可以表示一个正数，也可以表示一个负数。正数换算成二进制后的最高位为0，负数的二进制最高为为1</p>
-<blockquote>
-<p>4 位与( &amp; )</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>&amp;<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0001</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>5 位或( | )</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>|<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">7</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0111</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>6 位异或( ^ )</p>
-</blockquote>
-<blockquote>
-<p>Java异或是Java二进制的一种运算规则。两个相同的操作位相同则为0，不同则为1。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>^<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0110</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>7 位非( ~ )           位非是一元操作符</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( ~<span class="number">5</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">-<span class="number">6</span>转换为二进制：-<span class="number">6</span>转换为二进制：<span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1110</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>8 负数计算（负数转二进制规律：</p>
-</blockquote>
-<p>1、取负数的绝对值的原码；</p>
-<p>2、计算原码的反码；</p>
-<p>3、对反码加一，获取补码。</p>
-<p>）</p>
-<blockquote>
-<p>9 概念如下<br>首先我们要对原码、反码和补码有个了解：<br>1、所谓原码就是二进制定点表示法，即最高位为符号位，“0”表示正，“1”表示负，其余位表示数值的大小。<br>2、反码表示法规定：正数的反码与其原码相同；负数的反码是对其原码逐位取反，但符号位除外。<br>原码10010= 反码11101 （10010，1为符号码，故为负）<br>(11101) 二进制= -13 十进制<br>3、补码表示法规定：正数的补码与其原码相同；负数的补码是在其反码的末位加1</p>
-</blockquote>
-<h3 id="java-内部类"><a href="#java-内部类" class="headerlink" title="java 内部类"></a>java 内部类</h3><p> 结构清晰，可读性好，代码好维护</p>
-<blockquote>
-<p>内部类</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;User Outer&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UInner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;UInner UInner&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line">User user = <span class="keyword">new</span> User();</span><br><span class="line"><span class="comment">//依赖外部实例化</span></span><br><span class="line">User.UInner iner = user.<span class="function">new <span class="title">UInner</span><span class="params">()</span></span>;</span><br><span class="line">inter.display();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>匿名内部类（没有类名，常见于接口）</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ILoad</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadMap</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//正常情况</span></span><br><span class="line"><span class="comment">// public class User implements ILoad&#123;</span></span><br><span class="line"><span class="comment">//     @override</span></span><br><span class="line"><span class="comment">//     public void loadMap()&#123;</span></span><br><span class="line"><span class="comment">//         System.out.println(&quot;User Outer&quot;);</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line"></span><br><span class="line">ILoad iner = <span class="keyword">new</span> ILoad()&#123;</span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;loadMap&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">iner.loadMap();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>静态内部类</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;User Outer&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">UInner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;UInner UInner&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line">User user = <span class="keyword">new</span> User();</span><br><span class="line"><span class="comment">//不依赖外部实例化</span></span><br><span class="line">User.UInner iner = <span class="keyword">new</span> User.UInner();</span><br><span class="line">inter.display();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Android架构</title>
     <url>/2018/08/07/Android/Android-Jetpack/</url>
     <content><![CDATA[<h3 id="Android移动app架构设计浅谈"><a href="#Android移动app架构设计浅谈" class="headerlink" title="Android移动app架构设计浅谈"></a>Android移动app架构设计浅谈</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>架构，又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计。</p>
@@ -493,6 +417,26 @@
       </tags>
   </entry>
   <entry>
+    <title>webrtc记录</title>
+    <url>/2020/12/21/Android/Webrtc/</url>
+    <content><![CDATA[<h3 id="WebRtc-简介"><a href="#WebRtc-简介" class="headerlink" title="WebRtc 简介"></a>WebRtc 简介</h3><blockquote>
+<p>WebRTC名称源自网页实时通信(Web Real-Time Communication)的缩写，是一个支持网页浏览器进行实时语音对话或视频对话的技术，是谷歌2010年以6820万美元收购Global IP Solutions公司而获得的一项技术。Google于2011年6月3日开源的即时通讯项目，旨在使其成为客户端视频通话的标准。其实在Google将WebRTC开源之前，微软和苹果各自的通讯产品已占用很大市场份额（如Skype），Google`也是为了快速扩大市场，所以将他给开源。在行业内得到了广泛的支持和应用，成为下一代视频通话的标准。更多介绍可以自行去官网上看。</p>
+</blockquote>
+<blockquote>
+<p>WebRTC被誉为是web长期开源开发的一个新启元，是近年来Web开发的最重要创新。WebRTC允许Web开发者在其web应用中添加视频聊天或者点对点数据传输，不需要复杂的代码或者昂贵的配置。目前支持Chrome、Firefox和Opera，后续会支持更多的浏览器，它有能力达到数十亿的设备。</p>
+</blockquote>
+<h3 id="编译WebRTC"><a href="#编译WebRTC" class="headerlink" title="编译WebRTC"></a>编译WebRTC</h3><blockquote>
+<p>参考声网的国内镜像（我试图编译 镜像下载失败）<strong><a href="https://webrtc.org.cn/mirror/">https://webrtc.org.cn/mirror/</a></strong></p>
+</blockquote>
+ <span id="more"></span>
+<h3 id="Android-webrtc"><a href="#Android-webrtc" class="headerlink" title="Android-webrtc"></a>Android-webrtc</h3><blockquote>
+<p>android依赖</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">implementation &#x27;org.webrtc:google-webrtc:1.0.26131&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>1.打开摄像头<br>2.本地回环<br>3.信令<br>4.多人视频</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Video记录</title>
     <url>/2020/12/24/Android/Videoview/</url>
     <content><![CDATA[<h5 id="VideoView"><a href="#VideoView" class="headerlink" title="VideoView"></a>VideoView</h5><blockquote>
@@ -517,26 +461,6 @@
       <tags>
         <tag>VideoView</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>webrtc记录</title>
-    <url>/2020/12/21/Android/Webrtc/</url>
-    <content><![CDATA[<h3 id="WebRtc-简介"><a href="#WebRtc-简介" class="headerlink" title="WebRtc 简介"></a>WebRtc 简介</h3><blockquote>
-<p>WebRTC名称源自网页实时通信(Web Real-Time Communication)的缩写，是一个支持网页浏览器进行实时语音对话或视频对话的技术，是谷歌2010年以6820万美元收购Global IP Solutions公司而获得的一项技术。Google于2011年6月3日开源的即时通讯项目，旨在使其成为客户端视频通话的标准。其实在Google将WebRTC开源之前，微软和苹果各自的通讯产品已占用很大市场份额（如Skype），Google`也是为了快速扩大市场，所以将他给开源。在行业内得到了广泛的支持和应用，成为下一代视频通话的标准。更多介绍可以自行去官网上看。</p>
-</blockquote>
-<blockquote>
-<p>WebRTC被誉为是web长期开源开发的一个新启元，是近年来Web开发的最重要创新。WebRTC允许Web开发者在其web应用中添加视频聊天或者点对点数据传输，不需要复杂的代码或者昂贵的配置。目前支持Chrome、Firefox和Opera，后续会支持更多的浏览器，它有能力达到数十亿的设备。</p>
-</blockquote>
-<h3 id="编译WebRTC"><a href="#编译WebRTC" class="headerlink" title="编译WebRTC"></a>编译WebRTC</h3><blockquote>
-<p>参考声网的国内镜像（我试图编译 镜像下载失败）<strong><a href="https://webrtc.org.cn/mirror/">https://webrtc.org.cn/mirror/</a></strong></p>
-</blockquote>
- <span id="more"></span>
-<h3 id="Android-webrtc"><a href="#Android-webrtc" class="headerlink" title="Android-webrtc"></a>Android-webrtc</h3><blockquote>
-<p>android依赖</p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">implementation &#x27;org.webrtc:google-webrtc:1.0.26131&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>1.打开摄像头<br>2.本地回环<br>3.信令<br>4.多人视频</p>
-]]></content>
   </entry>
   <entry>
     <title>androidJvm</title>
@@ -626,21 +550,6 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       </tags>
   </entry>
   <entry>
-    <title>Messenger</title>
-    <url>/2021/10/20/Android/messenger/</url>
-    <content><![CDATA[<h4 id="Messenger"><a href="#Messenger" class="headerlink" title="Messenger"></a>Messenger</h4><p>   服务端<br>   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 服务端</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessagerService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">&quot;MessagerService&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> what_to_server = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> what_to_client = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">private</span> Handler handerServer = <span class="keyword">new</span> Handler(<span class="keyword">new</span> Handler.Callback() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> </span>&#123;</span><br><span class="line">            <span class="comment">//fase 继续想下传递</span></span><br><span class="line">            <span class="comment">//true 不传递自己消费</span></span><br><span class="line">            <span class="keyword">switch</span> (msg.what)&#123;</span><br><span class="line">                <span class="keyword">case</span> what_to_server:</span><br><span class="line">                    System.out.println(<span class="string">&quot;---&gt;client = &quot;</span>+msg.what);</span><br><span class="line">                    Log.e(TAG, <span class="string">&quot;---&gt;client: &quot;</span> +msg.what +<span class="string">&quot;,obj = &quot;</span>+msg.obj);</span><br><span class="line">                    Messenger client = msg.replyTo;</span><br><span class="line">                    <span class="keyword">if</span> (client == <span class="keyword">null</span>) &#123;</span><br><span class="line">                        System.out.println(<span class="string">&quot;---&gt;client null&quot;</span>);</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    Message toClient = Message.obtain(<span class="keyword">null</span>,what_to_client);</span><br><span class="line">                    toClient.arg1 = <span class="number">101</span>;</span><br><span class="line">                    toClient.obj = <span class="string">&quot;服务器发送消息&quot;</span>;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        client.send(toClient);</span><br><span class="line">                        System.out.println(<span class="string">&quot;---&gt;server send &gt;&gt;&gt;&gt;&quot;</span>);</span><br><span class="line">                    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">private</span> Messenger serverMessenger = <span class="keyword">new</span> Messenger(handerServer);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MessagerService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onBind: &quot;</span>+serverMessenger.getBinder() );</span><br><span class="line">        <span class="keyword">return</span> serverMessenger.getBinder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>   客户端</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> Handler clientHandler = <span class="keyword">new</span> Handler(<span class="keyword">new</span> Handler.Callback() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">switch</span> (msg.what)&#123;</span><br><span class="line">               <span class="keyword">case</span> WHAT_TO_CLIENT:</span><br><span class="line">                   System.out.println(<span class="string">&quot; client from server &quot;</span>+msg.arg1+<span class="string">&quot;,&quot;</span>+msg.obj);</span><br><span class="line">                   <span class="comment">//TODO 向服务端发送消息</span></span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               <span class="keyword">default</span>:</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    *  信使</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> Messenger clientMessenger = <span class="keyword">new</span> Messenger(clientHandler);</span><br><span class="line">   <span class="comment">//连接远程服务</span></span><br><span class="line">   <span class="keyword">private</span> Messenger serverMessager;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> ServiceConnection messengerConnection = <span class="keyword">new</span> ServiceConnection() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;Success  name = &quot;</span> + name + <span class="string">&quot;, service = &quot;</span> + service);</span><br><span class="line">           Log.e(TAG, <span class="string">&quot;onServiceConnected: &quot;</span>);</span><br><span class="line">           serverMessager = <span class="keyword">new</span> Messenger(service);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot; disconnected name = &quot;</span> + name);</span><br><span class="line">           Log.e(TAG, <span class="string">&quot;onServiceDisconnected: &quot;</span> );</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">bindServer1</span><span class="params">()</span></span>&#123;</span><br><span class="line">       Log.e(TAG, <span class="string">&quot;bindServer1: &quot;</span> );</span><br><span class="line">       Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">       intent.setAction(<span class="string">&quot;com.example.service&quot;</span>);</span><br><span class="line">       intent.setPackage(<span class="string">&quot;com.example.webrtc&quot;</span>);</span><br><span class="line">       bindService(intent,messengerConnection,BIND_AUTO_CREATE);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Message serverMessage = Message.obtain(<span class="keyword">null</span>,WHAT_TO_SERVER);</span><br><span class="line">serverMessage.arg1 = <span class="number">100</span>;</span><br><span class="line">serverMessage.obj = <span class="string">&quot;客户端发送消息&quot;</span>;</span><br><span class="line"><span class="comment">//将toServer.replyTo = clientMessager，这样，对应于服务端接收到此消息，获取到clientMessager，用此clientMessager向客户端回送消息</span></span><br><span class="line">serverMessage.replyTo = clientMessenger;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    serverMessager.send(serverMessage);</span><br><span class="line">&#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Network</title>
     <url>/2021/10/20/Android/network/</url>
     <content><![CDATA[<h4 id="短连方案-域名合并"><a href="#短连方案-域名合并" class="headerlink" title="短连方案 域名合并"></a>短连方案 域名合并</h4><pre><code> 合并域名
@@ -708,6 +617,21 @@ IP直连方案有下面几大优势：
 </li>
 </ol>
 ]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Messenger</title>
+    <url>/2021/10/20/Android/messenger/</url>
+    <content><![CDATA[<h4 id="Messenger"><a href="#Messenger" class="headerlink" title="Messenger"></a>Messenger</h4><p>   服务端<br>   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 服务端</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessagerService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">&quot;MessagerService&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> what_to_server = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> what_to_client = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">private</span> Handler handerServer = <span class="keyword">new</span> Handler(<span class="keyword">new</span> Handler.Callback() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> </span>&#123;</span><br><span class="line">            <span class="comment">//fase 继续想下传递</span></span><br><span class="line">            <span class="comment">//true 不传递自己消费</span></span><br><span class="line">            <span class="keyword">switch</span> (msg.what)&#123;</span><br><span class="line">                <span class="keyword">case</span> what_to_server:</span><br><span class="line">                    System.out.println(<span class="string">&quot;---&gt;client = &quot;</span>+msg.what);</span><br><span class="line">                    Log.e(TAG, <span class="string">&quot;---&gt;client: &quot;</span> +msg.what +<span class="string">&quot;,obj = &quot;</span>+msg.obj);</span><br><span class="line">                    Messenger client = msg.replyTo;</span><br><span class="line">                    <span class="keyword">if</span> (client == <span class="keyword">null</span>) &#123;</span><br><span class="line">                        System.out.println(<span class="string">&quot;---&gt;client null&quot;</span>);</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    Message toClient = Message.obtain(<span class="keyword">null</span>,what_to_client);</span><br><span class="line">                    toClient.arg1 = <span class="number">101</span>;</span><br><span class="line">                    toClient.obj = <span class="string">&quot;服务器发送消息&quot;</span>;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        client.send(toClient);</span><br><span class="line">                        System.out.println(<span class="string">&quot;---&gt;server send &gt;&gt;&gt;&gt;&quot;</span>);</span><br><span class="line">                    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">private</span> Messenger serverMessenger = <span class="keyword">new</span> Messenger(handerServer);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MessagerService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onBind: &quot;</span>+serverMessenger.getBinder() );</span><br><span class="line">        <span class="keyword">return</span> serverMessenger.getBinder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>   客户端</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> Handler clientHandler = <span class="keyword">new</span> Handler(<span class="keyword">new</span> Handler.Callback() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">switch</span> (msg.what)&#123;</span><br><span class="line">               <span class="keyword">case</span> WHAT_TO_CLIENT:</span><br><span class="line">                   System.out.println(<span class="string">&quot; client from server &quot;</span>+msg.arg1+<span class="string">&quot;,&quot;</span>+msg.obj);</span><br><span class="line">                   <span class="comment">//TODO 向服务端发送消息</span></span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               <span class="keyword">default</span>:</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    *  信使</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> Messenger clientMessenger = <span class="keyword">new</span> Messenger(clientHandler);</span><br><span class="line">   <span class="comment">//连接远程服务</span></span><br><span class="line">   <span class="keyword">private</span> Messenger serverMessager;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> ServiceConnection messengerConnection = <span class="keyword">new</span> ServiceConnection() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;Success  name = &quot;</span> + name + <span class="string">&quot;, service = &quot;</span> + service);</span><br><span class="line">           Log.e(TAG, <span class="string">&quot;onServiceConnected: &quot;</span>);</span><br><span class="line">           serverMessager = <span class="keyword">new</span> Messenger(service);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot; disconnected name = &quot;</span> + name);</span><br><span class="line">           Log.e(TAG, <span class="string">&quot;onServiceDisconnected: &quot;</span> );</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">bindServer1</span><span class="params">()</span></span>&#123;</span><br><span class="line">       Log.e(TAG, <span class="string">&quot;bindServer1: &quot;</span> );</span><br><span class="line">       Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">       intent.setAction(<span class="string">&quot;com.example.service&quot;</span>);</span><br><span class="line">       intent.setPackage(<span class="string">&quot;com.example.webrtc&quot;</span>);</span><br><span class="line">       bindService(intent,messengerConnection,BIND_AUTO_CREATE);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Message serverMessage = Message.obtain(<span class="keyword">null</span>,WHAT_TO_SERVER);</span><br><span class="line">serverMessage.arg1 = <span class="number">100</span>;</span><br><span class="line">serverMessage.obj = <span class="string">&quot;客户端发送消息&quot;</span>;</span><br><span class="line"><span class="comment">//将toServer.replyTo = clientMessager，这样，对应于服务端接收到此消息，获取到clientMessager，用此clientMessager向客户端回送消息</span></span><br><span class="line">serverMessage.replyTo = clientMessenger;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    serverMessager.send(serverMessage);</span><br><span class="line">&#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Android</category>
       </categories>
@@ -792,6 +716,73 @@ IP直连方案有下面几大优势：
       </tags>
   </entry>
   <entry>
+    <title>oc语法记录相关</title>
+    <url>/2021/05/07/IOS/iosBase/</url>
+    <content><![CDATA[<h4 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h4><blockquote>
+<p><code>引用类型用</code> oc的类指针 nil</p>
+</blockquote>
+<blockquote>
+<p><code>基本类型用</code> NULL</p>
+</blockquote>
+<blockquote>
+<p>本质上是一样的 ，都是宏定义 ，0</p>
+</blockquote>
+<blockquote>
+<p>Person *p = nil 代表不指向任何对象</p>
+</blockquote>
+<h4 id="2-分组导航标记"><a href="#2-分组导航标记" class="headerlink" title="2.分组导航标记"></a>2.分组导航标记</h4><blockquote>
+<p>#pragma mark 名字</p>
+</blockquote>
+<blockquote>
+<p>#pragma mark - 产生分割线</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h5><blockquote>
+<p>方法定义@interface  实现在@implement</p>
+</blockquote>
+<blockquote>
+<p>函数 调用不 一样   可以写在  类 中除了 大括号<br>类的声明和 实现 都要有， 声明要在前  实现 可以放在使用类的后面 </p>
+</blockquote>
+<blockquote>
+<p><code>+</code> 方法就是类方法，<code>-</code> 方法就是实例方法</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)thisIsAClassMethod; <span class="comment">// 类方法，不需要实例化对象就可以调用</span></span><br><span class="line">- (<span class="keyword">void</span>)thisIsAnInstanceMethod; <span class="comment">// 实例方法，必须通过实例化的对象调用</span></span><br><span class="line"><span class="comment">// 对象的初始化 OC中以消息机制传递信息，发送 alloc 消息给类分配内存空间，发送 init 消息生成对象，指针指向对象本身。</span></span><br><span class="line">ClassName *obj = [[ClassName alloc] init];</span><br></pre></td></tr></table></figure>
+<p>类方法：<br>1、类方法可以调用类方法；<br>2、类方法不可以调用实例方法，但是类方法可以通过创建对象来访问实例方法；<br>3、类方法不可以使用实例变量。（可以使用self ，因为 self 不是实例变量。）<br>4、类方法作为消息，可以发送到类或者对象里面去（就是可以通过类或者对象调用类方法）<br>实例方法里面的 self ，是对象的首地址。<br>类方法里面的 self ，是 class 。</p>
+<p>用过程中既可以使用新定义的方法名，也可以使用以前的方法（点表示法）</p>
+<p>属性特征：readwrite readonly assign retain copy nonatomic</p>
+<p>assign：默认行为，使用 @property int num 就是使用了 assign 行为，就是给实例变量赋了一个值</p>
+<p>retain：实现了两个功能，一个是保留了赋值时传递的对象，一个是赋值前释放了以前的值，使用时加上 @property (retain) int num;</p>
+<p>copy：发送一条复制的消息给被传递的对象，保留它，并释放任何以前的值；</p>
+<p>nonatomic：非原子访问器，加上后可以保证属性在被一个线程使用时不被另一个线程访问，不存在 atomic 关键字，默认情况下，所有方法都是自动合成的。（类似Java中的线程锁机制 synchronised）<br>readwrite：可读写<br>readonly：只读</p>
+<h4 id="OC点和右箭头访问变量的区别"><a href="#OC点和右箭头访问变量的区别" class="headerlink" title="OC点和右箭头访问变量的区别"></a>OC点和右箭头访问变量的区别</h4><p>语法<br>OC中.语法实际上就是方法调用，比如通过self.deviceID访问属性，如果它出现在=的左边那么就是调用属性的setter方法，如果出现在=右边就是调用属性的getter方法。<br>所以如下所示的定义：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">self.deviceID = @<span class="string">&quot;123&quot;</span>;和[self setDeviceID:@<span class="string">&quot;123&quot;</span>];是等价的。</span><br><span class="line"></span><br><span class="line">NSString *str = self.deviceID;和NSString *str = [self deviceID];是等价的。</span><br></pre></td></tr></table></figure>
+<p> -&gt;语法<br>OC中-&gt;用于访问成员变量。所以：</p>
+<p>self-&gt;_deviceID和_deviceID是等价的。</p>
+<p>self-&gt;deviceType和deviceType是等价的。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">@interface Device : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    @<span class="keyword">public</span> NSString *deviceType;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="built_in">property</span> (nonatomic , strong) NSString *deviceID;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h4><p><a href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
+]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>IOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iosMasonryLayout</title>
+    <url>/2021/11/08/IOS/iosMasonryLayout/</url>
+    <content><![CDATA[<h4 id="Masonry"><a href="#Masonry" class="headerlink" title="Masonry"></a>Masonry</h4><p>Masonry是一个轻量级的布局框架，拥有自己的描述语法，采用更优雅的链式语法封装AutoLayout，简洁明了并具有高可读性，而且同时支持 iOS 和 Max OS X</p>
+]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>Masonry</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>iosThread</title>
     <url>/2021/10/20/IOS/iosThread/</url>
     <content><![CDATA[<h4 id="Unity-UE-调用iOS接口-crash"><a href="#Unity-UE-调用iOS接口-crash" class="headerlink" title="Unity /UE 调用iOS接口 crash"></a>Unity /UE 调用iOS接口 crash</h4><pre><code>带UI的接口 要回到主线程
@@ -815,6 +806,82 @@ IP直连方案有下面几大优势：
       </categories>
       <tags>
         <tag>IOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java想到的问题</title>
+    <url>/2019/05/14/JavaBase/Java/</url>
+    <content><![CDATA[<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><h3 id="hash碰撞-解决方案"><a href="#hash碰撞-解决方案" class="headerlink" title="hash碰撞 解决方案"></a>hash碰撞 解决方案</h3><blockquote>
+<p>比较常用的算法是链地址法和开放地址法</p>
+</blockquote>
+<h3 id="java-位运算"><a href="#java-位运算" class="headerlink" title="java 位运算"></a>java 位运算</h3><blockquote>
+<p>1 左移(&lt;&lt;)</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println(<span class="number">5</span>&lt;&lt;<span class="number">2</span>);<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span>           然后左移<span class="number">2</span>位后，低位补<span class="number">0</span>：</span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0001</span> <span class="number">01</span> <span class="string">&quot;00&quot;</span>           换算成<span class="number">10</span>进制为<span class="number">20</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<blockquote>
+<p>2 右移（&gt;&gt;）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println(<span class="number">5</span>&lt;&lt;<span class="number">2</span>);<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span>           然后右移<span class="number">2</span>位后，高位补<span class="number">0</span>：</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;00&quot;</span><span class="number">00</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">00000</span>  <span class="number">0001</span>           换算成<span class="number">10</span>进制为<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>3 无符号右移( &gt;&gt;&gt; )</p>
+</blockquote>
+<p>1.我们知道在Java中int类型占32位，可以表示一个正数，也可以表示一个负数。正数换算成二进制后的最高位为0，负数的二进制最高为为1</p>
+<blockquote>
+<p>4 位与( &amp; )</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>&amp;<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0001</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>5 位或( | )</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>|<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">7</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0111</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>6 位异或( ^ )</p>
+</blockquote>
+<blockquote>
+<p>Java异或是Java二进制的一种运算规则。两个相同的操作位相同则为0，不同则为1。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>^<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0110</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>7 位非( ~ )           位非是一元操作符</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( ~<span class="number">5</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">-<span class="number">6</span>转换为二进制：-<span class="number">6</span>转换为二进制：<span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1110</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>8 负数计算（负数转二进制规律：</p>
+</blockquote>
+<p>1、取负数的绝对值的原码；</p>
+<p>2、计算原码的反码；</p>
+<p>3、对反码加一，获取补码。</p>
+<p>）</p>
+<blockquote>
+<p>9 概念如下<br>首先我们要对原码、反码和补码有个了解：<br>1、所谓原码就是二进制定点表示法，即最高位为符号位，“0”表示正，“1”表示负，其余位表示数值的大小。<br>2、反码表示法规定：正数的反码与其原码相同；负数的反码是对其原码逐位取反，但符号位除外。<br>原码10010= 反码11101 （10010，1为符号码，故为负）<br>(11101) 二进制= -13 十进制<br>3、补码表示法规定：正数的补码与其原码相同；负数的补码是在其反码的末位加1</p>
+</blockquote>
+<h3 id="java-内部类"><a href="#java-内部类" class="headerlink" title="java 内部类"></a>java 内部类</h3><p> 结构清晰，可读性好，代码好维护</p>
+<blockquote>
+<p>内部类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;User Outer&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UInner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;UInner UInner&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line">User user = <span class="keyword">new</span> User();</span><br><span class="line"><span class="comment">//依赖外部实例化</span></span><br><span class="line">User.UInner iner = user.<span class="function">new <span class="title">UInner</span><span class="params">()</span></span>;</span><br><span class="line">inter.display();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>匿名内部类（没有类名，常见于接口）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ILoad</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadMap</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//正常情况</span></span><br><span class="line"><span class="comment">// public class User implements ILoad&#123;</span></span><br><span class="line"><span class="comment">//     @override</span></span><br><span class="line"><span class="comment">//     public void loadMap()&#123;</span></span><br><span class="line"><span class="comment">//         System.out.println(&quot;User Outer&quot;);</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line"></span><br><span class="line">ILoad iner = <span class="keyword">new</span> ILoad()&#123;</span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;loadMap&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">iner.loadMap();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>静态内部类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;User Outer&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">UInner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;UInner UInner&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line">User user = <span class="keyword">new</span> User();</span><br><span class="line"><span class="comment">//不依赖外部实例化</span></span><br><span class="line">User.UInner iner = <span class="keyword">new</span> User.UInner();</span><br><span class="line">inter.display();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -943,6 +1010,27 @@ IP直连方案有下面几大优势：
       </categories>
       <tags>
         <tag>MonoBehaviourTree</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Csharp——lua记录</title>
+    <url>/2021/01/22/Unity/Csharp/</url>
+    <content><![CDATA[<h5 id="记录一下"><a href="#记录一下" class="headerlink" title="记录一下"></a>记录一下</h5><blockquote>
+<p>Lua 内部方法调用 使用 self:Funct()</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">local</span> Luck = &#123;&#125;</span><br><span class="line"><span class="built_in">self</span>.arrayList  = &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>  <span class="title">Luck:uiShow</span><span class="params">()</span></span></span><br><span class="line">   <span class="built_in">self</span>.arrayList  = &#123;<span class="string">&quot;key&quot;</span>,<span class="string">&quot;key2&quot;</span>&#125;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;ui show&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Luck:Close</span><span class="params">()</span></span></span><br><span class="line">   <span class="comment">--调用的地方 </span></span><br><span class="line">   <span class="built_in">self</span>:uiShow()</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> Luck</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<blockquote>
+<p>ui 判断为空</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="literal">true</span> <span class="keyword">then</span></span><br><span class="line">      <span class="comment">--显示</span></span><br><span class="line">      num.gameobject:SetActive(<span class="literal">true</span>);</span><br><span class="line"><span class="keyword">else</span>  </span><br><span class="line">      <span class="comment">--隐藏</span></span><br><span class="line">      num.gameobject:SetActive(<span class="literal">false</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="GameOject-静态方法"><a href="#GameOject-静态方法" class="headerlink" title="GameOject 静态方法"></a>GameOject 静态方法</h5><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">GameObject 基类 是 Object ,命名空间 <span class="keyword">namespace</span>  <span class="title">UnityEngine</span>&#123;&#125;</span><br><span class="line">游戏内都是GameObject</span><br><span class="line">Object 命名空间 <span class="keyword">namespace</span> <span class="title">System</span>&#123;&#125; csharp自带的</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Lua</tag>
       </tags>
   </entry>
   <entry>
@@ -1199,27 +1287,6 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </tags>
   </entry>
   <entry>
-    <title>Csharp——lua记录</title>
-    <url>/2021/01/22/Unity/Csharp/</url>
-    <content><![CDATA[<h5 id="记录一下"><a href="#记录一下" class="headerlink" title="记录一下"></a>记录一下</h5><blockquote>
-<p>Lua 内部方法调用 使用 self:Funct()</p>
-</blockquote>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">local</span> Luck = &#123;&#125;</span><br><span class="line"><span class="built_in">self</span>.arrayList  = &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>  <span class="title">Luck:uiShow</span><span class="params">()</span></span></span><br><span class="line">   <span class="built_in">self</span>.arrayList  = &#123;<span class="string">&quot;key&quot;</span>,<span class="string">&quot;key2&quot;</span>&#125;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;ui show&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Luck:Close</span><span class="params">()</span></span></span><br><span class="line">   <span class="comment">--调用的地方 </span></span><br><span class="line">   <span class="built_in">self</span>:uiShow()</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> Luck</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<blockquote>
-<p>ui 判断为空</p>
-</blockquote>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="literal">true</span> <span class="keyword">then</span></span><br><span class="line">      <span class="comment">--显示</span></span><br><span class="line">      num.gameobject:SetActive(<span class="literal">true</span>);</span><br><span class="line"><span class="keyword">else</span>  </span><br><span class="line">      <span class="comment">--隐藏</span></span><br><span class="line">      num.gameobject:SetActive(<span class="literal">false</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h5 id="GameOject-静态方法"><a href="#GameOject-静态方法" class="headerlink" title="GameOject 静态方法"></a>GameOject 静态方法</h5><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">GameObject 基类 是 Object ,命名空间 <span class="keyword">namespace</span>  <span class="title">UnityEngine</span>&#123;&#125;</span><br><span class="line">游戏内都是GameObject</span><br><span class="line">Object 命名空间 <span class="keyword">namespace</span> <span class="title">System</span>&#123;&#125; csharp自带的</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Lua</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UnityBase</title>
     <url>/2021/10/14/Unity/UnityBase/</url>
     <content><![CDATA[<h4 id="1-Unity基础-ref-和-out"><a href="#1-Unity基础-ref-和-out" class="headerlink" title="1.Unity基础  ref 和 out"></a>1.Unity基础  ref 和 out</h4><p>影响外部传入，让其被修改</p>
@@ -1377,73 +1444,6 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </categories>
       <tags>
         <tag>UE4WebView</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>oc语法记录相关</title>
-    <url>/2021/05/07/IOS/iosBase/</url>
-    <content><![CDATA[<h4 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h4><blockquote>
-<p><code>引用类型用</code> oc的类指针 nil</p>
-</blockquote>
-<blockquote>
-<p><code>基本类型用</code> NULL</p>
-</blockquote>
-<blockquote>
-<p>本质上是一样的 ，都是宏定义 ，0</p>
-</blockquote>
-<blockquote>
-<p>Person *p = nil 代表不指向任何对象</p>
-</blockquote>
-<h4 id="2-分组导航标记"><a href="#2-分组导航标记" class="headerlink" title="2.分组导航标记"></a>2.分组导航标记</h4><blockquote>
-<p>#pragma mark 名字</p>
-</blockquote>
-<blockquote>
-<p>#pragma mark - 产生分割线</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h5 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h5><blockquote>
-<p>方法定义@interface  实现在@implement</p>
-</blockquote>
-<blockquote>
-<p>函数 调用不 一样   可以写在  类 中除了 大括号<br>类的声明和 实现 都要有， 声明要在前  实现 可以放在使用类的后面 </p>
-</blockquote>
-<blockquote>
-<p><code>+</code> 方法就是类方法，<code>-</code> 方法就是实例方法</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)thisIsAClassMethod; <span class="comment">// 类方法，不需要实例化对象就可以调用</span></span><br><span class="line">- (<span class="keyword">void</span>)thisIsAnInstanceMethod; <span class="comment">// 实例方法，必须通过实例化的对象调用</span></span><br><span class="line"><span class="comment">// 对象的初始化 OC中以消息机制传递信息，发送 alloc 消息给类分配内存空间，发送 init 消息生成对象，指针指向对象本身。</span></span><br><span class="line">ClassName *obj = [[ClassName alloc] init];</span><br></pre></td></tr></table></figure>
-<p>类方法：<br>1、类方法可以调用类方法；<br>2、类方法不可以调用实例方法，但是类方法可以通过创建对象来访问实例方法；<br>3、类方法不可以使用实例变量。（可以使用self ，因为 self 不是实例变量。）<br>4、类方法作为消息，可以发送到类或者对象里面去（就是可以通过类或者对象调用类方法）<br>实例方法里面的 self ，是对象的首地址。<br>类方法里面的 self ，是 class 。</p>
-<p>用过程中既可以使用新定义的方法名，也可以使用以前的方法（点表示法）</p>
-<p>属性特征：readwrite readonly assign retain copy nonatomic</p>
-<p>assign：默认行为，使用 @property int num 就是使用了 assign 行为，就是给实例变量赋了一个值</p>
-<p>retain：实现了两个功能，一个是保留了赋值时传递的对象，一个是赋值前释放了以前的值，使用时加上 @property (retain) int num;</p>
-<p>copy：发送一条复制的消息给被传递的对象，保留它，并释放任何以前的值；</p>
-<p>nonatomic：非原子访问器，加上后可以保证属性在被一个线程使用时不被另一个线程访问，不存在 atomic 关键字，默认情况下，所有方法都是自动合成的。（类似Java中的线程锁机制 synchronised）<br>readwrite：可读写<br>readonly：只读</p>
-<h4 id="OC点和右箭头访问变量的区别"><a href="#OC点和右箭头访问变量的区别" class="headerlink" title="OC点和右箭头访问变量的区别"></a>OC点和右箭头访问变量的区别</h4><p>语法<br>OC中.语法实际上就是方法调用，比如通过self.deviceID访问属性，如果它出现在=的左边那么就是调用属性的setter方法，如果出现在=右边就是调用属性的getter方法。<br>所以如下所示的定义：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">self.deviceID = @<span class="string">&quot;123&quot;</span>;和[self setDeviceID:@<span class="string">&quot;123&quot;</span>];是等价的。</span><br><span class="line"></span><br><span class="line">NSString *str = self.deviceID;和NSString *str = [self deviceID];是等价的。</span><br></pre></td></tr></table></figure>
-<p> -&gt;语法<br>OC中-&gt;用于访问成员变量。所以：</p>
-<p>self-&gt;_deviceID和_deviceID是等价的。</p>
-<p>self-&gt;deviceType和deviceType是等价的。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">@interface Device : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    @<span class="keyword">public</span> NSString *deviceType;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="built_in">property</span> (nonatomic , strong) NSString *deviceID;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h4><p><a href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
-]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>IOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iosMasonryLayout</title>
-    <url>/2021/11/08/IOS/iosMasonryLayout/</url>
-    <content><![CDATA[<h4 id="Masonry"><a href="#Masonry" class="headerlink" title="Masonry"></a>Masonry</h4><p>Masonry是一个轻量级的布局框架，拥有自己的描述语法，采用更优雅的链式语法封装AutoLayout，简洁明了并具有高可读性，而且同时支持 iOS 和 Max OS X</p>
-]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>Masonry</tag>
       </tags>
   </entry>
 </search>
