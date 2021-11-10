@@ -1466,4 +1466,21 @@ OC中.语法实际上就是方法调用，比如通过self.deviceID访问属性�
         <tag>IOS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>unrealPackage</title>
+    <url>/2021/11/10/Unreal/unrealPackage/</url>
+    <content><![CDATA[<h4 id="UE-打包iOS"><a href="#UE-打包iOS" class="headerlink" title="UE 打包iOS"></a>UE 打包iOS</h4><p>unreal :4.24<br>xcode: 12.5<br>macOS: macos Monterey (匹配 xcode 13.0)</p>
+<pre><code>The Legacy Build System will be removed in a future release. You can configure the selected build system and this deprecation message in File &gt; Workspace Settings.
+</code></pre>
+<p>解决方法: ‘没有效果’</p>
+<p>file -&gt; Workspace Settings -&gt;Build System:Legacy Build System (Deprecated) 改成 :New Build System  </p>
+<p>下载低版本 Xcode  12.5 解决</p>
+]]></content>
+      <categories>
+        <category>UE4</category>
+      </categories>
+      <tags>
+        <tag>IOS</tag>
+      </tags>
+  </entry>
 </search>
