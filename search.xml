@@ -664,6 +664,12 @@ IP直连方案有下面几大优势：
 <blockquote>
 <p>sample-plugin/sample-plugin-app也是一个apk模块壳子，同样将sample-app-lib打包在其中，但是额外应用了Shadow插件，生成的apk不能正常安装运行。</p>
 </blockquote>
+<h3 id="接入Shadow-插件"><a href="#接入Shadow-插件" class="headerlink" title="接入Shadow 插件"></a>接入Shadow 插件</h3><blockquote>
+<p>发布本地仓库<br>可以先在 buildScripts/gradle/common.gradle 路径下，修改发布版本或其他信息：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">./gradew publish</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>C:\Users\caiyuhao.m2\repository\com\tencent\shadow\dynamic<br>C:\Users\caiyuhao.m2\repository\com\tencent\shadow\core</p>
 ]]></content>
   </entry>
   <entry>
@@ -821,6 +827,9 @@ IP直连方案有下面几大优势：
 <p>静态内部类</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;User Outer&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">UInner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;UInner UInner&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line">User user = <span class="keyword">new</span> User();</span><br><span class="line"><span class="comment">//不依赖外部实例化</span></span><br><span class="line">User.UInner iner = <span class="keyword">new</span> User.UInner();</span><br><span class="line">inter.display();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="1-Future的应用场景"><a href="#1-Future的应用场景" class="headerlink" title="1. Future的应用场景"></a>1. Future的应用场景</h3><pre><code>    Future表示一个可能还没有完成的异步任务的结果，针对这个结果可以添加Callback以便在任务执行成功或失败后作出相应的操作。
+</code></pre>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FutureTask&lt;String&gt; future =</span><br><span class="line">   <span class="keyword">new</span> FutureTask&lt;&gt;(<span class="keyword">new</span> Callable&lt;String&gt;() &#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> searcher.search(target);</span><br><span class="line">   &#125;&#125;);</span><br><span class="line"> executor.execute(future);</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Java</category>
@@ -1445,18 +1454,18 @@ copy：发送一条复制的消息给被传递的对象，保留它，并释放�
 nonatomic：非原子访问器，加上后可以保证属性在被一个线程使用时不被另一个线程访问，不存在 atomic 关键字，默认情况下，所有方法都是自动合成的。（类似Java中的线程锁机制 synchronised）
 readwrite：可读写
 readonly：只读
-
-
-#### OC点和右箭头访问变量的区别
-语法
+</code></pre>
+<h4 id="OC点和右箭头访问变量的区别"><a href="#OC点和右箭头访问变量的区别" class="headerlink" title="OC点和右箭头访问变量的区别"></a>OC点和右箭头访问变量的区别</h4><pre><code>语法
 OC中.语法实际上就是方法调用，比如通过self.deviceID访问属性，如果它出现在=的左边那么就是调用属性的setter方法，如果出现在=右边就是调用属性的getter方法。
 所以如下所示的定义：
 </code></pre>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">self.deviceID = @<span class="string">&quot;123&quot;</span>;和[self setDeviceID:@<span class="string">&quot;123&quot;</span>];是等价的。</span><br><span class="line"></span><br><span class="line">NSString *str = self.deviceID;和NSString *str = [self deviceID];是等价的。</span><br></pre></td></tr></table></figure>
-<p> -&gt;语法<br>OC中-&gt;用于访问成员变量。所以：</p>
-<p>self-&gt;_deviceID和_deviceID是等价的。</p>
-<p>self-&gt;deviceType和deviceType是等价的。</p>
+<p> -&gt;语法<br>    OC中-&gt;用于访问成员变量。所以：</p>
+<pre><code>self-&gt;_deviceID和_deviceID是等价的。
+
+self-&gt;deviceType和deviceType是等价的。
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">@interface Device : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    @<span class="keyword">public</span> NSString *deviceType;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="built_in">property</span> (nonatomic , strong) NSString *deviceID;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</code></pre>
 <h4 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h4><p><a href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
 ]]></content>
       <categories>
@@ -1472,9 +1481,10 @@ OC中.语法实际上就是方法调用，比如通过self.deviceID访问属性�
     <content><![CDATA[<h4 id="UE-打包iOS"><a href="#UE-打包iOS" class="headerlink" title="UE 打包iOS"></a>UE 打包iOS</h4><p>unreal :4.24<br>xcode: 12.5<br>macOS: macos Monterey (匹配 xcode 13.0)</p>
 <pre><code>The Legacy Build System will be removed in a future release. You can configure the selected build system and this deprecation message in File &gt; Workspace Settings.
 </code></pre>
-<p>解决方法: ‘没有效果’</p>
+<p>解决方法:   <code>匹配xcode 12.5</code></p>
 <p>file -&gt; Workspace Settings -&gt;Build System:Legacy Build System (Deprecated) 改成 :New Build System  </p>
 <p>下载低版本 Xcode  12.5 解决</p>
+<p>在新系统中 会提示不兼容，但是不影响编译</p>
 ]]></content>
       <categories>
         <category>UE4</category>
