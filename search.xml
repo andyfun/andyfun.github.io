@@ -650,13 +650,19 @@ IP直连方案有下面几大优势：
 <p>sample-host是宿主应用</p>
 </blockquote>
 <blockquote>
-<p>sample-manager是插件管理器的动态实现<br>sample-plugin/sample-loader是loader的动态实现，业务主要在这里定义插件组件和壳子代理组件的配对关系等。</p>
+<p>sample-manager是插件管理器的动态实现</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-loader是loader的动态实现，业务主要在这里定义插件组件和壳子代理组件的配对关系等。</p>
 </blockquote>
 <blockquote>
 <p>sample-constant是在前3者中共用的相同字符串常量。</p>
 </blockquote>
 <blockquote>
-<p>sample-plugin/sample-runtime是runtime的动态实现，业务主要在这里定义壳子代理组件的实际类。<br>sample-plugin/sample-app-lib是业务App的主要代码，是一个aar库。</p>
+<p>sample-plugin/sample-runtime是runtime的动态实现，业务主要在这里定义壳子代理组件的实际类。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-app-lib是业务App的主要代码，是一个aar库。</p>
 </blockquote>
 <blockquote>
 <p>sample-plugin/sample-normal-app是一个apk模块壳子，将sample-app-lib打包在其中，演示业务App是可以正常安装运行的。</p>
@@ -670,7 +676,21 @@ IP直连方案有下面几大优势：
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">./gradew publish</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>C:\Users\caiyuhao.m2\repository\com\tencent\shadow\dynamic<br>C:\Users\caiyuhao.m2\repository\com\tencent\shadow\core</p>
+<p>插件的包名和宿主的包名要保持一致。</p>
+<p>这个演示工程没有实现下载功能，而是假设下载的文件直接位于指定路径。 因此运行前需要手工用adb命令将指定内容push到指定位置。</p>
+<p>编译插件，在plugin-project目录中运行：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">./gradlew packageDebugPlugin</span><br><span class="line"></span><br><span class="line">adb push build/plugin-debug.zip /data/local/tmp</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>编译PluginManager，在manager-project目录中运行：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">./gradlew assembleDebug</span><br><span class="line"></span><br><span class="line">adb push sample-manager/build/outputs/apk/debug/sample-manager-debug.apk /data/local/tmp</span><br></pre></td></tr></table></figure>
+<p>最后可以用Android Studio打开host-project直接运行sample-host模块。</p>
+<p>plugin-project中的plugin-normal-apk模块也可以直接安装运行，演示不使用Shadow时插件的运行情况。</p>
 ]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>plugin</tag>
+      </tags>
   </entry>
   <entry>
     <title>Android二维码扫描</title>
@@ -1485,12 +1505,30 @@ self-&gt;deviceType和deviceType是等价的。
 <p>file -&gt; Workspace Settings -&gt;Build System:Legacy Build System (Deprecated) 改成 :New Build System  </p>
 <p>下载低版本 Xcode  12.5 解决</p>
 <p>在新系统中 会提示不兼容，但是不影响编译</p>
+<h4 id="UE-配置-sign-In-apple"><a href="#UE-配置-sign-In-apple" class="headerlink" title="UE 配置 sign In apple"></a>UE 配置 sign In apple</h4><p>生成 项目.entitesment<br><code>https://forums.unrealengine.com/t/how-to-add-cloud-documnts-capatimitlty/82397</code></p>
 ]]></content>
       <categories>
         <category>UE4</category>
       </categories>
       <tags>
         <tag>IOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>androidota</title>
+    <url>/2021/11/12/Android/androidota/</url>
+    <content><![CDATA[<h4 id="刷入ota"><a href="#刷入ota" class="headerlink" title="刷入ota"></a>刷入ota</h4><p>连接adb 开启开发者模式 </p>
+<p><code>https://developer.android.google.cn/about/versions/12/download-ota</code></p>
+<p>1.adb reboot recovery (或者手动 电源键 + 音量+/-) </p>
+<p>2.选择adb 安装</p>
+<p>3.adb sideload filename.zip</p>
+<p>4.reboot system now 重启系统</p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>ota</tag>
       </tags>
   </entry>
 </search>
