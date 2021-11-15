@@ -684,6 +684,11 @@ IP直连方案有下面几大优势：
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">./gradlew assembleDebug</span><br><span class="line"></span><br><span class="line">adb push sample-manager/build/outputs/apk/debug/sample-manager-debug.apk /data/local/tmp</span><br></pre></td></tr></table></figure>
 <p>最后可以用Android Studio打开host-project直接运行sample-host模块。</p>
 <p>plugin-project中的plugin-normal-apk模块也可以直接安装运行，演示不使用Shadow时插件的运行情况。</p>
+<p>cd /data/local/tmp<br>然后在文件夹中创建一个文件夹。例</p>
+<p>1<br>mkdir folder<br>接下来更改权限</p>
+<p>1<br>chmod - R 777 folder</p>
+<p>adb shell ls -ld /data/ /data/local/ /data/local/tmp/<br>查看权限<br>确实有讲究。这个tmp目录是一个Android系统的特殊目录。这个目录的特点是adb可以直接push写入。app都能读取，但不能写入。同时这个目录还是手机的内置存储，可以直接用DexClassLoader加载这个目录中的apk，而sdcard不行。所以，如果我们用adb push到sdcard上，想动态加载还要将apk再复制到应用的data目录才行。</p>
+<p>正是环境肯定没法用这个目录，因为应用没有这个目录的写入权限。建议应用把插件包下载到宿主的data私有目录中，以保证数据安全，其他应用不能篡改。</p>
 ]]></content>
       <categories>
         <category>Android</category>
@@ -1421,8 +1426,44 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </tags>
   </entry>
   <entry>
-    <title>iosYufa</title>
-    <url>/2021/05/07/IOS/iosYufa/</url>
+    <title>unrealPackage</title>
+    <url>/2021/11/10/Unreal/unrealPackage/</url>
+    <content><![CDATA[<h4 id="UE-打包iOS"><a href="#UE-打包iOS" class="headerlink" title="UE 打包iOS"></a>UE 打包iOS</h4><p>unreal :4.24<br>xcode: 12.5<br>macOS: macos Monterey (匹配 xcode 13.0)</p>
+<pre><code>The Legacy Build System will be removed in a future release. You can configure the selected build system and this deprecation message in File &gt; Workspace Settings.
+</code></pre>
+<p>解决方法:   <code>匹配xcode 12.5</code></p>
+<p>file -&gt; Workspace Settings -&gt;Build System:Legacy Build System (Deprecated) 改成 :New Build System  </p>
+<p>下载低版本 Xcode  12.5 解决</p>
+<p>在新系统中 会提示不兼容，但是不影响编译</p>
+<h4 id="UE-配置-sign-In-apple"><a href="#UE-配置-sign-In-apple" class="headerlink" title="UE 配置 sign In apple"></a>UE 配置 sign In apple</h4><p>生成 项目.entitesment<br><code>https://forums.unrealengine.com/t/how-to-add-cloud-documnts-capatimitlty/82397</code></p>
+]]></content>
+      <categories>
+        <category>UE4</category>
+      </categories>
+      <tags>
+        <tag>IOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>androidota</title>
+    <url>/2021/11/12/Android/androidota/</url>
+    <content><![CDATA[<h4 id="刷入ota"><a href="#刷入ota" class="headerlink" title="刷入ota"></a>刷入ota</h4><p>连接adb 开启开发者模式 </p>
+<p><code>https://developer.android.google.cn/about/versions/12/download-ota</code></p>
+<p>1.adb reboot recovery (或者手动 电源键 + 音量+/-) </p>
+<p>2.选择adb 安装</p>
+<p>3.adb sideload filename.zip</p>
+<p>4.reboot system now 重启系统</p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>ota</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ocClassDifferent</title>
+    <url>/2021/11/15/IOS/ocClassDifferent/</url>
     <content><![CDATA[<h4 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h4><blockquote>
 <p><code>引用类型用</code> oc的类指针 nil</p>
 </blockquote>
@@ -1492,43 +1533,7 @@ self-&gt;deviceType和deviceType是等价的。
         <category>IOS</category>
       </categories>
       <tags>
-        <tag>IOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>unrealPackage</title>
-    <url>/2021/11/10/Unreal/unrealPackage/</url>
-    <content><![CDATA[<h4 id="UE-打包iOS"><a href="#UE-打包iOS" class="headerlink" title="UE 打包iOS"></a>UE 打包iOS</h4><p>unreal :4.24<br>xcode: 12.5<br>macOS: macos Monterey (匹配 xcode 13.0)</p>
-<pre><code>The Legacy Build System will be removed in a future release. You can configure the selected build system and this deprecation message in File &gt; Workspace Settings.
-</code></pre>
-<p>解决方法:   <code>匹配xcode 12.5</code></p>
-<p>file -&gt; Workspace Settings -&gt;Build System:Legacy Build System (Deprecated) 改成 :New Build System  </p>
-<p>下载低版本 Xcode  12.5 解决</p>
-<p>在新系统中 会提示不兼容，但是不影响编译</p>
-<h4 id="UE-配置-sign-In-apple"><a href="#UE-配置-sign-In-apple" class="headerlink" title="UE 配置 sign In apple"></a>UE 配置 sign In apple</h4><p>生成 项目.entitesment<br><code>https://forums.unrealengine.com/t/how-to-add-cloud-documnts-capatimitlty/82397</code></p>
-]]></content>
-      <categories>
-        <category>UE4</category>
-      </categories>
-      <tags>
-        <tag>IOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>androidota</title>
-    <url>/2021/11/12/Android/androidota/</url>
-    <content><![CDATA[<h4 id="刷入ota"><a href="#刷入ota" class="headerlink" title="刷入ota"></a>刷入ota</h4><p>连接adb 开启开发者模式 </p>
-<p><code>https://developer.android.google.cn/about/versions/12/download-ota</code></p>
-<p>1.adb reboot recovery (或者手动 电源键 + 音量+/-) </p>
-<p>2.选择adb 安装</p>
-<p>3.adb sideload filename.zip</p>
-<p>4.reboot system now 重启系统</p>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>ota</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
 </search>
