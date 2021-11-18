@@ -2036,13 +2036,14 @@ self-&gt;deviceType和deviceType是等价的。
 <p><img src="/images/73.png" alt="img"></p>
 <p>NAL单元解码的流程为：首先从NAL单元中提取出RBSP语法结构，然后按照如图4所示的流程处理RBSP语法结构。输入的是NAL单元，输出结果是经过解码的当前图像的样值点。 NAL单元中分别包含了序列参数集和图像参数集。图像参数集和序列参数集在其他NAL单元传输过程中作为参考使用，在这些数据NAL单元的片头中，通过m语法元素pic_parameter_set_id设置它们所使用的图像参数集编号；而相应的每个图像参数集中，通过语法元素seq_paramter_set_id设置他们使用的序列参数集编号。</p>
 <p>几个例子：</p>
-<p><img src="http://img.blog.csdn.net/20140720115202062?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY2hlbmNob25nXzIxOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
+<p><img src="/images/fc_101.png" alt="img"></p>
 <p>硬解–soc 芯片</p>
 <p>软件   ffmpeg</p>
 <p>3、 ffmpeg解析H264流程分析</p>
 <p>这是一段实际的码流</p>
-<p><img src="http://img.blog.csdn.net/20140720115512525?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY2hlbmNob25nXzIxOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
-<p>  ffmpeg -i input.mp4 -vcodec h264 -preset fast -b:v 2000k hello.h264 </p>
+<p><img src="/images/fc_100.png" alt="img"></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mp4 -vcodec h264 -preset fast -b:v <span class="number">2000</span>k hello.h264</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>Android</category>
