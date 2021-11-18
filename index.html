@@ -961,7 +961,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-11-18 18:34:24 / 修改时间：16:00:24" itemprop="dateCreated datePublished" datetime="2021-11-18T18:34:24+08:00">2021-11-18</time>
+              <time title="创建时间：2021-11-18 18:34:24 / 修改时间：16:16:16" itemprop="dateCreated datePublished" datetime="2021-11-18T18:34:24+08:00">2021-11-18</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -998,7 +998,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="音视频高手课07-视频流H264码流分析实战"><a href="#音视频高手课07-视频流H264码流分析实战" class="headerlink" title="音视频高手课07-视频流H264码流分析实战"></a>音视频高手课07-视频流H264码流分析实战</h4><h4 id="1-1-H-264编码格式"><a href="#1-1-H-264编码格式" class="headerlink" title="1.1 H.264编码格式"></a>1.1 H.264编码格式</h4><p>H.264的功能分为两层：</p>
+          <meta name="referrer" content="no-referrer"/>
+
+<h4 id="音视频高手课07-视频流H264码流分析实战"><a href="#音视频高手课07-视频流H264码流分析实战" class="headerlink" title="音视频高手课07-视频流H264码流分析实战"></a>音视频高手课07-视频流H264码流分析实战</h4><h4 id="1-1-H-264编码格式"><a href="#1-1-H-264编码格式" class="headerlink" title="1.1 H.264编码格式"></a>1.1 H.264编码格式</h4><p>H.264的功能分为两层：</p>
 <blockquote>
 <ul>
 <li>视频编码层 </li>
@@ -1036,7 +1038,7 @@
 </ol>
 
 
-<p>NAL单元解码的流程为：首先从NAL单元中提取出RBSP语法结构，然后按照如图4所示的流程处理RBSP语法结构。输入的是NAL单元，输出结果是经过解码的当前图像的样值点。 NAL单元中分别包含了序列参数集和图像参数集。图像参数集和序列参数集在其他NAL单元传输过程中作为参考使用，在这些数据NAL单元的片头中，通过语法元素pic_parameter_set_id设置它们所使用的图像参数集编号；而相应的每个图像参数集中，通过语法元素seq_paramter_set_id设置他们使用的序列参数集编号。</p>
+<p>NAL单元解码的流程为：首先从NAL单元中提取出RBSP语法结构，然后按照如图4所示的流程处理RBSP语法结构。输入的是NAL单元，输出结果是经过解码的当前图像的样值点。 NAL单元中分别包含了序列参数集和图像参数集。图像参数集和序列参数集在其他NAL单元传输过程中作为参考使用，在这些数据NAL单元的片头中，通过m语法元素pic_parameter_set_id设置它们所使用的图像参数集编号；而相应的每个图像参数集中，通过语法元素seq_paramter_set_id设置他们使用的序列参数集编号。</p>
 <p>几个例子：</p>
 <p><img src="http://img.blog.csdn.net/20140720115202062?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY2hlbmNob25nXzIxOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
 <p>硬解–soc 芯片</p>
