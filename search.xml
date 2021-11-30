@@ -1207,67 +1207,31 @@ self-&gt;deviceType和deviceType是等价的。
 <p>我们可以把prefab当做一种特殊的“资源素材”，在场景中引用prefab，相当于按照这个prefab所描述的规范引用其涉及到的“真实素材”。如果我们不小心删除掉了这些“真实素材”，那么prefab就失去了作用。</p>
 </blockquote>
 <h4 id="Unity-Canvas"><a href="#Unity-Canvas" class="headerlink" title="Unity Canvas"></a>Unity Canvas</h4><blockquote>
-<p>Render Mode<br>1.ScreenSpace-overlay<br>  Canvas 覆盖屏幕，且永远覆盖在其它元素的上层，也就是说 UI 会遮挡场景中的其它元素。<br>当 RenderMode 为 Screen Space - Overlay时，Canvas的其它参数包括：</p>
-<blockquote>
-<p>Pixel Perfect：UI元素精确到像素对齐，边缘更清晰，但是在UI调整和适配时会有更大的计算量（个人理解）</p>
+<p>Render Mode<br>1.ScreenSpace-overlay<br>  Canvas 覆盖屏幕，且永远覆盖在其它元素的上层，也就是说 UI 会遮挡场景中的其它元素。<br>当 RenderMode 为 Screen Space - Overlay时，Canvas的其它参数包括：<br>Pixel Perfect：UI元素精确到像素对齐，边缘更清晰，但是在UI调整和适配时会有更大的计算量（个人理解）</p>
 </blockquote>
-</blockquote>
-<blockquote>
 <blockquote>
 <p>Sort Order：Canvas 的深度。多个 存在多个Canvas时，Sort Order 值更大的Canvas会遮盖住 Sort Order 值小的 Canvas</p>
 </blockquote>
-</blockquote>
-<blockquote>
 <blockquote>
 <p>注：多个 Canvas 深度取值相等时，Hierarchy 视图中后面的 Canvas 显示在下，这一点与 UI 元素（如Image的规则相反）</p>
-</blockquote>
 </blockquote>
 <blockquote>
 <p>2.Screen Space - Camera 模式</p>
 </blockquote>
-<blockquote>
-<blockquote>
-<p>和 Overlay 模式相仿，Canvas覆盖整个屏幕空间画布也是填满整个屏幕空间。不同之处在于，Canvas 被放置于指定摄像机的前方。 </p>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>(1) 必须在摄像机的远近平面之间才会被渲染</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>(2) 即使摄像机是 Perspective 模式，Canvas 距离摄像机的远近依然不会影响其显示大小</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>(3) 其它3元素可以和 Canvas 产生遮挡关系，距离摄像机更近的元素会遮盖住 Canvas 上面的 UI</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>(4) 摄像机的缩放/平移/旋转，以及 fov 的变化，不会影响 Canvas 显示结果，Canvas 永远是放置在距离摄像机视口一定距离的地方，且与摄像机水平视线垂直</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<pre><code>  Pixel Perfect ：同 Overlay 模式含义
+<p>   和 Overlay 模式相仿，Canvas覆盖整个屏幕空间画布也是填满整个屏幕空间。不同之处在于，Canvas 被放置于指定摄像机的前方。 </p>
+<pre><code>  (1) 必须在摄像机的远近平面之间才会被渲染
 
-  Render Camera ：指定的用来渲染 Canvas 的摄像机
+  (2) 即使摄像机是 Perspective 模式，Canvas 距离摄像机的远近依然不会影响其显示大小
 
-  Plane Distance：Canvas 平面距离摄像机的距离
+  (3) 其它3元素可以和 Canvas 产生遮挡关系，距离摄像机更近的元素会遮盖住 Canvas 上面的 UI
 
-  Sorting Layer：指示 Canvas 的深度，可以手动添加。当存在多个模式为 Screen Space 的 Canvas 时，Sorting Layer 决定了显示的优先级。
-
-  Order in Layer：多个 Canvas 具有相同的 Sorting Layer 时，根据 Order in Layer 来确定显示优先级。
+  (4) 摄像机的缩放/平移/旋转，以及 fov 的变化，不会影响 Canvas 显示结果，Canvas 永远是放置在距离摄像机视口一定距离的地方，且与摄像机水平视线垂直
 </code></pre>
+<p>Pixel Perfect ：同 Overlay 模式含义</p>
+<p>Render Camera ：指定的用来渲染 Canvas 的摄像机</p>
+<p>Plane Distance：Canvas 平面距离摄像机的距离</p>
+<p>Sorting Layer：指示 Canvas 的深度，可以手动添加。当存在多个模式为 Screen Space 的 Canvas 时，Sorting Layer 决定了显示的优先级。</p>
+<p>Order in Layer：多个 Canvas 具有相同的 Sorting Layer 时，根据 Order in Layer 来确定显示优先级</p>
 <blockquote>
 <p>3.World Space 模式</p>
 </blockquote>
@@ -1463,7 +1427,7 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
   <entry>
     <title>uePlugin</title>
     <url>/2021/11/30/Unreal/uePlugin/</url>
-    <content><![CDATA[<h4 id="插件目录"><a href="#插件目录" class="headerlink" title="插件目录"></a>插件目录</h4><p><a href="/uePlugin/1.png"></a></p>
+    <content><![CDATA[<h4 id="插件目录"><a href="#插件目录" class="headerlink" title="插件目录"></a>插件目录</h4><p><img src="/uePlugin/1.png"></p>
 <pre><code>Binaries：编译后的dll文件存放位置
 
 Content：游戏资源Asset文件存放位置
@@ -1478,7 +1442,7 @@ Source：代码存放位置
 
 .Build.cs：每个.Build.cs文件声明派生自ModuleRules基类的类，并设置属性控制器从构造函数进行编译的方式。由虚幻编译工具编译，并被构造来确定整体编译环境。使用C#语法。
 </code></pre>
-<h4 id="uplugin-描述文件"><a href="#uplugin-描述文件" class="headerlink" title=".uplugin 描述文件"></a>.uplugin 描述文件</h4><p><a href="/uePlugin/2.png"></a></p>
+<h4 id="uplugin-描述文件"><a href="#uplugin-描述文件" class="headerlink" title=".uplugin 描述文件"></a>.uplugin 描述文件</h4><p><img src="/uePlugin/2.png"></p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="attr">&quot;FileVersion&quot;</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="attr">&quot;Version&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">&quot;VersionName&quot;</span>: <span class="string">&quot;1.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;FriendlyName&quot;</span>: <span class="string">&quot;PluginName&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Description&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Category&quot;</span>: <span class="string">&quot;Other&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;CreatedBy&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;CreatedByURL&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;DocsURL&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;MarketplaceURL&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;SupportURL&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;CanContainContent&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;IsBetaVersion&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;Installed&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;Modules&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;PluginName&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;Type&quot;</span>: <span class="string">&quot;Editor&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;LoadingPhase&quot;</span>: <span class="string">&quot;Default&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;Plugins&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;AssetManagerEditor&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;Enabled&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Category：类目名即在插件编辑器中所属的类目</p>
 <p>模块描述符Modules<br>必须有Name和Type字段。</p>
