@@ -395,6 +395,8 @@
 <h4 id="海外支付-Now-gg"><a href="#海外支付-Now-gg" class="headerlink" title="海外支付 Now.gg"></a>海外支付 Now.gg</h4><p>正常支付流程（登录成功后调，翻墙，配置沙箱模式，添加guid 白名单）</p>
 <p>玩家正常支付 没有通过服务器验证，，需要自动补单(makeup) 消费</p>
 <p>恢复购买（20消息，游戏调用）该sdk 没有</p>
+<p>Androidstudio<br>使用快捷键“ctrl + alt +[”和“ctrl + alt + ]”快速切换。</p>
+<p>F11 返回桌面</p>
 ]]></content>
       <categories>
         <category>Android</category>
@@ -2834,6 +2836,35 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       </categories>
       <tags>
         <tag>tree</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>openssl</title>
+    <url>/2022/01/10/Android/AndroidJNI/openssl/</url>
+    <content><![CDATA[<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>1.Java加密（Aes/cbf/nopading）,非常耗时每次150ms<br>2.java.net.URLEncoder也非常耗时，110ms</p>
+<h4 id="Google-查阅都是（AES-cbc-ebc-rpc5pading）"><a href="#Google-查阅都是（AES-cbc-ebc-rpc5pading）" class="headerlink" title="Google 查阅都是（AES/cbc/ebc/rpc5pading）"></a>Google 查阅都是（AES/cbc/ebc/rpc5pading）</h4><p>不满足需要</p>
+<h4 id="openssl"><a href="#openssl" class="headerlink" title="openssl"></a>openssl</h4><p>1.官方下载 1.1.1m Android 目录编译<br>Android NDK 16以上放弃了gcc, mac 下 clang90 -unargeement ‘mandroid’ 未知错误，暂时没有解决</p>
+<p>2.cocos2d-x-v4版本 自带crypto.a  version: 1.1.0<br>在 Mac下Androidstudio  编译 arm64-v8a 报错’ ld: error: relocation R_AARCH64_PREL64 cannot be used against symbol OPENSSL_armcap_P; recompile with -fPIC’  官方下载无法编译 so…..</p>
+<p>3.cocos-creator-3.4版本<br> ld: error: relocation R_AARCH64_PREL64 cannot be used against symbol OPENSSL_armcap_P; recompile with -fPIC</p>
+<p> 路径：” ld: error: relocation R_AARCH64_PREL64 cannot be used against symbol OPENSSL_armcap_P; recompile with -fPIC”</p>
+<p> “E:\CocosDashboard_1.0.20\resources.editors\Creator\3.4.0\resources\resources\3d\engine-native\external\android\arm64-v8a”<br> 拷贝最新的 （1.1.1g）</p>
+<p>4 strings libcrypto.a | grep “^OpenSSL”   </p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">OpenSSL_version</span><br><span class="line">OpenSSL_version_num</span><br><span class="line">OpenSSL CMAC method</span><br><span class="line">OpenSSL <span class="keyword">default</span></span><br><span class="line">OpenSSL <span class="number">1.1</span><span class="number">.1</span>g  <span class="number">21</span> Apr <span class="number">2020</span></span><br><span class="line">OpenSSL PKCS#<span class="number">3</span> DH method</span><br><span class="line">OpenSSL X9<span class="number">.42</span> DH method</span><br><span class="line">OpenSSL DH Method</span><br><span class="line">OpenSSL DSA method</span><br><span class="line">OpenSSL DSA method</span><br><span class="line">OpenSSL <span class="string">&#x27;dlfcn&#x27;</span> shared library method</span><br><span class="line">OpenSSL EC algorithm</span><br><span class="line">OpenSSL EC_KEY method</span><br><span class="line">OpenSSL X25519 algorithm</span><br><span class="line">OpenSSL X448 algorithm</span><br><span class="line">OpenSSL ED25519 algorithm</span><br><span class="line">OpenSSL ED448 algorithm</span><br><span class="line">OpenSSL HMAC method</span><br><span class="line">OpenSSL POLY1305 method</span><br><span class="line">OpenSSL NIST SP <span class="number">800</span><span class="number">-90</span>A DRBG</span><br><span class="line">OpenSSL RSA method</span><br><span class="line">OpenSSL RSA-PSS method</span><br><span class="line">OpenSSL PKCS#<span class="number">1</span> RSA</span><br><span class="line">OpenSSL SIPHASH method</span><br><span class="line">OpenSSL <span class="literal">NULL</span> UI</span><br><span class="line">OpenSSL <span class="keyword">default</span> user interface</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>5 .<a href="https://github.com/cocos2d/cocos2d-x-3rd-party-libs-src">https://github.com/cocos2d/cocos2d-x-3rd-party-libs-src</a></p>
+<p>默认编译 ndk-r10 ,android-api = 9<br>可以编译arm-v7a 但是arm64-v8a不行</p>
+<p>6.暂时从cocos-creator里面拷贝出来</p>
+<p>7.现在拷贝出来的是静态库 ，在Android 链接静态库 生成动态库</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    compileSdkVersion <span class="number">28</span></span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        minSdkVersion rootProject.ext.GASDK_MINSDKVERSION</span><br><span class="line">        targetSdkVersion <span class="number">30</span></span><br><span class="line">        versionCode <span class="number">1</span></span><br><span class="line">        versionName <span class="string">&quot;1.0&quot;</span></span><br><span class="line"></span><br><span class="line">        testInstrumentationRunner <span class="string">&quot;androidx.telibst.runner.AndroidJUnitRunner&quot;</span></span><br><span class="line">        externalNativeBuild &#123;</span><br><span class="line">            cmake &#123;</span><br><span class="line">                cppFlags <span class="string">&quot;-std=c++11 -frtti -fexceptions&quot;</span></span><br><span class="line">                <span class="comment">//arguments &#x27;-DANDROID_STL=c++_shared&#x27; //会生成libc++_shared.so动态库 有和其他冲突的风险，</span></span><br><span class="line">                <span class="comment">//libc++_shared.so 公用的资源全局变量线程等</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ndk &#123;</span><br><span class="line">           <span class="comment">// stl = &quot;c++_shared&quot;</span></span><br><span class="line">            abiFilters <span class="string">&#x27;armeabi-v7a&#x27;</span>,<span class="string">&#x27;x86&#x27;</span>,<span class="string">&#x27;arm64-v8a&#x27;</span></span><br><span class="line">            <span class="comment">//, &#x27;arm64-v8a&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// The following argument makes the Android Test Orchestrator run its</span></span><br><span class="line">        <span class="comment">// &quot;pm clear&quot; command after each test invocation. This command ensures</span></span><br><span class="line">        <span class="comment">// that the app&#x27;s state is completely cleared between tests.</span></span><br><span class="line">        testInstrumentationRunnerArguments clearPackageData: <span class="string">&#x27;true&#x27;</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>7 CmakeList.txt</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//crypto 加密库，ssl.a ssl网络相关</span></span><br><span class="line"><span class="built_in">add_library</span>(crypto STATIC IMPORTED)</span><br><span class="line"><span class="built_in">set_target_properties</span>(</span><br><span class="line">        crypto  #这个一般是.a文件去掉lib和后缀之后的名字，</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/../jniLibs/$&#123;ANDROID_ABI&#125;/libcrypto.a    #.a文件的路径， $&#123;CMAKE_SOURCE_DIR&#125;这个是cpp下的路径</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>openssl</tag>
       </tags>
   </entry>
 </search>
