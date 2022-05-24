@@ -1545,6 +1545,9 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
 <h4 id="导入证书报错，提示不存在"><a href="#导入证书报错，提示不存在" class="headerlink" title="导入证书报错，提示不存在"></a>导入证书报错，提示不存在</h4><blockquote>
 <p>security import  dis证书.p12  -k ~/Library/Keychains/login.keychain</p>
 </blockquote>
+<h4 id="Ureal代码改变"><a href="#Ureal代码改变" class="headerlink" title="Ureal代码改变"></a>Ureal代码改变</h4><blockquote>
+<p>Gaia 给4.27 代码合并到 4.24 暂时不能测试</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>UE4</category>
