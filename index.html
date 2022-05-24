@@ -216,10 +216,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-02-11 11:28:21 / 修改时间：12:12:19" itemprop="dateCreated datePublished" datetime="2022-02-11T11:28:21+08:00">2022-02-11</time>
+              <time title="创建时间：2022-02-11 11:28:21" itemprop="dateCreated datePublished" datetime="2022-02-11T11:28:21+08:00">2022-02-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-18 11:56:21" itemprop="dateModified" datetime="2022-02-18T11:56:21+08:00">2022-02-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -236,14 +242,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.6k</span>
+              <span>7.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -255,7 +261,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="写一些资料-发现Lua-语法忘记了-这里记录一下"><a href="#写一些资料-发现Lua-语法忘记了-这里记录一下" class="headerlink" title="写一些资料 发现Lua 语法忘记了 这里记录一下"></a>写一些资料 发现Lua 语法忘记了 这里记录一下</h4><p>变量</p>
+          <h4 id="Luac-o-新文件-Lua-编译器"><a href="#Luac-o-新文件-Lua-编译器" class="headerlink" title="Luac  -o 新文件  -Lua 编译器"></a>Luac  -o 新文件  -Lua 编译器</h4><p>luac 是 Lua 编译器。它将用 Lua 编程语言编写的程序翻译成二进制文件，以后可以加载和执行。<br>预编译块的主要优点是：加载速度更快、保护源代码免受用户意外更改和离线语法检查。</p>
+<p>预编译并不意味着更快的执行，因为在 Lua 中，块在执行之前总是被编译成字节码。 luac 只是允许将这些字节码保存在文件中以供以后执行。</p>
+<p>预编译的块不一定小于相应的源。预编译的主要目标是更快的加载。</p>
+<p>luac 创建的二进制文件 只能在具有相同字长和字节顺序的体系结构之间移植。</p>
+<p>luac 生成一个包含所有给定源文件的字节码的输出文件。默认情况下，输出文件名为 luac.out，但您可以使用 -o 选项进行更改。</p>
+<p>在命令行中，您可以混合包含 Lua 源代码的文本文件和包含预编译块的二进制文件。这很有用，因为即使来自不同（但兼容）平台的几个预编译块，也可以组合成一个预编译块。</p>
+<p>您可以使用 ‘-‘ 将标准输入指示为源文件，并 使用 ‘– ‘表示 选项结束（也就是说，所有剩余的参数都将被视为文件，即使它们以 ‘-‘开头）。</p>
+<p>luac 生成的二进制文件的内部格式 可能会在新版本的 Lua 发布时发生变化。因此，请保存您预编译的所有 Lua 程序的源文件。</p>
+<h4 id="写一些资料-发现Lua-语法忘记了-这里记录一下"><a href="#写一些资料-发现Lua-语法忘记了-这里记录一下" class="headerlink" title="写一些资料 发现Lua 语法忘记了 这里记录一下"></a>写一些资料 发现Lua 语法忘记了 这里记录一下</h4><p>变量</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- test.lua 文件脚本</span></span><br><span class="line">a = <span class="number">5</span>           <span class="comment">-- 全局变量</span></span><br><span class="line"><span class="keyword">local</span> b = <span class="number">5</span>     <span class="comment">-- 局部变量</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">funcationName</span><span class="params">()</span></span></span><br><span class="line">    c = <span class="number">5</span>       <span class="comment">-- 局部变量</span></span><br><span class="line">    <span class="keyword">local</span> d = <span class="number">6</span> <span class="comment">-- 局部变量</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a, b, c, d) <span class="comment">-- 打印值为：5 5 nil nil</span></span><br></pre></td></tr></table></figure>
 <p>循环和流程控制</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>( <span class="literal">true</span> )</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;循环将永远执行下去&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--实例</span></span><br><span class="line">i = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span>(i &lt; <span class="number">5</span>)</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    i = i + <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
@@ -300,6 +314,10 @@
 
 <p>面向对象封装<br>面向对象的特征有封装、继承、多态。Lua 是一门弱类型的语言，多态那肯定是不存在的。<br>通过元表和元方法以及模块来模拟类的封装.</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> User = &#123;&#125;</span><br><span class="line"></span><br><span class="line">User.id = <span class="number">0</span></span><br><span class="line">User.name = <span class="string">&quot;&quot;</span></span><br><span class="line">User.age = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- function User:new()</span></span><br><span class="line"><span class="comment">--  print(&quot;User 被构造了&quot;)</span></span><br><span class="line"><span class="comment">--  mytable = &#123;&#125;</span></span><br><span class="line"><span class="comment">--  setmetatable(mytable, self)</span></span><br><span class="line"><span class="comment">--  self.__index = self</span></span><br><span class="line"><span class="comment">--  return mytable</span></span><br><span class="line"><span class="comment">-- end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User:new</span><span class="params">(id, name, age)</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;new self:&quot;</span>, <span class="built_in">self</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">-- print(&quot;User 被构造了，&quot;, id, name, age)</span></span><br><span class="line">    mytable = &#123;<span class="string">&quot;haha&quot;</span>&#125;</span><br><span class="line">    <span class="built_in">setmetatable</span>(mytable, <span class="built_in">self</span>)</span><br><span class="line">    <span class="built_in">self</span>.<span class="built_in">__index</span> = <span class="built_in">self</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">self</span>.id = id</span><br><span class="line">    <span class="built_in">self</span>.name = name</span><br><span class="line">    <span class="built_in">self</span>.age = age</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> mytable</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User:fun</span><span class="params">()</span></span></span><br><span class="line">    <span class="comment">-- print(&quot;fun 成员方法调用了&quot;)</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User:setName</span><span class="params">(name)</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;setName self:&quot;</span>, <span class="built_in">self</span>)</span><br><span class="line">    <span class="built_in">self</span>.name = name</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User:getName</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;getName self:&quot;</span>, <span class="built_in">self</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">self</span>.name</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> User</span><br></pre></td></tr></table></figure>
+<p>在LUA中，经常可以看到：. self，如果你学习过Java或C#语言，可以这样理解</p>
+<p>.对于c#和java的静态方法<br>:相当于是实例方法</p>
+<p><code>冒号只是起了省略第一个参数self的作用，该self指向调用者本身，并没有其他特殊的地方。</code></p>
+
       
     </div>
 
@@ -1585,7 +1603,7 @@ Source：代码存放位置
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">721k</span>
+    <span title="站点总字数">722k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
