@@ -1,0 +1,78 @@
+<hr>
+<p>title: openssl<br>date: 2022-01-10 11:36:59<br>tags: openssl<br>categories: Android</p>
+<hr>
+<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>1.Java加密（Aes/cbf/nopading）,非常耗时每次150ms<br>2.java.net.URLEncoder也非常耗时，110ms</p>
+<h4 id="Google-查阅都是（AES-cbc-ebc-rpc5pading）"><a href="#Google-查阅都是（AES-cbc-ebc-rpc5pading）" class="headerlink" title="Google 查阅都是（AES/cbc/ebc/rpc5pading）"></a>Google 查阅都是（AES/cbc/ebc/rpc5pading）</h4><p>不满足需要</p>
+<h4 id="openssl"><a href="#openssl" class="headerlink" title="openssl"></a>openssl</h4><p>1.官方下载 1.1.1m Android 目录编译<br>Android NDK 16以上放弃了gcc, mac 下 clang90 -unargeement ‘mandroid’ 未知错误，暂时没有解决</p>
+<p>2.cocos2d-x-v4版本 自带crypto.a  version: 1.1.0<br>在 Mac下Androidstudio  编译 arm64-v8a 报错’ ld: error: relocation R_AARCH64_PREL64 cannot be used against symbol OPENSSL_armcap_P; recompile with -fPIC’  官方下载无法编译 so…..</p>
+<p>3.cocos-creator-3.4版本<br> ld: error: relocation R_AARCH64_PREL64 cannot be used against symbol OPENSSL_armcap_P; recompile with -fPIC</p>
+<p> 路径：” ld: error: relocation R_AARCH64_PREL64 cannot be used against symbol OPENSSL_armcap_P; recompile with -fPIC”</p>
+<p> “E:\CocosDashboard_1.0.20\resources.editors\Creator\3.4.0\resources\resources\3d\engine-native\external\android\arm64-v8a”<br> 拷贝最新的 （1.1.1g）</p>
+<p>4 strings libcrypto.a | grep “^OpenSSL”   </p>
+<pre><code class="cpp">OpenSSL_version
+OpenSSL_version_num
+OpenSSL CMAC method
+OpenSSL default
+OpenSSL 1.1.1g  21 Apr 2020
+OpenSSL PKCS#3 DH method
+OpenSSL X9.42 DH method
+OpenSSL DH Method
+OpenSSL DSA method
+OpenSSL DSA method
+OpenSSL &#39;dlfcn&#39; shared library method
+OpenSSL EC algorithm
+OpenSSL EC_KEY method
+OpenSSL X25519 algorithm
+OpenSSL X448 algorithm
+OpenSSL ED25519 algorithm
+OpenSSL ED448 algorithm
+OpenSSL HMAC method
+OpenSSL POLY1305 method
+OpenSSL NIST SP 800-90A DRBG
+OpenSSL RSA method
+OpenSSL RSA-PSS method
+OpenSSL PKCS#1 RSA
+OpenSSL SIPHASH method
+OpenSSL NULL UI
+OpenSSL default user interface
+</code></pre>
+<p>5 .<a href="https://github.com/cocos2d/cocos2d-x-3rd-party-libs-src">https://github.com/cocos2d/cocos2d-x-3rd-party-libs-src</a></p>
+<p>默认编译 ndk-r10 ,android-api = 9<br>可以编译arm-v7a 但是arm64-v8a不行</p>
+<p>6.暂时从cocos-creator里面拷贝出来</p>
+<p>7.现在拷贝出来的是静态库 ，在Android 链接静态库 生成动态库</p>
+<pre><code class="java">android {
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion rootProject.ext.GASDK_MINSDKVERSION
+        targetSdkVersion 30
+        versionCode 1
+        versionName &quot;1.0&quot;
+
+        testInstrumentationRunner &quot;androidx.telibst.runner.AndroidJUnitRunner&quot;
+        externalNativeBuild {
+            cmake {
+                cppFlags &quot;-std=c++11 -frtti -fexceptions&quot;
+                //arguments &#39;-DANDROID_STL=c++_shared&#39; //会生成libc++_shared.so动态库 有和其他冲突的风险，
+                //libc++_shared.so 公用的资源全局变量线程等
+            }
+        }
+        ndk {
+           // stl = &quot;c++_shared&quot;
+            abiFilters &#39;armeabi-v7a&#39;,&#39;x86&#39;,&#39;arm64-v8a&#39;
+            //, &#39;arm64-v8a&#39;
+        }
+        // The following argument makes the Android Test Orchestrator run its
+        // &quot;pm clear&quot; command after each test invocation. This command ensures
+        // that the app&#39;s state is completely cleared between tests.
+        testInstrumentationRunnerArguments clearPackageData: &#39;true&#39;
+    }
+</code></pre>
+<p>7 CmakeList.txt</p>
+<pre><code class="cpp">//crypto 加密库，ssl.a ssl网络相关
+add_library(crypto STATIC IMPORTED)
+set_target_properties(
+        crypto  #这个一般是.a文件去掉lib和后缀之后的名字，
+        PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_SOURCE_DIR}/../jniLibs/${ANDROID_ABI}/libcrypto.a    #.a文件的路径， ${CMAKE_SOURCE_DIR}这个是cpp下的路径
+)
+</code></pre>
