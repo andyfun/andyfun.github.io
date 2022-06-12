@@ -946,6 +946,9 @@ IP直连方案有下面几大优势：
 <li><p>Springboot 入口</p>
 <p>@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, DataSourceAutoConfiguration.class, DruidDataSourceAutoConfigure.class, org.activiti.spring.boot.SecurityAutoConfiguration.class})</p>
 </li>
+<li><p>部署<br>maven  – package 会生成jar</p>
+<p>java -jar xxx.jar</p>
+</li>
 </ol>
 <h2 id="layui"><a href="#layui" class="headerlink" title="layui"></a>layui</h2><ol>
 <li><a href="https://layui.gitee.io/v2/">官网</a></li>
