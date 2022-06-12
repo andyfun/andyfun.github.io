@@ -935,11 +935,11 @@ IP直连方案有下面几大优势：
   <entry>
     <title>SpringBoot</title>
     <url>/2022/06/11/Java/SpringBootAdmin/</url>
-    <content><![CDATA[<h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><ol>
+    <content><![CDATA[<h4 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h4><ol>
 <li>start.server start</li>
 <li>mysql -u  root -p password</li>
 </ol>
-<h2 id="springboot"><a href="#springboot" class="headerlink" title="springboot"></a>springboot</h2><ol>
+<h4 id="springboot"><a href="#springboot" class="headerlink" title="springboot"></a>springboot</h4><ol>
 <li><p>JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2f8ab988] will not be managed by Spring</p>
 <p>对应的service 添加 <code>@Transactional</code></p>
 </li>
@@ -950,7 +950,7 @@ IP直连方案有下面几大优势：
 <p>java -jar xxx.jar</p>
 </li>
 </ol>
-<h2 id="layui"><a href="#layui" class="headerlink" title="layui"></a>layui</h2><ol>
+<h4 id="layui"><a href="#layui" class="headerlink" title="layui"></a>layui</h4><ol>
 <li><a href="https://layui.gitee.io/v2/">官网</a></li>
 </ol>
 ]]></content>
