@@ -393,6 +393,20 @@
 <p>恢复购买（20消息，游戏调用）该sdk 没有</p>
 <p>Androidstudio<br>使用快捷键“ctrl + alt +[”和“ctrl + alt + ]”快速切换。</p>
 <p>F11 返回桌面</p>
+<h4 id="查找ANR分析"><a href="#查找ANR分析" class="headerlink" title="查找ANR分析"></a>查找ANR分析</h4><ol>
+<li><p>adb bugreport  目录 ，  拉去日志  分析  ，里面有个墓碑日志，保留堆栈函数调用现场。</p>
+<p>bugrepotxxxx.txt </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">grep &quot;am_anr&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">0369  grep -r &quot;am_proc_died&quot;</span><br><span class="line">grep -r &quot;am_anr&quot;</span><br><span class="line"> grep -r &quot;anr&quot;</span><br><span class="line"> grep &quot;am_anr&quot;</span><br><span class="line">grep &quot;am_anr&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;ANR&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;com.ztgame.fire&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;com.ztgame.fir&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;com.ztgame.fir.vivo&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;am_low_memory&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;com.ztgame&quot;</span><br><span class="line">grep  -r   &quot;com.ztgame&quot;</span><br><span class="line">grep  -r   &quot;com.ztgame.fir.eagle&quot;</span><br><span class="line">grep  -r   &quot;com.ztgame.fir.vivo&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>adb pull /data/local/traces</p>
+</li>
+<li><p>查找依赖</p>
+</li>
+</ol>
+<p>./gradlew -q app:dependencies</p>
+<ol start="3">
+<li>查看apk v1 v2 签名</li>
+</ol>
+<p>./apksigner verify -v /Users/caiyuhao/Downloads/Newzt_1.0.0tt(1).apk </p>
 ]]></content>
       <categories>
         <category>Android</category>
