@@ -402,10 +402,10 @@
 </tr>
 </tbody></table>
 <p>半像素内插值分别由运动于水平和垂直方向的一维6阶滤波器产生。1/4像素值由整数像素和半像素点求均值取得。<br>例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b=round（（E-5F+20G+20H-5I+J）/32） a=round（（G+b）/2） e=round（（b+h）/2）</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">b</span>=round（（E-<span class="number">5</span>F+<span class="number">20</span>G+<span class="number">20</span>H-<span class="number">5</span>I+J）/<span class="number">32</span>） a=round（（G+b）/<span class="number">2</span>） e=round（（b+h）/<span class="number">2</span>）</span><br></pre></td></tr></table></figure>
 
 <p>由于亮度分量中的1/4像素精度运动矢量将在色度分量中产生1/8像素精度。因此，采用线性内插法产生1/8像素采样点。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=round（（[（8-dx）.（8-dy）A+dx.（8-dy）B+（8-dx）.dyC+dx.dyD]/64）</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=round（（[（<span class="number">8</span>-<span class="built_in">dx</span>）.（<span class="number">8</span>-<span class="built_in">dy</span>）A+<span class="built_in">dx</span>.（<span class="number">8</span>-<span class="built_in">dy</span>）B+（<span class="number">8</span>-<span class="built_in">dx</span>）.dyC+<span class="built_in">dx</span><span class="number">.</span>dyD]/<span class="number">64</span>）</span><br></pre></td></tr></table></figure>
 
 <p>图片分割</p>
 <p>H.264支持slice结构的图片分割。一个slice有一帧图片内的若干宏块组成。编码器端对slice种包含的宏块数目没有限制。一个slice可以仅包含一个宏块也可以包含该帧中的所有宏块。然而，任何一个宏块都只能包含在某一个slice中，不允许重复出现（在冗余slice方法中例外）。<br>采用slice结构的主要动机是使编码的slice大小能适应不同的MTU大小。当它同时能应用于交叉打包等方法的实现方案中。</p>
@@ -732,12 +732,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/11/18/Android/%E9%9F%B3%E8%A7%86%E9%A2%91/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/" rel="prev" title="H.265与H.264的差异详解">
-      <i class="fa fa-chevron-left"></i> H.265与H.264的差异详解
+    <a href="/2021/11/15/IOS/ocClassDifferent/" rel="prev" title="ocClassDifferent">
+      <i class="fa fa-chevron-left"></i> ocClassDifferent
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/11/18/Android/%E9%9F%B3%E8%A7%86%E9%A2%91/%E6%96%87%E6%A1%A305-%E6%89%8B%E5%86%99H264%E7%BC%96%E7%A0%81%E5%99%A8/" rel="next" title="视频流H264的编码器">
-      视频流H264的编码器 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/11/18/Android/%E9%9F%B3%E8%A7%86%E9%A2%91/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/" rel="next" title="H.265与H.264的差异详解">
+      H.265与H.264的差异详解 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -861,13 +861,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">724k</span>
+    <span title="站点总字数">725k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:58</span>
+    <span title="站点阅读时长">10:59</span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         

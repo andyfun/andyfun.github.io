@@ -301,7 +301,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/11/02/Android/AndroidLog/" class="post-title-link" itemprop="url">AndroidLog</a>
+            <a href="/2021/11/02/Android/AndroidLog/" class="post-title-link" itemprop="url">AndroidRecord</a>
         </h2>
 
         <div class="post-meta">
@@ -318,7 +318,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-18 00:19:32" itemprop="dateModified" datetime="2022-06-18T00:19:32+08:00">2022-06-18</time>
+                <time title="修改时间：2022-07-07 06:16:32" itemprop="dateModified" datetime="2022-07-07T06:16:32+08:00">2022-07-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -336,7 +336,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.1k</span>
+              <span>6.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -378,16 +378,51 @@
 <li><p>adb bugreport  目录 ，  拉去日志  分析  ，里面有个墓碑日志，保留堆栈函数调用现场。</p>
 <p>bugrepotxxxx.txt </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;am_anr&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">0369  grep -r &quot;am_proc_died&quot;</span><br><span class="line">grep -r &quot;am_anr&quot;</span><br><span class="line"> grep -r &quot;anr&quot;</span><br><span class="line"> grep &quot;am_anr&quot;</span><br><span class="line">grep &quot;am_anr&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;ANR&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;com.ztgame.fire&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;com.ztgame.fir&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;com.ztgame.fir.vivo&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;am_low_memory&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;com.ztgame&quot;</span><br><span class="line">grep  -r   &quot;com.ztgame&quot;</span><br><span class="line">grep  -r   &quot;com.ztgame.fir.eagle&quot;</span><br><span class="line">grep  -r   &quot;com.ztgame.fir.vivo&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>adb pull /data/local/traces</p>
+<p><code>adb pull /data/local/traces</code></p>
 </li>
 <li><p>查找依赖</p>
 </li>
 </ol>
-<p>./gradlew -q app:dependencies</p>
+<p><code>./gradlew -q app:dependencies</code></p>
 <ol start="3">
 <li>查看apk v1 v2 签名</li>
 </ol>
-<p>./apksigner verify -v /Users/caiyuhao/Downloads/Newzt_1.0.0tt(1).apk </p>
+<p><code>./apksigner verify -v /Users/caiyuhao/Downloads/Newzt_1.0.0tt\(1\).apk </code></p>
+<h3 id="frida"><a href="#frida" class="headerlink" title="frida"></a>frida</h3><ol>
+<li><p>端口相关<br><code>Unable to start: Error binding to address 127.0.0.1:27042: Address already in use</code></p>
+<p><code>adb shell</code>  下查找 进程 <code>netstat -tunlp </code></p>
+</li>
+</ol>
+<p><code>kill  -9 pid</code></p>
+<ol start="2">
+<li><p>启动 <code>./androidhook --fs-start</code></p>
+</li>
+<li><p><code>adb shell getprop ro.product.cpu.abi</code> 获取abi <code>https://github.com/frida/frida/releases</code></p>
+</li>
+</ol>
+<p><code>adb pull frida-server*  /data/local/tmp/</code></p>
+<p><code>adb shell chmod  777 frida-server* </code></p>
+<p><code>./frida-server</code></p>
+<ol start="4">
+<li> 查看进程  <code>frida-ps -U</code></li>
+</ol>
+<h3 id="python-websocket"><a href="#python-websocket" class="headerlink" title="python websocket"></a>python websocket</h3><ol>
+<li>ModuleNotFoundError：即使我安装了pip install websocket，也没有名为“ websocket”的模块</li>
+</ol>
+<p><code>pip3 install websocket -i -i https://pypi.tuna.tsinghua.edu.cn/simple  </code></p>
+<p>客户端相关<br><code>pip3 install websocket-client -i -i https://pypi.tuna.tsinghua.edu.cn/simple  </code></p>
+<h3 id="Pixel-2xl-刷机"><a href="#Pixel-2xl-刷机" class="headerlink" title="Pixel 2xl 刷机"></a>Pixel 2xl 刷机</h3><ol>
+<li><p>对应recovery 是 twrp.img(临时)和 twrp.zip(永久)<code>https://twrp.me/Devices/</code>搜索对应设备</p>
+</li>
+<li><p>然后通过Magisk 刷root  </p>
+</li>
+<li><p>版本对应</p>
+</li>
+<li><p>因为当时刷的twrp.img,oat11降到oat8 ,取法 启动，出现机器人<code>nocommand</code>,一直卡这里。</p>
+</li>
+<li><p>后来通过。。。知道 电源键 + 音量上键 出现刷机recory 界面，<code>swip factory /yes ,instal  from adb</code> ,<code>adb sideload xx.zip</code>  可以砖就回来。</p>
+</li>
+</ol>
 
       
     </div>
@@ -1393,13 +1428,13 @@ IP直连方案有下面几大优势：
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">724k</span>
+    <span title="站点总字数">725k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:58</span>
+    <span title="站点阅读时长">10:59</span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
