@@ -365,18 +365,18 @@
 <p>4种预测模式类似于帧内16×16预测的4种预测模式，只是模式编号不同。其中DC（模式0）、水平（模式1）、垂直（模式2）、平面（模式3）。</p>
 <p><img src="/images/19.png" alt="img"></p>
 <p>对于当前块C, 编解码器按照如下方法计算</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">probableprediction mode＝</span><br><span class="line"></span><br><span class="line">​          min&#123;prediction mode of <span class="selector-tag">A</span>, predictionmodes of <span class="selector-tag">B</span>&#125;</span><br><span class="line"></span><br><span class="line">当<span class="selector-tag">A</span> (或者 <span class="selector-tag">B</span>）的预测模式不可用时，</span><br><span class="line"></span><br><span class="line">​         prediction mode of <span class="selector-tag">A</span>＝ <span class="number">2</span>.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">probableprediction mode＝</span><br><span class="line"></span><br><span class="line">​          min&#123;prediction mode of A, predictionmodes of B&#125;</span><br><span class="line"></span><br><span class="line">当A (或者 B）的预测模式不可用时，</span><br><span class="line"></span><br><span class="line">​         prediction mode of A＝ 2.</span><br></pre></td></tr></table></figure>
 
 <p>例如</p>
 <p>  A 和 B块的预测模式分别为 3 和1</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">most</span> probable mode for block C =<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">most probable mode for block C =1</span><br></pre></td></tr></table></figure>
 
 
 
 
 
 <p>编码器为每个4x4 块发送一个标记 flag,解码器按照如下方式 解码</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Ifflag</span>==1, prediction <span class="attribute">mode</span>=most_probable_mode</span><br><span class="line"></span><br><span class="line"><span class="attribute">Ifflag</span>==0</span><br><span class="line"></span><br><span class="line">   <span class="keyword">If</span> rem_intra4×4_pred_mode&lt; most_probable_mode</span><br><span class="line"></span><br><span class="line">​     prediction <span class="attribute">mode</span>=rem_intra4×4_pred_mode</span><br><span class="line"></span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line"></span><br><span class="line">​     prediction <span class="attribute">mode</span>=rem_intra4×4_pred_mode+1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Ifflag==1, prediction mode=most_probable_mode</span><br><span class="line"></span><br><span class="line">Ifflag==0</span><br><span class="line"></span><br><span class="line">   If rem_intra4×4_pred_mode&lt; most_probable_mode</span><br><span class="line"></span><br><span class="line">​     prediction mode=rem_intra4×4_pred_mode</span><br><span class="line"></span><br><span class="line">   else</span><br><span class="line"></span><br><span class="line">​     prediction mode=rem_intra4×4_pred_mode+1</span><br></pre></td></tr></table></figure>
 
 <p>这样表示9中预测模式只需要8个值 (0 to 7)</p>
 <p><img src="/images/20.png" alt="img"></p>
@@ -422,8 +422,8 @@
       <i class="fa fa-chevron-left"></i> 视频流H264的组装
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/11/18/Android/%E9%9F%B3%E8%A7%86%E9%A2%91/%E6%96%87%E6%A1%A301-%E8%A7%86%E9%A2%91%E5%8E%8B%E7%BC%A9%E5%8E%9F%E7%90%86/" rel="next" title="视频压缩技术原理">
-      视频压缩技术原理 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/11/18/Android/%E9%9F%B3%E8%A7%86%E9%A2%91/%E6%96%87%E6%A1%A300-%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%B0%81%E8%A3%85%E5%8E%9F%E7%90%86/" rel="next" title="视频解码基础">
+      视频解码基础 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
