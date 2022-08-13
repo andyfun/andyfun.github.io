@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Replugin (AndroidPlugin 4.0.0,插件6.1.1)该插件很久没有更新，最新Androidstudio 需要降级，很麻烦 故不再研究 ，原理大概了解。 Shadow 更新维护Java11 ：Android Studio Arctic Fox内置的JDKFile-&gt;prefenece-gradle配置Android_HOME window: 1.&#x2F;gradlew bui">
+  <meta name="description" content="Replugin (AndroidPlugin 4.0.0,插件6.1.1)该插件很久没有更新，最新Androidstudio 需要降级，很麻烦 故不再研究 ，原理大概了解。 Shadow 更新维护Java11 ：Android Studio Arctic Fox内置的JDKFile-&gt;prefenece-gradle配置Android_HOME window: 1.&#x2F;gradlew b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RePlugin(360)和 Shadow(tencent)">
 <meta property="og:url" content="http://yoursite.com/2021/10/23/Android/rePlugin/index.html">
 <meta property="og:site_name" content="andyFun">
-<meta property="og:description" content="Replugin (AndroidPlugin 4.0.0,插件6.1.1)该插件很久没有更新，最新Androidstudio 需要降级，很麻烦 故不再研究 ，原理大概了解。 Shadow 更新维护Java11 ：Android Studio Arctic Fox内置的JDKFile-&gt;prefenece-gradle配置Android_HOME window: 1.&#x2F;gradlew bui">
+<meta property="og:description" content="Replugin (AndroidPlugin 4.0.0,插件6.1.1)该插件很久没有更新，最新Androidstudio 需要降级，很麻烦 故不再研究 ，原理大概了解。 Shadow 更新维护Java11 ：Android Studio Arctic Fox内置的JDKFile-&gt;prefenece-gradle配置Android_HOME window: 1.&#x2F;gradlew b">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-23T03:02:03.000Z">
-<meta property="article:modified_time" content="2021-11-12T11:21:09.873Z">
+<meta property="article:modified_time" content="2022-08-13T03:30:54.000Z">
 <meta property="article:author" content="andy">
 <meta property="article:tag" content="plugin">
 <meta name="twitter:card" content="summary">
@@ -132,7 +132,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">57</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">53</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-12 19:21:09" itemprop="dateModified" datetime="2021-11-12T19:21:09+08:00">2021-11-12</time>
+                <time title="修改时间：2022-08-13 11:30:54" itemprop="dateModified" datetime="2022-08-13T11:30:54+08:00">2022-08-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,7 +271,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="Replugin-AndroidPlugin-4-0-0-插件6-1-1"><a href="#Replugin-AndroidPlugin-4-0-0-插件6-1-1" class="headerlink" title="Replugin (AndroidPlugin 4.0.0,插件6.1.1)"></a>Replugin (AndroidPlugin 4.0.0,插件6.1.1)</h4><p>该插件很久没有更新，最新Androidstudio 需要降级，很麻烦 故不再研究 ，原理大概了解。</p>
+        <font size="2.9">
+
+<h4 id="Replugin-AndroidPlugin-4-0-0-插件6-1-1"><a href="#Replugin-AndroidPlugin-4-0-0-插件6-1-1" class="headerlink" title="Replugin (AndroidPlugin 4.0.0,插件6.1.1)"></a>Replugin (AndroidPlugin 4.0.0,插件6.1.1)</h4><p>该插件很久没有更新，最新Androidstudio 需要降级，很麻烦 故不再研究 ，原理大概了解。</p>
 <h4 id="Shadow-更新维护"><a href="#Shadow-更新维护" class="headerlink" title="Shadow 更新维护"></a>Shadow 更新维护</h4><p>Java11 ：Android Studio Arctic Fox内置的JDK<br>File-&gt;prefenece-gradle<br>配置Android_HOME</p>
 <p>window:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./gradlew build</span><br></pre></td></tr></table></figure>
@@ -318,6 +320,7 @@
 <p>1<br>chmod - R 777 folder</p>
 <p>adb shell ls -ld /data/ /data/local/ /data/local/tmp/<br>查看权限<br>确实有讲究。这个tmp目录是一个Android系统的特殊目录。这个目录的特点是adb可以直接push写入。app都能读取，但不能写入。同时这个目录还是手机的内置存储，可以直接用DexClassLoader加载这个目录中的apk，而sdcard不行。所以，如果我们用adb push到sdcard上，想动态加载还要将apk再复制到应用的data目录才行。</p>
 <p>正是环境肯定没法用这个目录，因为应用没有这个目录的写入权限。建议应用把插件包下载到宿主的data私有目录中，以保证数据安全，其他应用不能篡改。</p>
+</font>
 
     </div>
 
@@ -435,7 +438,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -485,13 +488,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">732k</span>
+    <span title="站点总字数">190k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">11:06</span>
+    <span title="站点阅读时长">2:53</span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         

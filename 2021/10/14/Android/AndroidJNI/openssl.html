@@ -1,6 +1,8 @@
 <hr>
 <p>title: openssl<br>date: 2022-01-10 11:36:59<br>tags: openssl,c++<br>categories: Android</p>
 <hr>
+<font size="2.9">
+
 <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>1.Java加密（Aes/cbf/nopading）,非常耗时每次150ms<br>2.java.net.URLEncoder也非常耗时，110ms</p>
 <h4 id="Google-查阅都是（AES-cbc-ebc-rpc5pading）"><a href="#Google-查阅都是（AES-cbc-ebc-rpc5pading）" class="headerlink" title="Google 查阅都是（AES/cbc/ebc/rpc5pading）"></a>Google 查阅都是（AES/cbc/ebc/rpc5pading）</h4><p>不满足需要</p>
 <h4 id="openssl"><a href="#openssl" class="headerlink" title="openssl"></a>openssl</h4><p>1.官方下载 1.1.1m Android 目录编译<br>Android NDK 16以上放弃了gcc, mac 下 clang90 -unargeement ‘mandroid’ 未知错误，暂时没有解决</p>
@@ -76,3 +78,4 @@ set_target_properties(
         ${CMAKE_SOURCE_DIR}/../jniLibs/${ANDROID_ABI}/libcrypto.a    #.a文件的路径， ${CMAKE_SOURCE_DIR}这个是cpp下的路径
 )
 </code></pre>
+</font>

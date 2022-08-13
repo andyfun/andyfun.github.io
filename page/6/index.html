@@ -129,7 +129,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">57</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">53</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -193,382 +193,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/21/Android/Android/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/21/Android/Android/" class="post-title-link" itemprop="url">android编译</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-21 15:38:22" itemprop="dateCreated datePublished" datetime="2020-12-21T15:38:22+08:00">2020-12-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="1-编译错误-Failed-to-apply-plugin"><a href="#1-编译错误-Failed-to-apply-plugin" class="headerlink" title="1.编译错误 Failed to apply plugin"></a>1.编译错误 Failed to apply plugin</h4><blockquote>
-<p>一般gradle会有提示，根据提示解决<br>例如:<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">An exception occurred applying plugin request [id: &#x27;com.android.application&#x27;]</span><br><span class="line">&gt; Failed to apply plugin [id &#x27;com.android.internal.application&#x27;]</span><br><span class="line">   &gt; The option &#x27;android.enableUnitTestBinaryResources&#x27; is deprecated.</span><br><span class="line">     The current default is &#x27;false&#x27;.</span><br><span class="line">     It has been removed from the current version of the Android Gradle plugin.</span><br><span class="line">     The raw resource for unit test functionality is removed.</span><br></pre></td></tr></table></figure><br> 根据日志 显示 <strong>android.enableUnitTestBinaryResources</strong> 这个配置文件 有问题，找到改为 <strong>false</strong><br>还有不能找到 pluginid的 可能路径有中文（<strong>android.overridePathCheck=true</strong>）或者gradle.properties 文件里面报错</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/21/Android/Android/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/21/Tools/MoreLear/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/21/Tools/MoreLear/" class="post-title-link" itemprop="url">调研记录一下</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-21 13:24:32" itemprop="dateCreated datePublished" datetime="2020-12-21T13:24:32+08:00">2020-12-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>247</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="1-能力考试院"><a href="#1-能力考试院" class="headerlink" title="1.能力考试院"></a>1.能力考试院</h4>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/21/Tools/MoreLear/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/21/Android/Webrtc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/21/Android/Webrtc/" class="post-title-link" itemprop="url">webrtc记录</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-21 11:56:11" itemprop="dateCreated datePublished" datetime="2020-12-21T11:56:11+08:00">2020-12-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>613</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="WebRtc-简介"><a href="#WebRtc-简介" class="headerlink" title="WebRtc 简介"></a>WebRtc 简介</h3><blockquote>
-<p>WebRTC名称源自网页实时通信(Web Real-Time Communication)的缩写，是一个支持网页浏览器进行实时语音对话或视频对话的技术，是谷歌2010年以6820万美元收购Global IP Solutions公司而获得的一项技术。Google于2011年6月3日开源的即时通讯项目，旨在使其成为客户端视频通话的标准。其实在Google将WebRTC开源之前，微软和苹果各自的通讯产品已占用很大市场份额（如Skype），Google`也是为了快速扩大市场，所以将他给开源。在行业内得到了广泛的支持和应用，成为下一代视频通话的标准。更多介绍可以自行去官网上看。</p>
-</blockquote>
-<blockquote>
-<p>WebRTC被誉为是web长期开源开发的一个新启元，是近年来Web开发的最重要创新。WebRTC允许Web开发者在其web应用中添加视频聊天或者点对点数据传输，不需要复杂的代码或者昂贵的配置。目前支持Chrome、Firefox和Opera，后续会支持更多的浏览器，它有能力达到数十亿的设备。</p>
-</blockquote>
-<h3 id="编译WebRTC"><a href="#编译WebRTC" class="headerlink" title="编译WebRTC"></a>编译WebRTC</h3><blockquote>
-<p>参考声网的国内镜像（我试图编译 镜像下载失败）<strong><a target="_blank" rel="noopener" href="https://webrtc.org.cn/mirror/">https://webrtc.org.cn/mirror/</a></strong></p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/21/Android/Webrtc/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/09/Unity/UnityPluginForMac/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/09/Unity/UnityPluginForMac/" class="post-title-link" itemprop="url">UnityPluginForMac</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-09 22:34:24" itemprop="dateCreated datePublished" datetime="2019-06-09T22:34:24+08:00">2019-06-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>因为需要做Window和 Mac 插件，且iOS和Android 用 UnitySendMessage，所以为了统一 pc端也用次回调。这里做下记录方便改进。</p>
-<p>如果你是OSX系统，那么Unity可以在编辑器里面直接使用OSX插件。OSX插件是bundle文件，放在Assets/Plugins目录下。</p>
-<p>跟iOS插件差不多，不过OSX没有UnitySendMessage函数，所以要用另外一种途经来实现OC -&gt; C#</p>
-<p>方法就是用C语言的函数指针。</p>
-<p>首先在头文件声明一个函数指针和声明两个函数</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/06/09/Unity/UnityPluginForMac/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/14/Java/Java/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -600,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-26 22:26:15" itemprop="dateModified" datetime="2022-05-26T22:26:15+08:00">2022-05-26</time>
+                <time title="修改时间：2022-08-13 11:31:51" itemprop="dateModified" datetime="2022-08-13T11:31:51+08:00">2022-08-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -637,7 +261,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><h3 id="hash碰撞-解决方案"><a href="#hash碰撞-解决方案" class="headerlink" title="hash碰撞 解决方案"></a>hash碰撞 解决方案</h3><blockquote>
+          <font size="2.9">
+
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><h3 id="hash碰撞-解决方案"><a href="#hash碰撞-解决方案" class="headerlink" title="hash碰撞 解决方案"></a>hash碰撞 解决方案</h3><blockquote>
 <p>比较常用的算法是链地址法和开放地址法</p>
 </blockquote>
 <h3 id="java-位运算"><a href="#java-位运算" class="headerlink" title="java 位运算"></a>java 位运算</h3><blockquote>
@@ -701,7 +327,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
+                <time title="修改时间：2022-08-13 11:25:45" itemprop="dateModified" datetime="2022-08-13T11:25:45+08:00">2022-08-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -738,7 +364,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="可空类型-和非空类型"><a href="#可空类型-和非空类型" class="headerlink" title="可空类型 和非空类型"></a>可空类型 和非空类型</h3><p> kotlin 的类型系统在消除代码的NullPointerExcepion NPE</p>
+          <font size="2.9">
+
+<h3 id="可空类型-和非空类型"><a href="#可空类型-和非空类型" class="headerlink" title="可空类型 和非空类型"></a>可空类型 和非空类型</h3><p> kotlin 的类型系统在消除代码的NullPointerExcepion NPE</p>
 <p> 安全调用符：?.<br> b?.length</p>
 <p>第三种 是为NPE爱好者准备的<br> 非空断言 运算符（!!）操作符 将任何值 转换为非空类型， 如果</p>
           <!--noindex-->
@@ -798,7 +426,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-05 10:20:29" itemprop="dateModified" datetime="2021-11-05T10:20:29+08:00">2021-11-05</time>
+                <time title="修改时间：2022-08-13 11:24:16" itemprop="dateModified" datetime="2022-08-13T11:24:16+08:00">2022-08-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -835,7 +463,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="Android移动app架构设计浅谈"><a href="#Android移动app架构设计浅谈" class="headerlink" title="Android移动app架构设计浅谈"></a>Android移动app架构设计浅谈</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>架构，又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计。</p>
+          <font size="2.9">
+
+<h3 id="Android移动app架构设计浅谈"><a href="#Android移动app架构设计浅谈" class="headerlink" title="Android移动app架构设计浅谈"></a>Android移动app架构设计浅谈</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>架构，又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计。</p>
 <h4 id="软件架构设计目标："><a href="#软件架构设计目标：" class="headerlink" title="软件架构设计目标："></a>软件架构设计目标：</h4><p>1.可靠性（Reliable）。软件架构的可靠是产品设计的前提。<br>2.安全性（Secure）。软件架构的安全性是产品可持续发展的条件。<br>3.可扩展性（Scalable）。软件架构必须能够不同的功能需求情况下，支持可扩散性。<br>4.可定制化（Customizable）。同样的一套软件，可以根据客户群的不同和市场需求的变化进行调整。<br>5.可伸缩 （Extensible）。在新技术出现的时候，一个软件架构应当允许导入新技术，从而对现有系统进行功能和性能的扩展。<br>6.可维护性（Maintainable）。软件系统的维护包括两方面，一是排除现有的错误，二是将新的软件需求反映到现有系统中去。一个易于维护的系统可以有效地降低技术支持的花费。</p>
           <!--noindex-->
             <div class="post-button">
@@ -928,7 +558,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -978,13 +608,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">732k</span>
+    <span title="站点总字数">190k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">11:06</span>
+    <span title="站点阅读时长">2:53</span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         

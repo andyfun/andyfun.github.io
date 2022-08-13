@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="1.nil 和NULL 引用类型用 oc的类指针 nil   基本类型用 NULL   本质上是一样的 ，都是宏定义 ，0   Person *p &#x3D; nil 代表不指向任何对象  2.分组导航标记 #pragma mark 名字   #pragma mark - 产生分割线  123456789101112131415161718192021222324252627282930313233343">
+  <meta name="description" content="1.nil 和NULL 引用类型用 oc的类指针 nil   基本类型用 NULL   本质上是一样的 ，都是宏定义 ，0   Person *p &#x3D; nil 代表不指向任何对象  2.分组导航标记 #pragma mark 名字   #pragma mark - 产生分割线  1234567891011121314151617181920212223242526272829303132333">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ocClassDifferent">
 <meta property="og:url" content="http://yoursite.com/2021/11/15/IOS/ocClassDifferent/index.html">
 <meta property="og:site_name" content="andyFun">
-<meta property="og:description" content="1.nil 和NULL 引用类型用 oc的类指针 nil   基本类型用 NULL   本质上是一样的 ，都是宏定义 ，0   Person *p &#x3D; nil 代表不指向任何对象  2.分组导航标记 #pragma mark 名字   #pragma mark - 产生分割线  123456789101112131415161718192021222324252627282930313233343">
+<meta property="og:description" content="1.nil 和NULL 引用类型用 oc的类指针 nil   基本类型用 NULL   本质上是一样的 ，都是宏定义 ，0   Person *p &#x3D; nil 代表不指向任何对象  2.分组导航标记 #pragma mark 名字   #pragma mark - 产生分割线  1234567891011121314151617181920212223242526272829303132333">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-15T02:32:56.000Z">
-<meta property="article:modified_time" content="2021-11-15T02:40:25.087Z">
+<meta property="article:modified_time" content="2022-08-13T03:38:23.000Z">
 <meta property="article:author" content="andy">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary">
@@ -132,7 +132,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">57</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">53</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -219,10 +219,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-11-15 10:32:56 / 修改时间：10:40:25" itemprop="dateCreated datePublished" datetime="2021-11-15T10:32:56+08:00">2021-11-15</time>
+              <time title="创建时间：2021-11-15 10:32:56" itemprop="dateCreated datePublished" datetime="2021-11-15T10:32:56+08:00">2021-11-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-13 11:38:23" itemprop="dateModified" datetime="2022-08-13T11:38:23+08:00">2022-08-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -265,7 +271,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h4><blockquote>
+        <font size="2.9">
+
+<h4 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h4><blockquote>
 <p><code>引用类型用</code> oc的类指针 nil</p>
 </blockquote>
 <blockquote>
@@ -329,7 +337,7 @@ self-&gt;deviceType和deviceType是等价的。
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@interface Device : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    @<span class="keyword">public</span> NSString *deviceType;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="built_in">property</span> (nonatomic , strong) NSString *deviceID;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </code></pre>
 <h4 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h4><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
-
+</font>
     </div>
 
     
@@ -371,8 +379,8 @@ self-&gt;deviceType和deviceType是等价的。
       <i class="fa fa-chevron-left"></i> androidota
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/11/18/Android/%E9%9F%B3%E8%A7%86%E9%A2%91/%E6%96%87%E6%A1%A305-%E6%89%8B%E5%86%99H264%E7%BC%96%E7%A0%81%E5%99%A8/" rel="next" title="视频流H264的编码器">
-      视频流H264的编码器 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/" rel="next" title="H.265与H.264的差异详解">
+      H.265与H.264的差异详解 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -446,7 +454,7 @@ self-&gt;deviceType和deviceType是等价的。
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -496,13 +504,13 @@ self-&gt;deviceType和deviceType是等价的。
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">732k</span>
+    <span title="站点总字数">190k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">11:06</span>
+    <span title="站点阅读时长">2:53</span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
