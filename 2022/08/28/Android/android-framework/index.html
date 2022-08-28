@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="配置中心以及灰度测试app必备工具之一，配置中心主要负责的就是动态化的配置，比如文本展示类似这些的。sdk提供方需要负责的是提供动态更新能力，这里有个差异化更新，只更新dif部分，还有就是流量优化等等需要开发同学考虑的。然后可以考虑下存储性能方面的提升等。而abtest也是app必备工具之一了，动态的下发实验策略，之后开发同学可以切换实验的页面。另外主要需要考虑灰度结果计算，分桶以及版本过滤白">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android_framework">
+<meta property="og:url" content="http://yoursite.com/2022/08/28/Android/android-framework/index.html">
+<meta property="og:site_name" content="andyFun">
+<meta property="og:description" content="配置中心以及灰度测试app必备工具之一，配置中心主要负责的就是动态化的配置，比如文本展示类似这些的。sdk提供方需要负责的是提供动态更新能力，这里有个差异化更新，只更新dif部分，还有就是流量优化等等需要开发同学考虑的。然后可以考虑下存储性能方面的提升等。而abtest也是app必备工具之一了，动态的下发实验策略，之后开发同学可以切换实验的页面。另外主要需要考虑灰度结果计算，分桶以及版本过滤白">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/didi/DoraemonKit">
+<meta property="og:image" content="https://github.com/iqiyi/xCrash">
+<meta property="og:image" content="https://github.com/Tencent/matrix">
+<meta property="og:image" content="https://github.com/KwaiAppTeam/KOOM">
+<meta property="og:image" content="https://github.com/iqiyi/xHook">
+<meta property="og:image" content="https://github.com/bytedance/bhook">
+<meta property="og:image" content="https://juejin.cn/post/6890754507639095303">
+<meta property="og:image" content="https://juejin.cn/post/6900810600188739592">
+<meta property="og:image" content="https://juejin.cn/post/6896302142542315533">
+<meta property="og:image" content="https://github.com/Leifzhang/AndroidAutoTrack">
+<meta property="og:image" content="https://juejin.cn/post/6881414546859229192">
+<meta property="article:published_time" content="2022-08-28T15:37:41.000Z">
+<meta property="article:modified_time" content="2022-08-28T15:51:13.290Z">
+<meta property="article:author" content="andy">
+<meta property="article:tag" content="tree">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/didi/DoraemonKit">
+
+<link rel="canonical" href="http://yoursite.com/2022/08/28/Android/android-framework/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>android_framework | andyFun</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">andyFun</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">54</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/08/28/Android/android-framework/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          android_framework
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-08-28 23:37:41 / 修改时间：23:51:13" itemprop="dateCreated datePublished" datetime="2022-08-28T23:37:41+08:00">2022-08-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <font size="2.9">
+
+<h5 id="配置中心以及灰度测试"><a href="#配置中心以及灰度测试" class="headerlink" title="配置中心以及灰度测试"></a>配置中心以及灰度测试</h5><p>app必备工具之一，配置中心主要负责的就是动态化的配置，比如文本展示类似这些的。sdk提供方需要负责的是提供动态更新能力，这里有个差异化更新，只更新dif部分，还有就是流量优化等等需要开发同学考虑的。然后可以考虑下存储性能方面的提升等。<br>而abtest也是app必备工具之一了，动态的下发实验策略，之后开发同学可以切换实验的页面。另外主要需要考虑灰度结果计算，分桶以及版本过滤白名单等等。这里只是一个简单的介绍不展开，因为我只是一个使用方。</p>
+<h5 id="调试组件"><a href="#调试组件" class="headerlink" title="调试组件"></a>调试组件</h5><p>个人还是更推荐滴滴的<img src="https://github.com/didi/DoraemonKit" alt="Dokit">，功能点比较多而且接入相对来说比较简单。而且提供了很多给开发同学定制的能力，可以在debug情况下增加很多业务相关的测试功能，方便测试同学，核心还是浮窗太方便了。<br>当然很多实验性的预研功能等其实都可以直接接在这里，然后在测试环境下充分展开，之后在进行线上灰度方案。还有一些具有风险的hook操作，个人也比较建议放在debug组件上。</p>
+<h5 id="性能监控框架"><a href="#性能监控框架" class="headerlink" title="性能监控框架"></a>性能监控框架</h5><p>这部分有几个不同的方面，首先是异常崩溃方面的，另外则是性能监控方面的，但是他们整体是划分在一起的，都属于线上性能监控体系的。<br>Crash相关的，可以从爱奇艺的<img src="https://github.com/iqiyi/xCrash" alt="xCrash">学起。包含了崩溃日志，ANR以及native crash，因为版本适配的问题ANR在高版本上已经不是这么好捞了，还有就是native crash相关的。是一个非常牛逼的库了。<br>而线上的性能监控框架可以从腾讯的<img src="https://github.com/Tencent/matrix" alt="Matrix">学起,以前有两篇文章介绍的内容也都是和Matrix相关的, Matrix首页上也有介绍，比如fps，卡顿，IO，电池，内存等等方面的监控。其中卡顿监控涉及到的就是方法前后插桩，同时要有函数的mapping表，插桩部分整体来说比较简单感觉。<br>另外关于线上内存相关的，推荐各位可以学习下快手的<img src="https://github.com/KwaiAppTeam/KOOM" alt="koom">, 对于hprof的压缩比例听说能达到70%，也能完成线上的数据回捞以及监控等等，是一个非常屌的框架。下面给大家一个抄答案的方式。字节也有一个类似的原理其实也差不多。</p>
+<blockquote>
+<p>主进程发现内存到达阈值的时候，用leakcanary的方案，通过shark fork进程内存，之后生成hrop。由于hrop文件相对较大，所以我们需要对于我们所要分析的内容进行筛选，可以通过xhook，之后对hrop的写入操作进行hook，当发现写入内容的类型符合我们的需要的情况下才进行写入。</p>
+</blockquote>
+<blockquote>
+<p>而当我们要做线上日志回捞的情况，需要对hprof 进行压缩，具体算法可以参考koom/raphel，有提供对应的压缩算法。</p>
+</blockquote>
+<blockquote>
+<p>最后线上回捞机制就是基于一个指令，回捞线上符合标准的用户的文件操作，这个自行设计。</p>
+</blockquote>
+<p>其实上述几个库都还是有一个本质相关的东西，那么就是plthook,这个上面三个库应该都有对其的使用，之前是爱奇艺的<img src="https://github.com/iqiyi/xHook" alt="xhook">，现在是字节的<img src="https://github.com/bytedance/bhook" alt="bhook">, 这个大佬也是我的偶像之一了，非常离谱了算是。</p>
+<blockquote>
+<p><img src="https://juejin.cn/post/6890754507639095303" alt="Android 性能采集之Fps,Memory,Cpu"> 和 <img src="https://juejin.cn/post/6900810600188739592" alt="Android IO监控"></p>
+</blockquote>
+<p>最近已经不咋写这部分相关了，所以也就没有深挖，但是后续可能会有一篇关于phtead hook相关的，也是之前matrix更新的一个新东西，还在测试环境灰度阶段。</p>
+<h5 id="基础网络组件"><a href="#基础网络组件" class="headerlink" title="基础网络组件"></a>基础网络组件</h5><p>虽然核心可能还是三方网络库，但是因为基本所有公司都对网络方面有调整和改动，以及解析器等方面的优化，其实可以挖的东西也还是蛮多的。<br>应付面试的同学可以看看<img src="https://juejin.cn/post/6896302142542315533" alt="Android网络优化方案">。当然还是要具体问题具体分析，毕竟头疼医头，脚疼医脚对吧。<br>之前和另外一个朋友聊了下，其实很多厂对json解析这部分有优化调整，通过apt之后更换原生成原生的解析方式，加快反序列化速度的都是可以考虑考虑的。</p>
+<h5 id="埋点框架"><a href="#埋点框架" class="headerlink" title="埋点框架"></a>埋点框架</h5><p>其实这个应该要放在更前面一点的，数据上报数据分析啥的其实都还是蛮重要的。<br>这部分因为我完全没写过哦，所以我压根不咋会，但是如果你会的话，面试的时候展开说说，可以帮助你不少。<br>另外还需要有线上的异常用户数据回捞系统，方便开发同学主动去把线上有异常的用户的日志给收集回来。<br>但是有些刁钻的页面曝光监控啦，自动化埋点啥的其实还是写过一点的，有兴趣的可以翻翻历史，还有github 上还有demo。</p>
+<blockquote>
+<p><img src="https://github.com/Leifzhang/AndroidAutoTrack" alt="AndroidAutoTrack"> demo工程</p>
+</blockquote>
+<h5 id="启动相关"><a href="#启动相关" class="headerlink" title="启动相关"></a>启动相关</h5><p>通过DAG(有向无环图)的方式将sdk的初始化拆解成一个个task，之后理顺依赖关系，让他们能按照固定的顺序向下执行。<br>核心需要处理的是依赖关系，比如说其实埋点库依赖于网络库初始化，然后APM相关的则依赖于埋点库和配置中心abtest等等，这样的依赖关系需要开发同学去理顺的。<br>另外就是把sdk的粒度打的细碎一点，更容易观察每个sdk任务的耗时情况，之后增加task阈值告警，超过某个加载速度就通知到相应的同学改一下。<br>多线程是能优化掉一部分，但是也需要避免频繁线程调度。还有就是我个人觉得这些启动相关的东西因为都无法使用sdk级别的灰度，所以改动最好慎重一点。出发点始终都是好的，但是还是结果导向吧。<br>启动优化的核心，我个人始终坚持的就是延迟才能优化。开发人员很难做到优化代码执行的复杂度，执行时间之类的。尽人事听天命，玄学代码。</p>
+<h5 id="中间件-图片-日志-存储-基础信息"><a href="#中间件-图片-日志-存储-基础信息" class="headerlink" title="中间件(图片 日志 存储 基础信息)"></a>中间件(图片 日志 存储 基础信息)</h5><p>这部分没啥，最好是对第三方库有一层隔离的思维，但是这个隔离也需要对应的同学对于程序设计方面有很好的思维，说起来简单，其实也蛮复杂的。<br>这里就不展开了，感觉面试也很少会问的很细。</p>
+<p>第三方sdk大杂烩（偏中台方向）</p>
+<p>基本一个app现在都有啥分享啦，推送啦，支付啦，账号体系啦，webview，jsbridge等等服务于应用内的一些sdk，这些东西就比较偏向于业务。<br>有兴趣的可以看看之前写的两篇关于sdk设计相关的。</p>
+<blockquote>
+<p>活学活用责任链  <img src="https://juejin.cn/post/6881414546859229192" alt="SDK开发的一点点心得  Android厂商推送Plugin化"></p>
+</blockquote>
+<h5 id="其他方面"><a href="#其他方面" class="headerlink" title="其他方面"></a>其他方面</h5><p>大公司可能都会有些动态化方案的考虑，比如插件化啊动态化之类的。这部分在下确实不行，我就不展开了啊。<br>编译相关</p>
+<h5 id="描述下android编译流程"><a href="#描述下android编译流程" class="headerlink" title="描述下android编译流程"></a>描述下android编译流程</h5><p>基架很容易碰到的面试题，以前简单的描述写过。聊聊Android编译流程<br>虽然是几年前的知识点了，但是还是要拆开高低版本的agp做比较的。所以这部分可以回答下，基本这题就能简单的拿下了。</p>
+<h5 id="Gradle-生命周期"><a href="#Gradle-生命周期" class="headerlink" title="Gradle 生命周期"></a>Gradle 生命周期</h5><p>简单的说下就是buildSrc先编译，之后是根目录的settings.gradle, 根build.gradle，最后才是module build<br>网上一堆，你自己翻一番就知道了。</p>
+<h5 id="apt是编译中哪个阶段"><a href="#apt是编译中哪个阶段" class="headerlink" title="apt是编译中哪个阶段"></a>apt是编译中哪个阶段</h5><p>APT解析的是java 抽象语法树(AST)，属于javac的一部分流程。大概流程：.java -&gt; AST -&gt; .class</p>
+<p>聊聊AbstractProcessor和Java编译流程</p>
+<h5 id="Dex和class有什么区别"><a href="#Dex和class有什么区别" class="headerlink" title="Dex和class有什么区别"></a>Dex和class有什么区别</h5><p>链接传送门<br>Class与dex的区别<br>1）虚拟机： class用jvm执行，dex用dvm执行<br>2）文档： class中冗余信息多，dex会去除冗余信息，包含所有类，查找方便，适合手机端<br>JVM与DVM<br>1）JVM基于栈（使用栈帧，内存），DVM基于寄存器，速度更快，适合手机端<br>2）JVM执行Class字节码，DVM执行DEX<br>3）JVM只能有一个实例，一个应用启动运行在一个DVM<br>DVM与ART<br>1）DVM：每次运行应用都需要一次编译，效率降低。JIT<br>2）ART：Android5.0以上默认为ART，系统会在进程安装后进行一次预编译，将代码转为机器语言存在本地，这样在每次运行时不用再进行编译，提高启动效率；。 AOP &amp; JIT</p>
+<h5 id="Transform是如何被执行的"><a href="#Transform是如何被执行的" class="headerlink" title="Transform是如何被执行的"></a>Transform是如何被执行的</h5><p>Transform 在编译过程中会被封装成Task 依赖其他编译流程的Task执行。</p>
+<p>Transform和其他系统Transform执行的顺序</p>
+<p>其实这个题目已经是个过期了，后面对这些都合并整合了，而且最新版的api也做了替换，要不然考虑下回怼下面试官？<br>Transform和Task之间有关？</p>
+<p>如何监控编译速度变慢问题</p>
+<p>./gradlew xxxxx – scan</p>
+<p>之后会生成一个gradle的网页，填写下你的邮箱就好了。<br>另外一个相对来说比较简单了。通过gradle原生提供的listener进行就行了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 耗时统计kt化</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TimingsListener</span> : <span class="title">TaskExecutionListener</span>, <span class="title">BuildListener</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> startTime: Long = <span class="number">0L</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> timings = linkedMapOf&lt;String, Long&gt;()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">beforeExecute</span><span class="params">(task: Task)</span> </span>&#123;</span><br><span class="line">        startTime = System.nanoTime()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">afterExecute</span><span class="params">(task: Task, state: TaskState)</span> </span>&#123;</span><br><span class="line">        val ms = TimeUnit.MILLISECONDS.convert(System.nanoTime() - startTime, TimeUnit.NANOSECONDS)</span><br><span class="line">        task.path</span><br><span class="line">        timings[task.path] = ms</span><br><span class="line">        project.logger.warn(<span class="string">&quot;$&#123;task.path&#125; took $&#123;ms&#125;ms&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">buildFinished</span><span class="params">(result: BuildResult)</span> </span>&#123;</span><br><span class="line">        project.logger.warn(<span class="string">&quot;Task timings:&quot;</span>)</span><br><span class="line">        timings.forEach &#123;</span><br><span class="line">            <span class="keyword">if</span> (it.value &gt;= <span class="number">50</span>) &#123;</span><br><span class="line">                project.logger.warn(<span class="string">&quot;$&#123;it.key&#125; cos  ms  $&#123;it.value&#125;\n&quot;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">buildStarted</span><span class="params">(gradle: Gradle)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">settingsEvaluated</span><span class="params">(settings: Settings)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">projectsLoaded</span><span class="params">(gradle: Gradle)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">projectsEvaluated</span><span class="params">(gradle: Gradle)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gradle.addListener(TimingsListener())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="Gradle中如何给一个Task前后插入别的任务"><a href="#Gradle中如何给一个Task前后插入别的任务" class="headerlink" title="Gradle中如何给一个Task前后插入别的任务"></a>Gradle中如何给一个Task前后插入别的任务</h5><p>最简单的可以考虑直接获取到Task实例，之后在after和before插入一些你所需要的代码。<br>另外一个就是通过dependOn前置和finalizedBy挂载一个任务 mustAfter<br>Gradle 使用指南 – Gradle Task</p>
+<p>ksp APT Transform的区别</p>
+<p>ksp 是kotlin专门独立的ast语法树<br>apt 是java 的ast语法树<br>transform是 agp 专门修改字节码的一个方法。<br>反杀时刻AsmClassVisitorFactory,可以看看我之前写的那篇文章。</p>
+<p>Transform上的编译优化能做哪些？</p>
+<p>虽然是个即将过期的api，但是大家对他的改动还是都比较多的。<br>首先肯定是需要完成增量编译的，具体的可以参考我的demo工程。记住，所有的transfrom都要全量。<br>另外可以考虑多线程优化，将转化操作移动到子线程内，建议使用gradle内部的共享线程。<br>参考agp最新做法，抽象出一个新的interface，之后通过spi串联，之后将asm链式调用。我的文章也介绍过，具体的点在哪里自己盘算。<br>现在准备好告别Transform了吗</p>
+<h5 id="aar-源码切换插件原理"><a href="#aar-源码切换插件原理" class="headerlink" title="aar 源码切换插件原理"></a>aar 源码切换插件原理</h5><p>这个前几天刚介绍过，原理和方案业内都差不多，mulite-repo应该都需要这个东西的。我的版本也比较简陋，大厂内部肯定都会有些魔改的。<br>相对来说功能肯定会更丰富，更全面一点。</p>
+<p>aar和源码切换插件Plus</p>
+<p>你们有哪些保证代码质量的手段</p>
+<p>最简单的方式还是通过静态扫描+pipline 处理，之后在合并mr之前进行一次拦截。<br>静态扫描方式比较多，下面给大家简单的介绍下<br>阿里的sonar 但是对kt的支持很糟糕，因为阿里使用，所以有很多现成的规则可以使用，但是如果从0-1接入，你可能会直接放弃。<br>原生的lint，可以基于原生提供的lint api，对其进行开发，支持种类也多，基本上算是一个非常优秀的方案了，但是由于文档资料较少，对于开发的要求可能会较高。</p>
+<p>AndroidLint</p>
+<h5 id="如何对第三方的依赖做静态检查？"><a href="#如何对第三方的依赖做静态检查？" class="headerlink" title="如何对第三方的依赖做静态检查？"></a>如何对第三方的依赖做静态检查？</h5><p>魔高一尺道高一丈。lint还是能解决这个问题的。<br>Tree Api+ClassScanner = 识别三方隐私权限调用</p>
+<p>R.java code too large 解决方案</p>
+<p>又是一个过期的问题，尽早升级agp版本，让R8帮你解决这个问题，R文件完全可以内联的。<br>或者用别的AGP插件的R inline也可以解决这个问题。</p>
+<p>R inline 你需要注意些什么？</p>
+<p>预扫描，先收集调用的信息，之后在进行替换。还有javac 的时候可能就因为文件过大，直接挂掉了。</p>
+<p>一个类替换父类  比如所有activity实现类替换baseactivity</p>
+<p>class node 直接替换 superName ，想起了之前另外一个问题，感觉主要是要对构造函数进行修改，否则也会出异常。</p>
+<p>R8 D8 以及混淆相关的，还有R8除了混淆还能干些什么？ 混淆规则有没有碰到什么奇怪的问题？<br>D8和Dx的区别，主要涉及到编译速度以及编译产物的体积，包体积大概小11%。</p>
+<p>R8 则是变更了整个编译流程的，其中我觉得最微妙的就是java8 lambda相关的，脱糖前后的差别还是比较大的。同时R8也少了很多之前的Transform。<br>R8的混淆部分，混淆除了能增加代码阅读难度意外，更多的是对于代码优化方面的。 比如无效代码优化，  同时也删除代码等等都可以做。</p>
+<h5 id="编译的时候有没有碰到javac的常量优化"><a href="#编译的时候有没有碰到javac的常量优化" class="headerlink" title="编译的时候有没有碰到javac的常量优化"></a>编译的时候有没有碰到javac的常量优化</h5><p>javac会将静态常量直接优化成具体的数值。但是尤其是多模块场景下尤其容易出现异常，看起来是个实际的常量引用，但是产物上却是一个具体的常量值了。<br>其他部分<br>组件化相关<br>不仅仅要聊到路由，还需要聊下业务仓库的设计，如何避免两个模块之间相互相互引用导致的环问题。<br>另外就是路由的apt aop的部分都可以深入的聊一下。<br>如果只聊路由的话，你就只说了一个字符串匹配规则，非常无聊了。<br>路由跳转<br>路由跳转只是一小部分，其核心原理就是字符串匹配，之后筛选出符合逻辑的页面进行跳转。<br>另外就是拦截器的设计，同步异步拦截器两种完全不同的写法。<br>其原理基于apt+transform ，apt负责生成模块德 路由表，而transform则负责将各个模块的路由表进行收集。<br>服务发现<br>类似路由表，但是维护的是一个基于键值的类构造。ab之间当有相互依赖的情况下，可以通过基于接口编程的方式进行调整，互相只依赖抽象的接口，之后实现类在内部，通过注册的机制。之后在实际的使用地方用服务发现的机制寻找。<br>依赖注入<br>和服务发现类似，也是拿来解决不同模块间的依赖问题。可以使用hilt，依赖注入的好处就是连构造的这部分工作也有di完成了，而且构造能力更多样。可以多参数构造。<br>虚拟机部分<br>很多人会觉得虚拟机这部分都是硬八股，比较无聊。但是其实有时候我们碰到的一些字节码相关的问题就和这部分基础姿势相关了。<br>虽然用的比较少，但是也不是一个硬八股，比hashmap好玩太多了。<br>总</p>
+</font>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>原创技术分享，您的支持将鼓励我继续创作!</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="andy 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="andy 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/tree/" rel="tag"># tree</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/13/Android/AndroidSdkHotFix/" rel="prev" title="AndroidSdkHotFix">
+      <i class="fa fa-chevron-left"></i> AndroidSdkHotFix
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E4%BB%A5%E5%8F%8A%E7%81%B0%E5%BA%A6%E6%B5%8B%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">配置中心以及灰度测试</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E7%BB%84%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">调试组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E6%A1%86%E6%9E%B6"><span class="nav-number">3.</span> <span class="nav-text">性能监控框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%BD%91%E7%BB%9C%E7%BB%84%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">基础网络组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%8B%E7%82%B9%E6%A1%86%E6%9E%B6"><span class="nav-number">5.</span> <span class="nav-text">埋点框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E7%9B%B8%E5%85%B3"><span class="nav-number">6.</span> <span class="nav-text">启动相关</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6-%E5%9B%BE%E7%89%87-%E6%97%A5%E5%BF%97-%E5%AD%98%E5%82%A8-%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF"><span class="nav-number">7.</span> <span class="nav-text">中间件(图片 日志 存储 基础信息)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E9%9D%A2"><span class="nav-number">8.</span> <span class="nav-text">其他方面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0%E4%B8%8Bandroid%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B"><span class="nav-number">9.</span> <span class="nav-text">描述下android编译流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Gradle-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">10.</span> <span class="nav-text">Gradle 生命周期</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#apt%E6%98%AF%E7%BC%96%E8%AF%91%E4%B8%AD%E5%93%AA%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="nav-number">11.</span> <span class="nav-text">apt是编译中哪个阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dex%E5%92%8Cclass%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="nav-number">12.</span> <span class="nav-text">Dex和class有什么区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Transform%E6%98%AF%E5%A6%82%E4%BD%95%E8%A2%AB%E6%89%A7%E8%A1%8C%E7%9A%84"><span class="nav-number">13.</span> <span class="nav-text">Transform是如何被执行的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Gradle%E4%B8%AD%E5%A6%82%E4%BD%95%E7%BB%99%E4%B8%80%E4%B8%AATask%E5%89%8D%E5%90%8E%E6%8F%92%E5%85%A5%E5%88%AB%E7%9A%84%E4%BB%BB%E5%8A%A1"><span class="nav-number">14.</span> <span class="nav-text">Gradle中如何给一个Task前后插入别的任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#aar-%E6%BA%90%E7%A0%81%E5%88%87%E6%8D%A2%E6%8F%92%E4%BB%B6%E5%8E%9F%E7%90%86"><span class="nav-number">15.</span> <span class="nav-text">aar 源码切换插件原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AF%B9%E7%AC%AC%E4%B8%89%E6%96%B9%E7%9A%84%E4%BE%9D%E8%B5%96%E5%81%9A%E9%9D%99%E6%80%81%E6%A3%80%E6%9F%A5%EF%BC%9F"><span class="nav-number">16.</span> <span class="nav-text">如何对第三方的依赖做静态检查？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E7%9A%84%E6%97%B6%E5%80%99%E6%9C%89%E6%B2%A1%E6%9C%89%E7%A2%B0%E5%88%B0javac%E7%9A%84%E5%B8%B8%E9%87%8F%E4%BC%98%E5%8C%96"><span class="nav-number">17.</span> <span class="nav-text">编译的时候有没有碰到javac的常量优化</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">andy</p>
+  <div class="site-description" itemprop="description">stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+<script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=7i_mI2oW-GRhD-wvrpG2CyYvf2FS2pi1oS1V7WGva4g&cl=ffffff&w=a"></script>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">andy</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">197k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:59</span>
+</div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

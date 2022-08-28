@@ -129,7 +129,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">53</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">54</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -363,6 +363,232 @@
 <p><img src="/images/1307424-20181107191355172-2085276841.png" alt="img"></p>
 <p>从上面这张图中明显可以看出采用 CACBA 的无损压缩方案要比 VLC 高效的多。</p>
 </font>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A300-%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%B0%81%E8%A3%85%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A300-%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%B0%81%E8%A3%85%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">视频解码基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-18 18:34:24" itemprop="dateCreated datePublished" datetime="2021-11-18T18:34:24+08:00">2021-11-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-13 11:35:26" itemprop="dateModified" datetime="2022-08-13T11:35:26+08:00">2022-08-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <font size="2.9">
+
+<h3 id="视频解码基础01-封裝格式"><a href="#视频解码基础01-封裝格式" class="headerlink" title="视频解码基础01-封裝格式"></a>视频解码基础01-封裝格式</h3><h4 id="二、视频文件封装格式"><a href="#二、视频文件封装格式" class="headerlink" title="二、视频文件封装格式"></a>二、视频文件封装格式</h4><p>封装格式（也叫容器），就是将已经编码压缩好的视频轨和音频轨按照一定的格式放到一个文件中，也就是说仅仅是一个外壳，或者大家把它当成一个放视频轨和音频轨的文件夹也可以。说得通俗点，视频轨相当于饭，而音频轨相当于菜，封装格式就是一个碗，或者一个锅，用来盛放饭菜的容器。 下面是几种常用的 <strong>视频文件后缀类型</strong> 与其相对应的 <strong>封装格式</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>视频文件格式</th>
+<th>视频封装格式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>.avi</strong></td>
+<td>AVI（Audio Video Interleaved）</td>
+</tr>
+<tr>
+<td><strong>.wmv、.asf</strong></td>
+<td>WMV（Windows Media Video）</td>
+</tr>
+<tr>
+<td><strong>.mpg、.mpeg、.vob、.dat、.3gp、.mp4</strong></td>
+<td>MPEG（Moving Picture Experts Group）</td>
+</tr>
+<tr>
+<td><strong>.mkv</strong></td>
+<td>Matroska</td>
+</tr>
+<tr>
+<td><strong>.rm、.rmvb</strong></td>
+<td>Real Video</td>
+</tr>
+<tr>
+<td><strong>.mov</strong></td>
+<td>QuickTime File Format</td>
+</tr>
+<tr>
+<td><strong>.flv</strong></td>
+<td>Flash Video</td>
+</tr>
+</tbody></table>
+<h4 id="三、-音视频编码方式简介"><a href="#三、-音视频编码方式简介" class="headerlink" title="三、 音视频编码方式简介"></a>三、 音视频编码方式简介</h4><h5 id="1、视频编码方式"><a href="#1、视频编码方式" class="headerlink" title="1、视频编码方式"></a>1、视频编码方式</h5><ul>
+<li><strong>视频编码的作用：</strong> 将视频像素数据（<strong>RGB，YUV</strong> 等）压缩成视频码流，从而降低视频的数据量。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>HEVC（H.265）</strong></th>
+<th><strong>MPEG/ITU-T</strong></th>
+<th>2013</th>
+<th>研发中</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>名称</td>
+<td>推出机构</td>
+<td>推出时间</td>
+<td>目前使用领域</td>
+</tr>
+<tr>
+<td><strong>H.264</strong></td>
+<td><strong>MPEG/ITU-T</strong></td>
+<td>2003</td>
+<td>各个领域</td>
+</tr>
+<tr>
+<td><strong>MPEG4</strong></td>
+<td><strong>MPEG</strong></td>
+<td>2001</td>
+<td>不温不火</td>
+</tr>
+<tr>
+<td><strong>MPEG2</strong></td>
+<td><strong>MPEG</strong></td>
+<td>1994</td>
+<td>数字电视</td>
+</tr>
+<tr>
+<td><strong>VP9</strong></td>
+<td>Google</td>
+<td>2013</td>
+<td>研发中</td>
+</tr>
+<tr>
+<td><strong>VP8</strong></td>
+<td>Google</td>
+<td>2008</td>
+<td>不普及</td>
+</tr>
+<tr>
+<td><strong>VC-1</strong></td>
+<td>Microsoft Inc.</td>
+<td>2006</td>
+<td>微软平台</td>
+</tr>
+</tbody></table>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h4 id="四-音频编码方式"><a href="#四-音频编码方式" class="headerlink" title="四, 音频编码方式"></a>四, 音频编码方式</h4><p><strong>音频编码的作用：</strong> 将音频采样数据（<strong>PCM</strong> 等）压缩成音频码流，从而降低音频的数据量。 常用的音频编码方式有以下几种：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>推出机构</th>
+<th>推出时间</th>
+<th>目前使用领域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>AAC</strong></td>
+<td><strong>MPEG</strong></td>
+<td>1997</td>
+<td>各个领域（新）</td>
+</tr>
+<tr>
+<td><strong>MP3</strong></td>
+<td><strong>MPEG</strong></td>
+<td>1993</td>
+<td>各个领域（旧）</td>
+</tr>
+<tr>
+<td><strong>WMV</strong></td>
+<td><strong>Microsoft Inc.</strong></td>
+<td>1999</td>
+<td>微软平台</td>
+</tr>
+<tr>
+<td><strong>AC-3</strong></td>
+<td><strong>Dolby Inc.</strong></td>
+<td>1992</td>
+<td>电影</td>
+</tr>
+</tbody></table>
+<h5 id="1-MP3"><a href="#1-MP3" class="headerlink" title="1  MP3"></a>1  MP3</h5><p><strong>MP3</strong>，英文全称 <strong>MPEG-1 or MPEG-2 Audio Layer III</strong>，是曾经非常流行的一种数字音频编码和有损压缩格式，它被设计来大幅降低音频数据量。它是在 <strong>1991</strong> 年，由位于德国埃尔朗根的研究组织 <strong>Fraunhofer-Gesellschaft</strong> 的一组工程师发明和标准化的。<strong>MP3</strong> 的普及，曾对音乐产业造成极大的冲击与影响。</p>
+<h5 id="2-AAC"><a href="#2-AAC" class="headerlink" title="2 AAC"></a>2 AAC</h5><p><strong>AAC</strong>，英文全称 <strong>Advanced Audio Coding</strong>，是由 <strong>Fraunhofer IIS</strong>、杜比实验室、<strong>AT&amp;T</strong>、<strong>Sony</strong> 等公司共同开发，在 <strong>1997</strong> 年推出的基于 <strong>MPEG-2</strong> 的音频编码技术。<strong>2000</strong> 年，<strong>MPEG-4</strong> 标准出现后，<strong>AAC</strong> 重新集成了其特性，加入了 <strong>SBR</strong> 技术和 <strong>PS</strong> 技术，为了区别于传统的 <strong>MPEG-2 AAC</strong> 又称为 <strong>MPEG-4 AAC</strong>。 <strong>AAC</strong> 比 <strong>MP3</strong> 有更高的压缩比，同样大小的音频文件，<strong>AAC</strong> 的音质更高。</p>
+<h5 id="3-WMA"><a href="#3-WMA" class="headerlink" title="3 WMA"></a>3 WMA</h5><p><strong>WMA</strong>，英文全称 <strong>Windows Media Audio</strong>，由微软公司开发的一种数字音频压缩格式，本身包括有损和无损压缩格式。</p>
+<p>​        我们播放的视频文件一般都是用一种<strong>封装格式</strong>封装起来的，封装格式的作用是什么呢？一般视频文件里不光有视频，还有音频，封装格式的作用就是把视频和音频打包起来。 所以我们先要<strong>解封装格式</strong>，看有哪些视频流和哪些音频流，此时的音频流和视频流都还是<strong>压缩数据</strong>，不能直接用于显示的，这就需要<strong>解码</strong>。下面是播放一个视频文件时的流程图。</p>
+<p><img src="/images/4.png" alt="1"></p>
+<p>FFmpeg  视频文件  是一个容器  (视频流（H264）  音频流(aac))</p>
+</font>
+
+
+
+
       
     </div>
 
@@ -1084,6 +1310,195 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/" class="post-title-link" itemprop="url">H.265与H.264的差异详解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-18 18:34:24" itemprop="dateCreated datePublished" datetime="2021-11-18T18:34:24+08:00">2021-11-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-13 11:36:48" itemprop="dateModified" datetime="2022-08-13T11:36:48+08:00">2022-08-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <font size="2.9">
+
+
+<h2 id="H-265与H-264的差异详解"><a href="#H-265与H-264的差异详解" class="headerlink" title="H.265与H.264的差异详解"></a>H.265与H.264的差异详解</h2><blockquote>
+<p><strong>码牛只为跟牛逼的你</strong></p>
+</blockquote>
+<p>通过以下几种来对比H264与H265的差异</p>
+<blockquote>
+<p>1.编解码框架差异</p>
+<p>2.压缩性能比较</p>
+<p>3.各模块技术差异汇总</p>
+<p>4.块划分结构</p>
+<p>5.帧内预测</p>
+<p>6.帧间预测</p>
+<p>7.去块滤波</p>
+<p>8.SAO滤波</p>
+<p>9.Tile</p>
+<p>10.WPP</p>
+<p>11.Dependent slice</p>
+<p>12.其他技术</p>
+</blockquote>
+<h4 id="1-1-H-264与H-265的主要差异"><a href="#1-1-H-264与H-265的主要差异" class="headerlink" title="1.1  H.264与H.265的主要差异"></a>1.1  H.264与H.265的主要差异</h4><p>H.265仍然采用混合编解码，编解码结构域H.264基本一致，</p>
+<p>主要的不同在于：</p>
+<p>Ø 编码块划分结构：采用CU (CodingUnit)、PU(PredictionUnit)和TU(TransformUnit)的递归结构。</p>
+<p>Ø 基本细节：各功能块的内部细节有很多差异</p>
+<p>Ø 并行工具：增加了Tile以及WPP等并行工具集以提高编码速度</p>
+<p>Ø 滤波器：在去块滤波之后增加了SAO（sample adaptive offset）滤波模块</p>
+<p><img src="https://img-blog.csdn.net/20170903222110391?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>Fig.H.265的框架图</p>
+<h4 id="2-压缩性能比较"><a href="#2-压缩性能比较" class="headerlink" title="2.  压缩性能比较"></a>2.  压缩性能比较</h4><p>PSNR计算方式</p>
+<p><img src="https://img-blog.csdn.net/20170903222300500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265/HEVC HM-9.0 和H.264 JM-18.4 的BD-rate 比较：</p>
+<p> AllIntra case:           22%</p>
+<p> RandomAccess case:       34%</p>
+<p> LowDelay case:          37%</p>
+<h4 id="3-各模块技术差异汇总"><a href="#3-各模块技术差异汇总" class="headerlink" title="3.  各模块技术差异汇总"></a>3.  各模块技术差异汇总</h4><p><img src="https://img-blog.csdn.net/20170903222335956?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p><img src="https://img-blog.csdn.net/20170903222351940?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="4-块划分结构"><a href="#4-块划分结构" class="headerlink" title="4.  块划分结构"></a>4.  块划分结构</h4><p>在H.265中，将宏块的大小从H.264的16×16扩展到了64×64，以便于高分辨率视频的压缩。</p>
+<p>同时，采用了更加灵活的编码结构来提高编码效率，</p>
+<p>包括编码单元（CodingUnit）、预测单元（PredictUnit）和变换单元（TransformUnit）。</p>
+<p>如下图所示:</p>
+<p><img src="https://img-blog.csdn.net/20170903222441671?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>其中:</p>
+<p>编码单元类似于H.264/AVC中的宏块的概念，用于编码的过程。</p>
+<p>预测单元是进行预测的基本单元，</p>
+<p>变换单元是进行变换和量化的基本单元。</p>
+<p>这三个单元的分离，使得变换、预测和编码各个处理环节更加灵活，</p>
+<p>也有利于各环节的划分更加符合视频图像的纹理特征，</p>
+<p>有利于各个单元更优化的完成各自的功能。</p>
+<p><img src="https://img-blog.csdn.net/20170903222542263?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>RQT是一种自适应的变换技术，这种思想是对H.264/AVC中ABT（AdaptiveBlock-size Transform）技术的延伸和扩展。</p>
+<p>对于帧间编码来说，它允许变换块的大小根据运动补偿块的大小进行自适应的调整；</p>
+<p>对于帧内编码来说，它允许变换块的大小根据帧内预测残差的特性进行自适应的调整。</p>
+<p>大块的变换相对于小块的变换，一方面能够提供更好的能量集中效果，并能在量化后保存更多的图像细节，但是另一方面在量化后却会带来更多的振铃效应。</p>
+<p>因此，根据当前块信号的特性，自适应的选择变换块大小，如下图所示，可以得到能量集中、细节保留程度以及图像的振铃效应三者最优的折中。</p>
+<p><img src="https://img-blog.csdn.net/20170903222512555?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>Fig. 灵活的块结构示意图</p>
+<h4 id="5-帧内预测模式"><a href="#5-帧内预测模式" class="headerlink" title="5.  帧内预测模式"></a>5.  帧内预测模式</h4><p>本质上H.265是在H.264的预测方向基础上增加了更多的预测方向</p>
+<p>H.265：所有尺寸的CU块，亮度有35种预测方向，色度有5种预测方向</p>
+<p>H.264：亮度 4x4块9个方向，8x8块9个方向，16x16块4种方向，色度4种方向</p>
+<p> <img src="https://img-blog.csdn.net/20170903222603597?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.264的帧内预测方向:</p>
+<p> <img src="https://img-blog.csdn.net/20170903222635669?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265的帧内预测方向：</p>
+<h4 id="6-帧间预测"><a href="#6-帧间预测" class="headerlink" title="6.  帧间预测"></a>6.  帧间预测</h4><p>本质上H.265是在H.264基础上增加插值的抽头系数个数，改变抽头系数值以及增加运动矢量预测值的候选个数，以达到减少预测残差的目的。</p>
+<p>H.265与H.264一样插值精度都是亮度到1/4，色度到1/8精度，但插值滤波器抽头长度和系数不同.</p>
+<p>H.265的增加了运动矢量预测值候选的个数，而H.264预测值只有一个</p>
+<p> <img src="https://img-blog.csdn.net/20170903222712796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265的空域候选项：</p>
+<p><img src="https://img-blog.csdn.net/20170903222726452?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265时域共同位置候选项</p>
+<h4 id="7-去块滤波"><a href="#7-去块滤波" class="headerlink" title="7.  去块滤波"></a>7.  去块滤波</h4><p>本质上H.265的去块滤波与H.264的去块滤波及流程是一致的，做了如下最显著的改变：</p>
+<p>Ø 滤波边界： H.264最小到4x4边界滤波；而H.265适应最新的CU、PU和TU划分结构的滤波边缘，最小滤波边界为8x8，</p>
+<p>Ø 滤波顺序：H264先宏块内采用垂直边界，再当前宏块内水平边界；而H.265先整帧的垂直边界，再整帧的水平边界</p>
+<p>ALF在编解码环路内，位于Deblock和SAO之后，</p>
+<p>用于恢复重建图像以达到重建图像与原始图像之间的均方差（MSE）最小。</p>
+<p>ALF的系数是在帧级计算和传输的，可以整帧应用ALF，</p>
+<p>也可以对于基于块或基于量化树（quadtree）的部分区域进行ALF，</p>
+<p>如果是基于部分区域的ALF，还必须传递指示区域信息的附加信息。</p>
+<h4 id="8-采样点自适应偏移（Sample-AdaptiveOffset）滤波"><a href="#8-采样点自适应偏移（Sample-AdaptiveOffset）滤波" class="headerlink" title="8.  采样点自适应偏移（Sample AdaptiveOffset）滤波"></a>8.  采样点自适应偏移（Sample AdaptiveOffset）滤波</h4><p>SAO(sample adaptive offset)滤波其实就是对去块滤波后的重建像素按照不同的模板进行分类，并对每一种分类像素进行补偿, 分类模板分为BO(Band offset)和EO(Edge offset)。</p>
+<p> <img src="https://img-blog.csdn.net/20170903222824890?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>BO分类：</p>
+<p> <img src="https://img-blog.csdn.net/20170903222838657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>EO分类模块：</p>
+<p>SAO在编解码环路内，位于Deblock之后，通过对重建图像的分类，对每一类图像像素值加减一个偏移，达到减少失真的目的，从而提高压缩率，减少码流。</p>
+<p>采用SAO后，平均可以减少2%~6%的码流,而编码器和解码器的性能消耗仅仅增加了约2%。</p>
+<h4 id="9-Tile划分"><a href="#9-Tile划分" class="headerlink" title="9.  Tile划分"></a>9.  Tile划分</h4><p>Tile： 将图像分割为矩形区域。</p>
+<p>其主要目的是增强并行处理性能。</p>
+<p>每个tile区域相当于一幅子图像，可独立的以LCU块为单位进行编解码。</p>
+<p>一个Tile块为基本的并行单元，每个Tile为一个子码流</p>
+<p> <img src="https://img-blog.csdn.net/20170903222909352?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\10. WPP</p>
+<p>WPP:  全称为wavefront parallel process，以LCU行为基本的编码单位。</p>
+<p>以一行LCU块为基本的并行单元，每一行LCU为一个子码流</p>
+<p> <img src="https://img-blog.csdn.net/20170903222931315?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\11. Dependentslice</p>
+<p>Dependent slice：该技术可以理解为对原先Slice NALU的数据划分，使其可以适合更加灵活的打包方式。</p>
+<p>Slice 和dependent slice 的示意图如下</p>
+<p><img src="https://img-blog.csdn.net/20170903223007796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\12. 其他相关技术</p>
+<p>Ø Transform_skip模式：transform_skip_flag，该模式不进行变换，但是要进行量化，该模式对文本桌面视频有较好效果</p>
+<p>Ø 内部比特深度增加：为了保证中间预测、变换以及量化过程中的内部比特精度，以达到更好的压缩性能</p>
+</font>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A306-H264%E8%A7%A3%E7%A0%81%E6%B5%81%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1581,195 +1996,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/" class="post-title-link" itemprop="url">H.265与H.264的差异详解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-18 18:34:24" itemprop="dateCreated datePublished" datetime="2021-11-18T18:34:24+08:00">2021-11-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-13 11:36:48" itemprop="dateModified" datetime="2022-08-13T11:36:48+08:00">2022-08-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <font size="2.9">
-
-
-<h2 id="H-265与H-264的差异详解"><a href="#H-265与H-264的差异详解" class="headerlink" title="H.265与H.264的差异详解"></a>H.265与H.264的差异详解</h2><blockquote>
-<p><strong>码牛只为跟牛逼的你</strong></p>
-</blockquote>
-<p>通过以下几种来对比H264与H265的差异</p>
-<blockquote>
-<p>1.编解码框架差异</p>
-<p>2.压缩性能比较</p>
-<p>3.各模块技术差异汇总</p>
-<p>4.块划分结构</p>
-<p>5.帧内预测</p>
-<p>6.帧间预测</p>
-<p>7.去块滤波</p>
-<p>8.SAO滤波</p>
-<p>9.Tile</p>
-<p>10.WPP</p>
-<p>11.Dependent slice</p>
-<p>12.其他技术</p>
-</blockquote>
-<h4 id="1-1-H-264与H-265的主要差异"><a href="#1-1-H-264与H-265的主要差异" class="headerlink" title="1.1  H.264与H.265的主要差异"></a>1.1  H.264与H.265的主要差异</h4><p>H.265仍然采用混合编解码，编解码结构域H.264基本一致，</p>
-<p>主要的不同在于：</p>
-<p>Ø 编码块划分结构：采用CU (CodingUnit)、PU(PredictionUnit)和TU(TransformUnit)的递归结构。</p>
-<p>Ø 基本细节：各功能块的内部细节有很多差异</p>
-<p>Ø 并行工具：增加了Tile以及WPP等并行工具集以提高编码速度</p>
-<p>Ø 滤波器：在去块滤波之后增加了SAO（sample adaptive offset）滤波模块</p>
-<p><img src="https://img-blog.csdn.net/20170903222110391?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>Fig.H.265的框架图</p>
-<h4 id="2-压缩性能比较"><a href="#2-压缩性能比较" class="headerlink" title="2.  压缩性能比较"></a>2.  压缩性能比较</h4><p>PSNR计算方式</p>
-<p><img src="https://img-blog.csdn.net/20170903222300500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265/HEVC HM-9.0 和H.264 JM-18.4 的BD-rate 比较：</p>
-<p> AllIntra case:           22%</p>
-<p> RandomAccess case:       34%</p>
-<p> LowDelay case:          37%</p>
-<h4 id="3-各模块技术差异汇总"><a href="#3-各模块技术差异汇总" class="headerlink" title="3.  各模块技术差异汇总"></a>3.  各模块技术差异汇总</h4><p><img src="https://img-blog.csdn.net/20170903222335956?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p><img src="https://img-blog.csdn.net/20170903222351940?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="4-块划分结构"><a href="#4-块划分结构" class="headerlink" title="4.  块划分结构"></a>4.  块划分结构</h4><p>在H.265中，将宏块的大小从H.264的16×16扩展到了64×64，以便于高分辨率视频的压缩。</p>
-<p>同时，采用了更加灵活的编码结构来提高编码效率，</p>
-<p>包括编码单元（CodingUnit）、预测单元（PredictUnit）和变换单元（TransformUnit）。</p>
-<p>如下图所示:</p>
-<p><img src="https://img-blog.csdn.net/20170903222441671?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>其中:</p>
-<p>编码单元类似于H.264/AVC中的宏块的概念，用于编码的过程。</p>
-<p>预测单元是进行预测的基本单元，</p>
-<p>变换单元是进行变换和量化的基本单元。</p>
-<p>这三个单元的分离，使得变换、预测和编码各个处理环节更加灵活，</p>
-<p>也有利于各环节的划分更加符合视频图像的纹理特征，</p>
-<p>有利于各个单元更优化的完成各自的功能。</p>
-<p><img src="https://img-blog.csdn.net/20170903222542263?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>RQT是一种自适应的变换技术，这种思想是对H.264/AVC中ABT（AdaptiveBlock-size Transform）技术的延伸和扩展。</p>
-<p>对于帧间编码来说，它允许变换块的大小根据运动补偿块的大小进行自适应的调整；</p>
-<p>对于帧内编码来说，它允许变换块的大小根据帧内预测残差的特性进行自适应的调整。</p>
-<p>大块的变换相对于小块的变换，一方面能够提供更好的能量集中效果，并能在量化后保存更多的图像细节，但是另一方面在量化后却会带来更多的振铃效应。</p>
-<p>因此，根据当前块信号的特性，自适应的选择变换块大小，如下图所示，可以得到能量集中、细节保留程度以及图像的振铃效应三者最优的折中。</p>
-<p><img src="https://img-blog.csdn.net/20170903222512555?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>Fig. 灵活的块结构示意图</p>
-<h4 id="5-帧内预测模式"><a href="#5-帧内预测模式" class="headerlink" title="5.  帧内预测模式"></a>5.  帧内预测模式</h4><p>本质上H.265是在H.264的预测方向基础上增加了更多的预测方向</p>
-<p>H.265：所有尺寸的CU块，亮度有35种预测方向，色度有5种预测方向</p>
-<p>H.264：亮度 4x4块9个方向，8x8块9个方向，16x16块4种方向，色度4种方向</p>
-<p> <img src="https://img-blog.csdn.net/20170903222603597?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.264的帧内预测方向:</p>
-<p> <img src="https://img-blog.csdn.net/20170903222635669?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265的帧内预测方向：</p>
-<h4 id="6-帧间预测"><a href="#6-帧间预测" class="headerlink" title="6.  帧间预测"></a>6.  帧间预测</h4><p>本质上H.265是在H.264基础上增加插值的抽头系数个数，改变抽头系数值以及增加运动矢量预测值的候选个数，以达到减少预测残差的目的。</p>
-<p>H.265与H.264一样插值精度都是亮度到1/4，色度到1/8精度，但插值滤波器抽头长度和系数不同.</p>
-<p>H.265的增加了运动矢量预测值候选的个数，而H.264预测值只有一个</p>
-<p> <img src="https://img-blog.csdn.net/20170903222712796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265的空域候选项：</p>
-<p><img src="https://img-blog.csdn.net/20170903222726452?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265时域共同位置候选项</p>
-<h4 id="7-去块滤波"><a href="#7-去块滤波" class="headerlink" title="7.  去块滤波"></a>7.  去块滤波</h4><p>本质上H.265的去块滤波与H.264的去块滤波及流程是一致的，做了如下最显著的改变：</p>
-<p>Ø 滤波边界： H.264最小到4x4边界滤波；而H.265适应最新的CU、PU和TU划分结构的滤波边缘，最小滤波边界为8x8，</p>
-<p>Ø 滤波顺序：H264先宏块内采用垂直边界，再当前宏块内水平边界；而H.265先整帧的垂直边界，再整帧的水平边界</p>
-<p>ALF在编解码环路内，位于Deblock和SAO之后，</p>
-<p>用于恢复重建图像以达到重建图像与原始图像之间的均方差（MSE）最小。</p>
-<p>ALF的系数是在帧级计算和传输的，可以整帧应用ALF，</p>
-<p>也可以对于基于块或基于量化树（quadtree）的部分区域进行ALF，</p>
-<p>如果是基于部分区域的ALF，还必须传递指示区域信息的附加信息。</p>
-<h4 id="8-采样点自适应偏移（Sample-AdaptiveOffset）滤波"><a href="#8-采样点自适应偏移（Sample-AdaptiveOffset）滤波" class="headerlink" title="8.  采样点自适应偏移（Sample AdaptiveOffset）滤波"></a>8.  采样点自适应偏移（Sample AdaptiveOffset）滤波</h4><p>SAO(sample adaptive offset)滤波其实就是对去块滤波后的重建像素按照不同的模板进行分类，并对每一种分类像素进行补偿, 分类模板分为BO(Band offset)和EO(Edge offset)。</p>
-<p> <img src="https://img-blog.csdn.net/20170903222824890?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>BO分类：</p>
-<p> <img src="https://img-blog.csdn.net/20170903222838657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>EO分类模块：</p>
-<p>SAO在编解码环路内，位于Deblock之后，通过对重建图像的分类，对每一类图像像素值加减一个偏移，达到减少失真的目的，从而提高压缩率，减少码流。</p>
-<p>采用SAO后，平均可以减少2%~6%的码流,而编码器和解码器的性能消耗仅仅增加了约2%。</p>
-<h4 id="9-Tile划分"><a href="#9-Tile划分" class="headerlink" title="9.  Tile划分"></a>9.  Tile划分</h4><p>Tile： 将图像分割为矩形区域。</p>
-<p>其主要目的是增强并行处理性能。</p>
-<p>每个tile区域相当于一幅子图像，可独立的以LCU块为单位进行编解码。</p>
-<p>一个Tile块为基本的并行单元，每个Tile为一个子码流</p>
-<p> <img src="https://img-blog.csdn.net/20170903222909352?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\10. WPP</p>
-<p>WPP:  全称为wavefront parallel process，以LCU行为基本的编码单位。</p>
-<p>以一行LCU块为基本的并行单元，每一行LCU为一个子码流</p>
-<p> <img src="https://img-blog.csdn.net/20170903222931315?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\11. Dependentslice</p>
-<p>Dependent slice：该技术可以理解为对原先Slice NALU的数据划分，使其可以适合更加灵活的打包方式。</p>
-<p>Slice 和dependent slice 的示意图如下</p>
-<p><img src="https://img-blog.csdn.net/20170903223007796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\12. 其他相关技术</p>
-<p>Ø Transform_skip模式：transform_skip_flag，该模式不进行变换，但是要进行量化，该模式对文本桌面视频有较好效果</p>
-<p>Ø 内部比特深度增加：为了保证中间预测、变换以及量化过程中的内部比特精度，以达到更好的压缩性能</p>
-</font>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/15/IOS/ocClassDifferent/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2014,117 +2240,6 @@ self-&gt;deviceType和deviceType是等价的。
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/10/Unreal/unrealPackage/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/10/Unreal/unrealPackage/" class="post-title-link" itemprop="url">unrealPackage</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-10 18:48:53" itemprop="dateCreated datePublished" datetime="2021-11-10T18:48:53+08:00">2021-11-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-13 11:27:37" itemprop="dateModified" datetime="2022-08-13T11:27:37+08:00">2022-08-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/UE4/" itemprop="url" rel="index"><span itemprop="name">UE4</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <font size="2.9">
-
-<h4 id="UE-打包iOS"><a href="#UE-打包iOS" class="headerlink" title="UE 打包iOS"></a>UE 打包iOS</h4><p>unreal :4.24<br>xcode: 12.5<br>macOS: macos Monterey (匹配 xcode 13.0)</p>
-<pre><code>The Legacy Build System will be removed in a future release. You can configure the selected build system and this deprecation message in File &gt; Workspace Settings.
-</code></pre>
-<p>解决方法:   <code>匹配xcode 12.5</code></p>
-<p>file -&gt; Workspace Settings -&gt;Build System:Legacy Build System (Deprecated) 改成 :New Build System  </p>
-<p>下载低版本 Xcode  12.5 解决</p>
-<p>在新系统中 会提示不兼容，但是不影响编译</p>
-<h4 id="UE-配置-sign-In-apple"><a href="#UE-配置-sign-In-apple" class="headerlink" title="UE 配置 sign In apple"></a>UE 配置 sign In apple</h4><p>生成 项目.entitesment<br><code>https://forums.unrealengine.com/t/how-to-add-cloud-documnts-capatimitlty/82397</code></p>
-<h4 id="开启苹果登录"><a href="#开启苹果登录" class="headerlink" title="开启苹果登录"></a>开启苹果登录</h4><p>unreal: 4.26<br>ios: 打包路径 \UE_4.26\Engine\Source\Programs\UnrealBuildTool\Platform\IOS\IOSExports.cs</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// for Sign in with Apple</span></span><br><span class="line">				<span class="built_in">bool</span> bSignInWithAppleSupported = <span class="literal">false</span>;</span><br><span class="line">				PlatformGameConfig.GetBool(<span class="string">&quot;/Script/IOSRuntimeSettings.IOSRuntimeSettings&quot;</span>, <span class="string">&quot;bEnableSignInWithAppleSupport&quot;</span>, <span class="keyword">out</span> bSignInWithAppleSupported);</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span> (bSignInWithAppleSupported)</span><br><span class="line">				&#123;</span><br><span class="line">					Text.AppendLine(<span class="string">&quot;\t&lt;key&gt;com.apple.developer.applesignin&lt;/key&gt;&quot;</span>);</span><br><span class="line">					Text.AppendLine(<span class="string">&quot;\t&lt;array&gt;&lt;string&gt;Default&lt;/string&gt;&lt;/array&gt;&quot;</span>);</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-<p>Engine\config\BaseEngine.ini</p>
-<pre><code>[/Script/IOSRuntimeSettings.IOSRuntimeSettings]  
-MinimumiOSVersion=IOS_13
-bEnableSignInWithAppleSupport=True //key-value, key 容易写错
-</code></pre>
-<p>改完ini ,立刻生效</p>
-<h4 id="导入证书报错，提示不存在"><a href="#导入证书报错，提示不存在" class="headerlink" title="导入证书报错，提示不存在"></a>导入证书报错，提示不存在</h4><blockquote>
-<p>security import  dis证书.p12  -k ~/Library/Keychains/login.keychain</p>
-</blockquote>
-<h4 id="Ureal代码改变"><a href="#Ureal代码改变" class="headerlink" title="Ureal代码改变"></a>Ureal代码改变</h4><blockquote>
-<p>Gaia 给4.27 代码合并到 4.24 暂时不能测试</p>
-</blockquote>
-</font>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2194,7 +2309,7 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2244,13 +2359,13 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">190k</span>
+    <span title="站点总字数">197k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:53</span>
+    <span title="站点阅读时长">2:59</span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
