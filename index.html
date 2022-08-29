@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-08-28 23:37:41 / 修改时间：23:51:13" itemprop="dateCreated datePublished" datetime="2022-08-28T23:37:41+08:00">2022-08-28</time>
+              <time title="创建时间：2022-08-28 23:37:41 / 修改时间：23:54:57" itemprop="dateCreated datePublished" datetime="2022-08-28T23:37:41+08:00">2022-08-28</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -236,7 +236,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.5k</span>
+              <span>6.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -258,8 +258,8 @@
           <font size="2.9">
 
 <h5 id="配置中心以及灰度测试"><a href="#配置中心以及灰度测试" class="headerlink" title="配置中心以及灰度测试"></a>配置中心以及灰度测试</h5><p>app必备工具之一，配置中心主要负责的就是动态化的配置，比如文本展示类似这些的。sdk提供方需要负责的是提供动态更新能力，这里有个差异化更新，只更新dif部分，还有就是流量优化等等需要开发同学考虑的。然后可以考虑下存储性能方面的提升等。<br>而abtest也是app必备工具之一了，动态的下发实验策略，之后开发同学可以切换实验的页面。另外主要需要考虑灰度结果计算，分桶以及版本过滤白名单等等。这里只是一个简单的介绍不展开，因为我只是一个使用方。</p>
-<h5 id="调试组件"><a href="#调试组件" class="headerlink" title="调试组件"></a>调试组件</h5><p>个人还是更推荐滴滴的<img src="https://github.com/didi/DoraemonKit" alt="Dokit">，功能点比较多而且接入相对来说比较简单。而且提供了很多给开发同学定制的能力，可以在debug情况下增加很多业务相关的测试功能，方便测试同学，核心还是浮窗太方便了。<br>当然很多实验性的预研功能等其实都可以直接接在这里，然后在测试环境下充分展开，之后在进行线上灰度方案。还有一些具有风险的hook操作，个人也比较建议放在debug组件上。</p>
-<h5 id="性能监控框架"><a href="#性能监控框架" class="headerlink" title="性能监控框架"></a>性能监控框架</h5><p>这部分有几个不同的方面，首先是异常崩溃方面的，另外则是性能监控方面的，但是他们整体是划分在一起的，都属于线上性能监控体系的。<br>Crash相关的，可以从爱奇艺的<img src="https://github.com/iqiyi/xCrash" alt="xCrash">学起。包含了崩溃日志，ANR以及native crash，因为版本适配的问题ANR在高版本上已经不是这么好捞了，还有就是native crash相关的。是一个非常牛逼的库了。<br>而线上的性能监控框架可以从腾讯的<img src="https://github.com/Tencent/matrix" alt="Matrix">学起,以前有两篇文章介绍的内容也都是和Matrix相关的, Matrix首页上也有介绍，比如fps，卡顿，IO，电池，内存等等方面的监控。其中卡顿监控涉及到的就是方法前后插桩，同时要有函数的mapping表，插桩部分整体来说比较简单感觉。<br>另外关于线上内存相关的，推荐各位可以学习下快手的<img src="https://github.com/KwaiAppTeam/KOOM" alt="koom">, 对于hprof的压缩比例听说能达到70%，也能完成线上的数据回捞以及监控等等，是一个非常屌的框架。下面给大家一个抄答案的方式。字节也有一个类似的原理其实也差不多。</p>
+<h5 id="调试组件"><a href="#调试组件" class="headerlink" title="调试组件"></a>调试组件</h5><p>个人还是更推荐滴滴的 <a target="_blank" rel="noopener" href="https://github.com/didi/DoraemonKit">Dokit</a>，功能点比较多而且接入相对来说比较简单。而且提供了很多给开发同学定制的能力，可以在debug情况下增加很多业务相关的测试功能，方便测试同学，核心还是浮窗太方便了。<br>当然很多实验性的预研功能等其实都可以直接接在这里，然后在测试环境下充分展开，之后在进行线上灰度方案。还有一些具有风险的hook操作，个人也比较建议放在debug组件上。</p>
+<h5 id="性能监控框架"><a href="#性能监控框架" class="headerlink" title="性能监控框架"></a>性能监控框架</h5><p>这部分有几个不同的方面，首先是异常崩溃方面的，另外则是性能监控方面的，但是他们整体是划分在一起的，都属于线上性能监控体系的。<br>Crash相关的，可以从爱奇艺的<a target="_blank" rel="noopener" href="https://github.com/iqiyi/xCrash">xCrash</a>学起。包含了崩溃日志，ANR以及native crash，因为版本适配的问题ANR在高版本上已经不是这么好捞了，还有就是native crash相关的。是一个非常牛逼的库了。<br>而线上的性能监控框架可以从腾讯的<a target="_blank" rel="noopener" href="https://github.com/Tencent/matrix">Matrix</a>学起,以前有两篇文章介绍的内容也都是和Matrix相关的, Matrix首页上也有介绍，比如fps，卡顿，IO，电池，内存等等方面的监控。其中卡顿监控涉及到的就是方法前后插桩，同时要有函数的mapping表，插桩部分整体来说比较简单感觉。<br>另外关于线上内存相关的，推荐各位可以学习下快手的<a target="_blank" rel="noopener" href="https://github.com/KwaiAppTeam/KOOM">koom</a>, 对于hprof的压缩比例听说能达到70%，也能完成线上的数据回捞以及监控等等，是一个非常屌的框架。下面给大家一个抄答案的方式。字节也有一个类似的原理其实也差不多。</p>
 <blockquote>
 <p>主进程发现内存到达阈值的时候，用leakcanary的方案，通过shark fork进程内存，之后生成hrop。由于hrop文件相对较大，所以我们需要对于我们所要分析的内容进行筛选，可以通过xhook，之后对hrop的写入操作进行hook，当发现写入内容的类型符合我们的需要的情况下才进行写入。</p>
 </blockquote>
@@ -269,22 +269,22 @@
 <blockquote>
 <p>最后线上回捞机制就是基于一个指令，回捞线上符合标准的用户的文件操作，这个自行设计。</p>
 </blockquote>
-<p>其实上述几个库都还是有一个本质相关的东西，那么就是plthook,这个上面三个库应该都有对其的使用，之前是爱奇艺的<img src="https://github.com/iqiyi/xHook" alt="xhook">，现在是字节的<img src="https://github.com/bytedance/bhook" alt="bhook">, 这个大佬也是我的偶像之一了，非常离谱了算是。</p>
+<p>其实上述几个库都还是有一个本质相关的东西，那么就是plthook,这个上面三个库应该都有对其的使用，之前是爱奇艺的<a target="_blank" rel="noopener" href="https://github.com/iqiyi/xHook">xhook</a>，现在是字节的<a target="_blank" rel="noopener" href="https://github.com/bytedance/bhook">bhook</a>, 这个大佬也是我的偶像之一了，非常离谱了算是。</p>
 <blockquote>
-<p><img src="https://juejin.cn/post/6890754507639095303" alt="Android 性能采集之Fps,Memory,Cpu"> 和 <img src="https://juejin.cn/post/6900810600188739592" alt="Android IO监控"></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6890754507639095303">Android 性能采集之Fps,Memory,Cpu</a> 和 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6900810600188739592">Android IO监控</a></p>
 </blockquote>
 <p>最近已经不咋写这部分相关了，所以也就没有深挖，但是后续可能会有一篇关于phtead hook相关的，也是之前matrix更新的一个新东西，还在测试环境灰度阶段。</p>
-<h5 id="基础网络组件"><a href="#基础网络组件" class="headerlink" title="基础网络组件"></a>基础网络组件</h5><p>虽然核心可能还是三方网络库，但是因为基本所有公司都对网络方面有调整和改动，以及解析器等方面的优化，其实可以挖的东西也还是蛮多的。<br>应付面试的同学可以看看<img src="https://juejin.cn/post/6896302142542315533" alt="Android网络优化方案">。当然还是要具体问题具体分析，毕竟头疼医头，脚疼医脚对吧。<br>之前和另外一个朋友聊了下，其实很多厂对json解析这部分有优化调整，通过apt之后更换原生成原生的解析方式，加快反序列化速度的都是可以考虑考虑的。</p>
+<h5 id="基础网络组件"><a href="#基础网络组件" class="headerlink" title="基础网络组件"></a>基础网络组件</h5><p>虽然核心可能还是三方网络库，但是因为基本所有公司都对网络方面有调整和改动，以及解析器等方面的优化，其实可以挖的东西也还是蛮多的。<br>应付面试的同学可以看看<a target="_blank" rel="noopener" href="https://juejin.cn/post/6896302142542315533">Android网络优化方案</a>。当然还是要具体问题具体分析，毕竟头疼医头，脚疼医脚对吧。<br>之前和另外一个朋友聊了下，其实很多厂对json解析这部分有优化调整，通过apt之后更换原生成原生的解析方式，加快反序列化速度的都是可以考虑考虑的。</p>
 <h5 id="埋点框架"><a href="#埋点框架" class="headerlink" title="埋点框架"></a>埋点框架</h5><p>其实这个应该要放在更前面一点的，数据上报数据分析啥的其实都还是蛮重要的。<br>这部分因为我完全没写过哦，所以我压根不咋会，但是如果你会的话，面试的时候展开说说，可以帮助你不少。<br>另外还需要有线上的异常用户数据回捞系统，方便开发同学主动去把线上有异常的用户的日志给收集回来。<br>但是有些刁钻的页面曝光监控啦，自动化埋点啥的其实还是写过一点的，有兴趣的可以翻翻历史，还有github 上还有demo。</p>
 <blockquote>
-<p><img src="https://github.com/Leifzhang/AndroidAutoTrack" alt="AndroidAutoTrack"> demo工程</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Leifzhang/AndroidAutoTrack">AndroidAutoTrack</a> demo工程</p>
 </blockquote>
 <h5 id="启动相关"><a href="#启动相关" class="headerlink" title="启动相关"></a>启动相关</h5><p>通过DAG(有向无环图)的方式将sdk的初始化拆解成一个个task，之后理顺依赖关系，让他们能按照固定的顺序向下执行。<br>核心需要处理的是依赖关系，比如说其实埋点库依赖于网络库初始化，然后APM相关的则依赖于埋点库和配置中心abtest等等，这样的依赖关系需要开发同学去理顺的。<br>另外就是把sdk的粒度打的细碎一点，更容易观察每个sdk任务的耗时情况，之后增加task阈值告警，超过某个加载速度就通知到相应的同学改一下。<br>多线程是能优化掉一部分，但是也需要避免频繁线程调度。还有就是我个人觉得这些启动相关的东西因为都无法使用sdk级别的灰度，所以改动最好慎重一点。出发点始终都是好的，但是还是结果导向吧。<br>启动优化的核心，我个人始终坚持的就是延迟才能优化。开发人员很难做到优化代码执行的复杂度，执行时间之类的。尽人事听天命，玄学代码。</p>
 <h5 id="中间件-图片-日志-存储-基础信息"><a href="#中间件-图片-日志-存储-基础信息" class="headerlink" title="中间件(图片 日志 存储 基础信息)"></a>中间件(图片 日志 存储 基础信息)</h5><p>这部分没啥，最好是对第三方库有一层隔离的思维，但是这个隔离也需要对应的同学对于程序设计方面有很好的思维，说起来简单，其实也蛮复杂的。<br>这里就不展开了，感觉面试也很少会问的很细。</p>
 <p>第三方sdk大杂烩（偏中台方向）</p>
 <p>基本一个app现在都有啥分享啦，推送啦，支付啦，账号体系啦，webview，jsbridge等等服务于应用内的一些sdk，这些东西就比较偏向于业务。<br>有兴趣的可以看看之前写的两篇关于sdk设计相关的。</p>
 <blockquote>
-<p>活学活用责任链  <img src="https://juejin.cn/post/6881414546859229192" alt="SDK开发的一点点心得  Android厂商推送Plugin化"></p>
+<p>活学活用责任链  <a target="_blank" rel="noopener" href="https://juejin.cn/post/6881414546859229192">SDK开发的一点点心得  Android厂商推送Plugin化</a></p>
 </blockquote>
 <h5 id="其他方面"><a href="#其他方面" class="headerlink" title="其他方面"></a>其他方面</h5><p>大公司可能都会有些动态化方案的考虑，比如插件化啊动态化之类的。这部分在下确实不行，我就不展开了啊。<br>编译相关</p>
 <h5 id="描述下android编译流程"><a href="#描述下android编译流程" class="headerlink" title="描述下android编译流程"></a>描述下android编译流程</h5><p>基架很容易碰到的面试题，以前简单的描述写过。聊聊Android编译流程<br>虽然是几年前的知识点了，但是还是要拆开高低版本的agp做比较的。所以这部分可以回答下，基本这题就能简单的拿下了。</p>
@@ -1477,7 +1477,7 @@ Source：代码存放位置
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:59</span>
+    <span title="站点阅读时长">3:01</span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
