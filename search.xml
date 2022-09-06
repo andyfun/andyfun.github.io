@@ -3363,25 +3363,27 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
     <url>/2022/09/05/Android/adbTools/</url>
     <content><![CDATA[<font size='2.9'>
 
-<h5 id="adb"><a href="#adb" class="headerlink" title="adb"></a>adb</h5><ol>
-<li>获取当前任务栈</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell dumpsys activity | grep -i run</span><br><span class="line"></span><br><span class="line"><span class="comment">//查看activity 栈   </span></span><br><span class="line">adb shell dumpsys activity activities | findstr com.ztgame.yyzy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
+<h4 id="adb-shell"><a href="#adb-shell" class="headerlink" title="adb shell"></a>adb shell</h4><ol>
+<li><p>获取当前任务栈</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell dumpsys activity | grep -i run</span><br><span class="line"><span class="comment">//查看activity 栈   </span></span><br><span class="line">adb shell dumpsys activity activities | findstr com.ztgame.yyzy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>获取手机安装包</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//grep 搜索</span></span><br><span class="line">adb shell pm list packages | grep -i 包名  </span><br><span class="line"></span><br><span class="line"><span class="comment">//路径</span></span><br><span class="line">adb shell pm path com.ztgame.yyzy</span><br><span class="line"></span><br><span class="line">adb pull path</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//grep 搜索</span></span><br><span class="line">adb shell pm list packages | grep -i 包名  </span><br><span class="line"></span><br><span class="line"><span class="comment">//路径</span></span><br><span class="line">adb shell pm path com.ztgame.yyzy</span><br><span class="line"></span><br><span class="line">adb pull path</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>清楚数据缓存目录</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">adb shell pm clear com.ztgame.yyzy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell pm clear com.ztgame.yyzy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>启动activity</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">     adb shell am start -n com.googleplayapp.storerootsuaction/.MainActivity  </span><br><span class="line"></span><br><span class="line">```   </span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="number">5.</span> 启动service</span><br><span class="line">    </span><br><span class="line">```java    </span><br><span class="line">    adb shell am startService  com.googleplayapp.storerootsuaction/.MainActivity  </span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell am start -n com.googleplayapp.storerootsuaction/.MainActivity</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动service</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line">adb shell am startService  com.googleplayapp.storerootsuaction/.MainActivity  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>发送广播</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell am broadcast -a <span class="string">&quot;xxxAction&quot;</span></span><br><span class="line">adb shell am broadcast -n  com.ztgame.yyzy/.MyService</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell am broadcast -a <span class="string">&quot;xxxAction&quot;</span></span><br><span class="line">adb shell am broadcast -n  com.ztgame.yyzy/.MyService</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </font>]]></content>
       <categories>
         <category>Android</category>

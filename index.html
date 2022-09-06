@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-06 14:14:38" itemprop="dateModified" datetime="2022-09-06T14:14:38+08:00">2022-09-06</time>
+                <time title="修改时间：2022-09-06 14:31:34" itemprop="dateModified" datetime="2022-09-06T14:31:34+08:00">2022-09-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,7 +242,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>620</span>
+              <span>591</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -263,25 +263,27 @@
       
           <font size='2.9'>
 
-<h5 id="adb"><a href="#adb" class="headerlink" title="adb"></a>adb</h5><ol>
-<li>获取当前任务栈</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">adb shell dumpsys activity | grep -i run</span><br><span class="line"></span><br><span class="line"><span class="comment">//查看activity 栈   </span></span><br><span class="line">adb shell dumpsys activity activities | findstr com.ztgame.yyzy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
+<h4 id="adb-shell"><a href="#adb-shell" class="headerlink" title="adb shell"></a>adb shell</h4><ol>
+<li><p>获取当前任务栈</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">adb shell dumpsys activity | grep -i run</span><br><span class="line"><span class="comment">//查看activity 栈   </span></span><br><span class="line">adb shell dumpsys activity activities | findstr com.ztgame.yyzy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>获取手机安装包</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//grep 搜索</span></span><br><span class="line">adb shell pm list packages | grep -i 包名  </span><br><span class="line"></span><br><span class="line"><span class="comment">//路径</span></span><br><span class="line">adb shell pm path com.ztgame.yyzy</span><br><span class="line"></span><br><span class="line">adb pull path</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//grep 搜索</span></span><br><span class="line">adb shell pm list packages | grep -i 包名  </span><br><span class="line"></span><br><span class="line"><span class="comment">//路径</span></span><br><span class="line">adb shell pm path com.ztgame.yyzy</span><br><span class="line"></span><br><span class="line">adb pull path</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>清楚数据缓存目录</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm clear com.ztgame.yyzy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">adb shell pm clear com.ztgame.yyzy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>启动activity</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     adb shell am start -n com.googleplayapp.storerootsuaction/.MainActivity  </span><br><span class="line"></span><br><span class="line">```   </span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="number">5.</span> 启动service</span><br><span class="line">    </span><br><span class="line">```java    </span><br><span class="line">    adb shell am startService  com.googleplayapp.storerootsuaction/.MainActivity  </span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">adb shell am start -n com.googleplayapp.storerootsuaction/.MainActivity</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动service</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line">adb shell am startService  com.googleplayapp.storerootsuaction/.MainActivity  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>发送广播</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">adb shell am broadcast -a <span class="string">&quot;xxxAction&quot;</span></span><br><span class="line">adb shell am broadcast -n  com.ztgame.yyzy/.MyService</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">adb shell am broadcast -a <span class="string">&quot;xxxAction&quot;</span></span><br><span class="line">adb shell am broadcast -n  com.ztgame.yyzy/.MyService</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </font>
       
     </div>
