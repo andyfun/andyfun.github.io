@@ -396,8 +396,23 @@
 <h4 id="街篮2-录频没有声音"><a href="#街篮2-录频没有声音" class="headerlink" title="街篮2 录频没有声音"></a>街篮2 录频没有声音</h4><p>反馈没有声音<br>解决：试了demo 正常，可能设备音频解码 丢包，重启设备解决</p>
 <h4 id="帕斯卡-云化探出框慢-概率出现"><a href="#帕斯卡-云化探出框慢-概率出现" class="headerlink" title="帕斯卡 云化探出框慢 概率出现"></a>帕斯卡 云化探出框慢 概率出现</h4><p>云化后咪咕反馈 弹出权限框慢<br>解决：添加日志 出现问题分析<br>反编译 添加smalli文件 重新加固</p>
 <figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">::<span class="built_in">RD</span> /S /Q %~dp0\unpak</span><br><span class="line">::<span class="built_in">echo</span> dp0 = %~dp0\unpak</span><br><span class="line"><span class="built_in">set</span>  I=&quot;resign&quot;</span><br><span class="line">::<span class="built_in">echo</span> <span class="variable">%I%</span></span><br><span class="line"> </span><br><span class="line">::<span class="keyword">call</span> java -jar &quot;%~dp0\apktool.jar&quot; d %<span class="number">1</span> -o %~dp0\unpak</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">::<span class="keyword">for</span> <span class="variable">%%I</span> <span class="keyword">in</span> (taptap,<span class="number">4399</span>,kuaibao) <span class="keyword">do</span> (</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">::<span class="built_in">copy</span> /y <span class="variable">%~dp0\%</span>%I\ztsdk_config.properties %~dp0\unpak\assets\ztsdk_config.properties </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">call</span> java -jar &quot;%~dp0\apktool.jar&quot;  b %~dp0\unpak -o <span class="variable">%~dp0\%</span>I%.apk</span><br><span class="line"></span><br><span class="line">::<span class="keyword">call</span> jarsigner -verbose -sigalg MD5withRSA -digestalg SHA1 -keystore %~dp0\GaiaRelease.keystore -storepass <span class="number">123456</span> -signedjar <span class="variable">%~dp0\gaia_%</span>I%.apk <span class="variable">%~dp0\%</span>I%.apk GaiaAlias</span><br><span class="line">::jarsigner -keystore /working/mystore -storepass &lt;keystore password&gt; -keypass &lt;private key password&gt; MyJARFile.jar duke</span><br><span class="line"><span class="keyword">call</span> jarsigner -verbose -sigalg MD5withRSA -digestalg SHA1 -keystore %~dp0\pascals.keystore -storepass Tipsworks@B109   -keypass pascals123   -signedjar <span class="variable">%~dp0\gaia_%</span>I%.apk <span class="variable">%~dp0\%</span>I%.apk pascals</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">del</span> <span class="variable">%~dp0\%</span>I%.apk</span><br><span class="line"></span><br><span class="line">::)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">::<span class="built_in">RD</span> /S /Q %~dp0\unpak</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> 日志显示 初始化2次。导致慢 Application 2次，初始化2次</p>
 <p>配置好签名文件 ，目录为unpak </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Execution failed for task &#x27;:processReleaseResources&#x27;.</span><br><span class="line">&gt; A failure occurred while executing com.android.build.gradle.internal.tasks.Workers$ActionFacade</span><br><span class="line">   &gt; AAPT2 aapt2-3.6.0-6040484-osx Daemon #1: Unexpected error during link, attempting to stop daemon.</span><br><span class="line">     This should not happen under normal circumstances, please file an issue if it does.</span><br></pre></td></tr></table></figure>
+<p>游戏编译出错，通过排除发现 不压缩超出限制,游戏有33000多个字符长度<br>改成下面这个 就可以了。<br>aaptOptions {<br>      noCompress = [‘.unity3d’, ‘.ress’, ‘.resource’,’.obb’] </p>
+<pre><code>  &#125; 
+</code></pre>
 <h4 id="街篮2-白屏"><a href="#街篮2-白屏" class="headerlink" title="街篮2 白屏"></a>街篮2 白屏</h4><p>安装后启动出现白屏</p>
+<p>二次打包 R文件 引用 提示找不到</p>
+<blockquote>
+<p>原因 ：第三方SDK 是当前包名 sdk.packageName.R.color.xxxx,非字符串调用</p>
+</blockquote>
+<p>导致使用apktool 时候 这个包名下没有生成，正常编译可以生成。</p>
+<p>R生成原理 aar里面生成临时的，统一生成 static final 变量</p>
+<blockquote>
+<p>对于第三方SDK 里面R的调用 反编译替换，或者apktool使用aapt 手动生成。</p>
+</blockquote>
+<p>编译生成 和apktool    逆向不一样</p>
 <h3 id="Dialog-全屏适配"><a href="#Dialog-全屏适配" class="headerlink" title="Dialog 全屏适配"></a>Dialog 全屏适配</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--此属性设置的dialog可以依照布局的宽高去设定而不是wrap_content--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;dialog_style_2&quot;</span>&gt;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!--注意此处 又设置全屏，不能设置这个属性为true 否则会有遮挡--&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:windowIsFloating&quot;</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">&lt;/style</span></span><br></pre></td></tr></table></figure>
 <p>或者</p>
 <p><item name="android:windowFullscreen">true</item></p>
@@ -3391,5 +3406,104 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       <tags>
         <tag>adb</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Cocos_creator_3.6.1</title>
+    <url>/2022/10/16/Cocos/Cocos-creator-3-6-1/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="cocos"><a href="#cocos" class="headerlink" title="cocos"></a>cocos</h4><ol>
+<li><a href="https://docs.cocos.com/creator/manual/zh/getting-started/first-game/">cocos</a></li>
+<li>使用TypeScript</li>
+<li>保存玩，回到编辑器页面刷新</li>
+<li>开发小游戏</li>
+</ol>
+<h4 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="keyword">import</span> &#123; _decorator, Component, Vec3, input, Input, EventMouse, Animation, SkeletalAnimation &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&quot;PlayerController&quot;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">PlayerController</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    start () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="title">update</span>(<span class="params">deltaTime: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//都是组件 和Unity 相似</span></span><br><span class="line"><span class="comment">//cc.sys 系统类 判断手机 或者浏览器</span></span><br><span class="line"><span class="comment">//input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this); 鼠标监听</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//手机滑动监听  input.on(Input.EventType.TOUCH_START,this.onTouchStar,this);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//this._deltaPos.x = this._curJumpSpeed * deltaTime; 距离= 速度*时间</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h4><ol>
+<li>assets 目录下放资源</li>
+<li>Animations ,Prefabs,Scenes,Scripts</li>
+</ol>
+</font>
+]]></content>
+      <tags>
+        <tag>TypeScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker</title>
+    <url>/2023/02/08/Docker/docker/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h5 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h5><blockquote>
+<p>首先我们使用 docker ps -a 命令查看本机所有的容器。</p>
+</blockquote>
+<blockquote>
+<p>启动</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> docker run my/python:v1 cal <span class="comment">##my/python:v1为镜像名和标签  cal 日历</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">## 我们还可以通过指定参数，启动一个bash交互终端。</span></span><br><span class="line">docker run -it my/python:v1 /bin/bash</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>stop docker</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker stop my/python:v1  </span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>导出镜像</p>
+</blockquote>
+<p>使用 docker export 命令根据容器 ID 将镜像导出成一个文件。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker <span class="built_in">export</span> f299f501774c &gt; hangger_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>导入镜像</p>
+</blockquote>
+<p>使用 docker import 命令则可将这个镜像文件导入进来。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker import - new_hangger_server &lt; hangger_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查看本机的容器</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker  images</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h5 id="save-and-load"><a href="#save-and-load" class="headerlink" title="save and load"></a>save and load</h5><p>1，保存镜像<br>  下面使用 docker save 命令根据 ID 将镜像保存成一个文件。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker save 0fdf2b4c26d3 &gt; save_hangge_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 我们还可以同时将多个 image 打包成一个文件，比如下面将镜像库中的 postgres 和 mongo 打包：</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker save -o images.tar postgres:9.6 mongo:3.4</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>2，载入镜像</p>
+<pre><code>使用 docker load 命令则可将这个镜像文件载入进来。
+</code></pre>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker load &lt; save_hangge_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>两种方法不可混用。启动容器会报错  import 和 save </code></p>
+<font/>]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>harmonyos</title>
+    <url>/2022/09/19/Harmonyos/harmonyos/</url>
+    <content><![CDATA[<font size='2.9'>
+
+<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><ol>
+<li><p>获取源码 </p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    # 安装repo 工具</span><br><span class="line">    $ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 &gt; repo</span><br><span class="line">    $ chmod a+x repo</span><br><span class="line">    $ sudo mv repo /usr/local/bin/repo</span><br><span class="line">    $ sudo apt install python3-pip</span><br><span class="line">    $ pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">获取标准系统源码</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir OpenHarmony</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> OpenHarmony</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync -c  <span class="comment"># -c 获取当前分支代码</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">&#x27;git lfs pull&#x27;</span></span></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>如果 repo init 出现以下错误 </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">jackie@USER-20200124ZG:~$ repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify</span><br><span class="line">    Downloading Repo source from http://mirrors.tuna.tsinghua.edu.cn/git/git-repo/</span><br><span class="line">    remote: Enumerating objects: 7113, done.</span><br><span class="line">    remote: Counting objects: 100% (7113/7113), done.</span><br><span class="line">    remote: Compressing objects: 100% (3728/3728), done.</span><br><span class="line">    remote: Total 7113 (delta 4590), reused 5464 (delta 3311)s   s</span><br><span class="line">    Receiving objects: 100% (7113/7113), 3.09 MiB | 1.76 MiB/s, done.</span><br><span class="line">    Resolving deltas: 100% (4590/4590), done.</span><br><span class="line">    repo: warning: verification of repo code has been disabled;</span><br><span class="line">    repo will not be able to verify the integrity of itself.</span><br><span class="line"></span><br><span class="line">    repo: error: unable to resolve &quot;fork_flow&quot;</span><br><span class="line">    fatal: cloning the git-repo repository failed, will remove &#x27;.repo/repo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>切换到root 权限 sudo</code> 可以解决</p>
+</font></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Harmonyos</category>
+      </categories>
   </entry>
 </search>
