@@ -49,33 +49,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Cocos_creator_3.6.1</title>
-    <url>/2022/10/16/Cocos/Cocos-creator-3-6-1/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="cocos"><a href="#cocos" class="headerlink" title="cocos"></a>cocos</h4><ol>
-<li><a href="https://docs.cocos.com/creator/manual/zh/getting-started/first-game/">cocos</a></li>
-<li>使用TypeScript</li>
-<li>保存玩，回到编辑器页面刷新</li>
-<li>开发小游戏</li>
-</ol>
-<h4 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="keyword">import</span> &#123; _decorator, Component, Vec3, input, Input, EventMouse, Animation, SkeletalAnimation &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&quot;PlayerController&quot;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">PlayerController</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    start () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="title">update</span>(<span class="params">deltaTime: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//都是组件 和Unity 相似</span></span><br><span class="line"><span class="comment">//cc.sys 系统类 判断手机 或者浏览器</span></span><br><span class="line"><span class="comment">//input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this); 鼠标监听</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//手机滑动监听  input.on(Input.EventType.TOUCH_START,this.onTouchStar,this);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//this._deltaPos.x = this._curJumpSpeed * deltaTime; 距离= 速度*时间</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h4><ol>
-<li>assets 目录下放资源</li>
-<li>Animations ,Prefabs,Scenes,Scripts</li>
-</ol>
-<h4 id="cocos2dx-4-0"><a href="#cocos2dx-4-0" class="headerlink" title="cocos2dx-4.0"></a>cocos2dx-4.0</h4><pre><code>cocos new -p com.test  -l cpp Test
-
-cocos run -d androd 
-</code></pre>
-</font>
-]]></content>
-      <tags>
-        <tag>TypeScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Android架构</title>
     <url>/2018/08/07/Android/Android-Jetpack/</url>
     <content><![CDATA[<font size="2.9">
@@ -1112,6 +1085,17 @@ IP直连方案有下面几大优势：
       </tags>
   </entry>
   <entry>
+    <title>shadowsocks 二次开发</title>
+    <url>/2021/10/20/Android/shadowsocks/</url>
+    <content><![CDATA[<h5 id="about"><a href="#about" class="headerlink" title="about"></a>about</h5>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>shadowsocks</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>serialiable</title>
     <url>/2021/10/20/Android/serialiable/</url>
     <content><![CDATA[<font size="2.9">
@@ -1136,34 +1120,31 @@ IP直连方案有下面几大优势：
       </tags>
   </entry>
   <entry>
-    <title>shadowsocks 二次开发</title>
-    <url>/2021/10/20/Android/shadowsocks/</url>
-    <content><![CDATA[<h5 id="about"><a href="#about" class="headerlink" title="about"></a>about</h5>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>shadowsocks</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>harmonyos</title>
-    <url>/2022/09/19/Harmonyos/harmonyos/</url>
-    <content><![CDATA[<font size='2.9'>
+    <title>Cocos_creator_3.6.1</title>
+    <url>/2022/10/16/Cocos/Cocos-creator-3-6-1/</url>
+    <content><![CDATA[<font size="2.9">
 
-<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><ol>
-<li><p>获取源码 </p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    # 安装repo 工具</span><br><span class="line">    $ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 &gt; repo</span><br><span class="line">    $ chmod a+x repo</span><br><span class="line">    $ sudo mv repo /usr/local/bin/repo</span><br><span class="line">    $ sudo apt install python3-pip</span><br><span class="line">    $ pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">获取标准系统源码</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir OpenHarmony</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> OpenHarmony</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync -c  <span class="comment"># -c 获取当前分支代码</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">&#x27;git lfs pull&#x27;</span></span></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>如果 repo init 出现以下错误 </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">jackie@USER-20200124ZG:~$ repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify</span><br><span class="line">    Downloading Repo source from http://mirrors.tuna.tsinghua.edu.cn/git/git-repo/</span><br><span class="line">    remote: Enumerating objects: 7113, done.</span><br><span class="line">    remote: Counting objects: 100% (7113/7113), done.</span><br><span class="line">    remote: Compressing objects: 100% (3728/3728), done.</span><br><span class="line">    remote: Total 7113 (delta 4590), reused 5464 (delta 3311)s   s</span><br><span class="line">    Receiving objects: 100% (7113/7113), 3.09 MiB | 1.76 MiB/s, done.</span><br><span class="line">    Resolving deltas: 100% (4590/4590), done.</span><br><span class="line">    repo: warning: verification of repo code has been disabled;</span><br><span class="line">    repo will not be able to verify the integrity of itself.</span><br><span class="line"></span><br><span class="line">    repo: error: unable to resolve &quot;fork_flow&quot;</span><br><span class="line">    fatal: cloning the git-repo repository failed, will remove &#x27;.repo/repo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><code>切换到root 权限 sudo</code> 可以解决</p>
-</font></li>
+<h4 id="cocos"><a href="#cocos" class="headerlink" title="cocos"></a>cocos</h4><ol>
+<li><a href="https://docs.cocos.com/creator/manual/zh/getting-started/first-game/">cocos</a></li>
+<li>使用TypeScript</li>
+<li>保存玩，回到编辑器页面刷新</li>
+<li>开发小游戏</li>
 </ol>
+<h4 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="keyword">import</span> &#123; _decorator, Component, Vec3, input, Input, EventMouse, Animation, SkeletalAnimation &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&quot;PlayerController&quot;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">PlayerController</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    start () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="title">update</span>(<span class="params">deltaTime: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//都是组件 和Unity 相似</span></span><br><span class="line"><span class="comment">//cc.sys 系统类 判断手机 或者浏览器</span></span><br><span class="line"><span class="comment">//input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this); 鼠标监听</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//手机滑动监听  input.on(Input.EventType.TOUCH_START,this.onTouchStar,this);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//this._deltaPos.x = this._curJumpSpeed * deltaTime; 距离= 速度*时间</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h4><ol>
+<li>assets 目录下放资源</li>
+<li>Animations ,Prefabs,Scenes,Scripts</li>
+</ol>
+<h4 id="cocos2dx-4-0"><a href="#cocos2dx-4-0" class="headerlink" title="cocos2dx-4.0"></a>cocos2dx-4.0</h4><pre><code>cocos new -p com.test  -l cpp Test
+
+cocos run -d androd 
+</code></pre>
+</font>
 ]]></content>
-      <categories>
-        <category>Harmonyos</category>
-      </categories>
+      <tags>
+        <tag>TypeScript</tag>
+      </tags>
   </entry>
   <entry>
     <title>docker</title>
@@ -1223,8 +1204,10 @@ IP直连方案有下面几大优势：
 <li>pytest + allure + jenkins + docker</li>
 </ol>
 <blockquote>
-<p>jenkins 容器 安装 allure 设置环境变量 export path=/var/jenkins_home/allure/bin:$PATH </p>
+<p>jenkins 容器 安装 allure 设置环境变量 export path=/var/jenkins_home/allure/bin:$PATH<br>source 无法使用</p>
 </blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">RUN /bin/bash -c <span class="string">&quot;source ~/.bashrc&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>jenkins web插件安装  和 全局配置 容器中路径</p>
 </blockquote>
@@ -1237,6 +1220,156 @@ IP直连方案有下面几大优势：
       </categories>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>harmonyos</title>
+    <url>/2022/09/19/Harmonyos/harmonyos/</url>
+    <content><![CDATA[<font size='2.9'>
+
+<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><ol>
+<li><p>获取源码 </p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    # 安装repo 工具</span><br><span class="line">    $ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 &gt; repo</span><br><span class="line">    $ chmod a+x repo</span><br><span class="line">    $ sudo mv repo /usr/local/bin/repo</span><br><span class="line">    $ sudo apt install python3-pip</span><br><span class="line">    $ pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">获取标准系统源码</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir OpenHarmony</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> OpenHarmony</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync -c  <span class="comment"># -c 获取当前分支代码</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">&#x27;git lfs pull&#x27;</span></span></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>如果 repo init 出现以下错误 </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">jackie@USER-20200124ZG:~$ repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify</span><br><span class="line">    Downloading Repo source from http://mirrors.tuna.tsinghua.edu.cn/git/git-repo/</span><br><span class="line">    remote: Enumerating objects: 7113, done.</span><br><span class="line">    remote: Counting objects: 100% (7113/7113), done.</span><br><span class="line">    remote: Compressing objects: 100% (3728/3728), done.</span><br><span class="line">    remote: Total 7113 (delta 4590), reused 5464 (delta 3311)s   s</span><br><span class="line">    Receiving objects: 100% (7113/7113), 3.09 MiB | 1.76 MiB/s, done.</span><br><span class="line">    Resolving deltas: 100% (4590/4590), done.</span><br><span class="line">    repo: warning: verification of repo code has been disabled;</span><br><span class="line">    repo will not be able to verify the integrity of itself.</span><br><span class="line"></span><br><span class="line">    repo: error: unable to resolve &quot;fork_flow&quot;</span><br><span class="line">    fatal: cloning the git-repo repository failed, will remove &#x27;.repo/repo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>切换到root 权限 sudo</code> 可以解决</p>
+</font></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Harmonyos</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>iosMasonryLayout</title>
+    <url>/2021/11/08/IOS/iosMasonryLayout/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="Masonry"><a href="#Masonry" class="headerlink" title="Masonry"></a>Masonry</h4><p>Masonry是一个轻量级的布局框架，拥有自己的描述语法，采用更优雅的链式语法封装AutoLayout，简洁明了并具有高可读性，而且同时支持 iOS 和 Max OS X</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">UIButton  *smsSendBtn = [UIButton  buttonWithType:UIButtonTypeSystem];</span><br><span class="line">   [smsSendBtn setTitle:@<span class="string">&quot;发送验证码&quot;</span> forState:UIControlStateNormal];</span><br><span class="line">   [smsSendBtn addTarget:self action:@<span class="built_in">selector</span>(smsSendBtnRequest) forControlEvents:UIControlEventTouchUpInside];</span><br><span class="line">   [scrollview addSubview:smsSendBtn];</span><br><span class="line">   [smsSendBtn mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">       make.top.<span class="built_in">mas_equalTo</span>(lineView.mas_bottom).<span class="built_in">offset</span>(<span class="number">5</span>);</span><br><span class="line">       make.right.<span class="built_in">mas_equalTo</span>(scrollview.mas_right).<span class="built_in">offset</span>(<span class="number">-30</span>);</span><br><span class="line">       make.size.<span class="built_in">mas_equalTo</span>(<span class="built_in">CGSizeMake</span>(<span class="number">100.0</span>, <span class="number">50</span>));<span class="comment">//top = bottom + offset()</span></span><br><span class="line">   &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="关于签名"><a href="#关于签名" class="headerlink" title="关于签名"></a>关于签名</h4><blockquote>
+<p>dev 开发(Development)证书和描述文件      开发使用，可以直接装手机上</p>
+<blockquote>
+<p>p12 .p12文件本身就是一个加密的证书<br>.mobileprovision  是一个设置文件，实质是一个XML文件，不是证书。在部署 iOS 设备时可以使用苹果官方的「iPhone 配置实用工具.app」或者 Apple Configurator.app 创建一个描述文件，然后将其安装到 iOS 设备上对该设备进行管理</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>dis 发布(Distribution)证书和描述文件      用于提交 AppStore</p>
+</blockquote>
+</font>]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>Masonry sign</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iosThread</title>
+    <url>/2021/10/20/IOS/iosThread/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="Unity-UE-调用iOS接口-crash"><a href="#Unity-UE-调用iOS接口-crash" class="headerlink" title="Unity /UE 调用iOS接口 crash"></a>Unity /UE 调用iOS接口 crash</h4><pre><code>带UI的接口 要回到主线程
+</code></pre>
+<h4 id="Unity-iOS包切后台-没有回调"><a href="#Unity-iOS包切后台-没有回调" class="headerlink" title="Unity iOS包切后台 没有回调"></a>Unity iOS包切后台 没有回调</h4><pre><code>回调被替换或者重置  查看代码
+</code></pre>
+<h4 id="警告-iOS-主线程问题-提醒Main-Thread-Checker-UI-API-called-on-a-background-thread的解释"><a href="#警告-iOS-主线程问题-提醒Main-Thread-Checker-UI-API-called-on-a-background-thread的解释" class="headerlink" title="警告 [iOS]主线程问题:提醒Main Thread Checker: UI API called on a background thread的解释"></a>警告 [iOS]主线程问题:提醒Main Thread Checker: UI API called on a background thread的解释</h4><p>没有在主线程操作</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">dispatch_async(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), <span class="operator">^</span>&#123;  </span><br><span class="line">    <span class="comment">// 处理耗时操作的代码块...  </span></span><br><span class="line">      </span><br><span class="line">    <span class="comment">//通知主线程刷新  </span></span><br><span class="line">    dispatch_async(dispatch_get_main_queue(), <span class="operator">^</span>&#123;  </span><br><span class="line">        <span class="comment">//回调或者说是通知主线程刷新，  </span></span><br><span class="line">    &#125;);  </span><br><span class="line">      </span><br><span class="line">&#125;);  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>dispatch_async开启一个异步操作，第一个参数是指定一个gcd队列，第二个参数是分配一个处理事物的程序块到该队列。<br>dispatch_get_global_queue(0, 0)，指用了全局队列。<br>一般来说系统本身会有3个队列。global_queue，current_queue,以及main_queue.</p>
+<p>获取一个全局队列是接受两个参数，第一个是我分配的事物处理程序块队列优先级。分高低和默认，0为默认2为高，-2为低</p>
+<p>处理完事物后，需要将结果返回给或者是刷新UI主线程，同样，和上面一样，抓取主线程，程序块操作。</p>
+<h4 id="ios-状态栏"><a href="#ios-状态栏" class="headerlink" title="ios 状态栏"></a>ios 状态栏</h4><p>在 Info.plist 文件中添加 Status bar is initially hidden 设置为 YES ，这个是隐藏 App 在 LunchScreen（欢迎界面）时的状态栏。</p>
+<p>在 Info.plist 文件中添加 View controller-based status bar appearance 设置为 NO，这个是隐藏 App 在所有 UIViewController 时的状态栏</p>
+<p>Status Bar 状态栏的颜色<br>状态栏分前后两部分，要分清这两个概念，后面会用到：</p>
+<blockquote>
+<p>文字部分：就是指的显示电池、时间等部分。<br>背景部分：就是显示黑色或者图片的背景部分</p>
+</blockquote>
+</font>
+]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>IOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ocClassDifferent</title>
+    <url>/2021/11/15/IOS/ocClassDifferent/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h4><blockquote>
+<p><code>引用类型用</code> oc的类指针 nil</p>
+</blockquote>
+<blockquote>
+<p><code>基本类型用</code> NULL</p>
+</blockquote>
+<blockquote>
+<p>本质上是一样的 ，都是宏定义 ，0</p>
+</blockquote>
+<blockquote>
+<p>Person *p = nil 代表不指向任何对象</p>
+</blockquote>
+<h4 id="2-分组导航标记"><a href="#2-分组导航标记" class="headerlink" title="2.分组导航标记"></a>2.分组导航标记</h4><blockquote>
+<p>#pragma mark 名字</p>
+</blockquote>
+<blockquote>
+<p>#pragma mark - 产生分割线</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h5><blockquote>
+<p>方法定义@interface  实现在@implement</p>
+</blockquote>
+<blockquote>
+<p>函数 调用不 一样   可以写在  类 中除了 大括号<br>类的声明和 实现 都要有， 声明要在前  实现 可以放在使用类的后面 </p>
+</blockquote>
+<blockquote>
+<p><code>+</code> 方法就是类方法，<code>-</code> 方法就是实例方法</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)thisIsAClassMethod; <span class="comment">// 类方法，不需要实例化对象就可以调用</span></span><br><span class="line">- (<span class="keyword">void</span>)thisIsAnInstanceMethod; <span class="comment">// 实例方法，必须通过实例化的对象调用</span></span><br><span class="line"><span class="comment">// 对象的初始化 OC中以消息机制传递信息，发送 alloc 消息给类分配内存空间，发送 init 消息生成对象，指针指向对象本身。</span></span><br><span class="line">ClassName *obj = [[ClassName alloc] init];</span><br></pre></td></tr></table></figure>
+<pre><code>类方法：
+1、类方法可以调用类方法；
+2、类方法不可以调用实例方法，但是类方法可以通过创建对象来访问实例方法；
+3、类方法不可以使用实例变量。（可以使用self ，因为 self 不是实例变量。）
+4、类方法作为消息，可以发送到类或者对象里面去（就是可以通过类或者对象调用类方法）
+实例方法里面的 self ，是对象的首地址。
+类方法里面的 self ，是 class 。
+
+用过程中既可以使用新定义的方法名，也可以使用以前的方法（点表示法）
+
+属性特征：readwrite readonly assign retain copy nonatomic
+
+assign：默认行为，使用 @property int num 就是使用了 assign 行为，就是给实例变量赋了一个值
+
+retain：实现了两个功能，一个是保留了赋值时传递的对象，一个是赋值前释放了以前的值，使用时加上 @property (retain) int num;
+
+copy：发送一条复制的消息给被传递的对象，保留它，并释放任何以前的值；
+
+nonatomic：非原子访问器，加上后可以保证属性在被一个线程使用时不被另一个线程访问，不存在 atomic 关键字，默认情况下，所有方法都是自动合成的。（类似Java中的线程锁机制 synchronised）
+readwrite：可读写
+readonly：只读
+</code></pre>
+<h4 id="OC点和右箭头访问变量的区别"><a href="#OC点和右箭头访问变量的区别" class="headerlink" title="OC点和右箭头访问变量的区别"></a>OC点和右箭头访问变量的区别</h4><pre><code>语法
+OC中.语法实际上就是方法调用，比如通过self.deviceID访问属性，如果它出现在=的左边那么就是调用属性的setter方法，如果出现在=右边就是调用属性的getter方法。
+所以如下所示的定义：
+</code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">self.deviceID = @<span class="string">&quot;123&quot;</span>;和[self setDeviceID:@<span class="string">&quot;123&quot;</span>];是等价的。</span><br><span class="line"></span><br><span class="line">NSString *str = self.deviceID;和NSString *str = [self deviceID];是等价的。</span><br></pre></td></tr></table></figure>
+<p> -&gt;语法<br>    OC中-&gt;用于访问成员变量。所以：</p>
+<pre><code>self-&gt;_deviceID和_deviceID是等价的。
+
+self-&gt;deviceType和deviceType是等价的。
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">@interface Device : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    @<span class="keyword">public</span> NSString *deviceType;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="built_in">property</span> (nonatomic , strong) NSString *deviceID;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</code></pre>
+<h4 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h4><p><a href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
+</font>]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1394,137 +1527,6 @@ IP直连方案有下面几大优势：
       </categories>
       <tags>
         <tag>tree</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iosMasonryLayout</title>
-    <url>/2021/11/08/IOS/iosMasonryLayout/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="Masonry"><a href="#Masonry" class="headerlink" title="Masonry"></a>Masonry</h4><p>Masonry是一个轻量级的布局框架，拥有自己的描述语法，采用更优雅的链式语法封装AutoLayout，简洁明了并具有高可读性，而且同时支持 iOS 和 Max OS X</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">UIButton  *smsSendBtn = [UIButton  buttonWithType:UIButtonTypeSystem];</span><br><span class="line">   [smsSendBtn setTitle:@<span class="string">&quot;发送验证码&quot;</span> forState:UIControlStateNormal];</span><br><span class="line">   [smsSendBtn addTarget:self action:@<span class="built_in">selector</span>(smsSendBtnRequest) forControlEvents:UIControlEventTouchUpInside];</span><br><span class="line">   [scrollview addSubview:smsSendBtn];</span><br><span class="line">   [smsSendBtn mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">       make.top.<span class="built_in">mas_equalTo</span>(lineView.mas_bottom).<span class="built_in">offset</span>(<span class="number">5</span>);</span><br><span class="line">       make.right.<span class="built_in">mas_equalTo</span>(scrollview.mas_right).<span class="built_in">offset</span>(<span class="number">-30</span>);</span><br><span class="line">       make.size.<span class="built_in">mas_equalTo</span>(<span class="built_in">CGSizeMake</span>(<span class="number">100.0</span>, <span class="number">50</span>));<span class="comment">//top = bottom + offset()</span></span><br><span class="line">   &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="关于签名"><a href="#关于签名" class="headerlink" title="关于签名"></a>关于签名</h4><blockquote>
-<p>dev 开发(Development)证书和描述文件      开发使用，可以直接装手机上</p>
-<blockquote>
-<p>p12 .p12文件本身就是一个加密的证书<br>.mobileprovision  是一个设置文件，实质是一个XML文件，不是证书。在部署 iOS 设备时可以使用苹果官方的「iPhone 配置实用工具.app」或者 Apple Configurator.app 创建一个描述文件，然后将其安装到 iOS 设备上对该设备进行管理</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>dis 发布(Distribution)证书和描述文件      用于提交 AppStore</p>
-</blockquote>
-</font>]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>Masonry sign</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iosThread</title>
-    <url>/2021/10/20/IOS/iosThread/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="Unity-UE-调用iOS接口-crash"><a href="#Unity-UE-调用iOS接口-crash" class="headerlink" title="Unity /UE 调用iOS接口 crash"></a>Unity /UE 调用iOS接口 crash</h4><pre><code>带UI的接口 要回到主线程
-</code></pre>
-<h4 id="Unity-iOS包切后台-没有回调"><a href="#Unity-iOS包切后台-没有回调" class="headerlink" title="Unity iOS包切后台 没有回调"></a>Unity iOS包切后台 没有回调</h4><pre><code>回调被替换或者重置  查看代码
-</code></pre>
-<h4 id="警告-iOS-主线程问题-提醒Main-Thread-Checker-UI-API-called-on-a-background-thread的解释"><a href="#警告-iOS-主线程问题-提醒Main-Thread-Checker-UI-API-called-on-a-background-thread的解释" class="headerlink" title="警告 [iOS]主线程问题:提醒Main Thread Checker: UI API called on a background thread的解释"></a>警告 [iOS]主线程问题:提醒Main Thread Checker: UI API called on a background thread的解释</h4><p>没有在主线程操作</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">dispatch_async(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), <span class="operator">^</span>&#123;  </span><br><span class="line">    <span class="comment">// 处理耗时操作的代码块...  </span></span><br><span class="line">      </span><br><span class="line">    <span class="comment">//通知主线程刷新  </span></span><br><span class="line">    dispatch_async(dispatch_get_main_queue(), <span class="operator">^</span>&#123;  </span><br><span class="line">        <span class="comment">//回调或者说是通知主线程刷新，  </span></span><br><span class="line">    &#125;);  </span><br><span class="line">      </span><br><span class="line">&#125;);  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>dispatch_async开启一个异步操作，第一个参数是指定一个gcd队列，第二个参数是分配一个处理事物的程序块到该队列。<br>dispatch_get_global_queue(0, 0)，指用了全局队列。<br>一般来说系统本身会有3个队列。global_queue，current_queue,以及main_queue.</p>
-<p>获取一个全局队列是接受两个参数，第一个是我分配的事物处理程序块队列优先级。分高低和默认，0为默认2为高，-2为低</p>
-<p>处理完事物后，需要将结果返回给或者是刷新UI主线程，同样，和上面一样，抓取主线程，程序块操作。</p>
-<h4 id="ios-状态栏"><a href="#ios-状态栏" class="headerlink" title="ios 状态栏"></a>ios 状态栏</h4><p>在 Info.plist 文件中添加 Status bar is initially hidden 设置为 YES ，这个是隐藏 App 在 LunchScreen（欢迎界面）时的状态栏。</p>
-<p>在 Info.plist 文件中添加 View controller-based status bar appearance 设置为 NO，这个是隐藏 App 在所有 UIViewController 时的状态栏</p>
-<p>Status Bar 状态栏的颜色<br>状态栏分前后两部分，要分清这两个概念，后面会用到：</p>
-<blockquote>
-<p>文字部分：就是指的显示电池、时间等部分。<br>背景部分：就是显示黑色或者图片的背景部分</p>
-</blockquote>
-</font>
-]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>IOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ocClassDifferent</title>
-    <url>/2021/11/15/IOS/ocClassDifferent/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h4><blockquote>
-<p><code>引用类型用</code> oc的类指针 nil</p>
-</blockquote>
-<blockquote>
-<p><code>基本类型用</code> NULL</p>
-</blockquote>
-<blockquote>
-<p>本质上是一样的 ，都是宏定义 ，0</p>
-</blockquote>
-<blockquote>
-<p>Person *p = nil 代表不指向任何对象</p>
-</blockquote>
-<h4 id="2-分组导航标记"><a href="#2-分组导航标记" class="headerlink" title="2.分组导航标记"></a>2.分组导航标记</h4><blockquote>
-<p>#pragma mark 名字</p>
-</blockquote>
-<blockquote>
-<p>#pragma mark - 产生分割线</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h5 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h5><blockquote>
-<p>方法定义@interface  实现在@implement</p>
-</blockquote>
-<blockquote>
-<p>函数 调用不 一样   可以写在  类 中除了 大括号<br>类的声明和 实现 都要有， 声明要在前  实现 可以放在使用类的后面 </p>
-</blockquote>
-<blockquote>
-<p><code>+</code> 方法就是类方法，<code>-</code> 方法就是实例方法</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)thisIsAClassMethod; <span class="comment">// 类方法，不需要实例化对象就可以调用</span></span><br><span class="line">- (<span class="keyword">void</span>)thisIsAnInstanceMethod; <span class="comment">// 实例方法，必须通过实例化的对象调用</span></span><br><span class="line"><span class="comment">// 对象的初始化 OC中以消息机制传递信息，发送 alloc 消息给类分配内存空间，发送 init 消息生成对象，指针指向对象本身。</span></span><br><span class="line">ClassName *obj = [[ClassName alloc] init];</span><br></pre></td></tr></table></figure>
-<pre><code>类方法：
-1、类方法可以调用类方法；
-2、类方法不可以调用实例方法，但是类方法可以通过创建对象来访问实例方法；
-3、类方法不可以使用实例变量。（可以使用self ，因为 self 不是实例变量。）
-4、类方法作为消息，可以发送到类或者对象里面去（就是可以通过类或者对象调用类方法）
-实例方法里面的 self ，是对象的首地址。
-类方法里面的 self ，是 class 。
-
-用过程中既可以使用新定义的方法名，也可以使用以前的方法（点表示法）
-
-属性特征：readwrite readonly assign retain copy nonatomic
-
-assign：默认行为，使用 @property int num 就是使用了 assign 行为，就是给实例变量赋了一个值
-
-retain：实现了两个功能，一个是保留了赋值时传递的对象，一个是赋值前释放了以前的值，使用时加上 @property (retain) int num;
-
-copy：发送一条复制的消息给被传递的对象，保留它，并释放任何以前的值；
-
-nonatomic：非原子访问器，加上后可以保证属性在被一个线程使用时不被另一个线程访问，不存在 atomic 关键字，默认情况下，所有方法都是自动合成的。（类似Java中的线程锁机制 synchronised）
-readwrite：可读写
-readonly：只读
-</code></pre>
-<h4 id="OC点和右箭头访问变量的区别"><a href="#OC点和右箭头访问变量的区别" class="headerlink" title="OC点和右箭头访问变量的区别"></a>OC点和右箭头访问变量的区别</h4><pre><code>语法
-OC中.语法实际上就是方法调用，比如通过self.deviceID访问属性，如果它出现在=的左边那么就是调用属性的setter方法，如果出现在=右边就是调用属性的getter方法。
-所以如下所示的定义：
-</code></pre>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">self.deviceID = @<span class="string">&quot;123&quot;</span>;和[self setDeviceID:@<span class="string">&quot;123&quot;</span>];是等价的。</span><br><span class="line"></span><br><span class="line">NSString *str = self.deviceID;和NSString *str = [self deviceID];是等价的。</span><br></pre></td></tr></table></figure>
-<p> -&gt;语法<br>    OC中-&gt;用于访问成员变量。所以：</p>
-<pre><code>self-&gt;_deviceID和_deviceID是等价的。
-
-self-&gt;deviceType和deviceType是等价的。
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">@interface Device : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    @<span class="keyword">public</span> NSString *deviceType;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="built_in">property</span> (nonatomic , strong) NSString *deviceID;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</code></pre>
-<h4 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h4><p><a href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
-</font>]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1816,6 +1818,27 @@ self-&gt;deviceType和deviceType是等价的。
       </tags>
   </entry>
   <entry>
+    <title>UnityBase</title>
+    <url>/2021/10/14/Unity/UnityBase/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="1-Unity基础-ref-和-out"><a href="#1-Unity基础-ref-和-out" class="headerlink" title="1.Unity基础  ref 和 out"></a>1.Unity基础  ref 和 out</h4><p>影响外部传入，让其被修改</p>
+<p>ref: 变量先初始化</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueRef</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> a</span>)</span>&#123;</span><br><span class="line">  a = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> b = <span class="number">99</span>;</span><br><span class="line">ChagneValueRef(<span class="keyword">ref</span> b);</span><br><span class="line">Debug.Log(b);<span class="comment">//b = 9</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>out: 方法里初始化</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueOut</span>(<span class="params"><span class="keyword">out</span> <span class="built_in">int</span> <span class="keyword">value</span></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">value</span> = <span class="number">88</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> cc ;</span><br><span class="line">ChangeValueOut(<span class="keyword">out</span> cc);</span><br><span class="line">Debug.Log(cc);<span class="comment">//b = 88</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-冒泡排序优化"><a href="#2-冒泡排序优化" class="headerlink" title="2.冒泡排序优化"></a>2.冒泡排序优化</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span>[] arrs = &#123;<span class="number">7</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">bool</span> isShot = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> m =<span class="number">0</span>;m &lt; arrs.Length;m++)&#123;</span><br><span class="line">    isShot = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> n =<span class="number">0</span>;n&lt;arrs.Length<span class="number">-1</span>-m;n++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arrs[n]&gt; arrs[n+<span class="number">1</span>])&#123;</span><br><span class="line">            isShot = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">int</span> temp =  arrs[n];</span><br><span class="line">            arrs[n] = arrs[n+<span class="number">1</span>];</span><br><span class="line">            arrs[n+<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//正常情况 每次都交换，如果达到 没有进入交换 就不需要了</span></span><br><span class="line">    <span class="keyword">if</span>(!isShot)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</font>]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>UnityBase</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Unity游戏开发记录</title>
     <url>/2021/01/29/Unity/Unity-Game/</url>
     <content><![CDATA[<font size="2.9">
@@ -2031,27 +2054,6 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </categories>
       <tags>
         <tag>UnityDevelopLog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>UnityBase</title>
-    <url>/2021/10/14/Unity/UnityBase/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="1-Unity基础-ref-和-out"><a href="#1-Unity基础-ref-和-out" class="headerlink" title="1.Unity基础  ref 和 out"></a>1.Unity基础  ref 和 out</h4><p>影响外部传入，让其被修改</p>
-<p>ref: 变量先初始化</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueRef</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> a</span>)</span>&#123;</span><br><span class="line">  a = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> b = <span class="number">99</span>;</span><br><span class="line">ChagneValueRef(<span class="keyword">ref</span> b);</span><br><span class="line">Debug.Log(b);<span class="comment">//b = 9</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>out: 方法里初始化</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueOut</span>(<span class="params"><span class="keyword">out</span> <span class="built_in">int</span> <span class="keyword">value</span></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">value</span> = <span class="number">88</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> cc ;</span><br><span class="line">ChangeValueOut(<span class="keyword">out</span> cc);</span><br><span class="line">Debug.Log(cc);<span class="comment">//b = 88</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-冒泡排序优化"><a href="#2-冒泡排序优化" class="headerlink" title="2.冒泡排序优化"></a>2.冒泡排序优化</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span>[] arrs = &#123;<span class="number">7</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">bool</span> isShot = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> m =<span class="number">0</span>;m &lt; arrs.Length;m++)&#123;</span><br><span class="line">    isShot = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> n =<span class="number">0</span>;n&lt;arrs.Length<span class="number">-1</span>-m;n++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arrs[n]&gt; arrs[n+<span class="number">1</span>])&#123;</span><br><span class="line">            isShot = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">int</span> temp =  arrs[n];</span><br><span class="line">            arrs[n] = arrs[n+<span class="number">1</span>];</span><br><span class="line">            arrs[n+<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//正常情况 每次都交换，如果达到 没有进入交换 就不需要了</span></span><br><span class="line">    <span class="keyword">if</span>(!isShot)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</font>]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>UnityBase</tag>
       </tags>
   </entry>
   <entry>
@@ -2333,118 +2335,6 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       </tags>
   </entry>
   <entry>
-    <title>视频压缩技术原理</title>
-    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A301-%E8%A7%86%E9%A2%91%E5%8E%8B%E7%BC%A9%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<font size="2.9">
-
-<p>H264视频压缩算法现在无疑是所有视频压缩技术中使用最广泛，</p>
-<p>最流行的。随着 x264/openh264以及ffmpeg等开源库的推出，大多数使用者无需再对H264的细节做过多的研究，这大降低了人们使用H264的成本。</p>
-<p>但为了用好H264，我们还是要对H264的基本原理弄清楚才行。今天我们就来看看H264的基本原理。</p>
-<h2 id="H264概述"><a href="#H264概述" class="headerlink" title="H264概述"></a>H264概述</h2><p><img src="/images/30.png" alt="img"></p>
-<p>H264压缩技术主要采用了以下几种方法对视频数据进行压缩。包括：</p>
-<p>　　帧内预测压缩，解决的是空域数据冗余问题。<br>　　帧间预测压缩（运动估计与补偿），解决的是时域数据冗徐问题。<br>　　整数离散余弦变换（DCT），将空间上的相关性变为频域上无关的数据然后进行量化。<br>　　CABAC压缩。</p>
-<p>经过压缩后的帧分为：I帧，P帧和B帧:</p>
-<p>　　I帧：关键帧，采用帧内压缩技术。<br>　　P帧：向前参考帧，在压缩时，只参考前面已经处理的帧。采用帧音压缩技术。<br>　　B帧：双向参考帧，在压缩时，它即参考前而的帧，又参考它后面的帧。采用帧间压缩技术。</p>
-<p>除了I/P/B帧外，还有图像序列GOP。</p>
-<p>　　GOP:两个I帧之间是一个图像序列，在一个图像序列中只有一个I帧。如下图所示：</p>
-<p><img src="/images/31.png" alt="img"></p>
-<p>下面我们就来详细描述一下H264压缩技术。</p>
-<h2 id="H264压缩技术"><a href="#H264压缩技术" class="headerlink" title="H264压缩技术"></a>H264压缩技术</h2><p>H264的基本原理其实非常简单，下我们就简单的描述一下H264压缩数据的过程。通过摄像头采集到的视频帧（按每秒 30 帧算），被送到 H264 编码器的缓冲区中。编码器先要为每一幅图片划分宏块。</p>
-<p>以下面这张图为例:</p>
-<p><img src="/images/32.png" alt="img"></p>
-<h3 id="划分宏块"><a href="#划分宏块" class="headerlink" title="划分宏块"></a>划分宏块</h3><p>H264默认是使用 16X16 大小的区域作为一个宏块，也可以划分成 8X8 大小。</p>
-<p><img src="/images/33.png" alt="img"></p>
-<p>划分好宏块后，计算宏块的象素值。</p>
-<p><img src="/images/34.png" alt="img"></p>
-<p>以此类推，计算一幅图像中每个宏块的像素值，所有宏块都处理完后如下面的样子。</p>
-<p><img src="/images/35.png" alt="img"></p>
-<h3 id="划分子块"><a href="#划分子块" class="headerlink" title="划分子块"></a>划分子块</h3><p>H264对比较平坦的图像使用 16X16 大小的宏块。但为了更高的压缩率，还可以在 16X16 的宏块上更划分出更小的子块。子块的大小可以是 8X16､ 16X8､ 8X8､ 4X8､ 8X4､ 4X4非常的灵活。</p>
-<p><img src="/images/36.png" alt="img"></p>
-<p>上幅图中，红框内的 16X16 宏块中大部分是蓝色背景，而三只鹰的部分图像被划在了该宏块内，为了更好的处理三只鹰的部分图像，H264就在 16X16 的宏块内又划分出了多个子块。</p>
-<p><img src="/images/37.png" alt="img"></p>
-<p>这样再经过帧内压缩，可以得到更高效的数据。下图是分别使用mpeg-2和H264对上面宏块进行压缩后的结果。其中左半部分为MPEG-2子块划分后压缩的结果，右半部分为H264的子块划压缩后的结果，可以看出H264的划分方法更具优势。</p>
-<p><img src="/images/39.png" alt="img"></p>
-<p>宏块划分好后，就可以对H264编码器缓存中的所有图片进行分组了。</p>
-<h3 id="帧分组"><a href="#帧分组" class="headerlink" title="帧分组"></a>帧分组</h3><p>对于视频数据主要有两类数据冗余，一类是时间上的数据冗余，另一类是空间上的数据冗余。其中时间上的数据冗余是最大的。下面我们就先来说说视频数据时间上的冗余问题。</p>
-<p>为什么说时间上的冗余是最大的呢？假设摄像头每秒抓取30帧，这30帧的数据大部分情况下都是相关联的。也有可能不止30帧的的数据，可能几十帧，上百帧的数据都是关联特别密切的。</p>
-<p>对于这些关联特别密切的帧，其实我们只需要保存一帧的数据，其它帧都可以通过这一帧再按某种规则预测出来，所以说视频数据在时间上的冗余是最多的。</p>
-<p>为了达到相关帧通过预测的方法来压缩数据，就需要将视频帧进行分组。那么如何判定某些帧关系密切，可以划为一组呢？我们来看一下例子，下面是捕获的一组运动的台球的视频帧，台球从右上角滚到了左下角。</p>
-<p><img src="/images/40.png" alt="img"></p>
-<p><img src="/images/41.png" alt="img"></p>
-<p>没有运动补偿的时候  120fps     60fps   60帧电影  视频画面是没有提升</p>
-<p>120fps    60帧视频  60帧虚拟帧</p>
-<p>H264编码器会按顺序，每次取出两幅相邻的帧进行宏块比较，计算两帧的相似度。如下图：</p>
-<p><img src="/images/42.png" alt="img"></p>
-<p>通过宏块扫描与宏块搜索可以发现这两个帧的关联度是非常高的。进而发现这一组帧的关联度都是非常高的。因此，上面这几帧就可以划分为一组。其算法是：<strong>在相邻几幅图像画面中，一般有差别的像素只有10%以内的点,亮度差值变化不超过2%，而色度差值的变化只有1%以内，我们认为这样的图可以分到一组。</strong></p>
-<p>在这样一组帧中，经过编码后，我们只保留第一帖的完整数据，其它帧都通过参考上一帧计算出来。我们称第一帧为<strong>IDR／I帧</strong>，其它帧我们称为<strong>P／B帧</strong>，这样编码后的数据帧组我们称为<strong>GOP</strong>。</p>
-<h3 id="运动估计与补偿"><a href="#运动估计与补偿" class="headerlink" title="运动估计与补偿"></a>运动估计与补偿</h3><p>在H264编码器中将帧分组后，就要计算帧组内物体的运动矢量了。还以上面运动的台球视频帧为例，我们来看一下它是如何计算运动矢量的。</p>
-<p>H264编码器首先按顺序从缓冲区头部取出两帧视频数据，然后进行宏块扫描。当发现其中一幅图片中有物体时，就在另一幅图的邻近位置（搜索窗口中）进行搜索。如果此时在另一幅图中找到该物体，那么就可以计算出物体的运动矢量了。下面这幅图就是搜索后的台球移动的位置。</p>
-<p><img src="/images/43.png" alt="img"></p>
-<p> 抖音 —-》视频  1M  9M   </p>
-<p>通过上图中台球位置相差，就可以计算出台图运行的方向和距离。H264依次把每一帧中球移动的距离和方向都记录下来就成了下面的样子。</p>
-<p><img src="/images/44.png" alt="img"></p>
-<p>运动矢量计算出来后，将相同部分（也就是绿色部分）减去，就得到了补偿数据。我们最终只需要将补偿数据进行压缩保存，以后在解码时就可以恢复原图了。压缩补偿后的数据只需要记录很少的一点数据。如下所示：</p>
-<p><img src="/images/45.png" alt="img"></p>
-<p>我们把运动矢量与补偿称为<strong>帧间压缩技术</strong>，它解决的是视频帧在时间上的数据冗余。除了帧间压缩，帧内也要进行数据压缩，帧内数据压缩解决的是空间上的数据冗余。下面我们就来介绍一下帧内压缩技术。</p>
-<h3 id="帧内预测"><a href="#帧内预测" class="headerlink" title="帧内预测"></a>帧内预测</h3><p>人眼对图象都有一个识别度，对低频的亮度很敏感，对高频的亮度不太敏感。所以基于一些研究，可以将一幅图像中人眼不敏感的数据去除掉。这样就提出了帧内预测技术。</p>
-<p>H264的帧内压缩与JPEG很相似。一幅图像被划分好宏块后，对每个宏块可以进行 9 种模式的预测。找出与原图最接近的一种预测模式。</p>
-<p><img src="/images/46.png" alt="img"></p>
-<p>下面这幅图是对整幅图中的每个宏块进行预测的过程。</p>
-<p><img src="/images/1307424-20181107191243491-673612486.png" alt="img"></p>
-<p>帧内预测后的图像与原始图像的对比如下：</p>
-<p><img src="/images/1307424-20181107191249101-214889465.png" alt="img"></p>
-<p>然后，将原始图像与帧内预测后的图像相减得残差值。</p>
-<p><img src="/images/1307424-20181107191253955-1987839456.png" alt="img"></p>
-<p>再将我们之前得到的预测模式信息一起保存起来，这样我们就可以在解码时恢复原图了。效果如下：</p>
-<p><img src="/images/1307424-20181107191259057-1084466018.png" alt="img"></p>
-<p>经过帧内与帧间的压缩后，虽然数据有大幅减少，但还有优化的空间。</p>
-<h3 id="对残差数据做DCT"><a href="#对残差数据做DCT" class="headerlink" title="对残差数据做DCT"></a>对残差数据做DCT</h3><p>可以将残差数据做整数离散余弦变换，去掉数据的相关性，进一步压缩数据。如下图所示，左侧为原数据的宏块，右侧为计算出的残差数据的宏块。</p>
-<p><img src="/images/1307424-20181107191314043-1719104258.png" alt="img"></p>
-<p>将残差数据宏块数字化后如下图所示：</p>
-<p><img src="/images/1307424-20181107191318906-1060673182.png" alt="img"></p>
-<p>将残差数据宏块进行 DCT 转换。</p>
-<p><img src="/images/1307424-20181107191325145-505363573.png" alt="img"></p>
-<p>去掉相关联的数据后，我们可以看出数据被进一步压缩了。</p>
-<p><img src="/images/1307424-20181107191330244-1287304627.png" alt="img"></p>
-<p>做完 DCT 后，还不够，还要进行 CABAC 进行无损压缩。</p>
-<h3 id="DCT原理大白话"><a href="#DCT原理大白话" class="headerlink" title="DCT原理大白话"></a>DCT原理大白话</h3><p> 这是第一帧画面：P1（我们的参考帧） </p>
-<p><img src="/images/50.jpg" alt="50"></p>
-<p> 这是第二帧画面：P2（需要编码的帧） </p>
-<p><img src="/images/51.jpg" alt="50"></p>
-<p> 从视频中截取的两张间隔1-2秒的画面，和实际情况类似，下面我们进行几次运动搜索： </p>
-<p> 这是一个演示程序，鼠标选中P2上任意<strong>16x16</strong>的Block，即可搜索出<strong>P1上的 BestMatch</strong> 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
-<p><img src="/images/53.jpg" alt="50"></p>
-<p> 这是一个演示程序，鼠标选中P2上任意16x16的Block，即可搜索出P1上的 BestMatch 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
-<p> 搜索演示2：空中电线交叉位置（上图P1，下图P2） </p>
-<p><img src="/images/55.jpg" alt="50"></p>
-<p><img src="/images/54.jpg" alt="50"></p>
-<p> 同样顺利在P1中找到最接近P2里海报的宏块位置。 </p>
-<p> 图片全搜索：根据P1和运动矢量数据（在P2中搜索到每一个宏块在P1中最相似的位置集合）还原出来的P2’，即完全用P1各个位置的宏块拼凑出来最像P2的图片P2’，效果如下： </p>
-<p><img src="/images/56.jpg" alt="50"></p>
-<h5 id="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80："><a href="#仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80：" class="headerlink" title="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80："></a>仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80：</h5><p><img src="/images/57.jpg" alt="50"></p>
-<p> 这就是之前支离破碎的 P2` 加上误差 D2之后变成了清晰可见的样子，基本还原了原图P2。 </p>
-<p><img src="/images/58.jpg" alt="50"></p>
-<p> 由于D2仅仅占5KB，加上压缩过后的运动矢量不过7KB，所以参考P1我们只需要额外 7KB的数据量就可以完整表示P2了，而如果独立将P2用质量尚可的有损压缩方式独立压缩，则至少要去到50-60KB，这一下节省了差不多8倍的空间，正就是所谓运动编码的基本原理。 </p>
-<p> 实际在使用中，参考帧并不一定是前面一帧，也不一定是同一个GOP的I帧，因为GOP间隔较长时，后面的图片离I帧变化可能已经很大了，因此常见做法是最近15帧中选择一帧误差最小的作为参考帧，虽然彩色画面有YUV三个分量，但是大量的预测工作和最有选择通常是根据Y分量的灰度帧进行判断的。 </p>
-<p> 再者误差我们保存的是（P2-P2’）/2 + 0x80，实际使用时我们会用更有效率的方式，比如让[-64,64]之间的色差精度为1，[-255,-64], [64, 255] 之间的色差精度为2-3，这样会更加真实一些。 </p>
-<p> 同时上文很多地方用的是直接lzma2进行简单存储，实际使用时一般会引入熵编码，对数据进行一定层次的整理然后再压缩，性能会好不少。 </p>
-<h3 id="CABAC"><a href="#CABAC" class="headerlink" title="CABAC"></a>CABAC</h3><p>上面的帧内压缩是属于有损压缩技术。也就是说图像被压缩后，无法完全复原。而CABAC属于无损压缩技术。</p>
-<p>无损压缩技术大家最熟悉的可能就是哈夫曼编码了，给高频的词一个短码，给低频词一个长码从而达到数据压缩的目的。MPEG-2中使用的VLC就是这种算法，我们以 A-Z 作为例子，A属于高频数据，Z属于低频数据。看看它是如何做的。</p>
-<p><img src="/images/1307424-20181107191345116-277907586.png" alt="img"></p>
-<p>CABAC也是给高频数据短码，给低频数据长码。同时还会根据上下文相关性进行压缩，这种方式又比VLC高效很多。其效果如下：</p>
-<p><img src="/images/1307424-20181107191350500-1400387362.png" alt="img"></p>
-<p>现在将 A-Z 换成视频帧，它就成了下面的样子。</p>
-<p><img src="/images/1307424-20181107191355172-2085276841.png" alt="img"></p>
-<p>从上面这张图中明显可以看出采用 CACBA 的无损压缩方案要比 VLC 高效的多。</p>
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>H264</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>视频解码基础</title>
     <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A300-%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%B0%81%E8%A3%85%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<font size="2.9">
@@ -2587,6 +2477,118 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
 
 
 ]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>H264</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>视频压缩技术原理</title>
+    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A301-%E8%A7%86%E9%A2%91%E5%8E%8B%E7%BC%A9%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<font size="2.9">
+
+<p>H264视频压缩算法现在无疑是所有视频压缩技术中使用最广泛，</p>
+<p>最流行的。随着 x264/openh264以及ffmpeg等开源库的推出，大多数使用者无需再对H264的细节做过多的研究，这大降低了人们使用H264的成本。</p>
+<p>但为了用好H264，我们还是要对H264的基本原理弄清楚才行。今天我们就来看看H264的基本原理。</p>
+<h2 id="H264概述"><a href="#H264概述" class="headerlink" title="H264概述"></a>H264概述</h2><p><img src="/images/30.png" alt="img"></p>
+<p>H264压缩技术主要采用了以下几种方法对视频数据进行压缩。包括：</p>
+<p>　　帧内预测压缩，解决的是空域数据冗余问题。<br>　　帧间预测压缩（运动估计与补偿），解决的是时域数据冗徐问题。<br>　　整数离散余弦变换（DCT），将空间上的相关性变为频域上无关的数据然后进行量化。<br>　　CABAC压缩。</p>
+<p>经过压缩后的帧分为：I帧，P帧和B帧:</p>
+<p>　　I帧：关键帧，采用帧内压缩技术。<br>　　P帧：向前参考帧，在压缩时，只参考前面已经处理的帧。采用帧音压缩技术。<br>　　B帧：双向参考帧，在压缩时，它即参考前而的帧，又参考它后面的帧。采用帧间压缩技术。</p>
+<p>除了I/P/B帧外，还有图像序列GOP。</p>
+<p>　　GOP:两个I帧之间是一个图像序列，在一个图像序列中只有一个I帧。如下图所示：</p>
+<p><img src="/images/31.png" alt="img"></p>
+<p>下面我们就来详细描述一下H264压缩技术。</p>
+<h2 id="H264压缩技术"><a href="#H264压缩技术" class="headerlink" title="H264压缩技术"></a>H264压缩技术</h2><p>H264的基本原理其实非常简单，下我们就简单的描述一下H264压缩数据的过程。通过摄像头采集到的视频帧（按每秒 30 帧算），被送到 H264 编码器的缓冲区中。编码器先要为每一幅图片划分宏块。</p>
+<p>以下面这张图为例:</p>
+<p><img src="/images/32.png" alt="img"></p>
+<h3 id="划分宏块"><a href="#划分宏块" class="headerlink" title="划分宏块"></a>划分宏块</h3><p>H264默认是使用 16X16 大小的区域作为一个宏块，也可以划分成 8X8 大小。</p>
+<p><img src="/images/33.png" alt="img"></p>
+<p>划分好宏块后，计算宏块的象素值。</p>
+<p><img src="/images/34.png" alt="img"></p>
+<p>以此类推，计算一幅图像中每个宏块的像素值，所有宏块都处理完后如下面的样子。</p>
+<p><img src="/images/35.png" alt="img"></p>
+<h3 id="划分子块"><a href="#划分子块" class="headerlink" title="划分子块"></a>划分子块</h3><p>H264对比较平坦的图像使用 16X16 大小的宏块。但为了更高的压缩率，还可以在 16X16 的宏块上更划分出更小的子块。子块的大小可以是 8X16､ 16X8､ 8X8､ 4X8､ 8X4､ 4X4非常的灵活。</p>
+<p><img src="/images/36.png" alt="img"></p>
+<p>上幅图中，红框内的 16X16 宏块中大部分是蓝色背景，而三只鹰的部分图像被划在了该宏块内，为了更好的处理三只鹰的部分图像，H264就在 16X16 的宏块内又划分出了多个子块。</p>
+<p><img src="/images/37.png" alt="img"></p>
+<p>这样再经过帧内压缩，可以得到更高效的数据。下图是分别使用mpeg-2和H264对上面宏块进行压缩后的结果。其中左半部分为MPEG-2子块划分后压缩的结果，右半部分为H264的子块划压缩后的结果，可以看出H264的划分方法更具优势。</p>
+<p><img src="/images/39.png" alt="img"></p>
+<p>宏块划分好后，就可以对H264编码器缓存中的所有图片进行分组了。</p>
+<h3 id="帧分组"><a href="#帧分组" class="headerlink" title="帧分组"></a>帧分组</h3><p>对于视频数据主要有两类数据冗余，一类是时间上的数据冗余，另一类是空间上的数据冗余。其中时间上的数据冗余是最大的。下面我们就先来说说视频数据时间上的冗余问题。</p>
+<p>为什么说时间上的冗余是最大的呢？假设摄像头每秒抓取30帧，这30帧的数据大部分情况下都是相关联的。也有可能不止30帧的的数据，可能几十帧，上百帧的数据都是关联特别密切的。</p>
+<p>对于这些关联特别密切的帧，其实我们只需要保存一帧的数据，其它帧都可以通过这一帧再按某种规则预测出来，所以说视频数据在时间上的冗余是最多的。</p>
+<p>为了达到相关帧通过预测的方法来压缩数据，就需要将视频帧进行分组。那么如何判定某些帧关系密切，可以划为一组呢？我们来看一下例子，下面是捕获的一组运动的台球的视频帧，台球从右上角滚到了左下角。</p>
+<p><img src="/images/40.png" alt="img"></p>
+<p><img src="/images/41.png" alt="img"></p>
+<p>没有运动补偿的时候  120fps     60fps   60帧电影  视频画面是没有提升</p>
+<p>120fps    60帧视频  60帧虚拟帧</p>
+<p>H264编码器会按顺序，每次取出两幅相邻的帧进行宏块比较，计算两帧的相似度。如下图：</p>
+<p><img src="/images/42.png" alt="img"></p>
+<p>通过宏块扫描与宏块搜索可以发现这两个帧的关联度是非常高的。进而发现这一组帧的关联度都是非常高的。因此，上面这几帧就可以划分为一组。其算法是：<strong>在相邻几幅图像画面中，一般有差别的像素只有10%以内的点,亮度差值变化不超过2%，而色度差值的变化只有1%以内，我们认为这样的图可以分到一组。</strong></p>
+<p>在这样一组帧中，经过编码后，我们只保留第一帖的完整数据，其它帧都通过参考上一帧计算出来。我们称第一帧为<strong>IDR／I帧</strong>，其它帧我们称为<strong>P／B帧</strong>，这样编码后的数据帧组我们称为<strong>GOP</strong>。</p>
+<h3 id="运动估计与补偿"><a href="#运动估计与补偿" class="headerlink" title="运动估计与补偿"></a>运动估计与补偿</h3><p>在H264编码器中将帧分组后，就要计算帧组内物体的运动矢量了。还以上面运动的台球视频帧为例，我们来看一下它是如何计算运动矢量的。</p>
+<p>H264编码器首先按顺序从缓冲区头部取出两帧视频数据，然后进行宏块扫描。当发现其中一幅图片中有物体时，就在另一幅图的邻近位置（搜索窗口中）进行搜索。如果此时在另一幅图中找到该物体，那么就可以计算出物体的运动矢量了。下面这幅图就是搜索后的台球移动的位置。</p>
+<p><img src="/images/43.png" alt="img"></p>
+<p> 抖音 —-》视频  1M  9M   </p>
+<p>通过上图中台球位置相差，就可以计算出台图运行的方向和距离。H264依次把每一帧中球移动的距离和方向都记录下来就成了下面的样子。</p>
+<p><img src="/images/44.png" alt="img"></p>
+<p>运动矢量计算出来后，将相同部分（也就是绿色部分）减去，就得到了补偿数据。我们最终只需要将补偿数据进行压缩保存，以后在解码时就可以恢复原图了。压缩补偿后的数据只需要记录很少的一点数据。如下所示：</p>
+<p><img src="/images/45.png" alt="img"></p>
+<p>我们把运动矢量与补偿称为<strong>帧间压缩技术</strong>，它解决的是视频帧在时间上的数据冗余。除了帧间压缩，帧内也要进行数据压缩，帧内数据压缩解决的是空间上的数据冗余。下面我们就来介绍一下帧内压缩技术。</p>
+<h3 id="帧内预测"><a href="#帧内预测" class="headerlink" title="帧内预测"></a>帧内预测</h3><p>人眼对图象都有一个识别度，对低频的亮度很敏感，对高频的亮度不太敏感。所以基于一些研究，可以将一幅图像中人眼不敏感的数据去除掉。这样就提出了帧内预测技术。</p>
+<p>H264的帧内压缩与JPEG很相似。一幅图像被划分好宏块后，对每个宏块可以进行 9 种模式的预测。找出与原图最接近的一种预测模式。</p>
+<p><img src="/images/46.png" alt="img"></p>
+<p>下面这幅图是对整幅图中的每个宏块进行预测的过程。</p>
+<p><img src="/images/1307424-20181107191243491-673612486.png" alt="img"></p>
+<p>帧内预测后的图像与原始图像的对比如下：</p>
+<p><img src="/images/1307424-20181107191249101-214889465.png" alt="img"></p>
+<p>然后，将原始图像与帧内预测后的图像相减得残差值。</p>
+<p><img src="/images/1307424-20181107191253955-1987839456.png" alt="img"></p>
+<p>再将我们之前得到的预测模式信息一起保存起来，这样我们就可以在解码时恢复原图了。效果如下：</p>
+<p><img src="/images/1307424-20181107191259057-1084466018.png" alt="img"></p>
+<p>经过帧内与帧间的压缩后，虽然数据有大幅减少，但还有优化的空间。</p>
+<h3 id="对残差数据做DCT"><a href="#对残差数据做DCT" class="headerlink" title="对残差数据做DCT"></a>对残差数据做DCT</h3><p>可以将残差数据做整数离散余弦变换，去掉数据的相关性，进一步压缩数据。如下图所示，左侧为原数据的宏块，右侧为计算出的残差数据的宏块。</p>
+<p><img src="/images/1307424-20181107191314043-1719104258.png" alt="img"></p>
+<p>将残差数据宏块数字化后如下图所示：</p>
+<p><img src="/images/1307424-20181107191318906-1060673182.png" alt="img"></p>
+<p>将残差数据宏块进行 DCT 转换。</p>
+<p><img src="/images/1307424-20181107191325145-505363573.png" alt="img"></p>
+<p>去掉相关联的数据后，我们可以看出数据被进一步压缩了。</p>
+<p><img src="/images/1307424-20181107191330244-1287304627.png" alt="img"></p>
+<p>做完 DCT 后，还不够，还要进行 CABAC 进行无损压缩。</p>
+<h3 id="DCT原理大白话"><a href="#DCT原理大白话" class="headerlink" title="DCT原理大白话"></a>DCT原理大白话</h3><p> 这是第一帧画面：P1（我们的参考帧） </p>
+<p><img src="/images/50.jpg" alt="50"></p>
+<p> 这是第二帧画面：P2（需要编码的帧） </p>
+<p><img src="/images/51.jpg" alt="50"></p>
+<p> 从视频中截取的两张间隔1-2秒的画面，和实际情况类似，下面我们进行几次运动搜索： </p>
+<p> 这是一个演示程序，鼠标选中P2上任意<strong>16x16</strong>的Block，即可搜索出<strong>P1上的 BestMatch</strong> 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
+<p><img src="/images/53.jpg" alt="50"></p>
+<p> 这是一个演示程序，鼠标选中P2上任意16x16的Block，即可搜索出P1上的 BestMatch 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
+<p> 搜索演示2：空中电线交叉位置（上图P1，下图P2） </p>
+<p><img src="/images/55.jpg" alt="50"></p>
+<p><img src="/images/54.jpg" alt="50"></p>
+<p> 同样顺利在P1中找到最接近P2里海报的宏块位置。 </p>
+<p> 图片全搜索：根据P1和运动矢量数据（在P2中搜索到每一个宏块在P1中最相似的位置集合）还原出来的P2’，即完全用P1各个位置的宏块拼凑出来最像P2的图片P2’，效果如下： </p>
+<p><img src="/images/56.jpg" alt="50"></p>
+<h5 id="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80："><a href="#仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80：" class="headerlink" title="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80："></a>仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80：</h5><p><img src="/images/57.jpg" alt="50"></p>
+<p> 这就是之前支离破碎的 P2` 加上误差 D2之后变成了清晰可见的样子，基本还原了原图P2。 </p>
+<p><img src="/images/58.jpg" alt="50"></p>
+<p> 由于D2仅仅占5KB，加上压缩过后的运动矢量不过7KB，所以参考P1我们只需要额外 7KB的数据量就可以完整表示P2了，而如果独立将P2用质量尚可的有损压缩方式独立压缩，则至少要去到50-60KB，这一下节省了差不多8倍的空间，正就是所谓运动编码的基本原理。 </p>
+<p> 实际在使用中，参考帧并不一定是前面一帧，也不一定是同一个GOP的I帧，因为GOP间隔较长时，后面的图片离I帧变化可能已经很大了，因此常见做法是最近15帧中选择一帧误差最小的作为参考帧，虽然彩色画面有YUV三个分量，但是大量的预测工作和最有选择通常是根据Y分量的灰度帧进行判断的。 </p>
+<p> 再者误差我们保存的是（P2-P2’）/2 + 0x80，实际使用时我们会用更有效率的方式，比如让[-64,64]之间的色差精度为1，[-255,-64], [64, 255] 之间的色差精度为2-3，这样会更加真实一些。 </p>
+<p> 同时上文很多地方用的是直接lzma2进行简单存储，实际使用时一般会引入熵编码，对数据进行一定层次的整理然后再压缩，性能会好不少。 </p>
+<h3 id="CABAC"><a href="#CABAC" class="headerlink" title="CABAC"></a>CABAC</h3><p>上面的帧内压缩是属于有损压缩技术。也就是说图像被压缩后，无法完全复原。而CABAC属于无损压缩技术。</p>
+<p>无损压缩技术大家最熟悉的可能就是哈夫曼编码了，给高频的词一个短码，给低频词一个长码从而达到数据压缩的目的。MPEG-2中使用的VLC就是这种算法，我们以 A-Z 作为例子，A属于高频数据，Z属于低频数据。看看它是如何做的。</p>
+<p><img src="/images/1307424-20181107191345116-277907586.png" alt="img"></p>
+<p>CABAC也是给高频数据短码，给低频数据长码。同时还会根据上下文相关性进行压缩，这种方式又比VLC高效很多。其效果如下：</p>
+<p><img src="/images/1307424-20181107191350500-1400387362.png" alt="img"></p>
+<p>现在将 A-Z 换成视频帧，它就成了下面的样子。</p>
+<p><img src="/images/1307424-20181107191355172-2085276841.png" alt="img"></p>
+<p>从上面这张图中明显可以看出采用 CACBA 的无损压缩方案要比 VLC 高效的多。</p>
+</font>]]></content>
       <categories>
         <category>Android</category>
       </categories>
