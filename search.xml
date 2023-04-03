@@ -789,6 +789,17 @@
 <p>R8 D8 以及混淆相关的，还有R8除了混淆还能干些什么？ 混淆规则有没有碰到什么奇怪的问题？<br>D8和Dx的区别，主要涉及到编译速度以及编译产物的体积，包体积大概小11%。</p>
 <p>R8 则是变更了整个编译流程的，其中我觉得最微妙的就是java8 lambda相关的，脱糖前后的差别还是比较大的。同时R8也少了很多之前的Transform。<br>R8的混淆部分，混淆除了能增加代码阅读难度意外，更多的是对于代码优化方面的。 比如无效代码优化，  同时也删除代码等等都可以做。</p>
 <h5 id="编译的时候有没有碰到javac的常量优化"><a href="#编译的时候有没有碰到javac的常量优化" class="headerlink" title="编译的时候有没有碰到javac的常量优化"></a>编译的时候有没有碰到javac的常量优化</h5><p>javac会将静态常量直接优化成具体的数值。但是尤其是多模块场景下尤其容易出现异常，看起来是个实际的常量引用，但是产物上却是一个具体的常量值了。<br>其他部分<br>组件化相关<br>不仅仅要聊到路由，还需要聊下业务仓库的设计，如何避免两个模块之间相互相互引用导致的环问题。<br>另外就是路由的apt aop的部分都可以深入的聊一下。<br>如果只聊路由的话，你就只说了一个字符串匹配规则，非常无聊了。<br>路由跳转<br>路由跳转只是一小部分，其核心原理就是字符串匹配，之后筛选出符合逻辑的页面进行跳转。<br>另外就是拦截器的设计，同步异步拦截器两种完全不同的写法。<br>其原理基于apt+transform ，apt负责生成模块德 路由表，而transform则负责将各个模块的路由表进行收集。<br>服务发现<br>类似路由表，但是维护的是一个基于键值的类构造。ab之间当有相互依赖的情况下，可以通过基于接口编程的方式进行调整，互相只依赖抽象的接口，之后实现类在内部，通过注册的机制。之后在实际的使用地方用服务发现的机制寻找。<br>依赖注入<br>和服务发现类似，也是拿来解决不同模块间的依赖问题。可以使用hilt，依赖注入的好处就是连构造的这部分工作也有di完成了，而且构造能力更多样。可以多参数构造。<br>虚拟机部分<br>很多人会觉得虚拟机这部分都是硬八股，比较无聊。但是其实有时候我们碰到的一些字节码相关的问题就和这部分基础姿势相关了。<br>虽然用的比较少，但是也不是一个硬八股，比hashmap好玩太多了。<br>总</p>
+<h5 id="android-电量统计工具"><a href="#android-电量统计工具" class="headerlink" title="android 电量统计工具"></a>android 电量统计工具</h5><blockquote>
+<p>Battery Historian </p>
+</blockquote>
+<p><a href="http://127.0.0.1:9999/">http://127.0.0.1:9999/</a></p>
+<p>docker 安装</p>
+<p>docker – run -p 9999:9999 gcr.io/android-battery-historian/stable:3.0 –port 9999</p>
+<blockquote>
+<p>CgBugReport</p>
+</blockquote>
+<p><img src="https://github.com/sonyxperiadev/ChkBugReport/wiki/How-to-install-it" alt="CgBugReport"></p>
+<p>java -jar chkbugreport-0.5-215.jar  bugreport-NX709S-SKQ1.220502.001-2023-03-27-17-14-47.txt</p>
 </font>
 ]]></content>
       <categories>
