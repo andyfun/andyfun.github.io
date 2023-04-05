@@ -29,22 +29,22 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/30.png">
 <meta property="og:image" content="http://yoursite.com/images/31.png">
-<meta property="og:image" content="http://yoursite.com/images/32.png">
-<meta property="og:image" content="http://yoursite.com/images/33.png">
-<meta property="og:image" content="http://yoursite.com/images/34.png">
-<meta property="og:image" content="http://yoursite.com/images/35.png">
-<meta property="og:image" content="http://yoursite.com/images/36.png">
-<meta property="og:image" content="http://yoursite.com/images/37.png">
+<meta property="og:image" content="http://yoursite.com/images/32.webp">
+<meta property="og:image" content="http://yoursite.com/images/33.webp">
+<meta property="og:image" content="http://yoursite.com/images/34.webp">
+<meta property="og:image" content="http://yoursite.com/images/35.webp">
+<meta property="og:image" content="http://yoursite.com/images/36.webp">
+<meta property="og:image" content="http://yoursite.com/images/37.webp">
 <meta property="og:image" content="http://yoursite.com/images/39.png">
-<meta property="og:image" content="http://yoursite.com/images/40.png">
-<meta property="og:image" content="http://yoursite.com/images/41.png">
-<meta property="og:image" content="http://yoursite.com/images/42.png">
+<meta property="og:image" content="http://yoursite.com/images/40.webp">
+<meta property="og:image" content="http://yoursite.com/images/41.webp">
+<meta property="og:image" content="http://yoursite.com/images/42.webp">
 <meta property="og:image" content="http://yoursite.com/images/43.png">
 <meta property="og:image" content="http://yoursite.com/images/44.png">
 <meta property="og:image" content="http://yoursite.com/images/45.png">
-<meta property="og:image" content="http://yoursite.com/images/46.png">
-<meta property="og:image" content="http://yoursite.com/images/1307424-20181107191243491-673612486.png">
-<meta property="og:image" content="http://yoursite.com/images/1307424-20181107191249101-214889465.png">
+<meta property="og:image" content="http://yoursite.com/images/46.webp">
+<meta property="og:image" content="http://yoursite.com/images/145.webp">
+<meta property="og:image" content="http://yoursite.com/images/146.webp">
 <meta property="og:image" content="http://yoursite.com/images/1307424-20181107191253955-1987839456.png">
 <meta property="og:image" content="http://yoursite.com/images/1307424-20181107191259057-1084466018.png">
 <meta property="og:image" content="http://yoursite.com/images/1307424-20181107191314043-1719104258.png">
@@ -63,7 +63,7 @@
 <meta property="og:image" content="http://yoursite.com/images/1307424-20181107191350500-1400387362.png">
 <meta property="og:image" content="http://yoursite.com/images/1307424-20181107191355172-2085276841.png">
 <meta property="article:published_time" content="2021-11-18T10:34:24.000Z">
-<meta property="article:modified_time" content="2022-08-13T03:35:37.000Z">
+<meta property="article:modified_time" content="2023-04-05T15:22:48.414Z">
 <meta property="article:author" content="andy">
 <meta property="article:tag" content="H264">
 <meta name="twitter:card" content="summary">
@@ -263,7 +263,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-13 11:35:37" itemprop="dateModified" datetime="2022-08-13T11:35:37+08:00">2022-08-13</time>
+                <time title="修改时间：2023-04-05 23:22:48" itemprop="dateModified" datetime="2023-04-05T23:22:48+08:00">2023-04-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -323,17 +323,17 @@
 <p>下面我们就来详细描述一下H264压缩技术。</p>
 <h2 id="H264压缩技术"><a href="#H264压缩技术" class="headerlink" title="H264压缩技术"></a>H264压缩技术</h2><p>H264的基本原理其实非常简单，下我们就简单的描述一下H264压缩数据的过程。通过摄像头采集到的视频帧（按每秒 30 帧算），被送到 H264 编码器的缓冲区中。编码器先要为每一幅图片划分宏块。</p>
 <p>以下面这张图为例:</p>
-<p><img src="/images/32.png" alt="img"></p>
+<p><img src="/images/32.webp" alt="img"></p>
 <h3 id="划分宏块"><a href="#划分宏块" class="headerlink" title="划分宏块"></a>划分宏块</h3><p>H264默认是使用 16X16 大小的区域作为一个宏块，也可以划分成 8X8 大小。</p>
-<p><img src="/images/33.png" alt="img"></p>
+<p><img src="/images/33.webp" alt="img"></p>
 <p>划分好宏块后，计算宏块的象素值。</p>
-<p><img src="/images/34.png" alt="img"></p>
+<p><img src="/images/34.webp" alt="img"></p>
 <p>以此类推，计算一幅图像中每个宏块的像素值，所有宏块都处理完后如下面的样子。</p>
-<p><img src="/images/35.png" alt="img"></p>
+<p><img src="/images/35.webp" alt="img"></p>
 <h3 id="划分子块"><a href="#划分子块" class="headerlink" title="划分子块"></a>划分子块</h3><p>H264对比较平坦的图像使用 16X16 大小的宏块。但为了更高的压缩率，还可以在 16X16 的宏块上更划分出更小的子块。子块的大小可以是 8X16､ 16X8､ 8X8､ 4X8､ 8X4､ 4X4非常的灵活。</p>
-<p><img src="/images/36.png" alt="img"></p>
+<p><img src="/images/36.webp" alt="img"></p>
 <p>上幅图中，红框内的 16X16 宏块中大部分是蓝色背景，而三只鹰的部分图像被划在了该宏块内，为了更好的处理三只鹰的部分图像，H264就在 16X16 的宏块内又划分出了多个子块。</p>
-<p><img src="/images/37.png" alt="img"></p>
+<p><img src="/images/37.webp" alt="img"></p>
 <p>这样再经过帧内压缩，可以得到更高效的数据。下图是分别使用mpeg-2和H264对上面宏块进行压缩后的结果。其中左半部分为MPEG-2子块划分后压缩的结果，右半部分为H264的子块划压缩后的结果，可以看出H264的划分方法更具优势。</p>
 <p><img src="/images/39.png" alt="img"></p>
 <p>宏块划分好后，就可以对H264编码器缓存中的所有图片进行分组了。</p>
@@ -341,12 +341,12 @@
 <p>为什么说时间上的冗余是最大的呢？假设摄像头每秒抓取30帧，这30帧的数据大部分情况下都是相关联的。也有可能不止30帧的的数据，可能几十帧，上百帧的数据都是关联特别密切的。</p>
 <p>对于这些关联特别密切的帧，其实我们只需要保存一帧的数据，其它帧都可以通过这一帧再按某种规则预测出来，所以说视频数据在时间上的冗余是最多的。</p>
 <p>为了达到相关帧通过预测的方法来压缩数据，就需要将视频帧进行分组。那么如何判定某些帧关系密切，可以划为一组呢？我们来看一下例子，下面是捕获的一组运动的台球的视频帧，台球从右上角滚到了左下角。</p>
-<p><img src="/images/40.png" alt="img"></p>
-<p><img src="/images/41.png" alt="img"></p>
+<p><img src="/images/40.webp" alt="img"></p>
+<p><img src="/images/41.webp" alt="img"></p>
 <p>没有运动补偿的时候  120fps     60fps   60帧电影  视频画面是没有提升</p>
 <p>120fps    60帧视频  60帧虚拟帧</p>
 <p>H264编码器会按顺序，每次取出两幅相邻的帧进行宏块比较，计算两帧的相似度。如下图：</p>
-<p><img src="/images/42.png" alt="img"></p>
+<p><img src="/images/42.webp" alt="img"></p>
 <p>通过宏块扫描与宏块搜索可以发现这两个帧的关联度是非常高的。进而发现这一组帧的关联度都是非常高的。因此，上面这几帧就可以划分为一组。其算法是：<strong>在相邻几幅图像画面中，一般有差别的像素只有10%以内的点,亮度差值变化不超过2%，而色度差值的变化只有1%以内，我们认为这样的图可以分到一组。</strong></p>
 <p>在这样一组帧中，经过编码后，我们只保留第一帖的完整数据，其它帧都通过参考上一帧计算出来。我们称第一帧为<strong>IDR／I帧</strong>，其它帧我们称为<strong>P／B帧</strong>，这样编码后的数据帧组我们称为<strong>GOP</strong>。</p>
 <h3 id="运动估计与补偿"><a href="#运动估计与补偿" class="headerlink" title="运动估计与补偿"></a>运动估计与补偿</h3><p>在H264编码器中将帧分组后，就要计算帧组内物体的运动矢量了。还以上面运动的台球视频帧为例，我们来看一下它是如何计算运动矢量的。</p>
@@ -360,11 +360,11 @@
 <p>我们把运动矢量与补偿称为<strong>帧间压缩技术</strong>，它解决的是视频帧在时间上的数据冗余。除了帧间压缩，帧内也要进行数据压缩，帧内数据压缩解决的是空间上的数据冗余。下面我们就来介绍一下帧内压缩技术。</p>
 <h3 id="帧内预测"><a href="#帧内预测" class="headerlink" title="帧内预测"></a>帧内预测</h3><p>人眼对图象都有一个识别度，对低频的亮度很敏感，对高频的亮度不太敏感。所以基于一些研究，可以将一幅图像中人眼不敏感的数据去除掉。这样就提出了帧内预测技术。</p>
 <p>H264的帧内压缩与JPEG很相似。一幅图像被划分好宏块后，对每个宏块可以进行 9 种模式的预测。找出与原图最接近的一种预测模式。</p>
-<p><img src="/images/46.png" alt="img"></p>
+<p><img src="/images/46.webp" alt="img"></p>
 <p>下面这幅图是对整幅图中的每个宏块进行预测的过程。</p>
-<p><img src="/images/1307424-20181107191243491-673612486.png" alt="img"></p>
+<p><img src="/images/145.webp" alt="img"></p>
 <p>帧内预测后的图像与原始图像的对比如下：</p>
-<p><img src="/images/1307424-20181107191249101-214889465.png" alt="img"></p>
+<p><img src="/images/146.webp" alt="img"></p>
 <p>然后，将原始图像与帧内预测后的图像相减得残差值。</p>
 <p><img src="/images/1307424-20181107191253955-1987839456.png" alt="img"></p>
 <p>再将我们之前得到的预测模式信息一起保存起来，这样我们就可以在解码时恢复原图了。效果如下：</p>
