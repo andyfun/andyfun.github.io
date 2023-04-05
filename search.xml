@@ -144,6 +144,24 @@
       </tags>
   </entry>
   <entry>
+    <title>AndroidHandler</title>
+    <url>/2021/12/12/Android/AndroidHandler/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h3 id="App-启动流程"><a href="#App-启动流程" class="headerlink" title="App 启动流程"></a>App 启动流程</h3><img src="/2021/12/12/Android/AndroidHandler/1.webp" class="">
+
+
+<h3 id="webP"><a href="#webP" class="headerlink" title="webP"></a>webP</h3><p>WebP 对图片进行分块，然后对待填充的宏块使用了帧间预测技术，根据其附近已编码宏块的数据，预测出当前块数据。相比 JEPG 对图像原值进行编码，WebP 编码的是预测值和原值的差值，这是 WebP 体积更小的主要原因。最后，WebP 使用了更优秀的算数编码</p>
+<p>WebP 完全兼容 Android 4.4 及其以上版本，而在另一大移动平台 iOS 上，则是完全不兼容 WebP。因此，我们需要在前端进行平台检测，对于支持 WebP 的平台输出 WebP，在不支持的平台上采用降级方案。</p>
+</font>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Handler,webp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AndroidJNI</title>
     <url>/2021/10/14/Android/AndroidJNI/</url>
     <content><![CDATA[<font size="2.9">
@@ -373,24 +391,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AndroidHandler</title>
-    <url>/2021/12/12/Android/AndroidHandler/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h3 id="App-启动流程"><a href="#App-启动流程" class="headerlink" title="App 启动流程"></a>App 启动流程</h3><img src="/2021/12/12/Android/AndroidHandler/1.webp" class="">
-
-
-<h3 id="webP"><a href="#webP" class="headerlink" title="webP"></a>webP</h3><p>WebP 对图片进行分块，然后对待填充的宏块使用了帧间预测技术，根据其附近已编码宏块的数据，预测出当前块数据。相比 JEPG 对图像原值进行编码，WebP 编码的是预测值和原值的差值，这是 WebP 体积更小的主要原因。最后，WebP 使用了更优秀的算数编码</p>
-<p>WebP 完全兼容 Android 4.4 及其以上版本，而在另一大移动平台 iOS 上，则是完全不兼容 WebP。因此，我们需要在前端进行平台检测，对于支持 WebP 的平台输出 WebP，在不支持的平台上采用降级方案。</p>
-</font>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Handler</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AndroidRecord</title>
     <url>/2021/11/02/Android/AndroidLog/</url>
     <content><![CDATA[<font size="2.9">
@@ -489,24 +489,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java通用代码分装</title>
-    <url>/2021/01/05/Android/GeneralCode/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="封装通用类型"><a href="#封装通用类型" class="headerlink" title="封装通用类型"></a>封装通用类型</h4><span id="more"></span>
-<blockquote>
-<p>csharp 通过jni调用Java   </p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">Show</span><span class="params">(String methodName, String args)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (!TextUtils.isEmpty(methodName) &amp;&amp; methodName.equals(<span class="string">&quot;RegCallback&quot;</span>))&#123;</span><br><span class="line">           GiantSDK.athenaCallback(args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">0</span>],args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">1</span>]);</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       ReflectUtils mReflectUtils = <span class="keyword">null</span>;</span><br><span class="line">       Method mReflectMothod = <span class="keyword">null</span>;</span><br><span class="line">       <span class="keyword">int</span> length = JumpArgs(args);</span><br><span class="line">       Log.e(TAG, <span class="string">&quot;args = &quot;</span> + args);</span><br><span class="line">       <span class="keyword">if</span> (mGaSdkClass != <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="comment">//无返回值的方法</span></span><br><span class="line">           mReflectUtils = ReflectUtils.reflect(mGaSdkClass).newInstance();</span><br><span class="line"></span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">1</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">2</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   classes[<span class="number">1</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (mReflectMothod.getReturnType().equals(Void.TYPE)) &#123;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                       <span class="comment">//无参数</span></span><br><span class="line">                       mReflectUtils.method(methodName);</span><br><span class="line">                       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                       <span class="comment">//一个参数</span></span><br><span class="line">                       mReflectUtils.method(methodName, args);</span><br><span class="line">                   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                       String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                       mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]);</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="comment">//有返回值</span></span><br><span class="line">               String result = <span class="keyword">null</span>;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, args).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               Log.d(TAG, <span class="string">&quot;result = &quot;</span> + result);</span><br><span class="line">               <span class="keyword">return</span> result;</span><br><span class="line">           &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Code</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AndroidSdkHotFix</title>
     <url>/2022/08/13/Android/AndroidSdkHotFix/</url>
     <content><![CDATA[<font size="2.9">
@@ -559,6 +541,24 @@
       </tags>
   </entry>
   <entry>
+    <title>Java通用代码分装</title>
+    <url>/2021/01/05/Android/GeneralCode/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="封装通用类型"><a href="#封装通用类型" class="headerlink" title="封装通用类型"></a>封装通用类型</h4><span id="more"></span>
+<blockquote>
+<p>csharp 通过jni调用Java   </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">Show</span><span class="params">(String methodName, String args)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (!TextUtils.isEmpty(methodName) &amp;&amp; methodName.equals(<span class="string">&quot;RegCallback&quot;</span>))&#123;</span><br><span class="line">           GiantSDK.athenaCallback(args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">0</span>],args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">1</span>]);</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       ReflectUtils mReflectUtils = <span class="keyword">null</span>;</span><br><span class="line">       Method mReflectMothod = <span class="keyword">null</span>;</span><br><span class="line">       <span class="keyword">int</span> length = JumpArgs(args);</span><br><span class="line">       Log.e(TAG, <span class="string">&quot;args = &quot;</span> + args);</span><br><span class="line">       <span class="keyword">if</span> (mGaSdkClass != <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="comment">//无返回值的方法</span></span><br><span class="line">           mReflectUtils = ReflectUtils.reflect(mGaSdkClass).newInstance();</span><br><span class="line"></span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">1</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">2</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   classes[<span class="number">1</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (mReflectMothod.getReturnType().equals(Void.TYPE)) &#123;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                       <span class="comment">//无参数</span></span><br><span class="line">                       mReflectUtils.method(methodName);</span><br><span class="line">                       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                       <span class="comment">//一个参数</span></span><br><span class="line">                       mReflectUtils.method(methodName, args);</span><br><span class="line">                   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                       String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                       mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]);</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="comment">//有返回值</span></span><br><span class="line">               String result = <span class="keyword">null</span>;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, args).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               Log.d(TAG, <span class="string">&quot;result = &quot;</span> + result);</span><br><span class="line">               <span class="keyword">return</span> result;</span><br><span class="line">           &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Code</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HandlerBinder</title>
     <url>/2021/12/06/Android/HandlerBinder/</url>
     <content><![CDATA[]]></content>
@@ -593,6 +593,28 @@
       </tags>
   </entry>
   <entry>
+    <title>webrtc记录</title>
+    <url>/2020/12/21/Android/Webrtc/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h3 id="WebRtc-简介"><a href="#WebRtc-简介" class="headerlink" title="WebRtc 简介"></a>WebRtc 简介</h3><blockquote>
+<p>WebRTC名称源自网页实时通信(Web Real-Time Communication)的缩写，是一个支持网页浏览器进行实时语音对话或视频对话的技术，是谷歌2010年以6820万美元收购Global IP Solutions公司而获得的一项技术。Google于2011年6月3日开源的即时通讯项目，旨在使其成为客户端视频通话的标准。其实在Google将WebRTC开源之前，微软和苹果各自的通讯产品已占用很大市场份额（如Skype），Google`也是为了快速扩大市场，所以将他给开源。在行业内得到了广泛的支持和应用，成为下一代视频通话的标准。更多介绍可以自行去官网上看。</p>
+</blockquote>
+<blockquote>
+<p>WebRTC被誉为是web长期开源开发的一个新启元，是近年来Web开发的最重要创新。WebRTC允许Web开发者在其web应用中添加视频聊天或者点对点数据传输，不需要复杂的代码或者昂贵的配置。目前支持Chrome、Firefox和Opera，后续会支持更多的浏览器，它有能力达到数十亿的设备。</p>
+</blockquote>
+<h3 id="编译WebRTC"><a href="#编译WebRTC" class="headerlink" title="编译WebRTC"></a>编译WebRTC</h3><blockquote>
+<p>参考声网的国内镜像（我试图编译 镜像下载失败）<strong><a href="https://webrtc.org.cn/mirror/">https://webrtc.org.cn/mirror/</a></strong></p>
+</blockquote>
+ <span id="more"></span>
+<h3 id="Android-webrtc"><a href="#Android-webrtc" class="headerlink" title="Android-webrtc"></a>Android-webrtc</h3><blockquote>
+<p>android依赖</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">implementation &#x27;org.webrtc:google-webrtc:1.0.26131&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>1.打开摄像头<br>2.本地回环<br>3.信令<br>4.多人视频</p>
+</font>]]></content>
+  </entry>
+  <entry>
     <title>Video记录</title>
     <url>/2020/12/24/Android/Videoview/</url>
     <content><![CDATA[<font size="2.9">
@@ -619,28 +641,6 @@
       <tags>
         <tag>VideoView</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>webrtc记录</title>
-    <url>/2020/12/21/Android/Webrtc/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h3 id="WebRtc-简介"><a href="#WebRtc-简介" class="headerlink" title="WebRtc 简介"></a>WebRtc 简介</h3><blockquote>
-<p>WebRTC名称源自网页实时通信(Web Real-Time Communication)的缩写，是一个支持网页浏览器进行实时语音对话或视频对话的技术，是谷歌2010年以6820万美元收购Global IP Solutions公司而获得的一项技术。Google于2011年6月3日开源的即时通讯项目，旨在使其成为客户端视频通话的标准。其实在Google将WebRTC开源之前，微软和苹果各自的通讯产品已占用很大市场份额（如Skype），Google`也是为了快速扩大市场，所以将他给开源。在行业内得到了广泛的支持和应用，成为下一代视频通话的标准。更多介绍可以自行去官网上看。</p>
-</blockquote>
-<blockquote>
-<p>WebRTC被誉为是web长期开源开发的一个新启元，是近年来Web开发的最重要创新。WebRTC允许Web开发者在其web应用中添加视频聊天或者点对点数据传输，不需要复杂的代码或者昂贵的配置。目前支持Chrome、Firefox和Opera，后续会支持更多的浏览器，它有能力达到数十亿的设备。</p>
-</blockquote>
-<h3 id="编译WebRTC"><a href="#编译WebRTC" class="headerlink" title="编译WebRTC"></a>编译WebRTC</h3><blockquote>
-<p>参考声网的国内镜像（我试图编译 镜像下载失败）<strong><a href="https://webrtc.org.cn/mirror/">https://webrtc.org.cn/mirror/</a></strong></p>
-</blockquote>
- <span id="more"></span>
-<h3 id="Android-webrtc"><a href="#Android-webrtc" class="headerlink" title="Android-webrtc"></a>Android-webrtc</h3><blockquote>
-<p>android依赖</p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">implementation &#x27;org.webrtc:google-webrtc:1.0.26131&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>1.打开摄像头<br>2.本地回环<br>3.信令<br>4.多人视频</p>
-</font>]]></content>
   </entry>
   <entry>
     <title>adbTools</title>
@@ -1175,6 +1175,33 @@ IP直连方案有下面几大优势：
       </tags>
   </entry>
   <entry>
+    <title>Cocos_creator_3.6.1</title>
+    <url>/2022/10/16/Cocos/Cocos-creator-3-6-1/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="cocos"><a href="#cocos" class="headerlink" title="cocos"></a>cocos</h4><ol>
+<li><a href="https://docs.cocos.com/creator/manual/zh/getting-started/first-game/">cocos</a></li>
+<li>使用TypeScript</li>
+<li>保存玩，回到编辑器页面刷新</li>
+<li>开发小游戏</li>
+</ol>
+<h4 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="keyword">import</span> &#123; _decorator, Component, Vec3, input, Input, EventMouse, Animation, SkeletalAnimation &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&quot;PlayerController&quot;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">PlayerController</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    start () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="title">update</span>(<span class="params">deltaTime: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//都是组件 和Unity 相似</span></span><br><span class="line"><span class="comment">//cc.sys 系统类 判断手机 或者浏览器</span></span><br><span class="line"><span class="comment">//input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this); 鼠标监听</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//手机滑动监听  input.on(Input.EventType.TOUCH_START,this.onTouchStar,this);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//this._deltaPos.x = this._curJumpSpeed * deltaTime; 距离= 速度*时间</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h4><ol>
+<li>assets 目录下放资源</li>
+<li>Animations ,Prefabs,Scenes,Scripts</li>
+</ol>
+<h4 id="cocos2dx-4-0"><a href="#cocos2dx-4-0" class="headerlink" title="cocos2dx-4.0"></a>cocos2dx-4.0</h4><pre><code>cocos new -p com.test  -l cpp Test
+
+cocos run -d androd 
+</code></pre>
+</font>
+]]></content>
+      <tags>
+        <tag>TypeScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++</title>
     <url>/2021/11/22/CPP/cpp/</url>
     <content><![CDATA[<font size="2.9">
@@ -1221,128 +1248,6 @@ IP直连方案有下面几大优势：
       <tags>
         <tag>C++</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Cocos_creator_3.6.1</title>
-    <url>/2022/10/16/Cocos/Cocos-creator-3-6-1/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="cocos"><a href="#cocos" class="headerlink" title="cocos"></a>cocos</h4><ol>
-<li><a href="https://docs.cocos.com/creator/manual/zh/getting-started/first-game/">cocos</a></li>
-<li>使用TypeScript</li>
-<li>保存玩，回到编辑器页面刷新</li>
-<li>开发小游戏</li>
-</ol>
-<h4 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="keyword">import</span> &#123; _decorator, Component, Vec3, input, Input, EventMouse, Animation, SkeletalAnimation &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&quot;PlayerController&quot;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">PlayerController</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    start () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="title">update</span>(<span class="params">deltaTime: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//都是组件 和Unity 相似</span></span><br><span class="line"><span class="comment">//cc.sys 系统类 判断手机 或者浏览器</span></span><br><span class="line"><span class="comment">//input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this); 鼠标监听</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//手机滑动监听  input.on(Input.EventType.TOUCH_START,this.onTouchStar,this);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//this._deltaPos.x = this._curJumpSpeed * deltaTime; 距离= 速度*时间</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h4><ol>
-<li>assets 目录下放资源</li>
-<li>Animations ,Prefabs,Scenes,Scripts</li>
-</ol>
-<h4 id="cocos2dx-4-0"><a href="#cocos2dx-4-0" class="headerlink" title="cocos2dx-4.0"></a>cocos2dx-4.0</h4><pre><code>cocos new -p com.test  -l cpp Test
-
-cocos run -d androd 
-</code></pre>
-</font>
-]]></content>
-      <tags>
-        <tag>TypeScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker</title>
-    <url>/2023/02/08/Docker/docker/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h5 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h5><blockquote>
-<p>首先我们使用 docker ps -a 命令查看本机所有的容器。</p>
-</blockquote>
-<blockquote>
-<p>启动</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> docker run my/python:v1 cal <span class="comment">##my/python:v1为镜像名和标签  cal 日历</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">## 我们还可以通过指定参数，启动一个bash交互终端。</span></span><br><span class="line">docker run -it my/python:v1 /bin/bash</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p>stop docker</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker stop my/python:v1  </span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p>导出镜像</p>
-</blockquote>
-<p>使用 docker export 命令根据容器 ID 将镜像导出成一个文件。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker <span class="built_in">export</span> f299f501774c &gt; hangger_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>导入镜像</p>
-</blockquote>
-<p>使用 docker import 命令则可将这个镜像文件导入进来。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker import - new_hangger_server &lt; hangger_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>查看本机的容器</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker  images</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h5 id="save-and-load"><a href="#save-and-load" class="headerlink" title="save and load"></a>save and load</h5><p>1，保存镜像<br>  下面使用 docker save 命令根据 ID 将镜像保存成一个文件。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker save 0fdf2b4c26d3 &gt; save_hangge_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p> 我们还可以同时将多个 image 打包成一个文件，比如下面将镜像库中的 postgres 和 mongo 打包：</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker save -o images.tar postgres:9.6 mongo:3.4</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>2，载入镜像</p>
-<pre><code>使用 docker load 命令则可将这个镜像文件载入进来。
-</code></pre>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker load &lt; save_hangge_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><code>两种方法不可混用。启动容器会报错  import 和 save </code></p>
-<h5 id="使用load-数据丢失了-待查。。"><a href="#使用load-数据丢失了-待查。。" class="headerlink" title="使用load 数据丢失了 待查。。"></a>使用load 数据丢失了 待查。。</h5><h5 id="误删除-重新配置了"><a href="#误删除-重新配置了" class="headerlink" title="误删除 重新配置了"></a>误删除 重新配置了</h5><ol>
-<li>权限问题 </li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">chmod 777 .</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>pytest + allure + jenkins + docker</li>
-</ol>
-<blockquote>
-<p>jenkins 容器 安装 allure 设置环境变量 export path=/var/jenkins_home/allure/bin:$PATH<br>source 无法使用</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">RUN /bin/bash -c <span class="string">&quot;source ~/.bashrc&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>jenkins web插件安装  和 全局配置 容器中路径</p>
-</blockquote>
-<blockquote>
-<p>pip3 install pytest-allure</p>
-</blockquote>
-<font/>]]></content>
-      <categories>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>harmonyos</title>
-    <url>/2022/09/19/Harmonyos/harmonyos/</url>
-    <content><![CDATA[<font size='2.9'>
-
-<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><ol>
-<li><p>获取源码 </p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    # 安装repo 工具</span><br><span class="line">    $ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 &gt; repo</span><br><span class="line">    $ chmod a+x repo</span><br><span class="line">    $ sudo mv repo /usr/local/bin/repo</span><br><span class="line">    $ sudo apt install python3-pip</span><br><span class="line">    $ pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">获取标准系统源码</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir OpenHarmony</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> OpenHarmony</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync -c  <span class="comment"># -c 获取当前分支代码</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">&#x27;git lfs pull&#x27;</span></span></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>如果 repo init 出现以下错误 </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">jackie@USER-20200124ZG:~$ repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify</span><br><span class="line">    Downloading Repo source from http://mirrors.tuna.tsinghua.edu.cn/git/git-repo/</span><br><span class="line">    remote: Enumerating objects: 7113, done.</span><br><span class="line">    remote: Counting objects: 100% (7113/7113), done.</span><br><span class="line">    remote: Compressing objects: 100% (3728/3728), done.</span><br><span class="line">    remote: Total 7113 (delta 4590), reused 5464 (delta 3311)s   s</span><br><span class="line">    Receiving objects: 100% (7113/7113), 3.09 MiB | 1.76 MiB/s, done.</span><br><span class="line">    Resolving deltas: 100% (4590/4590), done.</span><br><span class="line">    repo: warning: verification of repo code has been disabled;</span><br><span class="line">    repo will not be able to verify the integrity of itself.</span><br><span class="line"></span><br><span class="line">    repo: error: unable to resolve &quot;fork_flow&quot;</span><br><span class="line">    fatal: cloning the git-repo repository failed, will remove &#x27;.repo/repo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><code>切换到root 权限 sudo</code> 可以解决</p>
-</font></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Harmonyos</category>
-      </categories>
   </entry>
   <entry>
     <title>iosMasonryLayout</title>
@@ -1476,161 +1381,99 @@ self-&gt;deviceType和deviceType是等价的。
       </tags>
   </entry>
   <entry>
-    <title>Java想到的问题</title>
-    <url>/2019/05/14/Java/Java/</url>
+    <title>docker</title>
+    <url>/2023/02/08/Docker/docker/</url>
     <content><![CDATA[<font size="2.9">
 
-<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><h3 id="hash碰撞-解决方案"><a href="#hash碰撞-解决方案" class="headerlink" title="hash碰撞 解决方案"></a>hash碰撞 解决方案</h3><blockquote>
-<p>比较常用的算法是链地址法和开放地址法</p>
+<h5 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h5><blockquote>
+<p>首先我们使用 docker ps -a 命令查看本机所有的容器。</p>
 </blockquote>
-<h3 id="java-位运算"><a href="#java-位运算" class="headerlink" title="java 位运算"></a>java 位运算</h3><blockquote>
-<p>1 左移(&lt;&lt;)</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println(<span class="number">5</span>&lt;&lt;<span class="number">2</span>);<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span>           然后左移<span class="number">2</span>位后，低位补<span class="number">0</span>：</span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0001</span> <span class="number">01</span> <span class="string">&quot;00&quot;</span>           换算成<span class="number">10</span>进制为<span class="number">20</span></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
 <blockquote>
-<p>2 右移（&gt;&gt;）</p>
+<p>启动</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5右移2位：</span></span><br><span class="line">    System.out.println(<span class="number">5</span>&gt;&gt;<span class="number">2</span>);<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span>           然后右移<span class="number">2</span>位后，高位补<span class="number">0</span>：</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;00&quot;</span><span class="number">00</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">00000</span>  <span class="number">0001</span>           换算成<span class="number">10</span>进制为<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>符合位：0表示正数 1表示负数<br>根据这个规则，左移32位后，右边补上32个0值是不是就变成了十进制的0了？答案是NO，当int类型进行左移操作时，左移位数大于等于32位操作时，会先求余（%）后再进行左移操作。也就是说左移32位相当于不进行移位操作，左移40位相当于左移8位（40%32=8）。当long类型进行左移操作时，long类型在二进制中的体现是64位的，因此求余操作的基数也变成了64，也就是说左移64位相当于没有移位，左移72位相当于左移8位（72%64=8）</p>
-<blockquote>
-<p>3 无符号右移( &gt;&gt;&gt; )</p>
-</blockquote>
-<p>1.我们知道在Java中int类型占32位，可以表示一个正数，也可以表示一个负数。正数换算成二进制后的最高位为0，负数的二进制最高为为1</p>
-<blockquote>
-<p>4 位与( &amp; )</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>&amp;<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0001</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> docker run my/python:v1 cal <span class="comment">##my/python:v1为镜像名和标签  cal 日历</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">## 我们还可以通过指定参数，启动一个bash交互终端。</span></span><br><span class="line">docker run -it my/python:v1 /bin/bash</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 
 <blockquote>
-<p>5 位或( | )</p>
+<p>stop docker</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>|<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">7</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0111</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker stop my/python:v1  </span><br></pre></td></tr></table></figure>
+
 
 <blockquote>
-<p>6 位异或( ^ )</p>
+<p>导出镜像</p>
 </blockquote>
-<blockquote>
-<p>Java异或是Java二进制的一种运算规则。两个相同的操作位相同则为0，不同则为1。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>^<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0110</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<p>使用 docker export 命令根据容器 ID 将镜像导出成一个文件。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker <span class="built_in">export</span> f299f501774c &gt; hangger_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>7 位非( ~ )           位非是一元操作符</p>
+<p>导入镜像</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( ~<span class="number">5</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">-<span class="number">6</span>转换为二进制：-<span class="number">6</span>转换为二进制：<span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1110</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<p>使用 docker import 命令则可将这个镜像文件导入进来。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker import - new_hangger_server &lt; hangger_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>8 负数计算（负数转二进制规律：</p>
+<p>查看本机的容器</p>
 </blockquote>
-<p>1、取负数的绝对值的原码；</p>
-<p>2、计算原码的反码；</p>
-<p>3、对反码加一，获取补码。</p>
-<p>）</p>
-<blockquote>
-<p>9 概念如下<br>首先我们要对原码、反码和补码有个了解：<br>1、所谓原码就是二进制定点表示法，即最高位为符号位，“0”表示正，“1”表示负，其余位表示数值的大小。<br>2、反码表示法规定：正数的反码与其原码相同；负数的反码是对其原码逐位取反，但符号位除外。<br>原码10010= 反码11101 （10010，1为符号码，故为负）<br>(11101) 二进制= -13 十进制<br>3、补码表示法规定：正数的补码与其原码相同；负数的补码是在其反码的末位加1</p>
-</blockquote>
-<h3 id="java-内部类"><a href="#java-内部类" class="headerlink" title="java 内部类"></a>java 内部类</h3><p> 结构清晰，可读性好，代码好维护</p>
-<blockquote>
-<p>内部类</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;User Outer&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UInner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;UInner UInner&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line">User user = <span class="keyword">new</span> User();</span><br><span class="line"><span class="comment">//依赖外部实例化</span></span><br><span class="line">User.UInner iner = user.<span class="function">new <span class="title">UInner</span><span class="params">()</span></span>;</span><br><span class="line">inter.display();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker  images</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>匿名内部类（没有类名，常见于接口）</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ILoad</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadMap</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//正常情况</span></span><br><span class="line"><span class="comment">// public class User implements ILoad&#123;</span></span><br><span class="line"><span class="comment">//     @override</span></span><br><span class="line"><span class="comment">//     public void loadMap()&#123;</span></span><br><span class="line"><span class="comment">//         System.out.println(&quot;User Outer&quot;);</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line"></span><br><span class="line">ILoad iner = <span class="keyword">new</span> ILoad()&#123;</span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;loadMap&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">iner.loadMap();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>静态内部类</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;User Outer&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">UInner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;UInner UInner&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line">User user = <span class="keyword">new</span> User();</span><br><span class="line"><span class="comment">//不依赖外部实例化</span></span><br><span class="line">User.UInner iner = <span class="keyword">new</span> User.UInner();</span><br><span class="line">inter.display();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="1-Future的应用场景"><a href="#1-Future的应用场景" class="headerlink" title="1. Future的应用场景"></a>1. Future的应用场景</h3><pre><code>    Future表示一个可能还没有完成的异步任务的结果，针对这个结果可以添加Callback以便在任务执行成功或失败后作出相应的操作。
+<h5 id="save-and-load"><a href="#save-and-load" class="headerlink" title="save and load"></a>save and load</h5><p>1，保存镜像<br>  下面使用 docker save 命令根据 ID 将镜像保存成一个文件。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker save 0fdf2b4c26d3 &gt; save_hangge_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 我们还可以同时将多个 image 打包成一个文件，比如下面将镜像库中的 postgres 和 mongo 打包：</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker save -o images.tar postgres:9.6 mongo:3.4</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>2，载入镜像</p>
+<pre><code>使用 docker load 命令则可将这个镜像文件载入进来。
 </code></pre>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FutureTask&lt;String&gt; future =</span><br><span class="line">   <span class="keyword">new</span> FutureTask&lt;&gt;(<span class="keyword">new</span> Callable&lt;String&gt;() &#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> searcher.search(target);</span><br><span class="line">   &#125;&#125;);</span><br><span class="line"> executor.execute(future);</span><br></pre></td></tr></table></figure>
-<h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><ol>
-<li><p>mysql启动   mysql.server start</p>
-</li>
-<li><p>登录数据库：执行mysql -u root -p命令，命令意思是使用root账号登录数据库，需要输入刚才设置的密码</p>
-</li>
-<li><p>查询数据库 show databases;  </p>
-</li>
-<li><p>进入数据库 use xx；</p>
-</li>
-<li><p>退出数据库 exit;</p>
-</li>
-<li><p> 导入sql文件：source 『将.sql文件拖拽到这里，终端会自动显示其文件目录』（本文需要的.sql文件在文末服务端项目代码的db/mydb.sql目录）</p>
-</li>
-<li><p>显示本库中的所有表：show tables;，如果本库中的表没啥问题，说明上一步的.sql文件导入没问题</p>
-</li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker load &lt; save_hangge_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>两种方法不可混用。启动容器会报错  import 和 save </code></p>
+<h5 id="使用load-数据丢失了-待查。。"><a href="#使用load-数据丢失了-待查。。" class="headerlink" title="使用load 数据丢失了 待查。。"></a>使用load 数据丢失了 待查。。</h5><h5 id="误删除-重新配置了"><a href="#误删除-重新配置了" class="headerlink" title="误删除 重新配置了"></a>误删除 重新配置了</h5><ol>
+<li>权限问题 </li>
 </ol>
-<h2 id="mysql-修改密码"><a href="#mysql-修改密码" class="headerlink" title="mysql 修改密码"></a>mysql 修改密码</h2><ol>
-<li><p> 用SET PASSWORD命令<br>格式：mysql&gt; set password for 用户名@localhost=‘新密码’;<br>例子：mysql&gt; set password for root@localhost=’123456’;</p>
-</li>
-<li><p>用mysqladmin<br>格式：mysqladmin -u用户名 -p旧密码 password 新密码<br>例子：mysqladmin -uroot -p123456 password 123</p>
-</li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">chmod 777 .</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>pytest + allure + jenkins + docker</li>
 </ol>
-</font>]]></content>
+<blockquote>
+<p>jenkins 容器 安装 allure 设置环境变量 export path=/var/jenkins_home/allure/bin:$PATH<br>source 无法使用</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">RUN /bin/bash -c <span class="string">&quot;source ~/.bashrc&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>jenkins web插件安装  和 全局配置 容器中路径</p>
+</blockquote>
+<blockquote>
+<p>pip3 install pytest-allure</p>
+</blockquote>
+<font/>]]></content>
       <categories>
-        <category>Java</category>
+        <category>docker</category>
       </categories>
       <tags>
-        <tag>Java Mysql SpringBoot</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
-    <title>SpringBoot</title>
-    <url>/2022/06/11/Java/SpringBootAdmin/</url>
-    <content><![CDATA[<font size="2.9">
+    <title>harmonyos</title>
+    <url>/2022/09/19/Harmonyos/harmonyos/</url>
+    <content><![CDATA[<font size='2.9'>
 
-<h4 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h4><ol>
-<li>start.server start</li>
-<li>mysql -u  root -p password</li>
+<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><ol>
+<li><p>获取源码 </p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    # 安装repo 工具</span><br><span class="line">    $ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 &gt; repo</span><br><span class="line">    $ chmod a+x repo</span><br><span class="line">    $ sudo mv repo /usr/local/bin/repo</span><br><span class="line">    $ sudo apt install python3-pip</span><br><span class="line">    $ pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">获取标准系统源码</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir OpenHarmony</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> OpenHarmony</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync -c  <span class="comment"># -c 获取当前分支代码</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">&#x27;git lfs pull&#x27;</span></span></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>如果 repo init 出现以下错误 </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">jackie@USER-20200124ZG:~$ repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify</span><br><span class="line">    Downloading Repo source from http://mirrors.tuna.tsinghua.edu.cn/git/git-repo/</span><br><span class="line">    remote: Enumerating objects: 7113, done.</span><br><span class="line">    remote: Counting objects: 100% (7113/7113), done.</span><br><span class="line">    remote: Compressing objects: 100% (3728/3728), done.</span><br><span class="line">    remote: Total 7113 (delta 4590), reused 5464 (delta 3311)s   s</span><br><span class="line">    Receiving objects: 100% (7113/7113), 3.09 MiB | 1.76 MiB/s, done.</span><br><span class="line">    Resolving deltas: 100% (4590/4590), done.</span><br><span class="line">    repo: warning: verification of repo code has been disabled;</span><br><span class="line">    repo will not be able to verify the integrity of itself.</span><br><span class="line"></span><br><span class="line">    repo: error: unable to resolve &quot;fork_flow&quot;</span><br><span class="line">    fatal: cloning the git-repo repository failed, will remove &#x27;.repo/repo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>切换到root 权限 sudo</code> 可以解决</p>
+</font></li>
 </ol>
-<h4 id="springboot"><a href="#springboot" class="headerlink" title="springboot"></a>springboot</h4><ol>
-<li><p>JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2f8ab988] will not be managed by Spring</p>
-<p>对应的service 添加 <code>@Transactional</code></p>
-</li>
-<li><p>Springboot 入口</p>
-<p>@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, DataSourceAutoConfiguration.class, DruidDataSourceAutoConfigure.class, org.activiti.spring.boot.SecurityAutoConfiguration.class})</p>
-</li>
-<li><p>部署<br>maven  – package 会生成jar</p>
-<p>java -jar xxx.jar</p>
-</li>
-</ol>
-<h4 id="layui"><a href="#layui" class="headerlink" title="layui"></a>layui</h4><ol>
-<li><a href="https://layui.gitee.io/v2/">官网</a></li>
-</ol>
-</font>
 ]]></content>
       <categories>
-        <category>Java</category>
+        <category>Harmonyos</category>
       </categories>
-      <tags>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树的定义</title>
-    <url>/2021/12/12/Java/Tree/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h3 id="tree定义"><a href="#tree定义" class="headerlink" title="tree定义"></a>tree定义</h3><p>树结果从自然界的树抽象而来，有树根，类似枝叉的分支关系和作为分支点的叶子 生活所见家谱，Windows的文件系统，表现各异 本质是树结构</p>
-<p>树是由n(n&gt;=0)个节点组成的有限集合。n=0的树为空树 n&gt;0的树T </p>
-<p>1.有一个特殊的节点称为根节点（root），它只有后继节点，没有前驱节点</p>
-<p>2.除根节点 之外的其他节点分为m(m&gt;=0)个互不相交的集合 T0,T1….Tm-1,其中每个集合Ti (0=&lt;i&lt;m) 本身又是一颗树，称为根子树</p>
-<p>树是递归定义的 节点是树的基本单位。若干个节点组成一个颗子树，若干颗互不相交的子树组成一颗树。所以 树是由结点组成的，结点之间具有层次关系的非线性结构。</p>
-
-
-<h4 id="树的数据结构"><a href="#树的数据结构" class="headerlink" title="树的数据结构"></a>树的数据结构</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Tree</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="二叉-树的定义"><a href="#二叉-树的定义" class="headerlink" title="二叉 树的定义"></a>二叉 树的定义</h3></font>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>tree</tag>
-      </tags>
   </entry>
   <entry>
     <title>Git相关</title>
@@ -2205,6 +2048,163 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </categories>
       <tags>
         <tag>Steam</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java想到的问题</title>
+    <url>/2019/05/14/Java/Java/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><h3 id="hash碰撞-解决方案"><a href="#hash碰撞-解决方案" class="headerlink" title="hash碰撞 解决方案"></a>hash碰撞 解决方案</h3><blockquote>
+<p>比较常用的算法是链地址法和开放地址法</p>
+</blockquote>
+<h3 id="java-位运算"><a href="#java-位运算" class="headerlink" title="java 位运算"></a>java 位运算</h3><blockquote>
+<p>1 左移(&lt;&lt;)</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println(<span class="number">5</span>&lt;&lt;<span class="number">2</span>);<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span>           然后左移<span class="number">2</span>位后，低位补<span class="number">0</span>：</span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0001</span> <span class="number">01</span> <span class="string">&quot;00&quot;</span>           换算成<span class="number">10</span>进制为<span class="number">20</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<blockquote>
+<p>2 右移（&gt;&gt;）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5右移2位：</span></span><br><span class="line">    System.out.println(<span class="number">5</span>&gt;&gt;<span class="number">2</span>);<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span>           然后右移<span class="number">2</span>位后，高位补<span class="number">0</span>：</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;00&quot;</span><span class="number">00</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">00000</span>  <span class="number">0001</span>           换算成<span class="number">10</span>进制为<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>符合位：0表示正数 1表示负数<br>根据这个规则，左移32位后，右边补上32个0值是不是就变成了十进制的0了？答案是NO，当int类型进行左移操作时，左移位数大于等于32位操作时，会先求余（%）后再进行左移操作。也就是说左移32位相当于不进行移位操作，左移40位相当于左移8位（40%32=8）。当long类型进行左移操作时，long类型在二进制中的体现是64位的，因此求余操作的基数也变成了64，也就是说左移64位相当于没有移位，左移72位相当于左移8位（72%64=8）</p>
+<blockquote>
+<p>3 无符号右移( &gt;&gt;&gt; )</p>
+</blockquote>
+<p>1.我们知道在Java中int类型占32位，可以表示一个正数，也可以表示一个负数。正数换算成二进制后的最高位为0，负数的二进制最高为为1</p>
+<blockquote>
+<p>4 位与( &amp; )</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>&amp;<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0001</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>5 位或( | )</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>|<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">7</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0111</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>6 位异或( ^ )</p>
+</blockquote>
+<blockquote>
+<p>Java异或是Java二进制的一种运算规则。两个相同的操作位相同则为0，不同则为1。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( <span class="number">5</span>^<span class="number">3</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0110</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>7 位非( ~ )           位非是一元操作符</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">//将5左移2位：</span></span><br><span class="line">    System.out.println( ~<span class="number">5</span> );<span class="comment">//运行结果是20</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>转换为二进制：<span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0101</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">-<span class="number">6</span>转换为二进制：-<span class="number">6</span>转换为二进制：<span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1111</span> <span class="number">1110</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>8 负数计算（负数转二进制规律：</p>
+</blockquote>
+<p>1、取负数的绝对值的原码；</p>
+<p>2、计算原码的反码；</p>
+<p>3、对反码加一，获取补码。</p>
+<p>）</p>
+<blockquote>
+<p>9 概念如下<br>首先我们要对原码、反码和补码有个了解：<br>1、所谓原码就是二进制定点表示法，即最高位为符号位，“0”表示正，“1”表示负，其余位表示数值的大小。<br>2、反码表示法规定：正数的反码与其原码相同；负数的反码是对其原码逐位取反，但符号位除外。<br>原码10010= 反码11101 （10010，1为符号码，故为负）<br>(11101) 二进制= -13 十进制<br>3、补码表示法规定：正数的补码与其原码相同；负数的补码是在其反码的末位加1</p>
+</blockquote>
+<h3 id="java-内部类"><a href="#java-内部类" class="headerlink" title="java 内部类"></a>java 内部类</h3><p> 结构清晰，可读性好，代码好维护</p>
+<blockquote>
+<p>内部类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;User Outer&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UInner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;UInner UInner&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line">User user = <span class="keyword">new</span> User();</span><br><span class="line"><span class="comment">//依赖外部实例化</span></span><br><span class="line">User.UInner iner = user.<span class="function">new <span class="title">UInner</span><span class="params">()</span></span>;</span><br><span class="line">inter.display();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>匿名内部类（没有类名，常见于接口）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ILoad</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadMap</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//正常情况</span></span><br><span class="line"><span class="comment">// public class User implements ILoad&#123;</span></span><br><span class="line"><span class="comment">//     @override</span></span><br><span class="line"><span class="comment">//     public void loadMap()&#123;</span></span><br><span class="line"><span class="comment">//         System.out.println(&quot;User Outer&quot;);</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line"></span><br><span class="line">ILoad iner = <span class="keyword">new</span> ILoad()&#123;</span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;loadMap&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">iner.loadMap();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>静态内部类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;User Outer&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">UInner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;UInner UInner&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用测试</span></span><br><span class="line">User user = <span class="keyword">new</span> User();</span><br><span class="line"><span class="comment">//不依赖外部实例化</span></span><br><span class="line">User.UInner iner = <span class="keyword">new</span> User.UInner();</span><br><span class="line">inter.display();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="1-Future的应用场景"><a href="#1-Future的应用场景" class="headerlink" title="1. Future的应用场景"></a>1. Future的应用场景</h3><pre><code>    Future表示一个可能还没有完成的异步任务的结果，针对这个结果可以添加Callback以便在任务执行成功或失败后作出相应的操作。
+</code></pre>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FutureTask&lt;String&gt; future =</span><br><span class="line">   <span class="keyword">new</span> FutureTask&lt;&gt;(<span class="keyword">new</span> Callable&lt;String&gt;() &#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> searcher.search(target);</span><br><span class="line">   &#125;&#125;);</span><br><span class="line"> executor.execute(future);</span><br></pre></td></tr></table></figure>
+<h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><ol>
+<li><p>mysql启动   mysql.server start</p>
+</li>
+<li><p>登录数据库：执行mysql -u root -p命令，命令意思是使用root账号登录数据库，需要输入刚才设置的密码</p>
+</li>
+<li><p>查询数据库 show databases;  </p>
+</li>
+<li><p>进入数据库 use xx；</p>
+</li>
+<li><p>退出数据库 exit;</p>
+</li>
+<li><p> 导入sql文件：source 『将.sql文件拖拽到这里，终端会自动显示其文件目录』（本文需要的.sql文件在文末服务端项目代码的db/mydb.sql目录）</p>
+</li>
+<li><p>显示本库中的所有表：show tables;，如果本库中的表没啥问题，说明上一步的.sql文件导入没问题</p>
+</li>
+</ol>
+<h2 id="mysql-修改密码"><a href="#mysql-修改密码" class="headerlink" title="mysql 修改密码"></a>mysql 修改密码</h2><ol>
+<li><p> 用SET PASSWORD命令<br>格式：mysql&gt; set password for 用户名@localhost=‘新密码’;<br>例子：mysql&gt; set password for root@localhost=’123456’;</p>
+</li>
+<li><p>用mysqladmin<br>格式：mysqladmin -u用户名 -p旧密码 password 新密码<br>例子：mysqladmin -uroot -p123456 password 123</p>
+</li>
+</ol>
+</font>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java Mysql SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot</title>
+    <url>/2022/06/11/Java/SpringBootAdmin/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h4><ol>
+<li>start.server start</li>
+<li>mysql -u  root -p password</li>
+</ol>
+<h4 id="springboot"><a href="#springboot" class="headerlink" title="springboot"></a>springboot</h4><ol>
+<li><p>JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2f8ab988] will not be managed by Spring</p>
+<p>对应的service 添加 <code>@Transactional</code></p>
+</li>
+<li><p>Springboot 入口</p>
+<p>@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, DataSourceAutoConfiguration.class, DruidDataSourceAutoConfigure.class, org.activiti.spring.boot.SecurityAutoConfiguration.class})</p>
+</li>
+<li><p>部署<br>maven  – package 会生成jar</p>
+<p>java -jar xxx.jar</p>
+</li>
+</ol>
+<h4 id="layui"><a href="#layui" class="headerlink" title="layui"></a>layui</h4><ol>
+<li><a href="https://layui.gitee.io/v2/">官网</a></li>
+</ol>
+</font>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树的定义</title>
+    <url>/2021/12/12/Java/Tree/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h3 id="tree定义"><a href="#tree定义" class="headerlink" title="tree定义"></a>tree定义</h3><p>树结果从自然界的树抽象而来，有树根，类似枝叉的分支关系和作为分支点的叶子 生活所见家谱，Windows的文件系统，表现各异 本质是树结构</p>
+<p>树是由n(n&gt;=0)个节点组成的有限集合。n=0的树为空树 n&gt;0的树T </p>
+<p>1.有一个特殊的节点称为根节点（root），它只有后继节点，没有前驱节点</p>
+<p>2.除根节点 之外的其他节点分为m(m&gt;=0)个互不相交的集合 T0,T1….Tm-1,其中每个集合Ti (0=&lt;i&lt;m) 本身又是一颗树，称为根子树</p>
+<p>树是递归定义的 节点是树的基本单位。若干个节点组成一个颗子树，若干颗互不相交的子树组成一颗树。所以 树是由结点组成的，结点之间具有层次关系的非线性结构。</p>
+
+
+<h4 id="树的数据结构"><a href="#树的数据结构" class="headerlink" title="树的数据结构"></a>树的数据结构</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Tree</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="二叉-树的定义"><a href="#二叉-树的定义" class="headerlink" title="二叉 树的定义"></a>二叉 树的定义</h3></font>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>tree</tag>
       </tags>
   </entry>
   <entry>
