@@ -380,6 +380,8 @@
 <h3 id="App-启动流程"><a href="#App-启动流程" class="headerlink" title="App 启动流程"></a>App 启动流程</h3><img src="/2021/12/12/Android/AndroidHandler/1.webp" class="">
 
 
+<h3 id="webP"><a href="#webP" class="headerlink" title="webP"></a>webP</h3><p>WebP 对图片进行分块，然后对待填充的宏块使用了帧间预测技术，根据其附近已编码宏块的数据，预测出当前块数据。相比 JEPG 对图像原值进行编码，WebP 编码的是预测值和原值的差值，这是 WebP 体积更小的主要原因。最后，WebP 使用了更优秀的算数编码</p>
+<p>WebP 完全兼容 Android 4.4 及其以上版本，而在另一大移动平台 iOS 上，则是完全不兼容 WebP。因此，我们需要在前端进行平台检测，对于支持 WebP 的平台输出 WebP，在不支持的平台上采用降级方案。</p>
 </font>]]></content>
       <categories>
         <category>Java</category>
