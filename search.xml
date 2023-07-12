@@ -162,6 +162,24 @@
       </tags>
   </entry>
   <entry>
+    <title>AndroidHandler</title>
+    <url>/2021/12/12/Android/AndroidHandler/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h3 id="App-启动流程"><a href="#App-启动流程" class="headerlink" title="App 启动流程"></a>App 启动流程</h3><img src="/2021/12/12/Android/AndroidHandler/1.webp" class="">
+
+
+<h3 id="webP"><a href="#webP" class="headerlink" title="webP"></a>webP</h3><p>WebP 对图片进行分块，然后对待填充的宏块使用了帧间预测技术，根据其附近已编码宏块的数据，预测出当前块数据。相比 JEPG 对图像原值进行编码，WebP 编码的是预测值和原值的差值，这是 WebP 体积更小的主要原因。最后，WebP 使用了更优秀的算数编码</p>
+<p>WebP 完全兼容 Android 4.4 及其以上版本，而在另一大移动平台 iOS 上，则是完全不兼容 WebP。因此，我们需要在前端进行平台检测，对于支持 WebP 的平台输出 WebP，在不支持的平台上采用降级方案。</p>
+</font>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Handler,webp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AndroidAidl</title>
     <url>/2021/10/20/Android/AndroidAidl/</url>
     <content><![CDATA[<font size="2.9">
@@ -189,24 +207,6 @@
       </categories>
       <tags>
         <tag>Aidl</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AndroidHandler</title>
-    <url>/2021/12/12/Android/AndroidHandler/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h3 id="App-启动流程"><a href="#App-启动流程" class="headerlink" title="App 启动流程"></a>App 启动流程</h3><img src="/2021/12/12/Android/AndroidHandler/1.webp" class="">
-
-
-<h3 id="webP"><a href="#webP" class="headerlink" title="webP"></a>webP</h3><p>WebP 对图片进行分块，然后对待填充的宏块使用了帧间预测技术，根据其附近已编码宏块的数据，预测出当前块数据。相比 JEPG 对图像原值进行编码，WebP 编码的是预测值和原值的差值，这是 WebP 体积更小的主要原因。最后，WebP 使用了更优秀的算数编码</p>
-<p>WebP 完全兼容 Android 4.4 及其以上版本，而在另一大移动平台 iOS 上，则是完全不兼容 WebP。因此，我们需要在前端进行平台检测，对于支持 WebP 的平台输出 WebP，在不支持的平台上采用降级方案。</p>
-</font>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Handler,webp</tag>
       </tags>
   </entry>
   <entry>
@@ -589,24 +589,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java通用代码分装</title>
-    <url>/2021/01/05/Android/GeneralCode/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="封装通用类型"><a href="#封装通用类型" class="headerlink" title="封装通用类型"></a>封装通用类型</h4><span id="more"></span>
-<blockquote>
-<p>csharp 通过jni调用Java   </p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">Show</span><span class="params">(String methodName, String args)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (!TextUtils.isEmpty(methodName) &amp;&amp; methodName.equals(<span class="string">&quot;RegCallback&quot;</span>))&#123;</span><br><span class="line">           GiantSDK.athenaCallback(args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">0</span>],args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">1</span>]);</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       ReflectUtils mReflectUtils = <span class="keyword">null</span>;</span><br><span class="line">       Method mReflectMothod = <span class="keyword">null</span>;</span><br><span class="line">       <span class="keyword">int</span> length = JumpArgs(args);</span><br><span class="line">       Log.e(TAG, <span class="string">&quot;args = &quot;</span> + args);</span><br><span class="line">       <span class="keyword">if</span> (mGaSdkClass != <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="comment">//无返回值的方法</span></span><br><span class="line">           mReflectUtils = ReflectUtils.reflect(mGaSdkClass).newInstance();</span><br><span class="line"></span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">1</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">2</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   classes[<span class="number">1</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (mReflectMothod.getReturnType().equals(Void.TYPE)) &#123;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                       <span class="comment">//无参数</span></span><br><span class="line">                       mReflectUtils.method(methodName);</span><br><span class="line">                       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                       <span class="comment">//一个参数</span></span><br><span class="line">                       mReflectUtils.method(methodName, args);</span><br><span class="line">                   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                       String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                       mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]);</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="comment">//有返回值</span></span><br><span class="line">               String result = <span class="keyword">null</span>;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, args).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               Log.d(TAG, <span class="string">&quot;result = &quot;</span> + result);</span><br><span class="line">               <span class="keyword">return</span> result;</span><br><span class="line">           &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Code</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HandlerBinder</title>
     <url>/2021/12/06/Android/HandlerBinder/</url>
     <content><![CDATA[]]></content>
@@ -638,6 +620,24 @@
       </categories>
       <tags>
         <tag>Kotlin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java通用代码分装</title>
+    <url>/2021/01/05/Android/GeneralCode/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="封装通用类型"><a href="#封装通用类型" class="headerlink" title="封装通用类型"></a>封装通用类型</h4><span id="more"></span>
+<blockquote>
+<p>csharp 通过jni调用Java   </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">Show</span><span class="params">(String methodName, String args)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (!TextUtils.isEmpty(methodName) &amp;&amp; methodName.equals(<span class="string">&quot;RegCallback&quot;</span>))&#123;</span><br><span class="line">           GiantSDK.athenaCallback(args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">0</span>],args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">1</span>]);</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       ReflectUtils mReflectUtils = <span class="keyword">null</span>;</span><br><span class="line">       Method mReflectMothod = <span class="keyword">null</span>;</span><br><span class="line">       <span class="keyword">int</span> length = JumpArgs(args);</span><br><span class="line">       Log.e(TAG, <span class="string">&quot;args = &quot;</span> + args);</span><br><span class="line">       <span class="keyword">if</span> (mGaSdkClass != <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="comment">//无返回值的方法</span></span><br><span class="line">           mReflectUtils = ReflectUtils.reflect(mGaSdkClass).newInstance();</span><br><span class="line"></span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">1</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">2</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   classes[<span class="number">1</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (mReflectMothod.getReturnType().equals(Void.TYPE)) &#123;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                       <span class="comment">//无参数</span></span><br><span class="line">                       mReflectUtils.method(methodName);</span><br><span class="line">                       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                       <span class="comment">//一个参数</span></span><br><span class="line">                       mReflectUtils.method(methodName, args);</span><br><span class="line">                   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                       String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                       mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]);</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="comment">//有返回值</span></span><br><span class="line">               String result = <span class="keyword">null</span>;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, args).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               Log.d(TAG, <span class="string">&quot;result = &quot;</span> + result);</span><br><span class="line">               <span class="keyword">return</span> result;</span><br><span class="line">           &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Code</tag>
       </tags>
   </entry>
   <entry>
@@ -727,7 +727,7 @@
   <entry>
     <title>android_framework</title>
     <url>/2022/08/28/Android/android-framework/</url>
-    <content><![CDATA[<font size="3.1">
+    <content><![CDATA[<font size="2.6">
 
 <h5 id="配置中心以及灰度测试"><a href="#配置中心以及灰度测试" class="headerlink" title="配置中心以及灰度测试"></a>配置中心以及灰度测试</h5><p>app必备工具之一，配置中心主要负责的就是动态化的配置，比如文本展示类似这些的。sdk提供方需要负责的是提供动态更新能力，这里有个差异化更新，只更新dif部分，还有就是流量优化等等需要开发同学考虑的。然后可以考虑下存储性能方面的提升等。<br>而abtest也是app必备工具之一了，动态的下发实验策略，之后开发同学可以切换实验的页面。另外主要需要考虑灰度结果计算，分桶以及版本过滤白名单等等。这里只是一个简单的介绍不展开，因为我只是一个使用方。</p>
 <h5 id="调试组件"><a href="#调试组件" class="headerlink" title="调试组件"></a>调试组件</h5><p>个人还是更推荐滴滴的 <a href="https://github.com/didi/DoraemonKit">Dokit</a>，功能点比较多而且接入相对来说比较简单。而且提供了很多给开发同学定制的能力，可以在debug情况下增加很多业务相关的测试功能，方便测试同学，核心还是浮窗太方便了。<br>当然很多实验性的预研功能等其实都可以直接接在这里，然后在测试环境下充分展开，之后在进行线上灰度方案。还有一些具有风险的hook操作，个人也比较建议放在debug组件上。</p>
@@ -809,25 +809,6 @@
       </categories>
       <tags>
         <tag>tree</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>androidota</title>
-    <url>/2021/11/12/Android/androidota/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="刷入ota"><a href="#刷入ota" class="headerlink" title="刷入ota"></a>刷入ota</h4><p>连接adb 开启开发者模式 </p>
-<p><code>https://developer.android.google.cn/about/versions/12/download-ota</code></p>
-<p>1.adb reboot recovery (或者手动 电源键 + 音量+/-) </p>
-<p>2.选择adb 安装</p>
-<p>3.adb sideload filename.zip</p>
-<p>4.reboot system now 重启系统</p>
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>ota</tag>
       </tags>
   </entry>
   <entry>
@@ -982,6 +963,25 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       </tags>
   </entry>
   <entry>
+    <title>androidota</title>
+    <url>/2021/11/12/Android/androidota/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="刷入ota"><a href="#刷入ota" class="headerlink" title="刷入ota"></a>刷入ota</h4><p>连接adb 开启开发者模式 </p>
+<p><code>https://developer.android.google.cn/about/versions/12/download-ota</code></p>
+<p>1.adb reboot recovery (或者手动 电源键 + 音量+/-) </p>
+<p>2.选择adb 安装</p>
+<p>3.adb sideload filename.zip</p>
+<p>4.reboot system now 重启系统</p>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>ota</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hook</title>
     <url>/2021/10/20/Android/hook/</url>
     <content><![CDATA[<font size="2.9">
@@ -1007,25 +1007,6 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       </categories>
       <tags>
         <tag>Hook</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Messenger</title>
-    <url>/2021/10/20/Android/messenger/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="Messenger"><a href="#Messenger" class="headerlink" title="Messenger"></a>Messenger</h4><p>   服务端<br>   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 服务端</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessagerService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">&quot;MessagerService&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> what_to_server = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> what_to_client = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">private</span> Handler handerServer = <span class="keyword">new</span> Handler(<span class="keyword">new</span> Handler.Callback() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> </span>&#123;</span><br><span class="line">            <span class="comment">//fase 继续想下传递</span></span><br><span class="line">            <span class="comment">//true 不传递自己消费</span></span><br><span class="line">            <span class="keyword">switch</span> (msg.what)&#123;</span><br><span class="line">                <span class="keyword">case</span> what_to_server:</span><br><span class="line">                    System.out.println(<span class="string">&quot;---&gt;client = &quot;</span>+msg.what);</span><br><span class="line">                    Log.e(TAG, <span class="string">&quot;---&gt;client: &quot;</span> +msg.what +<span class="string">&quot;,obj = &quot;</span>+msg.obj);</span><br><span class="line">                    Messenger client = msg.replyTo;</span><br><span class="line">                    <span class="keyword">if</span> (client == <span class="keyword">null</span>) &#123;</span><br><span class="line">                        System.out.println(<span class="string">&quot;---&gt;client null&quot;</span>);</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    Message toClient = Message.obtain(<span class="keyword">null</span>,what_to_client);</span><br><span class="line">                    toClient.arg1 = <span class="number">101</span>;</span><br><span class="line">                    toClient.obj = <span class="string">&quot;服务器发送消息&quot;</span>;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        client.send(toClient);</span><br><span class="line">                        System.out.println(<span class="string">&quot;---&gt;server send &gt;&gt;&gt;&gt;&quot;</span>);</span><br><span class="line">                    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">private</span> Messenger serverMessenger = <span class="keyword">new</span> Messenger(handerServer);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MessagerService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onBind: &quot;</span>+serverMessenger.getBinder() );</span><br><span class="line">        <span class="keyword">return</span> serverMessenger.getBinder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>   客户端</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> Handler clientHandler = <span class="keyword">new</span> Handler(<span class="keyword">new</span> Handler.Callback() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">switch</span> (msg.what)&#123;</span><br><span class="line">               <span class="keyword">case</span> WHAT_TO_CLIENT:</span><br><span class="line">                   System.out.println(<span class="string">&quot; client from server &quot;</span>+msg.arg1+<span class="string">&quot;,&quot;</span>+msg.obj);</span><br><span class="line">                   <span class="comment">//TODO 向服务端发送消息</span></span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               <span class="keyword">default</span>:</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    *  信使</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> Messenger clientMessenger = <span class="keyword">new</span> Messenger(clientHandler);</span><br><span class="line">   <span class="comment">//连接远程服务</span></span><br><span class="line">   <span class="keyword">private</span> Messenger serverMessager;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> ServiceConnection messengerConnection = <span class="keyword">new</span> ServiceConnection() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;Success  name = &quot;</span> + name + <span class="string">&quot;, service = &quot;</span> + service);</span><br><span class="line">           Log.e(TAG, <span class="string">&quot;onServiceConnected: &quot;</span>);</span><br><span class="line">           serverMessager = <span class="keyword">new</span> Messenger(service);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot; disconnected name = &quot;</span> + name);</span><br><span class="line">           Log.e(TAG, <span class="string">&quot;onServiceDisconnected: &quot;</span> );</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">bindServer1</span><span class="params">()</span></span>&#123;</span><br><span class="line">       Log.e(TAG, <span class="string">&quot;bindServer1: &quot;</span> );</span><br><span class="line">       Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">       intent.setAction(<span class="string">&quot;com.example.service&quot;</span>);</span><br><span class="line">       intent.setPackage(<span class="string">&quot;com.example.webrtc&quot;</span>);</span><br><span class="line">       bindService(intent,messengerConnection,BIND_AUTO_CREATE);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Message serverMessage = Message.obtain(<span class="keyword">null</span>,WHAT_TO_SERVER);</span><br><span class="line">serverMessage.arg1 = <span class="number">100</span>;</span><br><span class="line">serverMessage.obj = <span class="string">&quot;客户端发送消息&quot;</span>;</span><br><span class="line"><span class="comment">//将toServer.replyTo = clientMessager，这样，对应于服务端接收到此消息，获取到clientMessager，用此clientMessager向客户端回送消息</span></span><br><span class="line">serverMessage.replyTo = clientMessenger;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    serverMessager.send(serverMessage);</span><br><span class="line">&#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -1164,6 +1145,25 @@ IP直连方案有下面几大优势：
       </categories>
       <tags>
         <tag>plugin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Messenger</title>
+    <url>/2021/10/20/Android/messenger/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="Messenger"><a href="#Messenger" class="headerlink" title="Messenger"></a>Messenger</h4><p>   服务端<br>   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 服务端</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessagerService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">&quot;MessagerService&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> what_to_server = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> what_to_client = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">private</span> Handler handerServer = <span class="keyword">new</span> Handler(<span class="keyword">new</span> Handler.Callback() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> </span>&#123;</span><br><span class="line">            <span class="comment">//fase 继续想下传递</span></span><br><span class="line">            <span class="comment">//true 不传递自己消费</span></span><br><span class="line">            <span class="keyword">switch</span> (msg.what)&#123;</span><br><span class="line">                <span class="keyword">case</span> what_to_server:</span><br><span class="line">                    System.out.println(<span class="string">&quot;---&gt;client = &quot;</span>+msg.what);</span><br><span class="line">                    Log.e(TAG, <span class="string">&quot;---&gt;client: &quot;</span> +msg.what +<span class="string">&quot;,obj = &quot;</span>+msg.obj);</span><br><span class="line">                    Messenger client = msg.replyTo;</span><br><span class="line">                    <span class="keyword">if</span> (client == <span class="keyword">null</span>) &#123;</span><br><span class="line">                        System.out.println(<span class="string">&quot;---&gt;client null&quot;</span>);</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    Message toClient = Message.obtain(<span class="keyword">null</span>,what_to_client);</span><br><span class="line">                    toClient.arg1 = <span class="number">101</span>;</span><br><span class="line">                    toClient.obj = <span class="string">&quot;服务器发送消息&quot;</span>;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        client.send(toClient);</span><br><span class="line">                        System.out.println(<span class="string">&quot;---&gt;server send &gt;&gt;&gt;&gt;&quot;</span>);</span><br><span class="line">                    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">private</span> Messenger serverMessenger = <span class="keyword">new</span> Messenger(handerServer);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MessagerService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onBind: &quot;</span>+serverMessenger.getBinder() );</span><br><span class="line">        <span class="keyword">return</span> serverMessenger.getBinder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>   客户端</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> Handler clientHandler = <span class="keyword">new</span> Handler(<span class="keyword">new</span> Handler.Callback() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">switch</span> (msg.what)&#123;</span><br><span class="line">               <span class="keyword">case</span> WHAT_TO_CLIENT:</span><br><span class="line">                   System.out.println(<span class="string">&quot; client from server &quot;</span>+msg.arg1+<span class="string">&quot;,&quot;</span>+msg.obj);</span><br><span class="line">                   <span class="comment">//TODO 向服务端发送消息</span></span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               <span class="keyword">default</span>:</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    *  信使</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> Messenger clientMessenger = <span class="keyword">new</span> Messenger(clientHandler);</span><br><span class="line">   <span class="comment">//连接远程服务</span></span><br><span class="line">   <span class="keyword">private</span> Messenger serverMessager;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> ServiceConnection messengerConnection = <span class="keyword">new</span> ServiceConnection() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;Success  name = &quot;</span> + name + <span class="string">&quot;, service = &quot;</span> + service);</span><br><span class="line">           Log.e(TAG, <span class="string">&quot;onServiceConnected: &quot;</span>);</span><br><span class="line">           serverMessager = <span class="keyword">new</span> Messenger(service);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot; disconnected name = &quot;</span> + name);</span><br><span class="line">           Log.e(TAG, <span class="string">&quot;onServiceDisconnected: &quot;</span> );</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">bindServer1</span><span class="params">()</span></span>&#123;</span><br><span class="line">       Log.e(TAG, <span class="string">&quot;bindServer1: &quot;</span> );</span><br><span class="line">       Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">       intent.setAction(<span class="string">&quot;com.example.service&quot;</span>);</span><br><span class="line">       intent.setPackage(<span class="string">&quot;com.example.webrtc&quot;</span>);</span><br><span class="line">       bindService(intent,messengerConnection,BIND_AUTO_CREATE);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Message serverMessage = Message.obtain(<span class="keyword">null</span>,WHAT_TO_SERVER);</span><br><span class="line">serverMessage.arg1 = <span class="number">100</span>;</span><br><span class="line">serverMessage.obj = <span class="string">&quot;客户端发送消息&quot;</span>;</span><br><span class="line"><span class="comment">//将toServer.replyTo = clientMessager，这样，对应于服务端接收到此消息，获取到clientMessager，用此clientMessager向客户端回送消息</span></span><br><span class="line">serverMessage.replyTo = clientMessenger;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    serverMessager.send(serverMessage);</span><br><span class="line">&#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -1684,6 +1684,33 @@ self-&gt;deviceType和deviceType是等价的。
       </tags>
   </entry>
   <entry>
+    <title>调研记录一下</title>
+    <url>/2020/12/21/Tools/MoreLear/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="1-能力考试院"><a href="#1-能力考试院" class="headerlink" title="1.能力考试院"></a>1.能力考试院</h4><span id="more"></span>
+<blockquote>
+<p><a href="http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384">http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384</a> </p>
+</blockquote>
+<h4 id="2-查询"><a href="#2-查询" class="headerlink" title="2.查询"></a>2.查询</h4><blockquote>
+<p><a href="http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/">http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://sh.offcn.com/html/2020/11/191560.html">http://sh.offcn.com/html/2020/11/191560.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://sh.offcn.com/zg/shsydwdg/">http://sh.offcn.com/zg/shsydwdg/</a></p>
+</blockquote>
+</font>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Link</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>评论配置</title>
     <url>/2020/12/23/Tools/LeanCloud-md/</url>
     <content><![CDATA[<font size="2.9">
@@ -1721,33 +1748,6 @@ self-&gt;deviceType和deviceType是等价的。
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>调研记录一下</title>
-    <url>/2020/12/21/Tools/MoreLear/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="1-能力考试院"><a href="#1-能力考试院" class="headerlink" title="1.能力考试院"></a>1.能力考试院</h4><span id="more"></span>
-<blockquote>
-<p><a href="http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384">http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384</a> </p>
-</blockquote>
-<h4 id="2-查询"><a href="#2-查询" class="headerlink" title="2.查询"></a>2.查询</h4><blockquote>
-<p><a href="http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/">http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://sh.offcn.com/html/2020/11/191560.html">http://sh.offcn.com/html/2020/11/191560.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://sh.offcn.com/zg/shsydwdg/">http://sh.offcn.com/zg/shsydwdg/</a></p>
-</blockquote>
-</font>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>Link</tag>
       </tags>
   </entry>
   <entry>
@@ -2172,22 +2172,6 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </tags>
   </entry>
   <entry>
-    <title>Steam接入记录</title>
-    <url>/2021/01/26/Unity/steam/</url>
-    <content><![CDATA[<h5 id="Steam-for-Mac"><a href="#Steam-for-Mac" class="headerlink" title="Steam for Mac"></a>Steam for Mac</h5><p>SDK <strong><a href="http://steamworks.github.io/installation">http://steamworks.github.io/installation</a></strong></p>
-<blockquote>
-<p>steam_appid,在asset同级目录<br>init 初始化</p>
-</blockquote>
-<span id="more"></span>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Steam</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UnityBase</title>
     <url>/2021/10/14/Unity/UnityBase/</url>
     <content><![CDATA[<font size="2.9">
@@ -2241,38 +2225,19 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </tags>
   </entry>
   <entry>
-    <title>UEBase</title>
-    <url>/2021/12/12/Unreal/ueBase/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h2 id="Blueprint（蓝图）-Node"><a href="#Blueprint（蓝图）-Node" class="headerlink" title="Blueprint（蓝图） Node"></a>Blueprint（蓝图） Node</h2><h3 id="Event类型节点"><a href="#Event类型节点" class="headerlink" title="Event类型节点"></a>Event类型节点</h3><h5 id="EventBeginPlay-节点"><a href="#EventBeginPlay-节点" class="headerlink" title="EventBeginPlay 节点"></a>EventBeginPlay 节点</h5><h5 id="OnActorBeginOverlap-节点"><a href="#OnActorBeginOverlap-节点" class="headerlink" title="OnActorBeginOverlap 节点"></a>OnActorBeginOverlap 节点</h5><h5 id="OnComponentBeginOverlap-节点"><a href="#OnComponentBeginOverlap-节点" class="headerlink" title="OnComponentBeginOverlap 节点"></a>OnComponentBeginOverlap 节点</h5><h5 id="键盘响应事件-节点"><a href="#键盘响应事件-节点" class="headerlink" title="键盘响应事件 节点"></a>键盘响应事件 节点</h5><font size="2.9">]]></content>
+    <title>Steam接入记录</title>
+    <url>/2021/01/26/Unity/steam/</url>
+    <content><![CDATA[<h5 id="Steam-for-Mac"><a href="#Steam-for-Mac" class="headerlink" title="Steam for Mac"></a>Steam for Mac</h5><p>SDK <strong><a href="http://steamworks.github.io/installation">http://steamworks.github.io/installation</a></strong></p>
+<blockquote>
+<p>steam_appid,在asset同级目录<br>init 初始化</p>
+</blockquote>
+<span id="more"></span>
+]]></content>
       <categories>
-        <category>UE4</category>
+        <category>Unity</category>
       </categories>
       <tags>
-        <tag>Base</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ue4LoadImg</title>
-    <url>/2021/11/04/Unreal/ue4-ue4LoadImg/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="加载本地图片-到Image"><a href="#加载本地图片-到Image" class="headerlink" title="加载本地图片 到Image"></a>加载本地图片 到Image</h4><p>引擎版本：4.25<br>支持图片类型：png,jpg,bmp,ico,exr,icns<br>输出图片：UTexture2D</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Engine/Texture2D.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">UFUNCTION</span>(BlueprintCallable, Category = <span class="string">&quot;Image&quot;</span>)        </span><br><span class="line"><span class="function"><span class="keyword">static</span> UTexture2D* <span class="title">LoadTexture2D</span><span class="params">(<span class="keyword">const</span> FString path, <span class="keyword">bool</span>&amp; IsValid, int32&amp; OutWidth, int32&amp; OutHeight)</span></span>; </span><br><span class="line">.cpp <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot; ImageTest.h&quot;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;FileManagerGeneric.h&quot;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Runtime/ImageWrapper/Public/Interfaces/IImageWrapper.h&quot;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Runtime/ImageWrapper/Public/Interfaces/IImageWrapperModule.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="图片类型"><a href="#图片类型" class="headerlink" title="图片类型"></a>图片类型</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> IImageWrapperPtr <span class="title">GetImageWrapperByExtention</span><span class="params">(<span class="keyword">const</span> FString InImagePath)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    IImageWrapperModule&amp; ImageWrapperModule = FModuleManager::LoadModuleChecked&lt;IImageWrapperModule&gt;(<span class="built_in">FName</span>(<span class="string">&quot;ImageWrapper&quot;</span>));</span><br><span class="line">    <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.png&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::PNG);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.jpg&quot;</span>)||InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.jpeg&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::JPEG);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.bmp&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::BMP);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.ico&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::ICO);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;exr&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::EXR);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.icns&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::ICNS);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="根据路径加载贴图"><a href="#根据路径加载贴图" class="headerlink" title="根据路径加载贴图"></a>根据路径加载贴图</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">UTexture2D* <span class="title">ImageTest::LoadTexture2D</span><span class="params">(<span class="keyword">const</span> FString path,<span class="keyword">bool</span>&amp; IsValid,int32&amp; OutWidth,int32&amp; OutHeight)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    UTexture2D* Texture = <span class="literal">nullptr</span>;</span><br><span class="line">    IsValid = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (!FPlatformFileManager::<span class="built_in">Get</span>().<span class="built_in">GetPlatformFile</span>().<span class="built_in">FileExists</span>(*path))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    TArray&lt;uint8&gt; RawFileData;</span><br><span class="line">    <span class="keyword">if</span> (!FFileHelper::<span class="built_in">LoadFileToArray</span>(RawFileData,*path))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    IImageWrapperPtr ImageWrapper = <span class="built_in">GetImageWrapperByExtention</span>(path);</span><br><span class="line">    <span class="keyword">if</span> (ImageWrapper.<span class="built_in">IsValid</span>()&amp;&amp;ImageWrapper-&gt;<span class="built_in">SetCompressed</span>(RawFileData.<span class="built_in">GetData</span>(),RawFileData.<span class="built_in">Num</span>()))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">const</span> TArray&lt;uint8&gt;* UncompressedRGBA = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">if</span> (ImageWrapper-&gt;<span class="built_in">GetRaw</span>(ERGBFormat::</span><br><span class="line">        ,<span class="number">8</span>,UncompressedRGBA))</span><br><span class="line">        &#123;</span><br><span class="line">            Texture = UTexture2D::<span class="built_in">CreateTransient</span>(ImageWrapper-&gt;<span class="built_in">GetWidth</span>(), ImageWrapper-&gt;<span class="built_in">GetHeight</span>(), PF_R8G8B8A8);</span><br><span class="line">            <span class="keyword">if</span> (Texture != <span class="literal">nullptr</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                IsValid = <span class="literal">true</span>;</span><br><span class="line">                OutWidth = ImageWrapper-&gt;<span class="built_in">GetWidth</span>();</span><br><span class="line">                OutHeight = ImageWrapper-&gt;<span class="built_in">GetHeight</span>();</span><br><span class="line">                <span class="keyword">void</span>* TextureData = Texture-&gt;PlatformData-&gt;Mips[<span class="number">0</span>].BulkData.<span class="built_in">Lock</span>(LOCK_READ_WRITE);</span><br><span class="line">                FMemory::<span class="built_in">Memcpy</span>(TextureData, UncompressedRGBA-&gt;<span class="built_in">GetData</span>(), UncompressedRGBA-&gt;<span class="built_in">Num</span>());</span><br><span class="line">                Texture-&gt;PlatformData-&gt;Mips[<span class="number">0</span>].BulkData.<span class="built_in">Unlock</span>();</span><br><span class="line">                Texture-&gt;<span class="built_in">UpdateResource</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Texture;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="build-cs中添加ImageWrapper模块"><a href="#build-cs中添加ImageWrapper模块" class="headerlink" title=".build.cs中添加ImageWrapper模块"></a>.build.cs中添加ImageWrapper模块</h4><p>要解决JPG图片读入UE中出现的Red通道和Blue通道交叉出现的图片颜色错误问题，可将LoadTexture2D中ERGBFormat::RGBA和PF_R8G8B8A8替换为ERGBFormat::BGRA和PF_B8G8R8A8，以BGR存储颜色通道信息即可。</p>
-<h4 id="蓝图Image-设置值"><a href="#蓝图Image-设置值" class="headerlink" title="蓝图Image 设置值"></a>蓝图Image 设置值</h4><img src="/2021/11/04/Unreal/ue4-ue4LoadImg/1.png" class="">
-
-<h4 id="图片转base64"><a href="#图片转base64" class="headerlink" title="图片转base64"></a>图片转base64</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">UTexture2D* OutTex = <span class="literal">NULL</span>;</span><br><span class="line">	IImageWrapperModule&amp; imageWrapperModule = FModuleManager::LoadModuleChecked&lt;IImageWrapperModule&gt;(<span class="built_in">FName</span>(<span class="string">&quot;ImageWrapper&quot;</span>));</span><br><span class="line">	TSharedPtr&lt;IImageWrapper&gt; imageWrapper = imageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::PNG);</span><br><span class="line"></span><br><span class="line">	TArray&lt;uint8&gt; OutArray;</span><br><span class="line">	<span class="keyword">if</span> (FFileHelper::<span class="built_in">LoadFileToArray</span>(OutArray, *_TexPath))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (imageWrapper.<span class="built_in">IsValid</span>() &amp;&amp;</span><br><span class="line">			imageWrapper-&gt;<span class="built_in">SetCompressed</span>(OutArray.<span class="built_in">GetData</span>(), OutArray.<span class="built_in">Num</span>()))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//Dest = OutArray;</span></span><br><span class="line">			<span class="built_in">UE_LOG</span>(LogTemp, Warning, <span class="built_in">TEXT</span>(<span class="string">&quot;Load = %d&quot;</span>),OutArray.<span class="built_in">Num</span>());</span><br><span class="line">			<span class="keyword">const</span> TArray&lt;uint8&gt;* uncompressedRGBA = <span class="literal">NULL</span>;</span><br><span class="line">			<span class="keyword">if</span> (imageWrapper-&gt;<span class="built_in">GetRaw</span>(ERGBFormat::RGBA, <span class="number">8</span>, uncompressedRGBA))</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">const</span> TArray&lt;FColor&gt; uncompressedFColor = <span class="built_in">uint8ToFColor</span>(*uncompressedRGBA);</span><br><span class="line">				OutTex = <span class="built_in">TextureFromImage</span>(</span><br><span class="line">					imageWrapper-&gt;<span class="built_in">GetWidth</span>(),</span><br><span class="line">					imageWrapper-&gt;<span class="built_in">GetHeight</span>(),</span><br><span class="line">					uncompressedFColor,</span><br><span class="line">					<span class="literal">true</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">FString baseImgData = FBase64::<span class="built_in">Encode</span>(OutArray);</span><br></pre></td></tr></table></figure>
-
-</font>]]></content>
-      <categories>
-        <category>UE4</category>
-      </categories>
-      <tags>
-        <tag>UTexture2D</tag>
+        <tag>Steam</tag>
       </tags>
   </entry>
   <entry>
@@ -2352,6 +2317,41 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </categories>
       <tags>
         <tag>UE4WebView</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ue4LoadImg</title>
+    <url>/2021/11/04/Unreal/ue4-ue4LoadImg/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="加载本地图片-到Image"><a href="#加载本地图片-到Image" class="headerlink" title="加载本地图片 到Image"></a>加载本地图片 到Image</h4><p>引擎版本：4.25<br>支持图片类型：png,jpg,bmp,ico,exr,icns<br>输出图片：UTexture2D</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Engine/Texture2D.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">UFUNCTION</span>(BlueprintCallable, Category = <span class="string">&quot;Image&quot;</span>)        </span><br><span class="line"><span class="function"><span class="keyword">static</span> UTexture2D* <span class="title">LoadTexture2D</span><span class="params">(<span class="keyword">const</span> FString path, <span class="keyword">bool</span>&amp; IsValid, int32&amp; OutWidth, int32&amp; OutHeight)</span></span>; </span><br><span class="line">.cpp <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot; ImageTest.h&quot;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;FileManagerGeneric.h&quot;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Runtime/ImageWrapper/Public/Interfaces/IImageWrapper.h&quot;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Runtime/ImageWrapper/Public/Interfaces/IImageWrapperModule.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="图片类型"><a href="#图片类型" class="headerlink" title="图片类型"></a>图片类型</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> IImageWrapperPtr <span class="title">GetImageWrapperByExtention</span><span class="params">(<span class="keyword">const</span> FString InImagePath)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    IImageWrapperModule&amp; ImageWrapperModule = FModuleManager::LoadModuleChecked&lt;IImageWrapperModule&gt;(<span class="built_in">FName</span>(<span class="string">&quot;ImageWrapper&quot;</span>));</span><br><span class="line">    <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.png&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::PNG);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.jpg&quot;</span>)||InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.jpeg&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::JPEG);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.bmp&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::BMP);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.ico&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::ICO);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;exr&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::EXR);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.icns&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::ICNS);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="根据路径加载贴图"><a href="#根据路径加载贴图" class="headerlink" title="根据路径加载贴图"></a>根据路径加载贴图</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">UTexture2D* <span class="title">ImageTest::LoadTexture2D</span><span class="params">(<span class="keyword">const</span> FString path,<span class="keyword">bool</span>&amp; IsValid,int32&amp; OutWidth,int32&amp; OutHeight)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    UTexture2D* Texture = <span class="literal">nullptr</span>;</span><br><span class="line">    IsValid = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (!FPlatformFileManager::<span class="built_in">Get</span>().<span class="built_in">GetPlatformFile</span>().<span class="built_in">FileExists</span>(*path))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    TArray&lt;uint8&gt; RawFileData;</span><br><span class="line">    <span class="keyword">if</span> (!FFileHelper::<span class="built_in">LoadFileToArray</span>(RawFileData,*path))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    IImageWrapperPtr ImageWrapper = <span class="built_in">GetImageWrapperByExtention</span>(path);</span><br><span class="line">    <span class="keyword">if</span> (ImageWrapper.<span class="built_in">IsValid</span>()&amp;&amp;ImageWrapper-&gt;<span class="built_in">SetCompressed</span>(RawFileData.<span class="built_in">GetData</span>(),RawFileData.<span class="built_in">Num</span>()))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">const</span> TArray&lt;uint8&gt;* UncompressedRGBA = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">if</span> (ImageWrapper-&gt;<span class="built_in">GetRaw</span>(ERGBFormat::</span><br><span class="line">        ,<span class="number">8</span>,UncompressedRGBA))</span><br><span class="line">        &#123;</span><br><span class="line">            Texture = UTexture2D::<span class="built_in">CreateTransient</span>(ImageWrapper-&gt;<span class="built_in">GetWidth</span>(), ImageWrapper-&gt;<span class="built_in">GetHeight</span>(), PF_R8G8B8A8);</span><br><span class="line">            <span class="keyword">if</span> (Texture != <span class="literal">nullptr</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                IsValid = <span class="literal">true</span>;</span><br><span class="line">                OutWidth = ImageWrapper-&gt;<span class="built_in">GetWidth</span>();</span><br><span class="line">                OutHeight = ImageWrapper-&gt;<span class="built_in">GetHeight</span>();</span><br><span class="line">                <span class="keyword">void</span>* TextureData = Texture-&gt;PlatformData-&gt;Mips[<span class="number">0</span>].BulkData.<span class="built_in">Lock</span>(LOCK_READ_WRITE);</span><br><span class="line">                FMemory::<span class="built_in">Memcpy</span>(TextureData, UncompressedRGBA-&gt;<span class="built_in">GetData</span>(), UncompressedRGBA-&gt;<span class="built_in">Num</span>());</span><br><span class="line">                Texture-&gt;PlatformData-&gt;Mips[<span class="number">0</span>].BulkData.<span class="built_in">Unlock</span>();</span><br><span class="line">                Texture-&gt;<span class="built_in">UpdateResource</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Texture;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="build-cs中添加ImageWrapper模块"><a href="#build-cs中添加ImageWrapper模块" class="headerlink" title=".build.cs中添加ImageWrapper模块"></a>.build.cs中添加ImageWrapper模块</h4><p>要解决JPG图片读入UE中出现的Red通道和Blue通道交叉出现的图片颜色错误问题，可将LoadTexture2D中ERGBFormat::RGBA和PF_R8G8B8A8替换为ERGBFormat::BGRA和PF_B8G8R8A8，以BGR存储颜色通道信息即可。</p>
+<h4 id="蓝图Image-设置值"><a href="#蓝图Image-设置值" class="headerlink" title="蓝图Image 设置值"></a>蓝图Image 设置值</h4><img src="/2021/11/04/Unreal/ue4-ue4LoadImg/1.png" class="">
+
+<h4 id="图片转base64"><a href="#图片转base64" class="headerlink" title="图片转base64"></a>图片转base64</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">UTexture2D* OutTex = <span class="literal">NULL</span>;</span><br><span class="line">	IImageWrapperModule&amp; imageWrapperModule = FModuleManager::LoadModuleChecked&lt;IImageWrapperModule&gt;(<span class="built_in">FName</span>(<span class="string">&quot;ImageWrapper&quot;</span>));</span><br><span class="line">	TSharedPtr&lt;IImageWrapper&gt; imageWrapper = imageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::PNG);</span><br><span class="line"></span><br><span class="line">	TArray&lt;uint8&gt; OutArray;</span><br><span class="line">	<span class="keyword">if</span> (FFileHelper::<span class="built_in">LoadFileToArray</span>(OutArray, *_TexPath))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (imageWrapper.<span class="built_in">IsValid</span>() &amp;&amp;</span><br><span class="line">			imageWrapper-&gt;<span class="built_in">SetCompressed</span>(OutArray.<span class="built_in">GetData</span>(), OutArray.<span class="built_in">Num</span>()))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//Dest = OutArray;</span></span><br><span class="line">			<span class="built_in">UE_LOG</span>(LogTemp, Warning, <span class="built_in">TEXT</span>(<span class="string">&quot;Load = %d&quot;</span>),OutArray.<span class="built_in">Num</span>());</span><br><span class="line">			<span class="keyword">const</span> TArray&lt;uint8&gt;* uncompressedRGBA = <span class="literal">NULL</span>;</span><br><span class="line">			<span class="keyword">if</span> (imageWrapper-&gt;<span class="built_in">GetRaw</span>(ERGBFormat::RGBA, <span class="number">8</span>, uncompressedRGBA))</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">const</span> TArray&lt;FColor&gt; uncompressedFColor = <span class="built_in">uint8ToFColor</span>(*uncompressedRGBA);</span><br><span class="line">				OutTex = <span class="built_in">TextureFromImage</span>(</span><br><span class="line">					imageWrapper-&gt;<span class="built_in">GetWidth</span>(),</span><br><span class="line">					imageWrapper-&gt;<span class="built_in">GetHeight</span>(),</span><br><span class="line">					uncompressedFColor,</span><br><span class="line">					<span class="literal">true</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">FString baseImgData = FBase64::<span class="built_in">Encode</span>(OutArray);</span><br></pre></td></tr></table></figure>
+
+</font>]]></content>
+      <categories>
+        <category>UE4</category>
+      </categories>
+      <tags>
+        <tag>UTexture2D</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UEBase</title>
+    <url>/2021/12/12/Unreal/ueBase/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h2 id="Blueprint（蓝图）-Node"><a href="#Blueprint（蓝图）-Node" class="headerlink" title="Blueprint（蓝图） Node"></a>Blueprint（蓝图） Node</h2><h3 id="Event类型节点"><a href="#Event类型节点" class="headerlink" title="Event类型节点"></a>Event类型节点</h3><h5 id="EventBeginPlay-节点"><a href="#EventBeginPlay-节点" class="headerlink" title="EventBeginPlay 节点"></a>EventBeginPlay 节点</h5><h5 id="OnActorBeginOverlap-节点"><a href="#OnActorBeginOverlap-节点" class="headerlink" title="OnActorBeginOverlap 节点"></a>OnActorBeginOverlap 节点</h5><h5 id="OnComponentBeginOverlap-节点"><a href="#OnComponentBeginOverlap-节点" class="headerlink" title="OnComponentBeginOverlap 节点"></a>OnComponentBeginOverlap 节点</h5><h5 id="键盘响应事件-节点"><a href="#键盘响应事件-节点" class="headerlink" title="键盘响应事件 节点"></a>键盘响应事件 节点</h5><font size="2.9">]]></content>
+      <categories>
+        <category>UE4</category>
+      </categories>
+      <tags>
+        <tag>Base</tag>
       </tags>
   </entry>
   <entry>
@@ -2468,6 +2468,118 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       </categories>
       <tags>
         <tag>openssl,c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>视频压缩技术原理</title>
+    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A301-%E8%A7%86%E9%A2%91%E5%8E%8B%E7%BC%A9%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<font size="2.9">
+
+<p>H264视频压缩算法现在无疑是所有视频压缩技术中使用最广泛，</p>
+<p>最流行的。随着 x264/openh264以及ffmpeg等开源库的推出，大多数使用者无需再对H264的细节做过多的研究，这大降低了人们使用H264的成本。</p>
+<p>但为了用好H264，我们还是要对H264的基本原理弄清楚才行。今天我们就来看看H264的基本原理。</p>
+<h2 id="H264概述"><a href="#H264概述" class="headerlink" title="H264概述"></a>H264概述</h2><p><img src="/images/30.png" alt="img"></p>
+<p>H264压缩技术主要采用了以下几种方法对视频数据进行压缩。包括：</p>
+<p>　　帧内预测压缩，解决的是空域数据冗余问题。<br>　　帧间预测压缩（运动估计与补偿），解决的是时域数据冗徐问题。<br>　　整数离散余弦变换（DCT），将空间上的相关性变为频域上无关的数据然后进行量化。<br>　　CABAC压缩。</p>
+<p>经过压缩后的帧分为：I帧，P帧和B帧:</p>
+<p>　　I帧：关键帧，采用帧内压缩技术。<br>　　P帧：向前参考帧，在压缩时，只参考前面已经处理的帧。采用帧音压缩技术。<br>　　B帧：双向参考帧，在压缩时，它即参考前而的帧，又参考它后面的帧。采用帧间压缩技术。</p>
+<p>除了I/P/B帧外，还有图像序列GOP。</p>
+<p>　　GOP:两个I帧之间是一个图像序列，在一个图像序列中只有一个I帧。如下图所示：</p>
+<p><img src="/images/31.png" alt="img"></p>
+<p>下面我们就来详细描述一下H264压缩技术。</p>
+<h2 id="H264压缩技术"><a href="#H264压缩技术" class="headerlink" title="H264压缩技术"></a>H264压缩技术</h2><p>H264的基本原理其实非常简单，下我们就简单的描述一下H264压缩数据的过程。通过摄像头采集到的视频帧（按每秒 30 帧算），被送到 H264 编码器的缓冲区中。编码器先要为每一幅图片划分宏块。</p>
+<p>以下面这张图为例:</p>
+<p><img src="/images/32.webp" alt="img"></p>
+<h3 id="划分宏块"><a href="#划分宏块" class="headerlink" title="划分宏块"></a>划分宏块</h3><p>H264默认是使用 16X16 大小的区域作为一个宏块，也可以划分成 8X8 大小。</p>
+<p><img src="/images/33.webp" alt="img"></p>
+<p>划分好宏块后，计算宏块的象素值。</p>
+<p><img src="/images/34.webp" alt="img"></p>
+<p>以此类推，计算一幅图像中每个宏块的像素值，所有宏块都处理完后如下面的样子。</p>
+<p><img src="/images/35.webp" alt="img"></p>
+<h3 id="划分子块"><a href="#划分子块" class="headerlink" title="划分子块"></a>划分子块</h3><p>H264对比较平坦的图像使用 16X16 大小的宏块。但为了更高的压缩率，还可以在 16X16 的宏块上更划分出更小的子块。子块的大小可以是 8X16､ 16X8､ 8X8､ 4X8､ 8X4､ 4X4非常的灵活。</p>
+<p><img src="/images/36.webp" alt="img"></p>
+<p>上幅图中，红框内的 16X16 宏块中大部分是蓝色背景，而三只鹰的部分图像被划在了该宏块内，为了更好的处理三只鹰的部分图像，H264就在 16X16 的宏块内又划分出了多个子块。</p>
+<p><img src="/images/37.webp" alt="img"></p>
+<p>这样再经过帧内压缩，可以得到更高效的数据。下图是分别使用mpeg-2和H264对上面宏块进行压缩后的结果。其中左半部分为MPEG-2子块划分后压缩的结果，右半部分为H264的子块划压缩后的结果，可以看出H264的划分方法更具优势。</p>
+<p><img src="/images/39.png" alt="img"></p>
+<p>宏块划分好后，就可以对H264编码器缓存中的所有图片进行分组了。</p>
+<h3 id="帧分组"><a href="#帧分组" class="headerlink" title="帧分组"></a>帧分组</h3><p>对于视频数据主要有两类数据冗余，一类是时间上的数据冗余，另一类是空间上的数据冗余。其中时间上的数据冗余是最大的。下面我们就先来说说视频数据时间上的冗余问题。</p>
+<p>为什么说时间上的冗余是最大的呢？假设摄像头每秒抓取30帧，这30帧的数据大部分情况下都是相关联的。也有可能不止30帧的的数据，可能几十帧，上百帧的数据都是关联特别密切的。</p>
+<p>对于这些关联特别密切的帧，其实我们只需要保存一帧的数据，其它帧都可以通过这一帧再按某种规则预测出来，所以说视频数据在时间上的冗余是最多的。</p>
+<p>为了达到相关帧通过预测的方法来压缩数据，就需要将视频帧进行分组。那么如何判定某些帧关系密切，可以划为一组呢？我们来看一下例子，下面是捕获的一组运动的台球的视频帧，台球从右上角滚到了左下角。</p>
+<p><img src="/images/40.webp" alt="img"></p>
+<p><img src="/images/41.webp" alt="img"></p>
+<p>没有运动补偿的时候  120fps     60fps   60帧电影  视频画面是没有提升</p>
+<p>120fps    60帧视频  60帧虚拟帧</p>
+<p>H264编码器会按顺序，每次取出两幅相邻的帧进行宏块比较，计算两帧的相似度。如下图：</p>
+<p><img src="/images/42.webp" alt="img"></p>
+<p>通过宏块扫描与宏块搜索可以发现这两个帧的关联度是非常高的。进而发现这一组帧的关联度都是非常高的。因此，上面这几帧就可以划分为一组。其算法是：<strong>在相邻几幅图像画面中，一般有差别的像素只有10%以内的点,亮度差值变化不超过2%，而色度差值的变化只有1%以内，我们认为这样的图可以分到一组。</strong></p>
+<p>在这样一组帧中，经过编码后，我们只保留第一帖的完整数据，其它帧都通过参考上一帧计算出来。我们称第一帧为<strong>IDR／I帧</strong>，其它帧我们称为<strong>P／B帧</strong>，这样编码后的数据帧组我们称为<strong>GOP</strong>。</p>
+<h3 id="运动估计与补偿"><a href="#运动估计与补偿" class="headerlink" title="运动估计与补偿"></a>运动估计与补偿</h3><p>在H264编码器中将帧分组后，就要计算帧组内物体的运动矢量了。还以上面运动的台球视频帧为例，我们来看一下它是如何计算运动矢量的。</p>
+<p>H264编码器首先按顺序从缓冲区头部取出两帧视频数据，然后进行宏块扫描。当发现其中一幅图片中有物体时，就在另一幅图的邻近位置（搜索窗口中）进行搜索。如果此时在另一幅图中找到该物体，那么就可以计算出物体的运动矢量了。下面这幅图就是搜索后的台球移动的位置。</p>
+<p><img src="/images/43.png" alt="img"></p>
+<p> 抖音 —-》视频  1M  9M   </p>
+<p>通过上图中台球位置相差，就可以计算出台图运行的方向和距离。H264依次把每一帧中球移动的距离和方向都记录下来就成了下面的样子。</p>
+<p><img src="/images/44.png" alt="img"></p>
+<p>运动矢量计算出来后，将相同部分（也就是绿色部分）减去，就得到了补偿数据。我们最终只需要将补偿数据进行压缩保存，以后在解码时就可以恢复原图了。压缩补偿后的数据只需要记录很少的一点数据。如下所示：</p>
+<p><img src="/images/45.png" alt="img"></p>
+<p>我们把运动矢量与补偿称为<strong>帧间压缩技术</strong>，它解决的是视频帧在时间上的数据冗余。除了帧间压缩，帧内也要进行数据压缩，帧内数据压缩解决的是空间上的数据冗余。下面我们就来介绍一下帧内压缩技术。</p>
+<h3 id="帧内预测"><a href="#帧内预测" class="headerlink" title="帧内预测"></a>帧内预测</h3><p>人眼对图象都有一个识别度，对低频的亮度很敏感，对高频的亮度不太敏感。所以基于一些研究，可以将一幅图像中人眼不敏感的数据去除掉。这样就提出了帧内预测技术。</p>
+<p>H264的帧内压缩与JPEG很相似。一幅图像被划分好宏块后，对每个宏块可以进行 9 种模式的预测。找出与原图最接近的一种预测模式。</p>
+<p><img src="/images/46.webp" alt="img"></p>
+<p>下面这幅图是对整幅图中的每个宏块进行预测的过程。</p>
+<p><img src="/images/145.webp" alt="img"></p>
+<p>帧内预测后的图像与原始图像的对比如下：</p>
+<p><img src="/images/146.webp" alt="img"></p>
+<p>然后，将原始图像与帧内预测后的图像相减得残差值。</p>
+<p><img src="/images/1307424-20181107191253955-1987839456.png" alt="img"></p>
+<p>再将我们之前得到的预测模式信息一起保存起来，这样我们就可以在解码时恢复原图了。效果如下：</p>
+<p><img src="/images/1307424-20181107191259057-1084466018.png" alt="img"></p>
+<p>经过帧内与帧间的压缩后，虽然数据有大幅减少，但还有优化的空间。</p>
+<h3 id="对残差数据做DCT"><a href="#对残差数据做DCT" class="headerlink" title="对残差数据做DCT"></a>对残差数据做DCT</h3><p>可以将残差数据做整数离散余弦变换，去掉数据的相关性，进一步压缩数据。如下图所示，左侧为原数据的宏块，右侧为计算出的残差数据的宏块。</p>
+<p><img src="/images/1307424-20181107191314043-1719104258.png" alt="img"></p>
+<p>将残差数据宏块数字化后如下图所示：</p>
+<p><img src="/images/1307424-20181107191318906-1060673182.png" alt="img"></p>
+<p>将残差数据宏块进行 DCT 转换。</p>
+<p><img src="/images/1307424-20181107191325145-505363573.png" alt="img"></p>
+<p>去掉相关联的数据后，我们可以看出数据被进一步压缩了。</p>
+<p><img src="/images/1307424-20181107191330244-1287304627.png" alt="img"></p>
+<p>做完 DCT 后，还不够，还要进行 CABAC 进行无损压缩。</p>
+<h3 id="DCT原理大白话"><a href="#DCT原理大白话" class="headerlink" title="DCT原理大白话"></a>DCT原理大白话</h3><p> 这是第一帧画面：P1（我们的参考帧） </p>
+<p><img src="/images/50.jpg" alt="50"></p>
+<p> 这是第二帧画面：P2（需要编码的帧） </p>
+<p><img src="/images/51.jpg" alt="50"></p>
+<p> 从视频中截取的两张间隔1-2秒的画面，和实际情况类似，下面我们进行几次运动搜索： </p>
+<p> 这是一个演示程序，鼠标选中P2上任意<strong>16x16</strong>的Block，即可搜索出<strong>P1上的 BestMatch</strong> 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
+<p><img src="/images/53.jpg" alt="50"></p>
+<p> 这是一个演示程序，鼠标选中P2上任意16x16的Block，即可搜索出P1上的 BestMatch 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
+<p> 搜索演示2：空中电线交叉位置（上图P1，下图P2） </p>
+<p><img src="/images/55.jpg" alt="50"></p>
+<p><img src="/images/54.jpg" alt="50"></p>
+<p> 同样顺利在P1中找到最接近P2里海报的宏块位置。 </p>
+<p> 图片全搜索：根据P1和运动矢量数据（在P2中搜索到每一个宏块在P1中最相似的位置集合）还原出来的P2’，即完全用P1各个位置的宏块拼凑出来最像P2的图片P2’，效果如下： </p>
+<p><img src="/images/56.jpg" alt="50"></p>
+<h5 id="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80："><a href="#仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80：" class="headerlink" title="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80："></a>仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80：</h5><p><img src="/images/57.jpg" alt="50"></p>
+<p> 这就是之前支离破碎的 P2` 加上误差 D2之后变成了清晰可见的样子，基本还原了原图P2。 </p>
+<p><img src="/images/58.jpg" alt="50"></p>
+<p> 由于D2仅仅占5KB，加上压缩过后的运动矢量不过7KB，所以参考P1我们只需要额外 7KB的数据量就可以完整表示P2了，而如果独立将P2用质量尚可的有损压缩方式独立压缩，则至少要去到50-60KB，这一下节省了差不多8倍的空间，正就是所谓运动编码的基本原理。 </p>
+<p> 实际在使用中，参考帧并不一定是前面一帧，也不一定是同一个GOP的I帧，因为GOP间隔较长时，后面的图片离I帧变化可能已经很大了，因此常见做法是最近15帧中选择一帧误差最小的作为参考帧，虽然彩色画面有YUV三个分量，但是大量的预测工作和最有选择通常是根据Y分量的灰度帧进行判断的。 </p>
+<p> 再者误差我们保存的是（P2-P2’）/2 + 0x80，实际使用时我们会用更有效率的方式，比如让[-64,64]之间的色差精度为1，[-255,-64], [64, 255] 之间的色差精度为2-3，这样会更加真实一些。 </p>
+<p> 同时上文很多地方用的是直接lzma2进行简单存储，实际使用时一般会引入熵编码，对数据进行一定层次的整理然后再压缩，性能会好不少。 </p>
+<h3 id="CABAC"><a href="#CABAC" class="headerlink" title="CABAC"></a>CABAC</h3><p>上面的帧内压缩是属于有损压缩技术。也就是说图像被压缩后，无法完全复原。而CABAC属于无损压缩技术。</p>
+<p>无损压缩技术大家最熟悉的可能就是哈夫曼编码了，给高频的词一个短码，给低频词一个长码从而达到数据压缩的目的。MPEG-2中使用的VLC就是这种算法，我们以 A-Z 作为例子，A属于高频数据，Z属于低频数据。看看它是如何做的。</p>
+<p><img src="/images/1307424-20181107191345116-277907586.png" alt="img"></p>
+<p>CABAC也是给高频数据短码，给低频数据长码。同时还会根据上下文相关性进行压缩，这种方式又比VLC高效很多。其效果如下：</p>
+<p><img src="/images/1307424-20181107191350500-1400387362.png" alt="img"></p>
+<p>现在将 A-Z 换成视频帧，它就成了下面的样子。</p>
+<p><img src="/images/1307424-20181107191355172-2085276841.png" alt="img"></p>
+<p>从上面这张图中明显可以看出采用 CACBA 的无损压缩方案要比 VLC 高效的多。</p>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>H264</tag>
       </tags>
   </entry>
   <entry>
@@ -2613,118 +2725,6 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
 
 
 ]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>H264</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>视频压缩技术原理</title>
-    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A301-%E8%A7%86%E9%A2%91%E5%8E%8B%E7%BC%A9%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<font size="2.9">
-
-<p>H264视频压缩算法现在无疑是所有视频压缩技术中使用最广泛，</p>
-<p>最流行的。随着 x264/openh264以及ffmpeg等开源库的推出，大多数使用者无需再对H264的细节做过多的研究，这大降低了人们使用H264的成本。</p>
-<p>但为了用好H264，我们还是要对H264的基本原理弄清楚才行。今天我们就来看看H264的基本原理。</p>
-<h2 id="H264概述"><a href="#H264概述" class="headerlink" title="H264概述"></a>H264概述</h2><p><img src="/images/30.png" alt="img"></p>
-<p>H264压缩技术主要采用了以下几种方法对视频数据进行压缩。包括：</p>
-<p>　　帧内预测压缩，解决的是空域数据冗余问题。<br>　　帧间预测压缩（运动估计与补偿），解决的是时域数据冗徐问题。<br>　　整数离散余弦变换（DCT），将空间上的相关性变为频域上无关的数据然后进行量化。<br>　　CABAC压缩。</p>
-<p>经过压缩后的帧分为：I帧，P帧和B帧:</p>
-<p>　　I帧：关键帧，采用帧内压缩技术。<br>　　P帧：向前参考帧，在压缩时，只参考前面已经处理的帧。采用帧音压缩技术。<br>　　B帧：双向参考帧，在压缩时，它即参考前而的帧，又参考它后面的帧。采用帧间压缩技术。</p>
-<p>除了I/P/B帧外，还有图像序列GOP。</p>
-<p>　　GOP:两个I帧之间是一个图像序列，在一个图像序列中只有一个I帧。如下图所示：</p>
-<p><img src="/images/31.png" alt="img"></p>
-<p>下面我们就来详细描述一下H264压缩技术。</p>
-<h2 id="H264压缩技术"><a href="#H264压缩技术" class="headerlink" title="H264压缩技术"></a>H264压缩技术</h2><p>H264的基本原理其实非常简单，下我们就简单的描述一下H264压缩数据的过程。通过摄像头采集到的视频帧（按每秒 30 帧算），被送到 H264 编码器的缓冲区中。编码器先要为每一幅图片划分宏块。</p>
-<p>以下面这张图为例:</p>
-<p><img src="/images/32.webp" alt="img"></p>
-<h3 id="划分宏块"><a href="#划分宏块" class="headerlink" title="划分宏块"></a>划分宏块</h3><p>H264默认是使用 16X16 大小的区域作为一个宏块，也可以划分成 8X8 大小。</p>
-<p><img src="/images/33.webp" alt="img"></p>
-<p>划分好宏块后，计算宏块的象素值。</p>
-<p><img src="/images/34.webp" alt="img"></p>
-<p>以此类推，计算一幅图像中每个宏块的像素值，所有宏块都处理完后如下面的样子。</p>
-<p><img src="/images/35.webp" alt="img"></p>
-<h3 id="划分子块"><a href="#划分子块" class="headerlink" title="划分子块"></a>划分子块</h3><p>H264对比较平坦的图像使用 16X16 大小的宏块。但为了更高的压缩率，还可以在 16X16 的宏块上更划分出更小的子块。子块的大小可以是 8X16､ 16X8､ 8X8､ 4X8､ 8X4､ 4X4非常的灵活。</p>
-<p><img src="/images/36.webp" alt="img"></p>
-<p>上幅图中，红框内的 16X16 宏块中大部分是蓝色背景，而三只鹰的部分图像被划在了该宏块内，为了更好的处理三只鹰的部分图像，H264就在 16X16 的宏块内又划分出了多个子块。</p>
-<p><img src="/images/37.webp" alt="img"></p>
-<p>这样再经过帧内压缩，可以得到更高效的数据。下图是分别使用mpeg-2和H264对上面宏块进行压缩后的结果。其中左半部分为MPEG-2子块划分后压缩的结果，右半部分为H264的子块划压缩后的结果，可以看出H264的划分方法更具优势。</p>
-<p><img src="/images/39.png" alt="img"></p>
-<p>宏块划分好后，就可以对H264编码器缓存中的所有图片进行分组了。</p>
-<h3 id="帧分组"><a href="#帧分组" class="headerlink" title="帧分组"></a>帧分组</h3><p>对于视频数据主要有两类数据冗余，一类是时间上的数据冗余，另一类是空间上的数据冗余。其中时间上的数据冗余是最大的。下面我们就先来说说视频数据时间上的冗余问题。</p>
-<p>为什么说时间上的冗余是最大的呢？假设摄像头每秒抓取30帧，这30帧的数据大部分情况下都是相关联的。也有可能不止30帧的的数据，可能几十帧，上百帧的数据都是关联特别密切的。</p>
-<p>对于这些关联特别密切的帧，其实我们只需要保存一帧的数据，其它帧都可以通过这一帧再按某种规则预测出来，所以说视频数据在时间上的冗余是最多的。</p>
-<p>为了达到相关帧通过预测的方法来压缩数据，就需要将视频帧进行分组。那么如何判定某些帧关系密切，可以划为一组呢？我们来看一下例子，下面是捕获的一组运动的台球的视频帧，台球从右上角滚到了左下角。</p>
-<p><img src="/images/40.webp" alt="img"></p>
-<p><img src="/images/41.webp" alt="img"></p>
-<p>没有运动补偿的时候  120fps     60fps   60帧电影  视频画面是没有提升</p>
-<p>120fps    60帧视频  60帧虚拟帧</p>
-<p>H264编码器会按顺序，每次取出两幅相邻的帧进行宏块比较，计算两帧的相似度。如下图：</p>
-<p><img src="/images/42.webp" alt="img"></p>
-<p>通过宏块扫描与宏块搜索可以发现这两个帧的关联度是非常高的。进而发现这一组帧的关联度都是非常高的。因此，上面这几帧就可以划分为一组。其算法是：<strong>在相邻几幅图像画面中，一般有差别的像素只有10%以内的点,亮度差值变化不超过2%，而色度差值的变化只有1%以内，我们认为这样的图可以分到一组。</strong></p>
-<p>在这样一组帧中，经过编码后，我们只保留第一帖的完整数据，其它帧都通过参考上一帧计算出来。我们称第一帧为<strong>IDR／I帧</strong>，其它帧我们称为<strong>P／B帧</strong>，这样编码后的数据帧组我们称为<strong>GOP</strong>。</p>
-<h3 id="运动估计与补偿"><a href="#运动估计与补偿" class="headerlink" title="运动估计与补偿"></a>运动估计与补偿</h3><p>在H264编码器中将帧分组后，就要计算帧组内物体的运动矢量了。还以上面运动的台球视频帧为例，我们来看一下它是如何计算运动矢量的。</p>
-<p>H264编码器首先按顺序从缓冲区头部取出两帧视频数据，然后进行宏块扫描。当发现其中一幅图片中有物体时，就在另一幅图的邻近位置（搜索窗口中）进行搜索。如果此时在另一幅图中找到该物体，那么就可以计算出物体的运动矢量了。下面这幅图就是搜索后的台球移动的位置。</p>
-<p><img src="/images/43.png" alt="img"></p>
-<p> 抖音 —-》视频  1M  9M   </p>
-<p>通过上图中台球位置相差，就可以计算出台图运行的方向和距离。H264依次把每一帧中球移动的距离和方向都记录下来就成了下面的样子。</p>
-<p><img src="/images/44.png" alt="img"></p>
-<p>运动矢量计算出来后，将相同部分（也就是绿色部分）减去，就得到了补偿数据。我们最终只需要将补偿数据进行压缩保存，以后在解码时就可以恢复原图了。压缩补偿后的数据只需要记录很少的一点数据。如下所示：</p>
-<p><img src="/images/45.png" alt="img"></p>
-<p>我们把运动矢量与补偿称为<strong>帧间压缩技术</strong>，它解决的是视频帧在时间上的数据冗余。除了帧间压缩，帧内也要进行数据压缩，帧内数据压缩解决的是空间上的数据冗余。下面我们就来介绍一下帧内压缩技术。</p>
-<h3 id="帧内预测"><a href="#帧内预测" class="headerlink" title="帧内预测"></a>帧内预测</h3><p>人眼对图象都有一个识别度，对低频的亮度很敏感，对高频的亮度不太敏感。所以基于一些研究，可以将一幅图像中人眼不敏感的数据去除掉。这样就提出了帧内预测技术。</p>
-<p>H264的帧内压缩与JPEG很相似。一幅图像被划分好宏块后，对每个宏块可以进行 9 种模式的预测。找出与原图最接近的一种预测模式。</p>
-<p><img src="/images/46.webp" alt="img"></p>
-<p>下面这幅图是对整幅图中的每个宏块进行预测的过程。</p>
-<p><img src="/images/145.webp" alt="img"></p>
-<p>帧内预测后的图像与原始图像的对比如下：</p>
-<p><img src="/images/146.webp" alt="img"></p>
-<p>然后，将原始图像与帧内预测后的图像相减得残差值。</p>
-<p><img src="/images/1307424-20181107191253955-1987839456.png" alt="img"></p>
-<p>再将我们之前得到的预测模式信息一起保存起来，这样我们就可以在解码时恢复原图了。效果如下：</p>
-<p><img src="/images/1307424-20181107191259057-1084466018.png" alt="img"></p>
-<p>经过帧内与帧间的压缩后，虽然数据有大幅减少，但还有优化的空间。</p>
-<h3 id="对残差数据做DCT"><a href="#对残差数据做DCT" class="headerlink" title="对残差数据做DCT"></a>对残差数据做DCT</h3><p>可以将残差数据做整数离散余弦变换，去掉数据的相关性，进一步压缩数据。如下图所示，左侧为原数据的宏块，右侧为计算出的残差数据的宏块。</p>
-<p><img src="/images/1307424-20181107191314043-1719104258.png" alt="img"></p>
-<p>将残差数据宏块数字化后如下图所示：</p>
-<p><img src="/images/1307424-20181107191318906-1060673182.png" alt="img"></p>
-<p>将残差数据宏块进行 DCT 转换。</p>
-<p><img src="/images/1307424-20181107191325145-505363573.png" alt="img"></p>
-<p>去掉相关联的数据后，我们可以看出数据被进一步压缩了。</p>
-<p><img src="/images/1307424-20181107191330244-1287304627.png" alt="img"></p>
-<p>做完 DCT 后，还不够，还要进行 CABAC 进行无损压缩。</p>
-<h3 id="DCT原理大白话"><a href="#DCT原理大白话" class="headerlink" title="DCT原理大白话"></a>DCT原理大白话</h3><p> 这是第一帧画面：P1（我们的参考帧） </p>
-<p><img src="/images/50.jpg" alt="50"></p>
-<p> 这是第二帧画面：P2（需要编码的帧） </p>
-<p><img src="/images/51.jpg" alt="50"></p>
-<p> 从视频中截取的两张间隔1-2秒的画面，和实际情况类似，下面我们进行几次运动搜索： </p>
-<p> 这是一个演示程序，鼠标选中P2上任意<strong>16x16</strong>的Block，即可搜索出<strong>P1上的 BestMatch</strong> 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
-<p><img src="/images/53.jpg" alt="50"></p>
-<p> 这是一个演示程序，鼠标选中P2上任意16x16的Block，即可搜索出P1上的 BestMatch 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
-<p> 搜索演示2：空中电线交叉位置（上图P1，下图P2） </p>
-<p><img src="/images/55.jpg" alt="50"></p>
-<p><img src="/images/54.jpg" alt="50"></p>
-<p> 同样顺利在P1中找到最接近P2里海报的宏块位置。 </p>
-<p> 图片全搜索：根据P1和运动矢量数据（在P2中搜索到每一个宏块在P1中最相似的位置集合）还原出来的P2’，即完全用P1各个位置的宏块拼凑出来最像P2的图片P2’，效果如下： </p>
-<p><img src="/images/56.jpg" alt="50"></p>
-<h5 id="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80："><a href="#仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80：" class="headerlink" title="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80："></a>仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80：</h5><p><img src="/images/57.jpg" alt="50"></p>
-<p> 这就是之前支离破碎的 P2` 加上误差 D2之后变成了清晰可见的样子，基本还原了原图P2。 </p>
-<p><img src="/images/58.jpg" alt="50"></p>
-<p> 由于D2仅仅占5KB，加上压缩过后的运动矢量不过7KB，所以参考P1我们只需要额外 7KB的数据量就可以完整表示P2了，而如果独立将P2用质量尚可的有损压缩方式独立压缩，则至少要去到50-60KB，这一下节省了差不多8倍的空间，正就是所谓运动编码的基本原理。 </p>
-<p> 实际在使用中，参考帧并不一定是前面一帧，也不一定是同一个GOP的I帧，因为GOP间隔较长时，后面的图片离I帧变化可能已经很大了，因此常见做法是最近15帧中选择一帧误差最小的作为参考帧，虽然彩色画面有YUV三个分量，但是大量的预测工作和最有选择通常是根据Y分量的灰度帧进行判断的。 </p>
-<p> 再者误差我们保存的是（P2-P2’）/2 + 0x80，实际使用时我们会用更有效率的方式，比如让[-64,64]之间的色差精度为1，[-255,-64], [64, 255] 之间的色差精度为2-3，这样会更加真实一些。 </p>
-<p> 同时上文很多地方用的是直接lzma2进行简单存储，实际使用时一般会引入熵编码，对数据进行一定层次的整理然后再压缩，性能会好不少。 </p>
-<h3 id="CABAC"><a href="#CABAC" class="headerlink" title="CABAC"></a>CABAC</h3><p>上面的帧内压缩是属于有损压缩技术。也就是说图像被压缩后，无法完全复原。而CABAC属于无损压缩技术。</p>
-<p>无损压缩技术大家最熟悉的可能就是哈夫曼编码了，给高频的词一个短码，给低频词一个长码从而达到数据压缩的目的。MPEG-2中使用的VLC就是这种算法，我们以 A-Z 作为例子，A属于高频数据，Z属于低频数据。看看它是如何做的。</p>
-<p><img src="/images/1307424-20181107191345116-277907586.png" alt="img"></p>
-<p>CABAC也是给高频数据短码，给低频数据长码。同时还会根据上下文相关性进行压缩，这种方式又比VLC高效很多。其效果如下：</p>
-<p><img src="/images/1307424-20181107191350500-1400387362.png" alt="img"></p>
-<p>现在将 A-Z 换成视频帧，它就成了下面的样子。</p>
-<p><img src="/images/1307424-20181107191355172-2085276841.png" alt="img"></p>
-<p>从上面这张图中明显可以看出采用 CACBA 的无损压缩方案要比 VLC 高效的多。</p>
-</font>]]></content>
       <categories>
         <category>Android</category>
       </categories>
@@ -2883,61 +2883,6 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
 <p> <strong>切片头</strong>：包含了一组片的信息，比如片的数量，顺序等等 </p>
 <h5 id="1-1-4-H264码流分层结构图"><a href="#1-1-4-H264码流分层结构图" class="headerlink" title="1.1.4  H264码流分层结构图"></a>1.1.4  H264码流分层结构图</h5><p><img src="/images/69.jpg"></p>
 </font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>H264</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>H264的分层</title>
-    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A304-H264%E5%88%86%E5%B1%82/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="音视频高手课07-视频流H264码流分析实战"><a href="#音视频高手课07-视频流H264码流分析实战" class="headerlink" title="音视频高手课07-视频流H264码流分析实战"></a>音视频高手课07-视频流H264码流分析实战</h4><h4 id="1-1-H-264编码格式"><a href="#1-1-H-264编码格式" class="headerlink" title="1.1 H.264编码格式"></a>1.1 H.264编码格式</h4><p>H.264的功能分为两层：</p>
-<blockquote>
-<ul>
-<li>视频编码层 </li>
-<li>网络提取层 </li>
-</ul>
-</blockquote>
-<blockquote>
-<p>H.264 的编码视频序列包括一系列的NAL 单元，每个NAL 单元包含一个RBSP。一个原始的H.264由<strong>N个NALU单元组成</strong>、 NALU 单元常由 [StartCode] [NALU Header] [NALU Payload] 三部分组成，其中 Start Code 用于标示这是一个NALU 单元的开始，必须是”00 00 00 01” 或”00 00 01”。    </p>
-</blockquote>
-<p><img src="/images/68.png" alt="images"></p>
-<p>​     </p>
-<h4 id="1-2-H-264网络传输"><a href="#1-2-H-264网络传输" class="headerlink" title="1.2 H.264网络传输"></a>1.2 H.264网络传输</h4><p>​        H.264的编码视频序列包括一系列的<strong>NAL单元</strong>，每个NAL单元包含<strong>一个RBSP</strong>，</p>
-<p>见表1。编码片（包括数据分割片IDR片）和序列RBSP结束符被定义为VCL NAL单元，其余为NAL单元。</p>
-<p>​        <strong>典型的RBSP单元序列如图2所示。</strong></p>
-<p>RBSP  顺丰 头   顺丰公司尾部</p>
-<p>每个单元都按独立的NAL单元传送。单元的信息头（一个字节）定义了RBSP单元的类型，NAL单元的其余部分为RBSP数据。</p>
-<p><img src="/images/69.png" alt="img"></p>
-<p><img src="/images/70.png" alt="img"></p>
-<ol>
-<li>2.1 <strong>H.264码流结构图</strong>     </li>
-</ol>
-<p><img src="/images/71.png" alt="img"></p>
-<p>起始码：如果NALU对应的Slice为一帧的开始，则用4字节表示，即0x00000001；否则用3字节表示，0x000001。 NAL Header：forbidden_bit，nal_reference_bit（优先级），nal_unit_type（类型）。 脱壳操作：为了使NALU主体不包括起始码，在编码时每遇到两个字节（连续）的0，就插入一字节0x03，以和起始码相区别。解码时，则将相应的0x03删除掉。</p>
-<p><img src="/images/72.png" alt="img"></p>
-<p> H.264解码 <strong>NAL头信息</strong>的nal_referrence_idc（NRI）用于在重建过程中标记一个NAL单元的重要性，</p>
-<ol>
-<li>值为0表示这个NAL单元没有用预测，因此可以被解码器抛弃而不会有错误扩散；</li>
-<li>值高于0表示NAL单元要用于无漂移重构，且值越高，对此NAL单元丢失的影响越大。</li>
-<li> NAL头信息的隐藏比特位，在H.264编码器中默认为0，当网络识别到单元中存在比特错误时，可将其置为1。隐藏比特位主要用于适应不同种类的网络环境（比如有线无线相结合的环境）。     </li>
-</ol>
-<p><img src="/images/73.png" alt="img"></p>
-<p>NAL单元解码的流程为：首先从NAL单元中提取出RBSP语法结构，然后按照如图4所示的流程处理RBSP语法结构。输入的是NAL单元，输出结果是经过解码的当前图像的样值点。 NAL单元中分别包含了序列参数集和图像参数集。图像参数集和序列参数集在其他NAL单元传输过程中作为参考使用，在这些数据NAL单元的片头中，通过m语法元素pic_parameter_set_id设置它们所使用的图像参数集编号；而相应的每个图像参数集中，通过语法元素seq_paramter_set_id设置他们使用的序列参数集编号。</p>
-<p>几个例子：</p>
-<p><img src="/images/fc_101.png" alt="img"></p>
-<p>硬解–soc 芯片</p>
-<p>软件   ffmpeg</p>
-<p>3、 ffmpeg解析H264流程分析</p>
-<p>这是一段实际的码流</p>
-<p><img src="/images/fc_100.png" alt="img"></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mp4 -vcodec h264 -preset fast -b:v <span class="number">2000</span>k hello.h264</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
- </font>]]></content>
       <categories>
         <category>Android</category>
       </categories>
@@ -3124,6 +3069,61 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
 <p>再者误差我们保存的是（P2-P2’）/2 + 0x80，实际使用时我们会用更有效率的方式，比如让[-64,64]之间的色差精度为1，[-255,-64], [64, 255] 之间的色差精度为2-3，这样会更加真实一些。</p>
 <p>​        现代视频编码中，除了帧间预测，I帧还使用了大量帧内预测，而不是完全dct量化后编码，前面帧间预测我们使用了参考帧的宏块移动拼凑新帧的方式进行，而所谓帧内预测就是同一幅画面中，未编码部分使用已编码部分拼凑而成。。。。。。。</p>
 <h5 id="H264是新一代的编码标准，以高压缩高质量和支持多种网络的流媒体传输著称在编码方面，"><a href="#H264是新一代的编码标准，以高压缩高质量和支持多种网络的流媒体传输著称在编码方面，" class="headerlink" title="H264是新一代的编码标准，以高压缩高质量和支持多种网络的流媒体传输著称在编码方面，"></a>H264是新一代的编码标准，以高压缩高质量和支持多种网络的流媒体传输著称在编码方面，</h5></font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>H264</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H264的分层</title>
+    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A304-H264%E5%88%86%E5%B1%82/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="音视频高手课07-视频流H264码流分析实战"><a href="#音视频高手课07-视频流H264码流分析实战" class="headerlink" title="音视频高手课07-视频流H264码流分析实战"></a>音视频高手课07-视频流H264码流分析实战</h4><h4 id="1-1-H-264编码格式"><a href="#1-1-H-264编码格式" class="headerlink" title="1.1 H.264编码格式"></a>1.1 H.264编码格式</h4><p>H.264的功能分为两层：</p>
+<blockquote>
+<ul>
+<li>视频编码层 </li>
+<li>网络提取层 </li>
+</ul>
+</blockquote>
+<blockquote>
+<p>H.264 的编码视频序列包括一系列的NAL 单元，每个NAL 单元包含一个RBSP。一个原始的H.264由<strong>N个NALU单元组成</strong>、 NALU 单元常由 [StartCode] [NALU Header] [NALU Payload] 三部分组成，其中 Start Code 用于标示这是一个NALU 单元的开始，必须是”00 00 00 01” 或”00 00 01”。    </p>
+</blockquote>
+<p><img src="/images/68.png" alt="images"></p>
+<p>​     </p>
+<h4 id="1-2-H-264网络传输"><a href="#1-2-H-264网络传输" class="headerlink" title="1.2 H.264网络传输"></a>1.2 H.264网络传输</h4><p>​        H.264的编码视频序列包括一系列的<strong>NAL单元</strong>，每个NAL单元包含<strong>一个RBSP</strong>，</p>
+<p>见表1。编码片（包括数据分割片IDR片）和序列RBSP结束符被定义为VCL NAL单元，其余为NAL单元。</p>
+<p>​        <strong>典型的RBSP单元序列如图2所示。</strong></p>
+<p>RBSP  顺丰 头   顺丰公司尾部</p>
+<p>每个单元都按独立的NAL单元传送。单元的信息头（一个字节）定义了RBSP单元的类型，NAL单元的其余部分为RBSP数据。</p>
+<p><img src="/images/69.png" alt="img"></p>
+<p><img src="/images/70.png" alt="img"></p>
+<ol>
+<li>2.1 <strong>H.264码流结构图</strong>     </li>
+</ol>
+<p><img src="/images/71.png" alt="img"></p>
+<p>起始码：如果NALU对应的Slice为一帧的开始，则用4字节表示，即0x00000001；否则用3字节表示，0x000001。 NAL Header：forbidden_bit，nal_reference_bit（优先级），nal_unit_type（类型）。 脱壳操作：为了使NALU主体不包括起始码，在编码时每遇到两个字节（连续）的0，就插入一字节0x03，以和起始码相区别。解码时，则将相应的0x03删除掉。</p>
+<p><img src="/images/72.png" alt="img"></p>
+<p> H.264解码 <strong>NAL头信息</strong>的nal_referrence_idc（NRI）用于在重建过程中标记一个NAL单元的重要性，</p>
+<ol>
+<li>值为0表示这个NAL单元没有用预测，因此可以被解码器抛弃而不会有错误扩散；</li>
+<li>值高于0表示NAL单元要用于无漂移重构，且值越高，对此NAL单元丢失的影响越大。</li>
+<li> NAL头信息的隐藏比特位，在H.264编码器中默认为0，当网络识别到单元中存在比特错误时，可将其置为1。隐藏比特位主要用于适应不同种类的网络环境（比如有线无线相结合的环境）。     </li>
+</ol>
+<p><img src="/images/73.png" alt="img"></p>
+<p>NAL单元解码的流程为：首先从NAL单元中提取出RBSP语法结构，然后按照如图4所示的流程处理RBSP语法结构。输入的是NAL单元，输出结果是经过解码的当前图像的样值点。 NAL单元中分别包含了序列参数集和图像参数集。图像参数集和序列参数集在其他NAL单元传输过程中作为参考使用，在这些数据NAL单元的片头中，通过m语法元素pic_parameter_set_id设置它们所使用的图像参数集编号；而相应的每个图像参数集中，通过语法元素seq_paramter_set_id设置他们使用的序列参数集编号。</p>
+<p>几个例子：</p>
+<p><img src="/images/fc_101.png" alt="img"></p>
+<p>硬解–soc 芯片</p>
+<p>软件   ffmpeg</p>
+<p>3、 ffmpeg解析H264流程分析</p>
+<p>这是一段实际的码流</p>
+<p><img src="/images/fc_100.png" alt="img"></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mp4 -vcodec h264 -preset fast -b:v <span class="number">2000</span>k hello.h264</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+ </font>]]></content>
       <categories>
         <category>Android</category>
       </categories>
