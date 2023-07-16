@@ -925,7 +925,7 @@ cocos run -d androd
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-06 14:31:34" itemprop="dateModified" datetime="2022-09-06T14:31:34+08:00">2022-09-06</time>
+                <time title="修改时间：2023-07-16 22:59:14" itemprop="dateModified" datetime="2023-07-16T22:59:14+08:00">2023-07-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -943,7 +943,7 @@ cocos run -d androd
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>591</span>
+              <span>729</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -982,7 +982,18 @@ cocos run -d androd
 </li>
 <li><p>发送广播</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">adb shell am broadcast -a <span class="string">&quot;xxxAction&quot;</span></span><br><span class="line">adb shell am broadcast -n  com.ztgame.yyzy/.MyService</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+</li>
+<li><p>adb shell logcat 过滤字符串</p>
+<pre><code class="shell">
+  logcat ｜ grep &quot;com.ztgame.bob&quot;
+</code></pre>
+</li>
+</ol>
+<ol start="8">
+<li><p>本地检索</p>
+<pre><code class="shell">
+    find . -name &quot;xxx.java&quot; | xargs grep &quot;content&quot;
+</code></pre>
 </li>
 </ol>
 </font>
@@ -1035,7 +1046,7 @@ cocos run -d androd
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-12 11:25:58" itemprop="dateModified" datetime="2023-07-12T11:25:58+08:00">2023-07-12</time>
+                <time title="修改时间：2023-07-16 23:02:36" itemprop="dateModified" datetime="2023-07-16T23:02:36+08:00">2023-07-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1053,7 +1064,7 @@ cocos run -d androd
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.9k</span>
+              <span>7.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1147,6 +1158,19 @@ cocos run -d androd
 </blockquote>
 <p><img src="https://github.com/sonyxperiadev/ChkBugReport/wiki/How-to-install-it" alt="CgBugReport"></p>
 <p>java -jar chkbugreport-0.5-215.jar  bugreport-NX709S-SKQ1.220502.001-2023-03-27-17-14-47.txt</p>
+<h4 id="系统app-开发"><a href="#系统app-开发" class="headerlink" title="系统app 开发"></a>系统app 开发</h4><ol>
+<li><p>添加Android.bp ，编译需要的配置文件</p>
+</li>
+<li><p>device/rice14/添加目录</p>
+</li>
+<li><p>编译，source build/enriment.sh ,lunch ,make</p>
+</li>
+<li><p>向系统添加aar,已经找到对应的aar</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;xxx.bp&quot; | xargs grep &quot;androidx.*&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
 </font>
 
       
