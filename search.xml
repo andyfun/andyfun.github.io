@@ -1,51 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>C++</title>
-    <url>/2021/11/22/CPP/cpp/</url>
+    <title>Cocos_creator_3.6.1</title>
+    <url>/2022/10/16/Cocos/Cocos-creator-3-6-1/</url>
     <content><![CDATA[<font size="2.9">
 
-<h4 id="C-常用符号区别"><a href="#C-常用符号区别" class="headerlink" title="C++ 常用符号区别"></a>C++ 常用符号区别</h4><p>在学习C++的过程中我们经常会用到.和::和：和-&gt;，在此整理一下这些常用符号的区别。 </p>
-<pre><code>1、A.B则A为对象或者结构体；
+<h4 id="cocos"><a href="#cocos" class="headerlink" title="cocos"></a>cocos</h4><ol>
+<li><a href="https://docs.cocos.com/creator/manual/zh/getting-started/first-game/">cocos</a></li>
+<li>使用TypeScript</li>
+<li>保存玩，回到编辑器页面刷新</li>
+<li>开发小游戏</li>
+</ol>
+<h4 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="keyword">import</span> &#123; _decorator, Component, Vec3, input, Input, EventMouse, Animation, SkeletalAnimation &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&quot;PlayerController&quot;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">PlayerController</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    start () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="title">update</span>(<span class="params">deltaTime: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//都是组件 和Unity 相似</span></span><br><span class="line"><span class="comment">//cc.sys 系统类 判断手机 或者浏览器</span></span><br><span class="line"><span class="comment">//input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this); 鼠标监听</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//手机滑动监听  input.on(Input.EventType.TOUCH_START,this.onTouchStar,this);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//this._deltaPos.x = this._curJumpSpeed * deltaTime; 距离= 速度*时间</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-2、A-&gt;B则A为指针，-&gt;是成员提取，A-&gt;B是提取A中的成员B，A只能是指向类、结构、联合的指针；
+<h4 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h4><ol>
+<li>assets 目录下放资源</li>
+<li>Animations ,Prefabs,Scenes,Scripts</li>
+</ol>
+<h4 id="cocos2dx-4-0"><a href="#cocos2dx-4-0" class="headerlink" title="cocos2dx-4.0"></a>cocos2dx-4.0</h4><pre><code>cocos new -p com.test  -l cpp Test
 
-3、::是作用域运算符，A::B表示作用域A中的名称B，A可以是名字空间、类、结构；
-
-4、：一般用来表示继承；
+cocos run -d androd 
 </code></pre>
-<p>类方法：即静态方法（静态成员函数），指的是类中被static修饰的方法，无this指针，不属于对象，可用类名调用</p>
-<p>实例方法：即成员方法，属于对象的方法</p>
-<p>性质1：一个类中的其他方法可以互相调用：实例方法可以调用类中的其他方法；但是类方法不能调用实例方法，只能调用其他类方法（非绝对，也可以使用传引用的方法让类方法调用实例方法）</p>
-<p>性质2：当类文件加载到内存，实例方法不会分配内存空间，只有在对象被创建之后，才会为实例方法分配内存空间；而类方法在类被加载到内存时就分配了相应的内存空间</p>
-<p>性质3：类方法不能被覆盖，实例方法可以被覆盖。</p>
-<h2 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h2><ol>
-<li>int (*pFunc)(int,int)<br>&amp;取地址  *取值</li>
-</ol>
-<ol start="2">
-<li><p>void* 指针类型 int long char 数组 当前不做限定 万能指针</p>
-<p>用的时候强转  （int）</p>
-</li>
-</ol>
-<ol start="3">
-<li><p>回调函数是 函数指针的一种业务场景  </p>
-</li>
-<li><p>c核心 内存管理和地址操作 </p>
-</li>
-</ol>
-<h2 id="c链接库和编译流程"><a href="#c链接库和编译流程" class="headerlink" title="c链接库和编译流程"></a>c链接库和编译流程</h2><ol>
-<li><p>.s 汇编文件</p>
-</li>
-<li><p>extern 生成符号表信息，但默认数据是0</p>
-</li>
-</ol>
 </font>
 ]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
       <tags>
-        <tag>C++</tag>
+        <tag>TypeScript</tag>
       </tags>
   </entry>
   <entry>
@@ -201,6 +180,12 @@
 
 <h3 id="webP"><a href="#webP" class="headerlink" title="webP"></a>webP</h3><p>WebP 对图片进行分块，然后对待填充的宏块使用了帧间预测技术，根据其附近已编码宏块的数据，预测出当前块数据。相比 JEPG 对图像原值进行编码，WebP 编码的是预测值和原值的差值，这是 WebP 体积更小的主要原因。最后，WebP 使用了更优秀的算数编码</p>
 <p>WebP 完全兼容 Android 4.4 及其以上版本，而在另一大移动平台 iOS 上，则是完全不兼容 WebP。因此，我们需要在前端进行平台检测，对于支持 WebP 的平台输出 WebP，在不支持的平台上采用降级方案。</p>
+<h3 id="模拟ANR"><a href="#模拟ANR" class="headerlink" title="模拟ANR"></a>模拟ANR</h3><ol>
+<li>在oncreate,onstart,onresum  写一个耗时操作</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="comment">// android 前台服务 &gt; 5秒 ，卡主 ，这时候 请求主线程操作 比如更新UI 等 点击按钮等 出现ANR 。</span></span><br><span class="line">  <span class="comment">//1</span></span><br><span class="line">  Thread.sleep(<span class="number">10000</span>); <span class="comment">//</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//2 比较容易出现</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">new</span> Handler().post(<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">    <span class="meta">@overide</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">             <span class="keyword">long</span> current = System.currentTimeMillis();</span><br><span class="line">                <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">                    <span class="keyword">long</span> time2 = System.currentTimeMillis();</span><br><span class="line">                    <span class="keyword">if</span> ((time2 - current) &gt;= <span class="number">10000</span>)&#123;</span><br><span class="line">                        Log.d(TAG, <span class="string">&quot;run: ---------toatal----&quot;</span>+ (time2 -current));</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
 </font>]]></content>
       <categories>
         <category>Java</category>
@@ -726,7 +711,19 @@
     find . -name &quot;xxx.java&quot; | xargs grep &quot;content&quot;
 </code></pre>
 </li>
+<li><p>app 使用相关内存</p>
+</li>
 </ol>
+<pre><code>```shell
+
+   adb shell  dumpsys meminfo com.ztgame.pz
+
+```   
+</code></pre>
+
+
+
+
 </font>]]></content>
       <categories>
         <category>Android</category>
@@ -1283,30 +1280,51 @@ IP直连方案有下面几大优势：
       </tags>
   </entry>
   <entry>
-    <title>Cocos_creator_3.6.1</title>
-    <url>/2022/10/16/Cocos/Cocos-creator-3-6-1/</url>
+    <title>C++</title>
+    <url>/2021/11/22/CPP/cpp/</url>
     <content><![CDATA[<font size="2.9">
 
-<h4 id="cocos"><a href="#cocos" class="headerlink" title="cocos"></a>cocos</h4><ol>
-<li><a href="https://docs.cocos.com/creator/manual/zh/getting-started/first-game/">cocos</a></li>
-<li>使用TypeScript</li>
-<li>保存玩，回到编辑器页面刷新</li>
-<li>开发小游戏</li>
-</ol>
-<h4 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="keyword">import</span> &#123; _decorator, Component, Vec3, input, Input, EventMouse, Animation, SkeletalAnimation &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&quot;PlayerController&quot;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">PlayerController</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    start () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="title">update</span>(<span class="params">deltaTime: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//都是组件 和Unity 相似</span></span><br><span class="line"><span class="comment">//cc.sys 系统类 判断手机 或者浏览器</span></span><br><span class="line"><span class="comment">//input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this); 鼠标监听</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//手机滑动监听  input.on(Input.EventType.TOUCH_START,this.onTouchStar,this);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//this._deltaPos.x = this._curJumpSpeed * deltaTime; 距离= 速度*时间</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="C-常用符号区别"><a href="#C-常用符号区别" class="headerlink" title="C++ 常用符号区别"></a>C++ 常用符号区别</h4><p>在学习C++的过程中我们经常会用到.和::和：和-&gt;，在此整理一下这些常用符号的区别。 </p>
+<pre><code>1、A.B则A为对象或者结构体；
 
-<h4 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h4><ol>
-<li>assets 目录下放资源</li>
-<li>Animations ,Prefabs,Scenes,Scripts</li>
-</ol>
-<h4 id="cocos2dx-4-0"><a href="#cocos2dx-4-0" class="headerlink" title="cocos2dx-4.0"></a>cocos2dx-4.0</h4><pre><code>cocos new -p com.test  -l cpp Test
+2、A-&gt;B则A为指针，-&gt;是成员提取，A-&gt;B是提取A中的成员B，A只能是指向类、结构、联合的指针；
 
-cocos run -d androd 
+3、::是作用域运算符，A::B表示作用域A中的名称B，A可以是名字空间、类、结构；
+
+4、：一般用来表示继承；
 </code></pre>
+<p>类方法：即静态方法（静态成员函数），指的是类中被static修饰的方法，无this指针，不属于对象，可用类名调用</p>
+<p>实例方法：即成员方法，属于对象的方法</p>
+<p>性质1：一个类中的其他方法可以互相调用：实例方法可以调用类中的其他方法；但是类方法不能调用实例方法，只能调用其他类方法（非绝对，也可以使用传引用的方法让类方法调用实例方法）</p>
+<p>性质2：当类文件加载到内存，实例方法不会分配内存空间，只有在对象被创建之后，才会为实例方法分配内存空间；而类方法在类被加载到内存时就分配了相应的内存空间</p>
+<p>性质3：类方法不能被覆盖，实例方法可以被覆盖。</p>
+<h2 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h2><ol>
+<li>int (*pFunc)(int,int)<br>&amp;取地址  *取值</li>
+</ol>
+<ol start="2">
+<li><p>void* 指针类型 int long char 数组 当前不做限定 万能指针</p>
+<p>用的时候强转  （int）</p>
+</li>
+</ol>
+<ol start="3">
+<li><p>回调函数是 函数指针的一种业务场景  </p>
+</li>
+<li><p>c核心 内存管理和地址操作 </p>
+</li>
+</ol>
+<h2 id="c链接库和编译流程"><a href="#c链接库和编译流程" class="headerlink" title="c链接库和编译流程"></a>c链接库和编译流程</h2><ol>
+<li><p>.s 汇编文件</p>
+</li>
+<li><p>extern 生成符号表信息，但默认数据是0</p>
+</li>
+</ol>
 </font>
 ]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
       <tags>
-        <tag>TypeScript</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -1472,83 +1490,6 @@ cocos run -d androd
       </tags>
   </entry>
   <entry>
-    <title>ocClassDifferent</title>
-    <url>/2021/11/15/IOS/ocClassDifferent/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h4><blockquote>
-<p><code>引用类型用</code> oc的类指针 nil</p>
-</blockquote>
-<blockquote>
-<p><code>基本类型用</code> NULL</p>
-</blockquote>
-<blockquote>
-<p>本质上是一样的 ，都是宏定义 ，0</p>
-</blockquote>
-<blockquote>
-<p>Person *p = nil 代表不指向任何对象</p>
-</blockquote>
-<h4 id="2-分组导航标记"><a href="#2-分组导航标记" class="headerlink" title="2.分组导航标记"></a>2.分组导航标记</h4><blockquote>
-<p>#pragma mark 名字</p>
-</blockquote>
-<blockquote>
-<p>#pragma mark - 产生分割线</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h5 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h5><blockquote>
-<p>方法定义@interface  实现在@implement</p>
-</blockquote>
-<blockquote>
-<p>函数 调用不 一样   可以写在  类 中除了 大括号<br>类的声明和 实现 都要有， 声明要在前  实现 可以放在使用类的后面 </p>
-</blockquote>
-<blockquote>
-<p><code>+</code> 方法就是类方法，<code>-</code> 方法就是实例方法</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)thisIsAClassMethod; <span class="comment">// 类方法，不需要实例化对象就可以调用</span></span><br><span class="line">- (<span class="keyword">void</span>)thisIsAnInstanceMethod; <span class="comment">// 实例方法，必须通过实例化的对象调用</span></span><br><span class="line"><span class="comment">// 对象的初始化 OC中以消息机制传递信息，发送 alloc 消息给类分配内存空间，发送 init 消息生成对象，指针指向对象本身。</span></span><br><span class="line">ClassName *obj = [[ClassName alloc] init];</span><br></pre></td></tr></table></figure>
-<pre><code>类方法：
-1、类方法可以调用类方法；
-2、类方法不可以调用实例方法，但是类方法可以通过创建对象来访问实例方法；
-3、类方法不可以使用实例变量。（可以使用self ，因为 self 不是实例变量。）
-4、类方法作为消息，可以发送到类或者对象里面去（就是可以通过类或者对象调用类方法）
-实例方法里面的 self ，是对象的首地址。
-类方法里面的 self ，是 class 。
-
-用过程中既可以使用新定义的方法名，也可以使用以前的方法（点表示法）
-
-属性特征：readwrite readonly assign retain copy nonatomic
-
-assign：默认行为，使用 @property int num 就是使用了 assign 行为，就是给实例变量赋了一个值
-
-retain：实现了两个功能，一个是保留了赋值时传递的对象，一个是赋值前释放了以前的值，使用时加上 @property (retain) int num;
-
-copy：发送一条复制的消息给被传递的对象，保留它，并释放任何以前的值；
-
-nonatomic：非原子访问器，加上后可以保证属性在被一个线程使用时不被另一个线程访问，不存在 atomic 关键字，默认情况下，所有方法都是自动合成的。（类似Java中的线程锁机制 synchronised）
-readwrite：可读写
-readonly：只读
-</code></pre>
-<h4 id="OC点和右箭头访问变量的区别"><a href="#OC点和右箭头访问变量的区别" class="headerlink" title="OC点和右箭头访问变量的区别"></a>OC点和右箭头访问变量的区别</h4><pre><code>语法
-OC中.语法实际上就是方法调用，比如通过self.deviceID访问属性，如果它出现在=的左边那么就是调用属性的setter方法，如果出现在=右边就是调用属性的getter方法。
-所以如下所示的定义：
-</code></pre>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">self.deviceID = @<span class="string">&quot;123&quot;</span>;和[self setDeviceID:@<span class="string">&quot;123&quot;</span>];是等价的。</span><br><span class="line"></span><br><span class="line">NSString *str = self.deviceID;和NSString *str = [self deviceID];是等价的。</span><br></pre></td></tr></table></figure>
-<p> -&gt;语法<br>    OC中-&gt;用于访问成员变量。所以：</p>
-<pre><code>self-&gt;_deviceID和_deviceID是等价的。
-
-self-&gt;deviceType和deviceType是等价的。
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">@interface Device : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    @<span class="keyword">public</span> NSString *deviceType;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="built_in">property</span> (nonatomic , strong) NSString *deviceID;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</code></pre>
-<h4 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h4><p><a href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
-</font>]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java想到的问题</title>
     <url>/2019/05/14/Java/Java/</url>
     <content><![CDATA[<font size="2.9">
@@ -1649,6 +1590,83 @@ self-&gt;deviceType和deviceType是等价的。
       </categories>
       <tags>
         <tag>Java Mysql SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ocClassDifferent</title>
+    <url>/2021/11/15/IOS/ocClassDifferent/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h4><blockquote>
+<p><code>引用类型用</code> oc的类指针 nil</p>
+</blockquote>
+<blockquote>
+<p><code>基本类型用</code> NULL</p>
+</blockquote>
+<blockquote>
+<p>本质上是一样的 ，都是宏定义 ，0</p>
+</blockquote>
+<blockquote>
+<p>Person *p = nil 代表不指向任何对象</p>
+</blockquote>
+<h4 id="2-分组导航标记"><a href="#2-分组导航标记" class="headerlink" title="2.分组导航标记"></a>2.分组导航标记</h4><blockquote>
+<p>#pragma mark 名字</p>
+</blockquote>
+<blockquote>
+<p>#pragma mark - 产生分割线</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h5><blockquote>
+<p>方法定义@interface  实现在@implement</p>
+</blockquote>
+<blockquote>
+<p>函数 调用不 一样   可以写在  类 中除了 大括号<br>类的声明和 实现 都要有， 声明要在前  实现 可以放在使用类的后面 </p>
+</blockquote>
+<blockquote>
+<p><code>+</code> 方法就是类方法，<code>-</code> 方法就是实例方法</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)thisIsAClassMethod; <span class="comment">// 类方法，不需要实例化对象就可以调用</span></span><br><span class="line">- (<span class="keyword">void</span>)thisIsAnInstanceMethod; <span class="comment">// 实例方法，必须通过实例化的对象调用</span></span><br><span class="line"><span class="comment">// 对象的初始化 OC中以消息机制传递信息，发送 alloc 消息给类分配内存空间，发送 init 消息生成对象，指针指向对象本身。</span></span><br><span class="line">ClassName *obj = [[ClassName alloc] init];</span><br></pre></td></tr></table></figure>
+<pre><code>类方法：
+1、类方法可以调用类方法；
+2、类方法不可以调用实例方法，但是类方法可以通过创建对象来访问实例方法；
+3、类方法不可以使用实例变量。（可以使用self ，因为 self 不是实例变量。）
+4、类方法作为消息，可以发送到类或者对象里面去（就是可以通过类或者对象调用类方法）
+实例方法里面的 self ，是对象的首地址。
+类方法里面的 self ，是 class 。
+
+用过程中既可以使用新定义的方法名，也可以使用以前的方法（点表示法）
+
+属性特征：readwrite readonly assign retain copy nonatomic
+
+assign：默认行为，使用 @property int num 就是使用了 assign 行为，就是给实例变量赋了一个值
+
+retain：实现了两个功能，一个是保留了赋值时传递的对象，一个是赋值前释放了以前的值，使用时加上 @property (retain) int num;
+
+copy：发送一条复制的消息给被传递的对象，保留它，并释放任何以前的值；
+
+nonatomic：非原子访问器，加上后可以保证属性在被一个线程使用时不被另一个线程访问，不存在 atomic 关键字，默认情况下，所有方法都是自动合成的。（类似Java中的线程锁机制 synchronised）
+readwrite：可读写
+readonly：只读
+</code></pre>
+<h4 id="OC点和右箭头访问变量的区别"><a href="#OC点和右箭头访问变量的区别" class="headerlink" title="OC点和右箭头访问变量的区别"></a>OC点和右箭头访问变量的区别</h4><pre><code>语法
+OC中.语法实际上就是方法调用，比如通过self.deviceID访问属性，如果它出现在=的左边那么就是调用属性的setter方法，如果出现在=右边就是调用属性的getter方法。
+所以如下所示的定义：
+</code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">self.deviceID = @<span class="string">&quot;123&quot;</span>;和[self setDeviceID:@<span class="string">&quot;123&quot;</span>];是等价的。</span><br><span class="line"></span><br><span class="line">NSString *str = self.deviceID;和NSString *str = [self deviceID];是等价的。</span><br></pre></td></tr></table></figure>
+<p> -&gt;语法<br>    OC中-&gt;用于访问成员变量。所以：</p>
+<pre><code>self-&gt;_deviceID和_deviceID是等价的。
+
+self-&gt;deviceType和deviceType是等价的。
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">@interface Device : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    @<span class="keyword">public</span> NSString *deviceType;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="built_in">property</span> (nonatomic , strong) NSString *deviceID;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</code></pre>
+<h4 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h4><p><a href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
+</font>]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -2806,61 +2824,6 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       </tags>
   </entry>
   <entry>
-    <title>H264的分层</title>
-    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A304-H264%E5%88%86%E5%B1%82/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="音视频高手课07-视频流H264码流分析实战"><a href="#音视频高手课07-视频流H264码流分析实战" class="headerlink" title="音视频高手课07-视频流H264码流分析实战"></a>音视频高手课07-视频流H264码流分析实战</h4><h4 id="1-1-H-264编码格式"><a href="#1-1-H-264编码格式" class="headerlink" title="1.1 H.264编码格式"></a>1.1 H.264编码格式</h4><p>H.264的功能分为两层：</p>
-<blockquote>
-<ul>
-<li>视频编码层 </li>
-<li>网络提取层 </li>
-</ul>
-</blockquote>
-<blockquote>
-<p>H.264 的编码视频序列包括一系列的NAL 单元，每个NAL 单元包含一个RBSP。一个原始的H.264由<strong>N个NALU单元组成</strong>、 NALU 单元常由 [StartCode] [NALU Header] [NALU Payload] 三部分组成，其中 Start Code 用于标示这是一个NALU 单元的开始，必须是”00 00 00 01” 或”00 00 01”。    </p>
-</blockquote>
-<p><img src="/images/68.png" alt="images"></p>
-<p>​     </p>
-<h4 id="1-2-H-264网络传输"><a href="#1-2-H-264网络传输" class="headerlink" title="1.2 H.264网络传输"></a>1.2 H.264网络传输</h4><p>​        H.264的编码视频序列包括一系列的<strong>NAL单元</strong>，每个NAL单元包含<strong>一个RBSP</strong>，</p>
-<p>见表1。编码片（包括数据分割片IDR片）和序列RBSP结束符被定义为VCL NAL单元，其余为NAL单元。</p>
-<p>​        <strong>典型的RBSP单元序列如图2所示。</strong></p>
-<p>RBSP  顺丰 头   顺丰公司尾部</p>
-<p>每个单元都按独立的NAL单元传送。单元的信息头（一个字节）定义了RBSP单元的类型，NAL单元的其余部分为RBSP数据。</p>
-<p><img src="/images/69.png" alt="img"></p>
-<p><img src="/images/70.png" alt="img"></p>
-<ol>
-<li>2.1 <strong>H.264码流结构图</strong>     </li>
-</ol>
-<p><img src="/images/71.png" alt="img"></p>
-<p>起始码：如果NALU对应的Slice为一帧的开始，则用4字节表示，即0x00000001；否则用3字节表示，0x000001。 NAL Header：forbidden_bit，nal_reference_bit（优先级），nal_unit_type（类型）。 脱壳操作：为了使NALU主体不包括起始码，在编码时每遇到两个字节（连续）的0，就插入一字节0x03，以和起始码相区别。解码时，则将相应的0x03删除掉。</p>
-<p><img src="/images/72.png" alt="img"></p>
-<p> H.264解码 <strong>NAL头信息</strong>的nal_referrence_idc（NRI）用于在重建过程中标记一个NAL单元的重要性，</p>
-<ol>
-<li>值为0表示这个NAL单元没有用预测，因此可以被解码器抛弃而不会有错误扩散；</li>
-<li>值高于0表示NAL单元要用于无漂移重构，且值越高，对此NAL单元丢失的影响越大。</li>
-<li> NAL头信息的隐藏比特位，在H.264编码器中默认为0，当网络识别到单元中存在比特错误时，可将其置为1。隐藏比特位主要用于适应不同种类的网络环境（比如有线无线相结合的环境）。     </li>
-</ol>
-<p><img src="/images/73.png" alt="img"></p>
-<p>NAL单元解码的流程为：首先从NAL单元中提取出RBSP语法结构，然后按照如图4所示的流程处理RBSP语法结构。输入的是NAL单元，输出结果是经过解码的当前图像的样值点。 NAL单元中分别包含了序列参数集和图像参数集。图像参数集和序列参数集在其他NAL单元传输过程中作为参考使用，在这些数据NAL单元的片头中，通过m语法元素pic_parameter_set_id设置它们所使用的图像参数集编号；而相应的每个图像参数集中，通过语法元素seq_paramter_set_id设置他们使用的序列参数集编号。</p>
-<p>几个例子：</p>
-<p><img src="/images/fc_101.png" alt="img"></p>
-<p>硬解–soc 芯片</p>
-<p>软件   ffmpeg</p>
-<p>3、 ffmpeg解析H264流程分析</p>
-<p>这是一段实际的码流</p>
-<p><img src="/images/fc_100.png" alt="img"></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mp4 -vcodec h264 -preset fast -b:v <span class="number">2000</span>k hello.h264</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
- </font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>H264</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>H264编码(帧内预测)</title>
     <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A302-%E5%B8%A7%E5%86%85%E9%A2%84%E6%B5%8B/</url>
     <content><![CDATA[<font size="2.9">
@@ -3011,6 +2974,61 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
 <p> <strong>切片头</strong>：包含了一组片的信息，比如片的数量，顺序等等 </p>
 <h5 id="1-1-4-H264码流分层结构图"><a href="#1-1-4-H264码流分层结构图" class="headerlink" title="1.1.4  H264码流分层结构图"></a>1.1.4  H264码流分层结构图</h5><p><img src="/images/69.jpg"></p>
 </font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>H264</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H264的分层</title>
+    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A304-H264%E5%88%86%E5%B1%82/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="音视频高手课07-视频流H264码流分析实战"><a href="#音视频高手课07-视频流H264码流分析实战" class="headerlink" title="音视频高手课07-视频流H264码流分析实战"></a>音视频高手课07-视频流H264码流分析实战</h4><h4 id="1-1-H-264编码格式"><a href="#1-1-H-264编码格式" class="headerlink" title="1.1 H.264编码格式"></a>1.1 H.264编码格式</h4><p>H.264的功能分为两层：</p>
+<blockquote>
+<ul>
+<li>视频编码层 </li>
+<li>网络提取层 </li>
+</ul>
+</blockquote>
+<blockquote>
+<p>H.264 的编码视频序列包括一系列的NAL 单元，每个NAL 单元包含一个RBSP。一个原始的H.264由<strong>N个NALU单元组成</strong>、 NALU 单元常由 [StartCode] [NALU Header] [NALU Payload] 三部分组成，其中 Start Code 用于标示这是一个NALU 单元的开始，必须是”00 00 00 01” 或”00 00 01”。    </p>
+</blockquote>
+<p><img src="/images/68.png" alt="images"></p>
+<p>​     </p>
+<h4 id="1-2-H-264网络传输"><a href="#1-2-H-264网络传输" class="headerlink" title="1.2 H.264网络传输"></a>1.2 H.264网络传输</h4><p>​        H.264的编码视频序列包括一系列的<strong>NAL单元</strong>，每个NAL单元包含<strong>一个RBSP</strong>，</p>
+<p>见表1。编码片（包括数据分割片IDR片）和序列RBSP结束符被定义为VCL NAL单元，其余为NAL单元。</p>
+<p>​        <strong>典型的RBSP单元序列如图2所示。</strong></p>
+<p>RBSP  顺丰 头   顺丰公司尾部</p>
+<p>每个单元都按独立的NAL单元传送。单元的信息头（一个字节）定义了RBSP单元的类型，NAL单元的其余部分为RBSP数据。</p>
+<p><img src="/images/69.png" alt="img"></p>
+<p><img src="/images/70.png" alt="img"></p>
+<ol>
+<li>2.1 <strong>H.264码流结构图</strong>     </li>
+</ol>
+<p><img src="/images/71.png" alt="img"></p>
+<p>起始码：如果NALU对应的Slice为一帧的开始，则用4字节表示，即0x00000001；否则用3字节表示，0x000001。 NAL Header：forbidden_bit，nal_reference_bit（优先级），nal_unit_type（类型）。 脱壳操作：为了使NALU主体不包括起始码，在编码时每遇到两个字节（连续）的0，就插入一字节0x03，以和起始码相区别。解码时，则将相应的0x03删除掉。</p>
+<p><img src="/images/72.png" alt="img"></p>
+<p> H.264解码 <strong>NAL头信息</strong>的nal_referrence_idc（NRI）用于在重建过程中标记一个NAL单元的重要性，</p>
+<ol>
+<li>值为0表示这个NAL单元没有用预测，因此可以被解码器抛弃而不会有错误扩散；</li>
+<li>值高于0表示NAL单元要用于无漂移重构，且值越高，对此NAL单元丢失的影响越大。</li>
+<li> NAL头信息的隐藏比特位，在H.264编码器中默认为0，当网络识别到单元中存在比特错误时，可将其置为1。隐藏比特位主要用于适应不同种类的网络环境（比如有线无线相结合的环境）。     </li>
+</ol>
+<p><img src="/images/73.png" alt="img"></p>
+<p>NAL单元解码的流程为：首先从NAL单元中提取出RBSP语法结构，然后按照如图4所示的流程处理RBSP语法结构。输入的是NAL单元，输出结果是经过解码的当前图像的样值点。 NAL单元中分别包含了序列参数集和图像参数集。图像参数集和序列参数集在其他NAL单元传输过程中作为参考使用，在这些数据NAL单元的片头中，通过m语法元素pic_parameter_set_id设置它们所使用的图像参数集编号；而相应的每个图像参数集中，通过语法元素seq_paramter_set_id设置他们使用的序列参数集编号。</p>
+<p>几个例子：</p>
+<p><img src="/images/fc_101.png" alt="img"></p>
+<p>硬解–soc 芯片</p>
+<p>软件   ffmpeg</p>
+<p>3、 ffmpeg解析H264流程分析</p>
+<p>这是一段实际的码流</p>
+<p><img src="/images/fc_100.png" alt="img"></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">ffmpeg -i input.mp4 -vcodec h264 -preset fast -b:v <span class="number">2000</span>k hello.h264</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+ </font>]]></content>
       <categories>
         <category>Android</category>
       </categories>

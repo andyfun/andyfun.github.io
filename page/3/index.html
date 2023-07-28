@@ -193,137 +193,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A304-H264%E5%88%86%E5%B1%82/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A304-H264%E5%88%86%E5%B1%82/" class="post-title-link" itemprop="url">H264的分层</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-18 18:34:24" itemprop="dateCreated datePublished" datetime="2021-11-18T18:34:24+08:00">2021-11-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-13 11:36:03" itemprop="dateModified" datetime="2022-08-13T11:36:03+08:00">2022-08-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <font size="2.9">
-
-<h4 id="音视频高手课07-视频流H264码流分析实战"><a href="#音视频高手课07-视频流H264码流分析实战" class="headerlink" title="音视频高手课07-视频流H264码流分析实战"></a>音视频高手课07-视频流H264码流分析实战</h4><h4 id="1-1-H-264编码格式"><a href="#1-1-H-264编码格式" class="headerlink" title="1.1 H.264编码格式"></a>1.1 H.264编码格式</h4><p>H.264的功能分为两层：</p>
-<blockquote>
-<ul>
-<li>视频编码层 </li>
-<li>网络提取层 </li>
-</ul>
-</blockquote>
-<blockquote>
-<p>H.264 的编码视频序列包括一系列的NAL 单元，每个NAL 单元包含一个RBSP。一个原始的H.264由<strong>N个NALU单元组成</strong>、 NALU 单元常由 [StartCode] [NALU Header] [NALU Payload] 三部分组成，其中 Start Code 用于标示这是一个NALU 单元的开始，必须是”00 00 00 01” 或”00 00 01”。    </p>
-</blockquote>
-<p><img src="/images/68.png" alt="images"></p>
-<p>​     </p>
-<h4 id="1-2-H-264网络传输"><a href="#1-2-H-264网络传输" class="headerlink" title="1.2 H.264网络传输"></a>1.2 H.264网络传输</h4><p>​        H.264的编码视频序列包括一系列的<strong>NAL单元</strong>，每个NAL单元包含<strong>一个RBSP</strong>，</p>
-<p>见表1。编码片（包括数据分割片IDR片）和序列RBSP结束符被定义为VCL NAL单元，其余为NAL单元。</p>
-<p>​        <strong>典型的RBSP单元序列如图2所示。</strong></p>
-<p>RBSP  顺丰 头   顺丰公司尾部</p>
-<p>每个单元都按独立的NAL单元传送。单元的信息头（一个字节）定义了RBSP单元的类型，NAL单元的其余部分为RBSP数据。</p>
-<p><img src="/images/69.png" alt="img"></p>
-<p><img src="/images/70.png" alt="img"></p>
-<ol>
-<li>2.1 <strong>H.264码流结构图</strong>     </li>
-</ol>
-<p><img src="/images/71.png" alt="img"></p>
-<p>起始码：如果NALU对应的Slice为一帧的开始，则用4字节表示，即0x00000001；否则用3字节表示，0x000001。 NAL Header：forbidden_bit，nal_reference_bit（优先级），nal_unit_type（类型）。 脱壳操作：为了使NALU主体不包括起始码，在编码时每遇到两个字节（连续）的0，就插入一字节0x03，以和起始码相区别。解码时，则将相应的0x03删除掉。</p>
-<p><img src="/images/72.png" alt="img"></p>
-<p> H.264解码 <strong>NAL头信息</strong>的nal_referrence_idc（NRI）用于在重建过程中标记一个NAL单元的重要性，</p>
-<ol>
-<li>值为0表示这个NAL单元没有用预测，因此可以被解码器抛弃而不会有错误扩散；</li>
-<li>值高于0表示NAL单元要用于无漂移重构，且值越高，对此NAL单元丢失的影响越大。</li>
-<li> NAL头信息的隐藏比特位，在H.264编码器中默认为0，当网络识别到单元中存在比特错误时，可将其置为1。隐藏比特位主要用于适应不同种类的网络环境（比如有线无线相结合的环境）。     </li>
-</ol>
-<p><img src="/images/73.png" alt="img"></p>
-<p>NAL单元解码的流程为：首先从NAL单元中提取出RBSP语法结构，然后按照如图4所示的流程处理RBSP语法结构。输入的是NAL单元，输出结果是经过解码的当前图像的样值点。 NAL单元中分别包含了序列参数集和图像参数集。图像参数集和序列参数集在其他NAL单元传输过程中作为参考使用，在这些数据NAL单元的片头中，通过m语法元素pic_parameter_set_id设置它们所使用的图像参数集编号；而相应的每个图像参数集中，通过语法元素seq_paramter_set_id设置他们使用的序列参数集编号。</p>
-<p>几个例子：</p>
-<p><img src="/images/fc_101.png" alt="img"></p>
-<p>硬解–soc 芯片</p>
-<p>软件   ffmpeg</p>
-<p>3、 ffmpeg解析H264流程分析</p>
-<p>这是一段实际的码流</p>
-<p><img src="/images/fc_100.png" alt="img"></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 -vcodec h264 -preset fast -b:v <span class="number">2000</span>k hello.h264</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
- </font>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A302-%E5%B8%A7%E5%86%85%E9%A2%84%E6%B5%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -616,6 +485,137 @@
 <p> <strong>切片头</strong>：包含了一组片的信息，比如片的数量，顺序等等 </p>
 <h5 id="1-1-4-H264码流分层结构图"><a href="#1-1-4-H264码流分层结构图" class="headerlink" title="1.1.4  H264码流分层结构图"></a>1.1.4  H264码流分层结构图</h5><p><img src="/images/69.jpg"></p>
 </font>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A304-H264%E5%88%86%E5%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A304-H264%E5%88%86%E5%B1%82/" class="post-title-link" itemprop="url">H264的分层</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-18 18:34:24" itemprop="dateCreated datePublished" datetime="2021-11-18T18:34:24+08:00">2021-11-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-13 11:36:03" itemprop="dateModified" datetime="2022-08-13T11:36:03+08:00">2022-08-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <font size="2.9">
+
+<h4 id="音视频高手课07-视频流H264码流分析实战"><a href="#音视频高手课07-视频流H264码流分析实战" class="headerlink" title="音视频高手课07-视频流H264码流分析实战"></a>音视频高手课07-视频流H264码流分析实战</h4><h4 id="1-1-H-264编码格式"><a href="#1-1-H-264编码格式" class="headerlink" title="1.1 H.264编码格式"></a>1.1 H.264编码格式</h4><p>H.264的功能分为两层：</p>
+<blockquote>
+<ul>
+<li>视频编码层 </li>
+<li>网络提取层 </li>
+</ul>
+</blockquote>
+<blockquote>
+<p>H.264 的编码视频序列包括一系列的NAL 单元，每个NAL 单元包含一个RBSP。一个原始的H.264由<strong>N个NALU单元组成</strong>、 NALU 单元常由 [StartCode] [NALU Header] [NALU Payload] 三部分组成，其中 Start Code 用于标示这是一个NALU 单元的开始，必须是”00 00 00 01” 或”00 00 01”。    </p>
+</blockquote>
+<p><img src="/images/68.png" alt="images"></p>
+<p>​     </p>
+<h4 id="1-2-H-264网络传输"><a href="#1-2-H-264网络传输" class="headerlink" title="1.2 H.264网络传输"></a>1.2 H.264网络传输</h4><p>​        H.264的编码视频序列包括一系列的<strong>NAL单元</strong>，每个NAL单元包含<strong>一个RBSP</strong>，</p>
+<p>见表1。编码片（包括数据分割片IDR片）和序列RBSP结束符被定义为VCL NAL单元，其余为NAL单元。</p>
+<p>​        <strong>典型的RBSP单元序列如图2所示。</strong></p>
+<p>RBSP  顺丰 头   顺丰公司尾部</p>
+<p>每个单元都按独立的NAL单元传送。单元的信息头（一个字节）定义了RBSP单元的类型，NAL单元的其余部分为RBSP数据。</p>
+<p><img src="/images/69.png" alt="img"></p>
+<p><img src="/images/70.png" alt="img"></p>
+<ol>
+<li>2.1 <strong>H.264码流结构图</strong>     </li>
+</ol>
+<p><img src="/images/71.png" alt="img"></p>
+<p>起始码：如果NALU对应的Slice为一帧的开始，则用4字节表示，即0x00000001；否则用3字节表示，0x000001。 NAL Header：forbidden_bit，nal_reference_bit（优先级），nal_unit_type（类型）。 脱壳操作：为了使NALU主体不包括起始码，在编码时每遇到两个字节（连续）的0，就插入一字节0x03，以和起始码相区别。解码时，则将相应的0x03删除掉。</p>
+<p><img src="/images/72.png" alt="img"></p>
+<p> H.264解码 <strong>NAL头信息</strong>的nal_referrence_idc（NRI）用于在重建过程中标记一个NAL单元的重要性，</p>
+<ol>
+<li>值为0表示这个NAL单元没有用预测，因此可以被解码器抛弃而不会有错误扩散；</li>
+<li>值高于0表示NAL单元要用于无漂移重构，且值越高，对此NAL单元丢失的影响越大。</li>
+<li> NAL头信息的隐藏比特位，在H.264编码器中默认为0，当网络识别到单元中存在比特错误时，可将其置为1。隐藏比特位主要用于适应不同种类的网络环境（比如有线无线相结合的环境）。     </li>
+</ol>
+<p><img src="/images/73.png" alt="img"></p>
+<p>NAL单元解码的流程为：首先从NAL单元中提取出RBSP语法结构，然后按照如图4所示的流程处理RBSP语法结构。输入的是NAL单元，输出结果是经过解码的当前图像的样值点。 NAL单元中分别包含了序列参数集和图像参数集。图像参数集和序列参数集在其他NAL单元传输过程中作为参考使用，在这些数据NAL单元的片头中，通过m语法元素pic_parameter_set_id设置它们所使用的图像参数集编号；而相应的每个图像参数集中，通过语法元素seq_paramter_set_id设置他们使用的序列参数集编号。</p>
+<p>几个例子：</p>
+<p><img src="/images/fc_101.png" alt="img"></p>
+<p>硬解–soc 芯片</p>
+<p>软件   ffmpeg</p>
+<p>3、 ffmpeg解析H264流程分析</p>
+<p>这是一段实际的码流</p>
+<p><img src="/images/fc_100.png" alt="img"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 -vcodec h264 -preset fast -b:v <span class="number">2000</span>k hello.h264</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+ </font>
       
     </div>
 
@@ -2170,7 +2170,7 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">211k</span>
+    <span title="站点总字数">212k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
