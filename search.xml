@@ -6,69 +6,51 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>Cocos_creator_3.6.1</title>
-    <url>/2022/10/16/Cocos/Cocos-creator-3-6-1/</url>
+    <title>C++</title>
+    <url>/2021/11/22/CPP/cpp/</url>
     <content><![CDATA[<font size="2.9">
 
-<h4 id="cocos"><a href="#cocos" class="headerlink" title="cocos"></a>cocos</h4><ol>
-<li><a href="https://docs.cocos.com/creator/manual/zh/getting-started/first-game/">cocos</a></li>
-<li>使用TypeScript</li>
-<li>保存玩，回到编辑器页面刷新</li>
-<li>开发小游戏</li>
-</ol>
-<h4 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="keyword">import</span> &#123; _decorator, Component, Vec3, input, Input, EventMouse, Animation, SkeletalAnimation &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&quot;PlayerController&quot;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">PlayerController</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    start () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="title">update</span>(<span class="params">deltaTime: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//都是组件 和Unity 相似</span></span><br><span class="line"><span class="comment">//cc.sys 系统类 判断手机 或者浏览器</span></span><br><span class="line"><span class="comment">//input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this); 鼠标监听</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//手机滑动监听  input.on(Input.EventType.TOUCH_START,this.onTouchStar,this);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//this._deltaPos.x = this._curJumpSpeed * deltaTime; 距离= 速度*时间</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="C-常用符号区别"><a href="#C-常用符号区别" class="headerlink" title="C++ 常用符号区别"></a>C++ 常用符号区别</h4><p>在学习C++的过程中我们经常会用到.和::和：和-&gt;，在此整理一下这些常用符号的区别。 </p>
+<pre><code>1、A.B则A为对象或者结构体；
 
-<h4 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h4><ol>
-<li>assets 目录下放资源</li>
-<li>Animations ,Prefabs,Scenes,Scripts</li>
-</ol>
-<h4 id="cocos2dx-4-0"><a href="#cocos2dx-4-0" class="headerlink" title="cocos2dx-4.0"></a>cocos2dx-4.0</h4><pre><code>cocos new -p com.test  -l cpp Test
+2、A-&gt;B则A为指针，-&gt;是成员提取，A-&gt;B是提取A中的成员B，A只能是指向类、结构、联合的指针；
 
-cocos run -d androd 
+3、::是作用域运算符，A::B表示作用域A中的名称B，A可以是名字空间、类、结构；
+
+4、：一般用来表示继承；
 </code></pre>
+<p>类方法：即静态方法（静态成员函数），指的是类中被static修饰的方法，无this指针，不属于对象，可用类名调用</p>
+<p>实例方法：即成员方法，属于对象的方法</p>
+<p>性质1：一个类中的其他方法可以互相调用：实例方法可以调用类中的其他方法；但是类方法不能调用实例方法，只能调用其他类方法（非绝对，也可以使用传引用的方法让类方法调用实例方法）</p>
+<p>性质2：当类文件加载到内存，实例方法不会分配内存空间，只有在对象被创建之后，才会为实例方法分配内存空间；而类方法在类被加载到内存时就分配了相应的内存空间</p>
+<p>性质3：类方法不能被覆盖，实例方法可以被覆盖。</p>
+<h2 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h2><ol>
+<li>int (*pFunc)(int,int)<br>&amp;取地址  *取值</li>
+</ol>
+<ol start="2">
+<li><p>void* 指针类型 int long char 数组 当前不做限定 万能指针</p>
+<p>用的时候强转  （int）</p>
+</li>
+</ol>
+<ol start="3">
+<li><p>回调函数是 函数指针的一种业务场景  </p>
+</li>
+<li><p>c核心 内存管理和地址操作 </p>
+</li>
+</ol>
+<h2 id="c链接库和编译流程"><a href="#c链接库和编译流程" class="headerlink" title="c链接库和编译流程"></a>c链接库和编译流程</h2><ol>
+<li><p>.s 汇编文件</p>
+</li>
+<li><p>extern 生成符号表信息，但默认数据是0</p>
+</li>
+</ol>
 </font>
 ]]></content>
-      <tags>
-        <tag>TypeScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Android架构</title>
-    <url>/2018/08/07/Android/Android-Jetpack/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h3 id="Android移动app架构设计浅谈"><a href="#Android移动app架构设计浅谈" class="headerlink" title="Android移动app架构设计浅谈"></a>Android移动app架构设计浅谈</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>架构，又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计。</p>
-<h4 id="软件架构设计目标："><a href="#软件架构设计目标：" class="headerlink" title="软件架构设计目标："></a>软件架构设计目标：</h4><p>1.可靠性（Reliable）。软件架构的可靠是产品设计的前提。<br>2.安全性（Secure）。软件架构的安全性是产品可持续发展的条件。<br>3.可扩展性（Scalable）。软件架构必须能够不同的功能需求情况下，支持可扩散性。<br>4.可定制化（Customizable）。同样的一套软件，可以根据客户群的不同和市场需求的变化进行调整。<br>5.可伸缩 （Extensible）。在新技术出现的时候，一个软件架构应当允许导入新技术，从而对现有系统进行功能和性能的扩展。<br>6.可维护性（Maintainable）。软件系统的维护包括两方面，一是排除现有的错误，二是将新的软件需求反映到现有系统中去。一个易于维护的系统可以有效地降低技术支持的花费。</p>
-<span id="more"></span>
-<p>架构是项目形成到一定阶段的趋势。是对整个产品是否合格的有效保证。对于很多项目设计人员，在不考虑产品本身，不考虑团队，不考虑时间周期的前提下，一味的强调软件构架，是不合理的，也不利于整个产品的发展。当然，一个好的项目架构师，是很能清楚，项目在不同阶段，所需要处理的不同职责。能够最大限度的发挥能效，将产品周期，与功能模块做出最合适的匹配规划，这才是一个架构师所必须追求的。</p>
-<p>以下是个人对Android移动项目架构设计简单的经验之谈。欢迎与更多的朋友交流，若有疑问，或不合理之处，都可以随时交流。</p>
-<h4 id="从项目功能开始"><a href="#从项目功能开始" class="headerlink" title="从项目功能开始"></a>从项目功能开始</h4><p>每一个项目架构师，在拿到一个新项目的时候，都会不同的着重点。在项目规划风格上，都会有不同的考虑。而我个人在着手项目时，都会从功能上去着手。先了解项目整体的功能模块，区分出主体功能模块有哪些类，对不同的功能模块进行细致的划分。这是我开始的第一步。因为，只有对项目整体有个把握，才能更快的对项目有了解，才能知道怎样去合理安排项目的研发，才能更好的去安排项目进度流程，和人员的安排调度。</p>
-<p>功能划分之后，接下来就是项目的实际研发阶段。这个阶段就是项目实际进展阶段了。必须要有合理的安排调度，才是保证项目的高效。比如：我们进行的大部分项目，都有网络交互的部分，也有本地功能部分，还有一些基础数据模块部分，这些功能必须要有合理的时间安排。</p>
-<p>项目研发之前，几点提要说明：<br>一、团队之间统一编码规范。<br>二、需求文档统一管理。<br>三、多人协同开发，根据文档开发（一切以文档为主）。</p>
-<p>项目以功能划分，功能以模块划分。在项目初期，除了产品原型可能是提前设计成形外，其它的项目文档都还未出来，产品也是有个确定功能，但是细节文档还未成形，这个时候已经是项目开始阶段，即使在有一些文档还未成形前，也可以开始项目的基础开发了。</p>
-<h4 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h4><p>网络模块，数据库存储模块，数据加密模块，数据缓存模块，数据解析器，日志信息收集模块等。这些都是项目的基本模块，也可以独立于功能的模块，可以提前开发，测试。便于后期直接使用。</p>
-<h4 id="移动安全机制"><a href="#移动安全机制" class="headerlink" title="移动安全机制"></a>移动安全机制</h4><p>做过移动项目的都知道，移动安全是项目前期需要考虑的一个重要环节。所以，在项目之初，就应该对自身的数据存储做必要的数据加密，对网络传输的数据进行必要加密。<br>移动数据加密分为两种：<br>一种是本地数据加密，只是本机存储的信息，本地加密保存。<br>一种是网络传输数据加密，这是涉及到网络协议，与服务器之间的加密协议。</p>
-<p>本地加密方式有很多种：<br>一、MD5加密算法。 MD5是个不可逆的算法 没有解密的算法（目前据说也有方法破解）。<br>二、DES加密。可逆。<br>三、RSA加密。可逆<br>对于不是需要绝对足够安全的项目，以上三种加密足够用。</p>
-<p>网络数据加密主要从两个方面考虑： </p>
-<ol>
-<li>保证API的调用者是经过自己授权的App； </li>
-<li>保证数据传输的安全。</li>
-</ol>
-<p>保证API是自己授权的App，采用设计签名的方式。对每个移动平台，都会有不同的AppKey和AppSecret。在调用API时，将AppKey加入到请求参数中，然后，把AppSecret与其它参数，通过某种签名算法生成一个签名字符串，把数据传输给服务器端。而服务器根据AppKey和AppSecret，用相同的签名算法生成的签名与之一致，则说明请求安全。签名算法可以采用自己规定的一套签名算法（更安全），也可采用外部公开的签名算法（初期使用）。另外，在参数列表中再加入一个时间戳，还可以防止部分重放攻击。<br>对于数据传输安全，可以使用HTTPS。因为HTTPS添加了ssl安全协议。但是android项目开发，大部分都没有去实现。主要是没有对ssl证书进行安全性检查。</p>
-<h4 id="API协议标准化"><a href="#API协议标准化" class="headerlink" title="API协议标准化"></a>API协议标准化</h4><p>项目开发，协议一定需要标准化，并且需要严格执行接口协议。完成每个版本的协议文档更新，方便后续使用者查看。<br>目前协议都是使用Json格式传输。需要注意的是，JSON数据和实体对象在传输时，序列化和反序列化因平台不同，会产生不同的区别。比如：JSON库将Date类型的数据序列化时会转为String，传输到服务器时，服务器反序列化经常会出现不同的结果。</p>
-<h4 id="API接口版本控制"><a href="#API接口版本控制" class="headerlink" title="API接口版本控制"></a>API接口版本控制</h4><p>一般解决接口更新变化问题，我们采取的做法是，每个API接口，都会带有协议的版本，若是协议发生改变，则版本号相应改变，在处理数据请求时，则可以根据不同协议的版本进行处理，解决了版本的兼容性问题。</p>
-<h4 id="架构分层"><a href="#架构分层" class="headerlink" title="架构分层"></a>架构分层</h4><p>架构设计，主要的目的就解决功能和代码的复用，减少重复开发，方便功能扩展，降低功能和代码层级的耦合。<br>目前移动设计框架，主流的有三种：MVC、MVP、MVVM三种方式（具体详情，请参考框架小结）。<br>任何的框架设计都是在满足开发需求为前提，千万不能为了设计而设计，不要问我这三种设计，哪种最合适开发？如果你还这样去问，那只能说你还不是一个成熟的产品设计者。三种框架都有各自的利弊，是应该在不同的阶段和不同人员的配备情况下，选择更合理的方式。我曾经参与一个创业团队开发视频项目，前期只有两个移动开发人员，项目时间紧的情况下。项目负责人就只会天天在那里修改需求，谈项目架构。初期的项目，在产品验证功能阶段，在项目需要快速迭代阶段，应该使用最有效的框架，才是合理的选择。而且项目的发展，一定是随着项目功能的确立，产品的定型和需求完善，对项目本身的稳定性和性能的要求，才是一个逐步提高的过程。想要一步达到完美的产品，不仅是在设计上很难做到，而且在目前所有的产品中，都是很难达到的。</p>
-<p>任何框架都是在此三层数据模型上。View，Model，Controller/Presenter/ViewModel。上层View：用户行为操作，数据结果显示。底层Model：数据处理，提供显示数据。中间的就是业务逻辑层。<br>Android项目设计，重在对项目的理解，重在对需求功能的划分，重在对团队合理分配。高效的产出，快速的迭代，才是移动项目的生存之道。</p>
-<h4 id="Android测试"><a href="#Android测试" class="headerlink" title="Android测试"></a>Android测试</h4><p>移动开发，为保证质量产出，需要进行必须要逻辑测试。而在项目框架设计中，简单的mvc模式，若view和model中混有业务逻辑，则不利于接口测试。所以，在后续版本的迭代中，需要逐渐使用mvp或mvvm框架设计，让view和model与业务逻辑实现完整的解耦合。</p>
-<h4 id="Android环境"><a href="#Android环境" class="headerlink" title="Android环境"></a>Android环境</h4><p>自从Android提供了更高效稳定的android studio之后，对于开发者来说是更便捷，更方便了。在android gradle多平台打包。proguard代码优化，混淆。随着android studio的越来越强大，越来越稳定，相信开发android项目也会变得越来越so easy了。</p>
-<h4 id="总结在最后"><a href="#总结在最后" class="headerlink" title="总结在最后"></a>总结在最后</h4><p>一个合格的移动项目架构师，必须是在不断的项目开发中成长的。不仅仅懂得项目的高效快速部署，也懂得怎样合理优化团队，才能有更优质的产品产出。移动产品，是一个快速产出的产品，怎样做出适合团队产出的产品，才是移动架构师的学习之道</p>
-<h5 id="新方向"><a href="#新方向" class="headerlink" title="新方向"></a>新方向</h5><p><img src="https://juejin.cn/post/7032625978023084062" alt="资料"></p>
-</font>]]></content>
       <categories>
-        <category>Android</category>
+        <category>C++</category>
       </categories>
       <tags>
-        <tag>Jetpack</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -143,6 +125,45 @@ cocos run -d androd
 ]]></content>
       <tags>
         <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android架构</title>
+    <url>/2018/08/07/Android/Android-Jetpack/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h3 id="Android移动app架构设计浅谈"><a href="#Android移动app架构设计浅谈" class="headerlink" title="Android移动app架构设计浅谈"></a>Android移动app架构设计浅谈</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>架构，又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计。</p>
+<h4 id="软件架构设计目标："><a href="#软件架构设计目标：" class="headerlink" title="软件架构设计目标："></a>软件架构设计目标：</h4><p>1.可靠性（Reliable）。软件架构的可靠是产品设计的前提。<br>2.安全性（Secure）。软件架构的安全性是产品可持续发展的条件。<br>3.可扩展性（Scalable）。软件架构必须能够不同的功能需求情况下，支持可扩散性。<br>4.可定制化（Customizable）。同样的一套软件，可以根据客户群的不同和市场需求的变化进行调整。<br>5.可伸缩 （Extensible）。在新技术出现的时候，一个软件架构应当允许导入新技术，从而对现有系统进行功能和性能的扩展。<br>6.可维护性（Maintainable）。软件系统的维护包括两方面，一是排除现有的错误，二是将新的软件需求反映到现有系统中去。一个易于维护的系统可以有效地降低技术支持的花费。</p>
+<span id="more"></span>
+<p>架构是项目形成到一定阶段的趋势。是对整个产品是否合格的有效保证。对于很多项目设计人员，在不考虑产品本身，不考虑团队，不考虑时间周期的前提下，一味的强调软件构架，是不合理的，也不利于整个产品的发展。当然，一个好的项目架构师，是很能清楚，项目在不同阶段，所需要处理的不同职责。能够最大限度的发挥能效，将产品周期，与功能模块做出最合适的匹配规划，这才是一个架构师所必须追求的。</p>
+<p>以下是个人对Android移动项目架构设计简单的经验之谈。欢迎与更多的朋友交流，若有疑问，或不合理之处，都可以随时交流。</p>
+<h4 id="从项目功能开始"><a href="#从项目功能开始" class="headerlink" title="从项目功能开始"></a>从项目功能开始</h4><p>每一个项目架构师，在拿到一个新项目的时候，都会不同的着重点。在项目规划风格上，都会有不同的考虑。而我个人在着手项目时，都会从功能上去着手。先了解项目整体的功能模块，区分出主体功能模块有哪些类，对不同的功能模块进行细致的划分。这是我开始的第一步。因为，只有对项目整体有个把握，才能更快的对项目有了解，才能知道怎样去合理安排项目的研发，才能更好的去安排项目进度流程，和人员的安排调度。</p>
+<p>功能划分之后，接下来就是项目的实际研发阶段。这个阶段就是项目实际进展阶段了。必须要有合理的安排调度，才是保证项目的高效。比如：我们进行的大部分项目，都有网络交互的部分，也有本地功能部分，还有一些基础数据模块部分，这些功能必须要有合理的时间安排。</p>
+<p>项目研发之前，几点提要说明：<br>一、团队之间统一编码规范。<br>二、需求文档统一管理。<br>三、多人协同开发，根据文档开发（一切以文档为主）。</p>
+<p>项目以功能划分，功能以模块划分。在项目初期，除了产品原型可能是提前设计成形外，其它的项目文档都还未出来，产品也是有个确定功能，但是细节文档还未成形，这个时候已经是项目开始阶段，即使在有一些文档还未成形前，也可以开始项目的基础开发了。</p>
+<h4 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h4><p>网络模块，数据库存储模块，数据加密模块，数据缓存模块，数据解析器，日志信息收集模块等。这些都是项目的基本模块，也可以独立于功能的模块，可以提前开发，测试。便于后期直接使用。</p>
+<h4 id="移动安全机制"><a href="#移动安全机制" class="headerlink" title="移动安全机制"></a>移动安全机制</h4><p>做过移动项目的都知道，移动安全是项目前期需要考虑的一个重要环节。所以，在项目之初，就应该对自身的数据存储做必要的数据加密，对网络传输的数据进行必要加密。<br>移动数据加密分为两种：<br>一种是本地数据加密，只是本机存储的信息，本地加密保存。<br>一种是网络传输数据加密，这是涉及到网络协议，与服务器之间的加密协议。</p>
+<p>本地加密方式有很多种：<br>一、MD5加密算法。 MD5是个不可逆的算法 没有解密的算法（目前据说也有方法破解）。<br>二、DES加密。可逆。<br>三、RSA加密。可逆<br>对于不是需要绝对足够安全的项目，以上三种加密足够用。</p>
+<p>网络数据加密主要从两个方面考虑： </p>
+<ol>
+<li>保证API的调用者是经过自己授权的App； </li>
+<li>保证数据传输的安全。</li>
+</ol>
+<p>保证API是自己授权的App，采用设计签名的方式。对每个移动平台，都会有不同的AppKey和AppSecret。在调用API时，将AppKey加入到请求参数中，然后，把AppSecret与其它参数，通过某种签名算法生成一个签名字符串，把数据传输给服务器端。而服务器根据AppKey和AppSecret，用相同的签名算法生成的签名与之一致，则说明请求安全。签名算法可以采用自己规定的一套签名算法（更安全），也可采用外部公开的签名算法（初期使用）。另外，在参数列表中再加入一个时间戳，还可以防止部分重放攻击。<br>对于数据传输安全，可以使用HTTPS。因为HTTPS添加了ssl安全协议。但是android项目开发，大部分都没有去实现。主要是没有对ssl证书进行安全性检查。</p>
+<h4 id="API协议标准化"><a href="#API协议标准化" class="headerlink" title="API协议标准化"></a>API协议标准化</h4><p>项目开发，协议一定需要标准化，并且需要严格执行接口协议。完成每个版本的协议文档更新，方便后续使用者查看。<br>目前协议都是使用Json格式传输。需要注意的是，JSON数据和实体对象在传输时，序列化和反序列化因平台不同，会产生不同的区别。比如：JSON库将Date类型的数据序列化时会转为String，传输到服务器时，服务器反序列化经常会出现不同的结果。</p>
+<h4 id="API接口版本控制"><a href="#API接口版本控制" class="headerlink" title="API接口版本控制"></a>API接口版本控制</h4><p>一般解决接口更新变化问题，我们采取的做法是，每个API接口，都会带有协议的版本，若是协议发生改变，则版本号相应改变，在处理数据请求时，则可以根据不同协议的版本进行处理，解决了版本的兼容性问题。</p>
+<h4 id="架构分层"><a href="#架构分层" class="headerlink" title="架构分层"></a>架构分层</h4><p>架构设计，主要的目的就解决功能和代码的复用，减少重复开发，方便功能扩展，降低功能和代码层级的耦合。<br>目前移动设计框架，主流的有三种：MVC、MVP、MVVM三种方式（具体详情，请参考框架小结）。<br>任何的框架设计都是在满足开发需求为前提，千万不能为了设计而设计，不要问我这三种设计，哪种最合适开发？如果你还这样去问，那只能说你还不是一个成熟的产品设计者。三种框架都有各自的利弊，是应该在不同的阶段和不同人员的配备情况下，选择更合理的方式。我曾经参与一个创业团队开发视频项目，前期只有两个移动开发人员，项目时间紧的情况下。项目负责人就只会天天在那里修改需求，谈项目架构。初期的项目，在产品验证功能阶段，在项目需要快速迭代阶段，应该使用最有效的框架，才是合理的选择。而且项目的发展，一定是随着项目功能的确立，产品的定型和需求完善，对项目本身的稳定性和性能的要求，才是一个逐步提高的过程。想要一步达到完美的产品，不仅是在设计上很难做到，而且在目前所有的产品中，都是很难达到的。</p>
+<p>任何框架都是在此三层数据模型上。View，Model，Controller/Presenter/ViewModel。上层View：用户行为操作，数据结果显示。底层Model：数据处理，提供显示数据。中间的就是业务逻辑层。<br>Android项目设计，重在对项目的理解，重在对需求功能的划分，重在对团队合理分配。高效的产出，快速的迭代，才是移动项目的生存之道。</p>
+<h4 id="Android测试"><a href="#Android测试" class="headerlink" title="Android测试"></a>Android测试</h4><p>移动开发，为保证质量产出，需要进行必须要逻辑测试。而在项目框架设计中，简单的mvc模式，若view和model中混有业务逻辑，则不利于接口测试。所以，在后续版本的迭代中，需要逐渐使用mvp或mvvm框架设计，让view和model与业务逻辑实现完整的解耦合。</p>
+<h4 id="Android环境"><a href="#Android环境" class="headerlink" title="Android环境"></a>Android环境</h4><p>自从Android提供了更高效稳定的android studio之后，对于开发者来说是更便捷，更方便了。在android gradle多平台打包。proguard代码优化，混淆。随着android studio的越来越强大，越来越稳定，相信开发android项目也会变得越来越so easy了。</p>
+<h4 id="总结在最后"><a href="#总结在最后" class="headerlink" title="总结在最后"></a>总结在最后</h4><p>一个合格的移动项目架构师，必须是在不断的项目开发中成长的。不仅仅懂得项目的高效快速部署，也懂得怎样合理优化团队，才能有更优质的产品产出。移动产品，是一个快速产出的产品，怎样做出适合团队产出的产品，才是移动架构师的学习之道</p>
+<h5 id="新方向"><a href="#新方向" class="headerlink" title="新方向"></a>新方向</h5><p><img src="https://juejin.cn/post/7032625978023084062" alt="资料"></p>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Jetpack</tag>
       </tags>
   </entry>
   <entry>
@@ -582,6 +603,11 @@ cocos run -d androd
       </tags>
   </entry>
   <entry>
+    <title>HandlerBinder</title>
+    <url>/2021/12/06/Android/HandlerBinder/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>Java通用代码分装</title>
     <url>/2021/01/05/Android/GeneralCode/</url>
     <content><![CDATA[<font size="2.9">
@@ -598,11 +624,6 @@ cocos run -d androd
       <tags>
         <tag>Code</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>HandlerBinder</title>
-    <url>/2021/12/06/Android/HandlerBinder/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Kotlin学习记录</title>
@@ -1288,51 +1309,30 @@ IP直连方案有下面几大优势：
       </tags>
   </entry>
   <entry>
-    <title>C++</title>
-    <url>/2021/11/22/CPP/cpp/</url>
+    <title>Cocos_creator_3.6.1</title>
+    <url>/2022/10/16/Cocos/Cocos-creator-3-6-1/</url>
     <content><![CDATA[<font size="2.9">
 
-<h4 id="C-常用符号区别"><a href="#C-常用符号区别" class="headerlink" title="C++ 常用符号区别"></a>C++ 常用符号区别</h4><p>在学习C++的过程中我们经常会用到.和::和：和-&gt;，在此整理一下这些常用符号的区别。 </p>
-<pre><code>1、A.B则A为对象或者结构体；
+<h4 id="cocos"><a href="#cocos" class="headerlink" title="cocos"></a>cocos</h4><ol>
+<li><a href="https://docs.cocos.com/creator/manual/zh/getting-started/first-game/">cocos</a></li>
+<li>使用TypeScript</li>
+<li>保存玩，回到编辑器页面刷新</li>
+<li>开发小游戏</li>
+</ol>
+<h4 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="keyword">import</span> &#123; _decorator, Component, Vec3, input, Input, EventMouse, Animation, SkeletalAnimation &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&quot;PlayerController&quot;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">PlayerController</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    start () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="title">update</span>(<span class="params">deltaTime: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//都是组件 和Unity 相似</span></span><br><span class="line"><span class="comment">//cc.sys 系统类 判断手机 或者浏览器</span></span><br><span class="line"><span class="comment">//input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this); 鼠标监听</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//手机滑动监听  input.on(Input.EventType.TOUCH_START,this.onTouchStar,this);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//this._deltaPos.x = this._curJumpSpeed * deltaTime; 距离= 速度*时间</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-2、A-&gt;B则A为指针，-&gt;是成员提取，A-&gt;B是提取A中的成员B，A只能是指向类、结构、联合的指针；
+<h4 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h4><ol>
+<li>assets 目录下放资源</li>
+<li>Animations ,Prefabs,Scenes,Scripts</li>
+</ol>
+<h4 id="cocos2dx-4-0"><a href="#cocos2dx-4-0" class="headerlink" title="cocos2dx-4.0"></a>cocos2dx-4.0</h4><pre><code>cocos new -p com.test  -l cpp Test
 
-3、::是作用域运算符，A::B表示作用域A中的名称B，A可以是名字空间、类、结构；
-
-4、：一般用来表示继承；
+cocos run -d androd 
 </code></pre>
-<p>类方法：即静态方法（静态成员函数），指的是类中被static修饰的方法，无this指针，不属于对象，可用类名调用</p>
-<p>实例方法：即成员方法，属于对象的方法</p>
-<p>性质1：一个类中的其他方法可以互相调用：实例方法可以调用类中的其他方法；但是类方法不能调用实例方法，只能调用其他类方法（非绝对，也可以使用传引用的方法让类方法调用实例方法）</p>
-<p>性质2：当类文件加载到内存，实例方法不会分配内存空间，只有在对象被创建之后，才会为实例方法分配内存空间；而类方法在类被加载到内存时就分配了相应的内存空间</p>
-<p>性质3：类方法不能被覆盖，实例方法可以被覆盖。</p>
-<h2 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h2><ol>
-<li>int (*pFunc)(int,int)<br>&amp;取地址  *取值</li>
-</ol>
-<ol start="2">
-<li><p>void* 指针类型 int long char 数组 当前不做限定 万能指针</p>
-<p>用的时候强转  （int）</p>
-</li>
-</ol>
-<ol start="3">
-<li><p>回调函数是 函数指针的一种业务场景  </p>
-</li>
-<li><p>c核心 内存管理和地址操作 </p>
-</li>
-</ol>
-<h2 id="c链接库和编译流程"><a href="#c链接库和编译流程" class="headerlink" title="c链接库和编译流程"></a>c链接库和编译流程</h2><ol>
-<li><p>.s 汇编文件</p>
-</li>
-<li><p>extern 生成符号表信息，但默认数据是0</p>
-</li>
-</ol>
 </font>
 ]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
       <tags>
-        <tag>C++</tag>
+        <tag>TypeScript</tag>
       </tags>
   </entry>
   <entry>
@@ -1409,6 +1409,73 @@ IP直连方案有下面几大优势：
       </categories>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iosMasonryLayout</title>
+    <url>/2021/11/08/IOS/iosMasonryLayout/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="Masonry"><a href="#Masonry" class="headerlink" title="Masonry"></a>Masonry</h4><p>Masonry是一个轻量级的布局框架，拥有自己的描述语法，采用更优雅的链式语法封装AutoLayout，简洁明了并具有高可读性，而且同时支持 iOS 和 Max OS X</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">UIButton  *smsSendBtn = [UIButton  buttonWithType:UIButtonTypeSystem];</span><br><span class="line">   [smsSendBtn setTitle:@<span class="string">&quot;发送验证码&quot;</span> forState:UIControlStateNormal];</span><br><span class="line">   [smsSendBtn addTarget:self action:@<span class="built_in">selector</span>(smsSendBtnRequest) forControlEvents:UIControlEventTouchUpInside];</span><br><span class="line">   [scrollview addSubview:smsSendBtn];</span><br><span class="line">   [smsSendBtn mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">       make.top.<span class="built_in">mas_equalTo</span>(lineView.mas_bottom).<span class="built_in">offset</span>(<span class="number">5</span>);</span><br><span class="line">       make.right.<span class="built_in">mas_equalTo</span>(scrollview.mas_right).<span class="built_in">offset</span>(<span class="number">-30</span>);</span><br><span class="line">       make.size.<span class="built_in">mas_equalTo</span>(<span class="built_in">CGSizeMake</span>(<span class="number">100.0</span>, <span class="number">50</span>));<span class="comment">//top = bottom + offset()</span></span><br><span class="line">   &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="关于签名"><a href="#关于签名" class="headerlink" title="关于签名"></a>关于签名</h4><blockquote>
+<p>dev 开发(Development)证书和描述文件      开发使用，可以直接装手机上</p>
+<blockquote>
+<p>p12 .p12文件本身就是一个加密的证书<br>.mobileprovision  是一个设置文件，实质是一个XML文件，不是证书。在部署 iOS 设备时可以使用苹果官方的「iPhone 配置实用工具.app」或者 Apple Configurator.app 创建一个描述文件，然后将其安装到 iOS 设备上对该设备进行管理</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>dis 发布(Distribution)证书和描述文件      用于提交 AppStore</p>
+</blockquote>
+<h4 id="pod"><a href="#pod" class="headerlink" title="pod"></a>pod</h4><ol>
+<li><p>podfile 编写</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">platform :ios, &#x27;9.0&#x27;</span><br><span class="line">use_frameworks!</span><br><span class="line"></span><br><span class="line">target  &#x27;SiguaApp&#x27; do</span><br><span class="line">   pod &#x27;AFNetworking&#x27;</span><br><span class="line">   pod &#x27;Masonry&#x27;</span><br><span class="line">   pod &#x27;SDWebImage&#x27;</span><br><span class="line">   pod &#x27;YYModel&#x27;</span><br><span class="line">   pod &#x27;MJRefresh&#x27;</span><br><span class="line">   pod &#x27;IQKeyboardManager&#x27;</span><br><span class="line"><span class="meta">  #</span><span class="bash"> pod <span class="string">&#x27;MMPlaceHolder&#x27;</span></span></span><br><span class="line">   pod &#x27;MJExtension&#x27;</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>pod 安装</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">pod install  # install</span><br><span class="line"></span><br><span class="line"> pod update  # update</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="xcode-14-模拟器"><a href="#xcode-14-模拟器" class="headerlink" title="xcode 14 模拟器"></a>xcode 14 模拟器</h4><ol>
+<li><p>xcodedefault.xctoolchain/usr/lib/arc/libarclite_iphonesimulator.a not found</p>
+<p>设置target &gt;=11</p>
+</li>
+</ol>
+</font>]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>Masonry sign</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iosThread</title>
+    <url>/2021/10/20/IOS/iosThread/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="Unity-UE-调用iOS接口-crash"><a href="#Unity-UE-调用iOS接口-crash" class="headerlink" title="Unity /UE 调用iOS接口 crash"></a>Unity /UE 调用iOS接口 crash</h4><pre><code>带UI的接口 要回到主线程
+</code></pre>
+<h4 id="Unity-iOS包切后台-没有回调"><a href="#Unity-iOS包切后台-没有回调" class="headerlink" title="Unity iOS包切后台 没有回调"></a>Unity iOS包切后台 没有回调</h4><pre><code>回调被替换或者重置  查看代码
+</code></pre>
+<h4 id="警告-iOS-主线程问题-提醒Main-Thread-Checker-UI-API-called-on-a-background-thread的解释"><a href="#警告-iOS-主线程问题-提醒Main-Thread-Checker-UI-API-called-on-a-background-thread的解释" class="headerlink" title="警告 [iOS]主线程问题:提醒Main Thread Checker: UI API called on a background thread的解释"></a>警告 [iOS]主线程问题:提醒Main Thread Checker: UI API called on a background thread的解释</h4><p>没有在主线程操作</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">dispatch_async(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), <span class="operator">^</span>&#123;  </span><br><span class="line">    <span class="comment">// 处理耗时操作的代码块...  </span></span><br><span class="line">      </span><br><span class="line">    <span class="comment">//通知主线程刷新  </span></span><br><span class="line">    dispatch_async(dispatch_get_main_queue(), <span class="operator">^</span>&#123;  </span><br><span class="line">        <span class="comment">//回调或者说是通知主线程刷新，  </span></span><br><span class="line">    &#125;);  </span><br><span class="line">      </span><br><span class="line">&#125;);  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>dispatch_async开启一个异步操作，第一个参数是指定一个gcd队列，第二个参数是分配一个处理事物的程序块到该队列。<br>dispatch_get_global_queue(0, 0)，指用了全局队列。<br>一般来说系统本身会有3个队列。global_queue，current_queue,以及main_queue.</p>
+<p>获取一个全局队列是接受两个参数，第一个是我分配的事物处理程序块队列优先级。分高低和默认，0为默认2为高，-2为低</p>
+<p>处理完事物后，需要将结果返回给或者是刷新UI主线程，同样，和上面一样，抓取主线程，程序块操作。</p>
+<h4 id="ios-状态栏"><a href="#ios-状态栏" class="headerlink" title="ios 状态栏"></a>ios 状态栏</h4><p>在 Info.plist 文件中添加 Status bar is initially hidden 设置为 YES ，这个是隐藏 App 在 LunchScreen（欢迎界面）时的状态栏。</p>
+<p>在 Info.plist 文件中添加 View controller-based status bar appearance 设置为 NO，这个是隐藏 App 在所有 UIViewController 时的状态栏</p>
+<p>Status Bar 状态栏的颜色<br>状态栏分前后两部分，要分清这两个概念，后面会用到：</p>
+<blockquote>
+<p>文字部分：就是指的显示电池、时间等部分。<br>背景部分：就是显示黑色或者图片的背景部分</p>
+</blockquote>
+</font>
+]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>IOS</tag>
       </tags>
   </entry>
   <entry>
@@ -1547,114 +1614,6 @@ IP直连方案有下面几大优势：
       </tags>
   </entry>
   <entry>
-    <title>树的定义</title>
-    <url>/2021/12/12/Java/Tree/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h3 id="tree定义"><a href="#tree定义" class="headerlink" title="tree定义"></a>tree定义</h3><p>树结果从自然界的树抽象而来，有树根，类似枝叉的分支关系和作为分支点的叶子 生活所见家谱，Windows的文件系统，表现各异 本质是树结构</p>
-<p>树是由n(n&gt;=0)个节点组成的有限集合。n=0的树为空树 n&gt;0的树T </p>
-<p>1.有一个特殊的节点称为根节点（root），它只有后继节点，没有前驱节点</p>
-<p>2.除根节点 之外的其他节点分为m(m&gt;=0)个互不相交的集合 T0,T1….Tm-1,其中每个集合Ti (0=&lt;i&lt;m) 本身又是一颗树，称为根子树</p>
-<p>树是递归定义的 节点是树的基本单位。若干个节点组成一个颗子树，若干颗互不相交的子树组成一颗树。所以 树是由结点组成的，结点之间具有层次关系的非线性结构。</p>
-
-
-<h4 id="树的数据结构"><a href="#树的数据结构" class="headerlink" title="树的数据结构"></a>树的数据结构</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Tree</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="二叉-树的定义"><a href="#二叉-树的定义" class="headerlink" title="二叉 树的定义"></a>二叉 树的定义</h3></font>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>tree</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>harmonyos</title>
-    <url>/2022/09/19/Harmonyos/harmonyos/</url>
-    <content><![CDATA[<font size='2.9'>
-
-<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><ol>
-<li><p>获取源码 </p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    # 安装repo 工具</span><br><span class="line">    $ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 &gt; repo</span><br><span class="line">    $ chmod a+x repo</span><br><span class="line">    $ sudo mv repo /usr/local/bin/repo</span><br><span class="line">    $ sudo apt install python3-pip</span><br><span class="line">    $ pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">获取标准系统源码</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir OpenHarmony</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> OpenHarmony</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync -c  <span class="comment"># -c 获取当前分支代码</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">&#x27;git lfs pull&#x27;</span></span></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>如果 repo init 出现以下错误 </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">jackie@USER-20200124ZG:~$ repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify</span><br><span class="line">    Downloading Repo source from http://mirrors.tuna.tsinghua.edu.cn/git/git-repo/</span><br><span class="line">    remote: Enumerating objects: 7113, done.</span><br><span class="line">    remote: Counting objects: 100% (7113/7113), done.</span><br><span class="line">    remote: Compressing objects: 100% (3728/3728), done.</span><br><span class="line">    remote: Total 7113 (delta 4590), reused 5464 (delta 3311)s   s</span><br><span class="line">    Receiving objects: 100% (7113/7113), 3.09 MiB | 1.76 MiB/s, done.</span><br><span class="line">    Resolving deltas: 100% (4590/4590), done.</span><br><span class="line">    repo: warning: verification of repo code has been disabled;</span><br><span class="line">    repo will not be able to verify the integrity of itself.</span><br><span class="line"></span><br><span class="line">    repo: error: unable to resolve &quot;fork_flow&quot;</span><br><span class="line">    fatal: cloning the git-repo repository failed, will remove &#x27;.repo/repo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><code>切换到root 权限 sudo</code> 可以解决</p>
-</font></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Harmonyos</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>iosMasonryLayout</title>
-    <url>/2021/11/08/IOS/iosMasonryLayout/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="Masonry"><a href="#Masonry" class="headerlink" title="Masonry"></a>Masonry</h4><p>Masonry是一个轻量级的布局框架，拥有自己的描述语法，采用更优雅的链式语法封装AutoLayout，简洁明了并具有高可读性，而且同时支持 iOS 和 Max OS X</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">UIButton  *smsSendBtn = [UIButton  buttonWithType:UIButtonTypeSystem];</span><br><span class="line">   [smsSendBtn setTitle:@<span class="string">&quot;发送验证码&quot;</span> forState:UIControlStateNormal];</span><br><span class="line">   [smsSendBtn addTarget:self action:@<span class="built_in">selector</span>(smsSendBtnRequest) forControlEvents:UIControlEventTouchUpInside];</span><br><span class="line">   [scrollview addSubview:smsSendBtn];</span><br><span class="line">   [smsSendBtn mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">       make.top.<span class="built_in">mas_equalTo</span>(lineView.mas_bottom).<span class="built_in">offset</span>(<span class="number">5</span>);</span><br><span class="line">       make.right.<span class="built_in">mas_equalTo</span>(scrollview.mas_right).<span class="built_in">offset</span>(<span class="number">-30</span>);</span><br><span class="line">       make.size.<span class="built_in">mas_equalTo</span>(<span class="built_in">CGSizeMake</span>(<span class="number">100.0</span>, <span class="number">50</span>));<span class="comment">//top = bottom + offset()</span></span><br><span class="line">   &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="关于签名"><a href="#关于签名" class="headerlink" title="关于签名"></a>关于签名</h4><blockquote>
-<p>dev 开发(Development)证书和描述文件      开发使用，可以直接装手机上</p>
-<blockquote>
-<p>p12 .p12文件本身就是一个加密的证书<br>.mobileprovision  是一个设置文件，实质是一个XML文件，不是证书。在部署 iOS 设备时可以使用苹果官方的「iPhone 配置实用工具.app」或者 Apple Configurator.app 创建一个描述文件，然后将其安装到 iOS 设备上对该设备进行管理</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>dis 发布(Distribution)证书和描述文件      用于提交 AppStore</p>
-</blockquote>
-<h4 id="pod"><a href="#pod" class="headerlink" title="pod"></a>pod</h4><ol>
-<li><p>podfile 编写</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">platform :ios, &#x27;9.0&#x27;</span><br><span class="line">use_frameworks!</span><br><span class="line"></span><br><span class="line">target  &#x27;SiguaApp&#x27; do</span><br><span class="line">   pod &#x27;AFNetworking&#x27;</span><br><span class="line">   pod &#x27;Masonry&#x27;</span><br><span class="line">   pod &#x27;SDWebImage&#x27;</span><br><span class="line">   pod &#x27;YYModel&#x27;</span><br><span class="line">   pod &#x27;MJRefresh&#x27;</span><br><span class="line">   pod &#x27;IQKeyboardManager&#x27;</span><br><span class="line"><span class="meta">  #</span><span class="bash"> pod <span class="string">&#x27;MMPlaceHolder&#x27;</span></span></span><br><span class="line">   pod &#x27;MJExtension&#x27;</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>pod 安装</p>
-</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">pod install  # install</span><br><span class="line"></span><br><span class="line"> pod update  # update</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="xcode-14-模拟器"><a href="#xcode-14-模拟器" class="headerlink" title="xcode 14 模拟器"></a>xcode 14 模拟器</h4><ol>
-<li><p>xcodedefault.xctoolchain/usr/lib/arc/libarclite_iphonesimulator.a not found</p>
-<p>设置target &gt;=11</p>
-</li>
-</ol>
-</font>]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>Masonry sign</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iosThread</title>
-    <url>/2021/10/20/IOS/iosThread/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="Unity-UE-调用iOS接口-crash"><a href="#Unity-UE-调用iOS接口-crash" class="headerlink" title="Unity /UE 调用iOS接口 crash"></a>Unity /UE 调用iOS接口 crash</h4><pre><code>带UI的接口 要回到主线程
-</code></pre>
-<h4 id="Unity-iOS包切后台-没有回调"><a href="#Unity-iOS包切后台-没有回调" class="headerlink" title="Unity iOS包切后台 没有回调"></a>Unity iOS包切后台 没有回调</h4><pre><code>回调被替换或者重置  查看代码
-</code></pre>
-<h4 id="警告-iOS-主线程问题-提醒Main-Thread-Checker-UI-API-called-on-a-background-thread的解释"><a href="#警告-iOS-主线程问题-提醒Main-Thread-Checker-UI-API-called-on-a-background-thread的解释" class="headerlink" title="警告 [iOS]主线程问题:提醒Main Thread Checker: UI API called on a background thread的解释"></a>警告 [iOS]主线程问题:提醒Main Thread Checker: UI API called on a background thread的解释</h4><p>没有在主线程操作</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">dispatch_async(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), <span class="operator">^</span>&#123;  </span><br><span class="line">    <span class="comment">// 处理耗时操作的代码块...  </span></span><br><span class="line">      </span><br><span class="line">    <span class="comment">//通知主线程刷新  </span></span><br><span class="line">    dispatch_async(dispatch_get_main_queue(), <span class="operator">^</span>&#123;  </span><br><span class="line">        <span class="comment">//回调或者说是通知主线程刷新，  </span></span><br><span class="line">    &#125;);  </span><br><span class="line">      </span><br><span class="line">&#125;);  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>dispatch_async开启一个异步操作，第一个参数是指定一个gcd队列，第二个参数是分配一个处理事物的程序块到该队列。<br>dispatch_get_global_queue(0, 0)，指用了全局队列。<br>一般来说系统本身会有3个队列。global_queue，current_queue,以及main_queue.</p>
-<p>获取一个全局队列是接受两个参数，第一个是我分配的事物处理程序块队列优先级。分高低和默认，0为默认2为高，-2为低</p>
-<p>处理完事物后，需要将结果返回给或者是刷新UI主线程，同样，和上面一样，抓取主线程，程序块操作。</p>
-<h4 id="ios-状态栏"><a href="#ios-状态栏" class="headerlink" title="ios 状态栏"></a>ios 状态栏</h4><p>在 Info.plist 文件中添加 Status bar is initially hidden 设置为 YES ，这个是隐藏 App 在 LunchScreen（欢迎界面）时的状态栏。</p>
-<p>在 Info.plist 文件中添加 View controller-based status bar appearance 设置为 NO，这个是隐藏 App 在所有 UIViewController 时的状态栏</p>
-<p>Status Bar 状态栏的颜色<br>状态栏分前后两部分，要分清这两个概念，后面会用到：</p>
-<blockquote>
-<p>文字部分：就是指的显示电池、时间等部分。<br>背景部分：就是显示黑色或者图片的背景部分</p>
-</blockquote>
-</font>
-]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>IOS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ocClassDifferent</title>
     <url>/2021/11/15/IOS/ocClassDifferent/</url>
     <content><![CDATA[<font size="2.9">
@@ -1732,54 +1691,25 @@ self-&gt;deviceType和deviceType是等价的。
       </tags>
   </entry>
   <entry>
-    <title>Linux_command</title>
-    <url>/2023/04/06/Linux/Linux-command/</url>
+    <title>树的定义</title>
+    <url>/2021/12/12/Java/Tree/</url>
     <content><![CDATA[<font size="2.9">
 
-<h4 id="Linux-command"><a href="#Linux-command" class="headerlink" title="Linux_command"></a>Linux_command</h4><blockquote>
-<p>find 用于搜索文件</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;test1.txt&quot;</span></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;*.txt&quot;</span></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;dira&quot;</span></span><br><span class="line">find . -name <span class="string">&quot;*.txt&quot;</span></span><br><span class="line"><span class="comment"># 默认是当前路径</span></span><br><span class="line">find -name <span class="string">&quot;*.txt&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="tree定义"><a href="#tree定义" class="headerlink" title="tree定义"></a>tree定义</h3><p>树结果从自然界的树抽象而来，有树根，类似枝叉的分支关系和作为分支点的叶子 生活所见家谱，Windows的文件系统，表现各异 本质是树结构</p>
+<p>树是由n(n&gt;=0)个节点组成的有限集合。n=0的树为空树 n&gt;0的树T </p>
+<p>1.有一个特殊的节点称为根节点（root），它只有后继节点，没有前驱节点</p>
+<p>2.除根节点 之外的其他节点分为m(m&gt;=0)个互不相交的集合 T0,T1….Tm-1,其中每个集合Ti (0=&lt;i&lt;m) 本身又是一颗树，称为根子树</p>
+<p>树是递归定义的 节点是树的基本单位。若干个节点组成一个颗子树，若干颗互不相交的子树组成一颗树。所以 树是由结点组成的，结点之间具有层次关系的非线性结构。</p>
 
 
-<blockquote>
-<p>grep 查找文件中符合条件的字符串</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#在test1.txt中查找字符串abc,-n 表示显示行号</span></span><br><span class="line">grep -n <span class="string">&quot;abc&quot;</span> test1.txt</span><br><span class="line"><span class="comment">#当前目录下递归查找字符串</span></span><br><span class="line">grep -R <span class="string">&quot;abc&quot;</span> .</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="树的数据结构"><a href="#树的数据结构" class="headerlink" title="树的数据结构"></a>树的数据结构</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Tree</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>文件压缩命令</p>
-</blockquote>
-<p>tar 用于打包压缩和解压</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">c(create)：表示创建用来生成文件包 。</span><br><span class="line">-x：表示提取，从文件包中提取文件。</span><br><span class="line">-t：可以查看压缩的文件。</span><br><span class="line">-z：使用 gzip 方式进行处理，它与 <span class="string">&quot;c&quot;</span> 结合就表示压缩，与 <span class="string">&quot;x&quot;</span> 结合就表示解压缩。</span><br><span class="line">-j：使用 bzip2 方式进行处理，它与 <span class="string">&quot;c&quot;</span> 结合就表示压缩，与”x“结合就表示解压缩。</span><br><span class="line">-v(verbose)：详细报告 tar 处理的信息。</span><br><span class="line">-f(file)：表示文件，后面接着一个文件名。 -C &lt;指定目录&gt; 解压到指定目录。</span><br><span class="line"></span><br><span class="line">把目录 dira 压缩、打包为 dira.tar.gz 文件</span><br><span class="line">tar czvf dira.tar.gz dira</span><br><span class="line"><span class="comment">#解压到当前目录</span></span><br><span class="line">tar xzvf dira.tar.gz</span><br><span class="line"><span class="comment">#解压到 /home/book</span></span><br><span class="line">tar xzvf dira.tar.gz -C /home/book</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="网络管理相关命令"><a href="#网络管理相关命令" class="headerlink" title="网络管理相关命令"></a>网络管理相关命令</h4><blockquote>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"> ping 用于测试主机之间网络的连通性</span><br><span class="line"> ping www.baidu.com</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">wget 用于在网络上下载文件</span><br><span class="line"></span><br><span class="line">wget http://</span><br><span class="line"></span><br><span class="line">curl 用于在网络上下载文件</span><br><span class="line"></span><br><span class="line">curl https://</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ifconfig 用于查看网络情况</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h4 id="软件安装相关命令"><a href="#软件安装相关命令" class="headerlink" title="软件安装相关命令"></a>软件安装相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">搜索软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt search 关键字</span><br><span class="line">安装软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt install 软件包名</span><br><span class="line">卸载软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#卸载软件</span></span><br><span class="line">sudo apt remove 软件包名</span><br><span class="line"><span class="comment">#卸载软件并删除配置文件</span></span><br><span class="line">sudo apt remove 软件包名 --purge</span><br><span class="line"><span class="comment">#卸载软件并移除软件依赖</span></span><br><span class="line">sudo apt autoremove 软件包名</span><br><span class="line">软件更新</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt upgrade 软件包名</span><br><span class="line"><span class="comment"># 升级所有可以升级的软件</span></span><br><span class="line">sudo apt upgrade</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h4 id="系统管理相关命令"><a href="#系统管理相关命令" class="headerlink" title="系统管理相关命令"></a>系统管理相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">useradd 用于添加用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">useradd hello</span><br><span class="line">passwd 用于设置或者修改用户密码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">passwd hello</span><br><span class="line">userdel 用于删除用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># -r 选项可以删除用户家目录</span></span><br><span class="line">sudo userdel username</span><br><span class="line">usermod 用来修改用户帐号的各项设定</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#最常用于将用户加入指定的组</span></span><br><span class="line"><span class="comment">#将用户myfreax添加到games组</span></span><br><span class="line"><span class="comment">#应该始终使用-a追加选项。如果省略-a选项，则用户将从-G选项之后未列出的组中删除</span></span><br><span class="line">sudo usermod -a -G games myfreax</span><br><span class="line">free 用于查看系统内存</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">free -m <span class="comment">#以 MB 为单位</span></span><br><span class="line">free -g <span class="comment">#以 GB 为单位</span></span><br><span class="line">whoami 用于查看当前用户名</span><br><span class="line"></span><br><span class="line">ps 用于查看进程信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ps -a <span class="comment">#查看所有进程</span></span><br><span class="line">ps -e <span class="comment">#查看除内核以外的所有进程</span></span><br><span class="line">ps -f <span class="comment">#全格式输出</span></span><br><span class="line">top 动态查看进程信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</font>]]></content>
-  </entry>
-  <entry>
-    <title>Git相关</title>
-    <url>/2021/04/16/Tools/Git/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h5 id="关于Merge"><a href="#关于Merge" class="headerlink" title="关于Merge"></a>关于Merge</h5><p>1&gt;从其他地方 负责了一个覆盖本地 出行 未合并报错<br><strong>您尚未结束您的合并（存在 MERGE_HEAD</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf .git/MERGE*</span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</font>
-
-]]></content>
+<h3 id="二叉-树的定义"><a href="#二叉-树的定义" class="headerlink" title="二叉 树的定义"></a>二叉 树的定义</h3></font>]]></content>
       <categories>
-        <category>Tools</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>git</tag>
+        <tag>tree</tag>
       </tags>
   </entry>
   <entry>
@@ -1823,31 +1753,55 @@ self-&gt;deviceType和deviceType是等价的。
       </tags>
   </entry>
   <entry>
-    <title>调研记录一下</title>
-    <url>/2020/12/21/Tools/MoreLear/</url>
+    <title>Git相关</title>
+    <url>/2021/04/16/Tools/Git/</url>
     <content><![CDATA[<font size="2.9">
 
-<h4 id="1-能力考试院"><a href="#1-能力考试院" class="headerlink" title="1.能力考试院"></a>1.能力考试院</h4><span id="more"></span>
-<blockquote>
-<p><a href="http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384">http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384</a> </p>
-</blockquote>
-<h4 id="2-查询"><a href="#2-查询" class="headerlink" title="2.查询"></a>2.查询</h4><blockquote>
-<p><a href="http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/">http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://sh.offcn.com/html/2020/11/191560.html">http://sh.offcn.com/html/2020/11/191560.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://sh.offcn.com/zg/shsydwdg/">http://sh.offcn.com/zg/shsydwdg/</a></p>
-</blockquote>
+<h5 id="关于Merge"><a href="#关于Merge" class="headerlink" title="关于Merge"></a>关于Merge</h5><p>1&gt;从其他地方 负责了一个覆盖本地 出行 未合并报错<br><strong>您尚未结束您的合并（存在 MERGE_HEAD</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf .git/MERGE*</span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 </font>
+
 ]]></content>
       <categories>
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>Link</tag>
+        <tag>git</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Linux_command</title>
+    <url>/2023/04/06/Linux/Linux-command/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="Linux-command"><a href="#Linux-command" class="headerlink" title="Linux_command"></a>Linux_command</h4><blockquote>
+<p>find 用于搜索文件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;test1.txt&quot;</span></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;*.txt&quot;</span></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;dira&quot;</span></span><br><span class="line">find . -name <span class="string">&quot;*.txt&quot;</span></span><br><span class="line"><span class="comment"># 默认是当前路径</span></span><br><span class="line">find -name <span class="string">&quot;*.txt&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>grep 查找文件中符合条件的字符串</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#在test1.txt中查找字符串abc,-n 表示显示行号</span></span><br><span class="line">grep -n <span class="string">&quot;abc&quot;</span> test1.txt</span><br><span class="line"><span class="comment">#当前目录下递归查找字符串</span></span><br><span class="line">grep -R <span class="string">&quot;abc&quot;</span> .</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>文件压缩命令</p>
+</blockquote>
+<p>tar 用于打包压缩和解压</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">c(create)：表示创建用来生成文件包 。</span><br><span class="line">-x：表示提取，从文件包中提取文件。</span><br><span class="line">-t：可以查看压缩的文件。</span><br><span class="line">-z：使用 gzip 方式进行处理，它与 <span class="string">&quot;c&quot;</span> 结合就表示压缩，与 <span class="string">&quot;x&quot;</span> 结合就表示解压缩。</span><br><span class="line">-j：使用 bzip2 方式进行处理，它与 <span class="string">&quot;c&quot;</span> 结合就表示压缩，与”x“结合就表示解压缩。</span><br><span class="line">-v(verbose)：详细报告 tar 处理的信息。</span><br><span class="line">-f(file)：表示文件，后面接着一个文件名。 -C &lt;指定目录&gt; 解压到指定目录。</span><br><span class="line"></span><br><span class="line">把目录 dira 压缩、打包为 dira.tar.gz 文件</span><br><span class="line">tar czvf dira.tar.gz dira</span><br><span class="line"><span class="comment">#解压到当前目录</span></span><br><span class="line">tar xzvf dira.tar.gz</span><br><span class="line"><span class="comment">#解压到 /home/book</span></span><br><span class="line">tar xzvf dira.tar.gz -C /home/book</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="网络管理相关命令"><a href="#网络管理相关命令" class="headerlink" title="网络管理相关命令"></a>网络管理相关命令</h4><blockquote>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"> ping 用于测试主机之间网络的连通性</span><br><span class="line"> ping www.baidu.com</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">wget 用于在网络上下载文件</span><br><span class="line"></span><br><span class="line">wget http://</span><br><span class="line"></span><br><span class="line">curl 用于在网络上下载文件</span><br><span class="line"></span><br><span class="line">curl https://</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ifconfig 用于查看网络情况</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="软件安装相关命令"><a href="#软件安装相关命令" class="headerlink" title="软件安装相关命令"></a>软件安装相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">搜索软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt search 关键字</span><br><span class="line">安装软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt install 软件包名</span><br><span class="line">卸载软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#卸载软件</span></span><br><span class="line">sudo apt remove 软件包名</span><br><span class="line"><span class="comment">#卸载软件并删除配置文件</span></span><br><span class="line">sudo apt remove 软件包名 --purge</span><br><span class="line"><span class="comment">#卸载软件并移除软件依赖</span></span><br><span class="line">sudo apt autoremove 软件包名</span><br><span class="line">软件更新</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt upgrade 软件包名</span><br><span class="line"><span class="comment"># 升级所有可以升级的软件</span></span><br><span class="line">sudo apt upgrade</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="系统管理相关命令"><a href="#系统管理相关命令" class="headerlink" title="系统管理相关命令"></a>系统管理相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">useradd 用于添加用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">useradd hello</span><br><span class="line">passwd 用于设置或者修改用户密码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">passwd hello</span><br><span class="line">userdel 用于删除用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># -r 选项可以删除用户家目录</span></span><br><span class="line">sudo userdel username</span><br><span class="line">usermod 用来修改用户帐号的各项设定</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#最常用于将用户加入指定的组</span></span><br><span class="line"><span class="comment">#将用户myfreax添加到games组</span></span><br><span class="line"><span class="comment">#应该始终使用-a追加选项。如果省略-a选项，则用户将从-G选项之后未列出的组中删除</span></span><br><span class="line">sudo usermod -a -G games myfreax</span><br><span class="line">free 用于查看系统内存</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">free -m <span class="comment">#以 MB 为单位</span></span><br><span class="line">free -g <span class="comment">#以 GB 为单位</span></span><br><span class="line">whoami 用于查看当前用户名</span><br><span class="line"></span><br><span class="line">ps 用于查看进程信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ps -a <span class="comment">#查看所有进程</span></span><br><span class="line">ps -e <span class="comment">#查看除内核以外的所有进程</span></span><br><span class="line">ps -f <span class="comment">#全格式输出</span></span><br><span class="line">top 动态查看进程信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</font>]]></content>
   </entry>
   <entry>
     <title>charles</title>
@@ -1904,6 +1858,33 @@ self-&gt;deviceType和deviceType是等价的。
       </categories>
       <tags>
         <tag>MonoBehaviourTree</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>调研记录一下</title>
+    <url>/2020/12/21/Tools/MoreLear/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="1-能力考试院"><a href="#1-能力考试院" class="headerlink" title="1.能力考试院"></a>1.能力考试院</h4><span id="more"></span>
+<blockquote>
+<p><a href="http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384">http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384</a> </p>
+</blockquote>
+<h4 id="2-查询"><a href="#2-查询" class="headerlink" title="2.查询"></a>2.查询</h4><blockquote>
+<p><a href="http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/">http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://sh.offcn.com/html/2020/11/191560.html">http://sh.offcn.com/html/2020/11/191560.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://sh.offcn.com/zg/shsydwdg/">http://sh.offcn.com/zg/shsydwdg/</a></p>
+</blockquote>
+</font>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Link</tag>
       </tags>
   </entry>
   <entry>
@@ -2050,6 +2031,59 @@ self-&gt;deviceType和deviceType是等价的。
       </categories>
       <tags>
         <tag>AssetBundle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UnityBase</title>
+    <url>/2021/10/14/Unity/UnityBase/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="1-Unity基础-ref-和-out"><a href="#1-Unity基础-ref-和-out" class="headerlink" title="1.Unity基础  ref 和 out"></a>1.Unity基础  ref 和 out</h4><p>影响外部传入，让其被修改</p>
+<p>ref: 变量先初始化</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueRef</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> a</span>)</span>&#123;</span><br><span class="line">  a = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> b = <span class="number">99</span>;</span><br><span class="line">ChagneValueRef(<span class="keyword">ref</span> b);</span><br><span class="line">Debug.Log(b);<span class="comment">//b = 9</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>out: 方法里初始化</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueOut</span>(<span class="params"><span class="keyword">out</span> <span class="built_in">int</span> <span class="keyword">value</span></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">value</span> = <span class="number">88</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> cc ;</span><br><span class="line">ChangeValueOut(<span class="keyword">out</span> cc);</span><br><span class="line">Debug.Log(cc);<span class="comment">//b = 88</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-冒泡排序优化"><a href="#2-冒泡排序优化" class="headerlink" title="2.冒泡排序优化"></a>2.冒泡排序优化</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span>[] arrs = &#123;<span class="number">7</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">bool</span> isShot = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> m =<span class="number">0</span>;m &lt; arrs.Length;m++)&#123;</span><br><span class="line">    isShot = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> n =<span class="number">0</span>;n&lt;arrs.Length<span class="number">-1</span>-m;n++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arrs[n]&gt; arrs[n+<span class="number">1</span>])&#123;</span><br><span class="line">            isShot = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">int</span> temp =  arrs[n];</span><br><span class="line">            arrs[n] = arrs[n+<span class="number">1</span>];</span><br><span class="line">            arrs[n+<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//正常情况 每次都交换，如果达到 没有进入交换 就不需要了</span></span><br><span class="line">    <span class="keyword">if</span>(!isShot)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</font>]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>UnityBase</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UnityPluginForMac</title>
+    <url>/2019/06/09/Unity/UnityPluginForMac/</url>
+    <content><![CDATA[<font size="2.9">
+
+<p>因为需要做Window和 Mac 插件，且iOS和Android 用 UnitySendMessage，所以为了统一 pc端也用次回调。这里做下记录方便改进。</p>
+<p>如果你是OSX系统，那么Unity可以在编辑器里面直接使用OSX插件。OSX插件是bundle文件，放在Assets/Plugins目录下。</p>
+<p>跟iOS插件差不多，不过OSX没有UnitySendMessage函数，所以要用另外一种途经来实现OC -&gt; C#</p>
+<p>方法就是用C语言的函数指针。</p>
+<p>首先在头文件声明一个函数指针和声明两个函数</p>
+<span id="more"></span>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数指针</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*UnitySendMessage)</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* objectName, <span class="keyword">const</span> <span class="keyword">char</span>* methodName, <span class="keyword">const</span> <span class="keyword">char</span>* msg)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !TARGET_OS_IPHONE</span></span><br><span class="line">    <span class="comment">//C#调用的，参数是一个回调函数。</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">RegisterCallback</span><span class="params">(UnitySendMessage callbackMethod)</span></span>;</span><br><span class="line">    <span class="comment">//调用回调函数的函数。</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">CallbackToUnity</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* msg)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接着在mm文件里面实现</p>
+<figure class="highlight mm"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !TARGET_OS_IPHONE</span></span><br><span class="line"><span class="keyword">static</span> UnitySendMessage lastCallback = <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">void</span> RegisterCallback(UnitySendMessage callbackMethod)</span><br><span class="line">&#123;</span><br><span class="line">    lastCallback = callbackMethod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> CallbackToUnity(<span class="keyword">const</span> <span class="keyword">char</span>* msg)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (lastCallback != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        lastCallback(sUnityGameObjectName, sUnityMethodName, msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">//mm 中声明改方法，cshap通过dllimport调用传递参数</span></span><br><span class="line">    <span class="keyword">void</span> Demo_nativeRegister(<span class="keyword">const</span> <span class="keyword">char</span>* unityGameObjectName, <span class="keyword">const</span> <span class="keyword">char</span>* unityMethodName);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>C#这边加上声明：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">region</span> Mac PC 回调</span></span><br><span class="line">       <span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX</span></span><br><span class="line">               <span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">UnityCallbackDelegate</span>(<span class="params">IntPtr objName, IntPtr methodName, IntPtr msg</span>)</span>;</span><br><span class="line"></span><br><span class="line">               [<span class="meta">DllImport(GiantSDKUtil.GIANTSDK_PLATFORM)</span>]</span><br><span class="line">               <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">RegisterCallback</span>(<span class="params">[MarshalAs(UnmanagedType.FunctionPtr</span>)] UnityCallbackDelegate callback)</span>;</span><br><span class="line">       <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">       <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br></pre></td></tr></table></figure>
+<p>然后就是设置回调函数，在Start函数或者自己需求的任意位置</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//统一注册和接收</span></span><br><span class="line">  Demo_nativeRegister(<span class="keyword">this</span>.gameObject.name, functionName);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX</span></span><br><span class="line">            RegisterCallback(<span class="built_in">delegate</span> (IntPtr objName, IntPtr methodName, IntPtr msg) &#123;</span><br><span class="line">                <span class="built_in">string</span> objN = Marshal.PtrToStringAuto(objName);</span><br><span class="line">                <span class="built_in">string</span> methodN = Marshal.PtrToStringAuto(methodName);</span><br><span class="line">                <span class="built_in">string</span> message = Marshal.PtrToStringAuto(msg);</span><br><span class="line">                GameObject founded = GameObject.Find(objN);</span><br><span class="line">                <span class="keyword">if</span> (founded != <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    founded.SendMessage(methodN, message);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    Debug.LogError(<span class="string">&quot;&quot;</span> + objN + <span class="string">&quot; Not Found!&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>IntPtr是C#里面的指针，Marshal类用来在托管对象和非托管对象相互转换，像上面的PtrToStringAuto把一个非托管的C指针转换成C#的托管对象string。</p>
+<p>参考：<br><br><br><a href="http://skyhacker2.github.io/blog/?articles/U3D/2016-08-15-%E7%BB%99U3D%E7%BC%96%E5%86%99OSX%E6%8F%92%E4%BB%B6.md#">UnityPluginForMac</a></p>
+<p><a href="https://docs.unity3d.com/Manual/PluginInspector.html">Plugins</a></p>
+<p><a href="https://docs.unity3d.com/Manual/PluginsForIOS.html">PluginsForIOS</a></p>
+</font>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>UnityPlugin</tag>
       </tags>
   </entry>
   <entry>
@@ -2271,59 +2305,6 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </tags>
   </entry>
   <entry>
-    <title>UnityBase</title>
-    <url>/2021/10/14/Unity/UnityBase/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="1-Unity基础-ref-和-out"><a href="#1-Unity基础-ref-和-out" class="headerlink" title="1.Unity基础  ref 和 out"></a>1.Unity基础  ref 和 out</h4><p>影响外部传入，让其被修改</p>
-<p>ref: 变量先初始化</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueRef</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> a</span>)</span>&#123;</span><br><span class="line">  a = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> b = <span class="number">99</span>;</span><br><span class="line">ChagneValueRef(<span class="keyword">ref</span> b);</span><br><span class="line">Debug.Log(b);<span class="comment">//b = 9</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>out: 方法里初始化</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueOut</span>(<span class="params"><span class="keyword">out</span> <span class="built_in">int</span> <span class="keyword">value</span></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">value</span> = <span class="number">88</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> cc ;</span><br><span class="line">ChangeValueOut(<span class="keyword">out</span> cc);</span><br><span class="line">Debug.Log(cc);<span class="comment">//b = 88</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-冒泡排序优化"><a href="#2-冒泡排序优化" class="headerlink" title="2.冒泡排序优化"></a>2.冒泡排序优化</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span>[] arrs = &#123;<span class="number">7</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">bool</span> isShot = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> m =<span class="number">0</span>;m &lt; arrs.Length;m++)&#123;</span><br><span class="line">    isShot = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> n =<span class="number">0</span>;n&lt;arrs.Length<span class="number">-1</span>-m;n++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arrs[n]&gt; arrs[n+<span class="number">1</span>])&#123;</span><br><span class="line">            isShot = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">int</span> temp =  arrs[n];</span><br><span class="line">            arrs[n] = arrs[n+<span class="number">1</span>];</span><br><span class="line">            arrs[n+<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//正常情况 每次都交换，如果达到 没有进入交换 就不需要了</span></span><br><span class="line">    <span class="keyword">if</span>(!isShot)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</font>]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>UnityBase</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>UnityPluginForMac</title>
-    <url>/2019/06/09/Unity/UnityPluginForMac/</url>
-    <content><![CDATA[<font size="2.9">
-
-<p>因为需要做Window和 Mac 插件，且iOS和Android 用 UnitySendMessage，所以为了统一 pc端也用次回调。这里做下记录方便改进。</p>
-<p>如果你是OSX系统，那么Unity可以在编辑器里面直接使用OSX插件。OSX插件是bundle文件，放在Assets/Plugins目录下。</p>
-<p>跟iOS插件差不多，不过OSX没有UnitySendMessage函数，所以要用另外一种途经来实现OC -&gt; C#</p>
-<p>方法就是用C语言的函数指针。</p>
-<p>首先在头文件声明一个函数指针和声明两个函数</p>
-<span id="more"></span>
-
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数指针</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*UnitySendMessage)</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* objectName, <span class="keyword">const</span> <span class="keyword">char</span>* methodName, <span class="keyword">const</span> <span class="keyword">char</span>* msg)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span></span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !TARGET_OS_IPHONE</span></span><br><span class="line">    <span class="comment">//C#调用的，参数是一个回调函数。</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">RegisterCallback</span><span class="params">(UnitySendMessage callbackMethod)</span></span>;</span><br><span class="line">    <span class="comment">//调用回调函数的函数。</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">CallbackToUnity</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* msg)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接着在mm文件里面实现</p>
-<figure class="highlight mm"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !TARGET_OS_IPHONE</span></span><br><span class="line"><span class="keyword">static</span> UnitySendMessage lastCallback = <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">void</span> RegisterCallback(UnitySendMessage callbackMethod)</span><br><span class="line">&#123;</span><br><span class="line">    lastCallback = callbackMethod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> CallbackToUnity(<span class="keyword">const</span> <span class="keyword">char</span>* msg)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (lastCallback != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        lastCallback(sUnityGameObjectName, sUnityMethodName, msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">//mm 中声明改方法，cshap通过dllimport调用传递参数</span></span><br><span class="line">    <span class="keyword">void</span> Demo_nativeRegister(<span class="keyword">const</span> <span class="keyword">char</span>* unityGameObjectName, <span class="keyword">const</span> <span class="keyword">char</span>* unityMethodName);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>C#这边加上声明：</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">region</span> Mac PC 回调</span></span><br><span class="line">       <span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX</span></span><br><span class="line">               <span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">UnityCallbackDelegate</span>(<span class="params">IntPtr objName, IntPtr methodName, IntPtr msg</span>)</span>;</span><br><span class="line"></span><br><span class="line">               [<span class="meta">DllImport(GiantSDKUtil.GIANTSDK_PLATFORM)</span>]</span><br><span class="line">               <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">RegisterCallback</span>(<span class="params">[MarshalAs(UnmanagedType.FunctionPtr</span>)] UnityCallbackDelegate callback)</span>;</span><br><span class="line">       <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">       <span class="meta">#<span class="meta-keyword">endregion</span></span></span><br></pre></td></tr></table></figure>
-<p>然后就是设置回调函数，在Start函数或者自己需求的任意位置</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//统一注册和接收</span></span><br><span class="line">  Demo_nativeRegister(<span class="keyword">this</span>.gameObject.name, functionName);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX</span></span><br><span class="line">            RegisterCallback(<span class="built_in">delegate</span> (IntPtr objName, IntPtr methodName, IntPtr msg) &#123;</span><br><span class="line">                <span class="built_in">string</span> objN = Marshal.PtrToStringAuto(objName);</span><br><span class="line">                <span class="built_in">string</span> methodN = Marshal.PtrToStringAuto(methodName);</span><br><span class="line">                <span class="built_in">string</span> message = Marshal.PtrToStringAuto(msg);</span><br><span class="line">                GameObject founded = GameObject.Find(objN);</span><br><span class="line">                <span class="keyword">if</span> (founded != <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    founded.SendMessage(methodN, message);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    Debug.LogError(<span class="string">&quot;&quot;</span> + objN + <span class="string">&quot; Not Found!&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>IntPtr是C#里面的指针，Marshal类用来在托管对象和非托管对象相互转换，像上面的PtrToStringAuto把一个非托管的C指针转换成C#的托管对象string。</p>
-<p>参考：<br><br><br><a href="http://skyhacker2.github.io/blog/?articles/U3D/2016-08-15-%E7%BB%99U3D%E7%BC%96%E5%86%99OSX%E6%8F%92%E4%BB%B6.md#">UnityPluginForMac</a></p>
-<p><a href="https://docs.unity3d.com/Manual/PluginInspector.html">Plugins</a></p>
-<p><a href="https://docs.unity3d.com/Manual/PluginsForIOS.html">PluginsForIOS</a></p>
-</font>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>UnityPlugin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Steam接入记录</title>
     <url>/2021/01/26/Unity/steam/</url>
     <content><![CDATA[<h5 id="Steam-for-Mac"><a href="#Steam-for-Mac" class="headerlink" title="Steam for Mac"></a>Steam for Mac</h5><p>SDK <strong><a href="http://steamworks.github.io/installation">http://steamworks.github.io/installation</a></strong></p>
@@ -2337,77 +2318,6 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </categories>
       <tags>
         <tag>Steam</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ue4LoadImg</title>
-    <url>/2021/11/04/Unreal/ue4-ue4LoadImg/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="加载本地图片-到Image"><a href="#加载本地图片-到Image" class="headerlink" title="加载本地图片 到Image"></a>加载本地图片 到Image</h4><p>引擎版本：4.25<br>支持图片类型：png,jpg,bmp,ico,exr,icns<br>输出图片：UTexture2D</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Engine/Texture2D.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">UFUNCTION</span>(BlueprintCallable, Category = <span class="string">&quot;Image&quot;</span>)        </span><br><span class="line"><span class="function"><span class="keyword">static</span> UTexture2D* <span class="title">LoadTexture2D</span><span class="params">(<span class="keyword">const</span> FString path, <span class="keyword">bool</span>&amp; IsValid, int32&amp; OutWidth, int32&amp; OutHeight)</span></span>; </span><br><span class="line">.cpp <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot; ImageTest.h&quot;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;FileManagerGeneric.h&quot;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Runtime/ImageWrapper/Public/Interfaces/IImageWrapper.h&quot;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Runtime/ImageWrapper/Public/Interfaces/IImageWrapperModule.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="图片类型"><a href="#图片类型" class="headerlink" title="图片类型"></a>图片类型</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> IImageWrapperPtr <span class="title">GetImageWrapperByExtention</span><span class="params">(<span class="keyword">const</span> FString InImagePath)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    IImageWrapperModule&amp; ImageWrapperModule = FModuleManager::LoadModuleChecked&lt;IImageWrapperModule&gt;(<span class="built_in">FName</span>(<span class="string">&quot;ImageWrapper&quot;</span>));</span><br><span class="line">    <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.png&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::PNG);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.jpg&quot;</span>)||InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.jpeg&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::JPEG);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.bmp&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::BMP);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.ico&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::ICO);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;exr&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::EXR);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.icns&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::ICNS);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="根据路径加载贴图"><a href="#根据路径加载贴图" class="headerlink" title="根据路径加载贴图"></a>根据路径加载贴图</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">UTexture2D* <span class="title">ImageTest::LoadTexture2D</span><span class="params">(<span class="keyword">const</span> FString path,<span class="keyword">bool</span>&amp; IsValid,int32&amp; OutWidth,int32&amp; OutHeight)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    UTexture2D* Texture = <span class="literal">nullptr</span>;</span><br><span class="line">    IsValid = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (!FPlatformFileManager::<span class="built_in">Get</span>().<span class="built_in">GetPlatformFile</span>().<span class="built_in">FileExists</span>(*path))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    TArray&lt;uint8&gt; RawFileData;</span><br><span class="line">    <span class="keyword">if</span> (!FFileHelper::<span class="built_in">LoadFileToArray</span>(RawFileData,*path))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    IImageWrapperPtr ImageWrapper = <span class="built_in">GetImageWrapperByExtention</span>(path);</span><br><span class="line">    <span class="keyword">if</span> (ImageWrapper.<span class="built_in">IsValid</span>()&amp;&amp;ImageWrapper-&gt;<span class="built_in">SetCompressed</span>(RawFileData.<span class="built_in">GetData</span>(),RawFileData.<span class="built_in">Num</span>()))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">const</span> TArray&lt;uint8&gt;* UncompressedRGBA = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">if</span> (ImageWrapper-&gt;<span class="built_in">GetRaw</span>(ERGBFormat::</span><br><span class="line">        ,<span class="number">8</span>,UncompressedRGBA))</span><br><span class="line">        &#123;</span><br><span class="line">            Texture = UTexture2D::<span class="built_in">CreateTransient</span>(ImageWrapper-&gt;<span class="built_in">GetWidth</span>(), ImageWrapper-&gt;<span class="built_in">GetHeight</span>(), PF_R8G8B8A8);</span><br><span class="line">            <span class="keyword">if</span> (Texture != <span class="literal">nullptr</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                IsValid = <span class="literal">true</span>;</span><br><span class="line">                OutWidth = ImageWrapper-&gt;<span class="built_in">GetWidth</span>();</span><br><span class="line">                OutHeight = ImageWrapper-&gt;<span class="built_in">GetHeight</span>();</span><br><span class="line">                <span class="keyword">void</span>* TextureData = Texture-&gt;PlatformData-&gt;Mips[<span class="number">0</span>].BulkData.<span class="built_in">Lock</span>(LOCK_READ_WRITE);</span><br><span class="line">                FMemory::<span class="built_in">Memcpy</span>(TextureData, UncompressedRGBA-&gt;<span class="built_in">GetData</span>(), UncompressedRGBA-&gt;<span class="built_in">Num</span>());</span><br><span class="line">                Texture-&gt;PlatformData-&gt;Mips[<span class="number">0</span>].BulkData.<span class="built_in">Unlock</span>();</span><br><span class="line">                Texture-&gt;<span class="built_in">UpdateResource</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Texture;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="build-cs中添加ImageWrapper模块"><a href="#build-cs中添加ImageWrapper模块" class="headerlink" title=".build.cs中添加ImageWrapper模块"></a>.build.cs中添加ImageWrapper模块</h4><p>要解决JPG图片读入UE中出现的Red通道和Blue通道交叉出现的图片颜色错误问题，可将LoadTexture2D中ERGBFormat::RGBA和PF_R8G8B8A8替换为ERGBFormat::BGRA和PF_B8G8R8A8，以BGR存储颜色通道信息即可。</p>
-<h4 id="蓝图Image-设置值"><a href="#蓝图Image-设置值" class="headerlink" title="蓝图Image 设置值"></a>蓝图Image 设置值</h4><img src="/2021/11/04/Unreal/ue4-ue4LoadImg/1.png" class="">
-
-<h4 id="图片转base64"><a href="#图片转base64" class="headerlink" title="图片转base64"></a>图片转base64</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">UTexture2D* OutTex = <span class="literal">NULL</span>;</span><br><span class="line">	IImageWrapperModule&amp; imageWrapperModule = FModuleManager::LoadModuleChecked&lt;IImageWrapperModule&gt;(<span class="built_in">FName</span>(<span class="string">&quot;ImageWrapper&quot;</span>));</span><br><span class="line">	TSharedPtr&lt;IImageWrapper&gt; imageWrapper = imageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::PNG);</span><br><span class="line"></span><br><span class="line">	TArray&lt;uint8&gt; OutArray;</span><br><span class="line">	<span class="keyword">if</span> (FFileHelper::<span class="built_in">LoadFileToArray</span>(OutArray, *_TexPath))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (imageWrapper.<span class="built_in">IsValid</span>() &amp;&amp;</span><br><span class="line">			imageWrapper-&gt;<span class="built_in">SetCompressed</span>(OutArray.<span class="built_in">GetData</span>(), OutArray.<span class="built_in">Num</span>()))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//Dest = OutArray;</span></span><br><span class="line">			<span class="built_in">UE_LOG</span>(LogTemp, Warning, <span class="built_in">TEXT</span>(<span class="string">&quot;Load = %d&quot;</span>),OutArray.<span class="built_in">Num</span>());</span><br><span class="line">			<span class="keyword">const</span> TArray&lt;uint8&gt;* uncompressedRGBA = <span class="literal">NULL</span>;</span><br><span class="line">			<span class="keyword">if</span> (imageWrapper-&gt;<span class="built_in">GetRaw</span>(ERGBFormat::RGBA, <span class="number">8</span>, uncompressedRGBA))</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">const</span> TArray&lt;FColor&gt; uncompressedFColor = <span class="built_in">uint8ToFColor</span>(*uncompressedRGBA);</span><br><span class="line">				OutTex = <span class="built_in">TextureFromImage</span>(</span><br><span class="line">					imageWrapper-&gt;<span class="built_in">GetWidth</span>(),</span><br><span class="line">					imageWrapper-&gt;<span class="built_in">GetHeight</span>(),</span><br><span class="line">					uncompressedFColor,</span><br><span class="line">					<span class="literal">true</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">FString baseImgData = FBase64::<span class="built_in">Encode</span>(OutArray);</span><br></pre></td></tr></table></figure>
-
-</font>]]></content>
-      <categories>
-        <category>UE4</category>
-      </categories>
-      <tags>
-        <tag>UTexture2D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>uePlugin</title>
-    <url>/2021/11/30/Unreal/uePlugin/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="插件目录"><a href="#插件目录" class="headerlink" title="插件目录"></a>插件目录</h4><img src="/2021/11/30/Unreal/uePlugin/1.png" class="">
-
-<pre><code>Binaries：编译后的dll文件存放位置
-
-Content：游戏资源Asset文件存放位置
-
-Intermediate：编译的中间文件存放位置
-
-Resources：一般为图标的存放位置
-
-Source：代码存放位置
-
-.uplugin：插件模块配置文件，JSON格式
-
-.Build.cs：每个.Build.cs文件声明派生自ModuleRules基类的类，并设置属性控制器从构造函数进行编译的方式。由虚幻编译工具编译，并被构造来确定整体编译环境。使用C#语法。
-</code></pre>
-<h4 id="uplugin-描述文件"><a href="#uplugin-描述文件" class="headerlink" title=".uplugin 描述文件"></a>.uplugin 描述文件</h4><img src="/2021/11/30/Unreal/uePlugin/2.png" class="">
-
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="attr">&quot;FileVersion&quot;</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="attr">&quot;Version&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">&quot;VersionName&quot;</span>: <span class="string">&quot;1.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;FriendlyName&quot;</span>: <span class="string">&quot;PluginName&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Description&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Category&quot;</span>: <span class="string">&quot;Other&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;CreatedBy&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;CreatedByURL&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;DocsURL&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;MarketplaceURL&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;SupportURL&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;CanContainContent&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;IsBetaVersion&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;Installed&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;Modules&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;PluginName&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;Type&quot;</span>: <span class="string">&quot;Editor&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;LoadingPhase&quot;</span>: <span class="string">&quot;Default&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;Plugins&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;AssetManagerEditor&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;Enabled&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Category：类目名即在插件编辑器中所属的类目</p>
-<p>模块描述符Modules<br>必须有Name和Type字段。</p>
-<p>Name：是插件模块的唯一命名，将随着插件而加载。在运行时，插件的Binaries文件夹中需存在正确的插件二进制文件，并带有指定模块命名。</p>
-<p>Type：是模块的类型，决定了该插件适合于那种类型的应用程序加载。有效的几项是：Runtime、RuntimeNoCommandlet、Developer、Editor；其中Runtime 的模块在无论何时都会被加载，哪怕是在最终发行的游戏版本中也会。Developer 的模块只会在 Development 运行时或者编辑器版本中才会被加载，并不在在最终发行版本中加载。Editor 模块只会随着 Editor 的启动被加载。插件也可以使用几种不同类型的组合来达到所需要的目的。</p>
-<p>LoadingPhase：控制插件在引擎启动的何时被加载。</p>
-<p>WhitelistPlatforms：开放的平台<br>BlacklistPlatforms：关闭的平台</p>
-<h3 id="插件描述符Modules"><a href="#插件描述符Modules" class="headerlink" title="插件描述符Modules"></a>插件描述符Modules</h3><pre><code>此插件依赖于另一个插件，所以在插件描述符Modules中的LoadingPhase的属性，如果和另一个插件是依赖关系，则应该编译此插件之前就编译了依赖的那个插件。
-</code></pre>
-<p>插件编译配置文件 .Build.cs 描述模块编译方法</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">using</span> UnrealBuildTool;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PluginName</span> : <span class="title">ModuleRules</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PluginName</span>(<span class="params">ReadOnlyTargetRules Target</span>) : <span class="title">base</span>(<span class="params">Target</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;</span><br><span class="line">        </span><br><span class="line">        PublicIncludePaths.AddRange(</span><br><span class="line">            <span class="keyword">new</span> <span class="built_in">string</span>[] &#123;</span><br><span class="line">                <span class="comment">// ... add public include paths required here ...</span></span><br><span class="line">            &#125;</span><br><span class="line">            );</span><br><span class="line">        PrivateIncludePaths.AddRange(</span><br><span class="line">            <span class="keyword">new</span> <span class="built_in">string</span>[] &#123;</span><br><span class="line">                <span class="comment">// ... add other private include paths required here ...</span></span><br><span class="line">            &#125;</span><br><span class="line">            );</span><br><span class="line">        PublicDependencyModuleNames.AddRange(</span><br><span class="line">            <span class="keyword">new</span> <span class="built_in">string</span>[]</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&quot;Core&quot;</span>,</span><br><span class="line">                <span class="comment">// ... add other public dependencies that you statically link with here ...</span></span><br><span class="line">            &#125;</span><br><span class="line">            );</span><br><span class="line">        PrivateDependencyModuleNames.AddRange(</span><br><span class="line">            <span class="keyword">new</span> <span class="built_in">string</span>[]</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&quot;CoreUObject&quot;</span>,</span><br><span class="line">                <span class="string">&quot;Engine&quot;</span>,</span><br><span class="line">                <span class="string">&quot;Slate&quot;</span>,</span><br><span class="line">                <span class="string">&quot;SlateCore&quot;</span>,</span><br><span class="line">                <span class="comment">// ... add private dependencies that you statically link with here ...  </span></span><br><span class="line">            &#125;</span><br><span class="line">            );</span><br><span class="line">        DynamicallyLoadedModuleNames.AddRange(</span><br><span class="line">            <span class="keyword">new</span> <span class="built_in">string</span>[]</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// ... add any modules that your module loads dynamically here ...</span></span><br><span class="line">            &#125;</span><br><span class="line">            );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="插件头文件-h"><a href="#插件头文件-h" class="headerlink" title="插件头文件 .h"></a>插件头文件 .h</h2><p>插件的头文件中，一般只有一个类，而且以F开头，Module结尾。比如：FPluginNameModule。<br>还有两个函数</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">StartupModule</span><span class="params">()</span> <span class="keyword">override</span></span>;<span class="comment">//插件加载</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">ShutdownModule</span><span class="params">()</span> <span class="keyword">override</span></span>;<span class="comment">//插件卸载</span></span><br></pre></td></tr></table></figure>
-
-<p>Note:</p>
-<pre><code>当创建“编辑器工具栏按钮”的插件，编辑代码结束后，需重新打开编辑器才可生效
-</code></pre>
-</font> ]]></content>
-      <categories>
-        <category>UE4</category>
-      </categories>
-      <tags>
-        <tag>Plugins</tag>
       </tags>
   </entry>
   <entry>
@@ -2490,6 +2400,90 @@ Source：代码存放位置
       </tags>
   </entry>
   <entry>
+    <title>ue4LoadImg</title>
+    <url>/2021/11/04/Unreal/ue4-ue4LoadImg/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="加载本地图片-到Image"><a href="#加载本地图片-到Image" class="headerlink" title="加载本地图片 到Image"></a>加载本地图片 到Image</h4><p>引擎版本：4.25<br>支持图片类型：png,jpg,bmp,ico,exr,icns<br>输出图片：UTexture2D</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Engine/Texture2D.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">UFUNCTION</span>(BlueprintCallable, Category = <span class="string">&quot;Image&quot;</span>)        </span><br><span class="line"><span class="function"><span class="keyword">static</span> UTexture2D* <span class="title">LoadTexture2D</span><span class="params">(<span class="keyword">const</span> FString path, <span class="keyword">bool</span>&amp; IsValid, int32&amp; OutWidth, int32&amp; OutHeight)</span></span>; </span><br><span class="line">.cpp <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot; ImageTest.h&quot;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;FileManagerGeneric.h&quot;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Runtime/ImageWrapper/Public/Interfaces/IImageWrapper.h&quot;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;Runtime/ImageWrapper/Public/Interfaces/IImageWrapperModule.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="图片类型"><a href="#图片类型" class="headerlink" title="图片类型"></a>图片类型</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> IImageWrapperPtr <span class="title">GetImageWrapperByExtention</span><span class="params">(<span class="keyword">const</span> FString InImagePath)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    IImageWrapperModule&amp; ImageWrapperModule = FModuleManager::LoadModuleChecked&lt;IImageWrapperModule&gt;(<span class="built_in">FName</span>(<span class="string">&quot;ImageWrapper&quot;</span>));</span><br><span class="line">    <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.png&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::PNG);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.jpg&quot;</span>)||InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.jpeg&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::JPEG);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.bmp&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::BMP);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.ico&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::ICO);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;exr&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::EXR);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (InImagePath.<span class="built_in">EndsWith</span>(<span class="string">&quot;.icns&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> ImageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::ICNS);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="根据路径加载贴图"><a href="#根据路径加载贴图" class="headerlink" title="根据路径加载贴图"></a>根据路径加载贴图</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">UTexture2D* <span class="title">ImageTest::LoadTexture2D</span><span class="params">(<span class="keyword">const</span> FString path,<span class="keyword">bool</span>&amp; IsValid,int32&amp; OutWidth,int32&amp; OutHeight)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    UTexture2D* Texture = <span class="literal">nullptr</span>;</span><br><span class="line">    IsValid = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (!FPlatformFileManager::<span class="built_in">Get</span>().<span class="built_in">GetPlatformFile</span>().<span class="built_in">FileExists</span>(*path))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    TArray&lt;uint8&gt; RawFileData;</span><br><span class="line">    <span class="keyword">if</span> (!FFileHelper::<span class="built_in">LoadFileToArray</span>(RawFileData,*path))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    IImageWrapperPtr ImageWrapper = <span class="built_in">GetImageWrapperByExtention</span>(path);</span><br><span class="line">    <span class="keyword">if</span> (ImageWrapper.<span class="built_in">IsValid</span>()&amp;&amp;ImageWrapper-&gt;<span class="built_in">SetCompressed</span>(RawFileData.<span class="built_in">GetData</span>(),RawFileData.<span class="built_in">Num</span>()))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">const</span> TArray&lt;uint8&gt;* UncompressedRGBA = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">if</span> (ImageWrapper-&gt;<span class="built_in">GetRaw</span>(ERGBFormat::</span><br><span class="line">        ,<span class="number">8</span>,UncompressedRGBA))</span><br><span class="line">        &#123;</span><br><span class="line">            Texture = UTexture2D::<span class="built_in">CreateTransient</span>(ImageWrapper-&gt;<span class="built_in">GetWidth</span>(), ImageWrapper-&gt;<span class="built_in">GetHeight</span>(), PF_R8G8B8A8);</span><br><span class="line">            <span class="keyword">if</span> (Texture != <span class="literal">nullptr</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                IsValid = <span class="literal">true</span>;</span><br><span class="line">                OutWidth = ImageWrapper-&gt;<span class="built_in">GetWidth</span>();</span><br><span class="line">                OutHeight = ImageWrapper-&gt;<span class="built_in">GetHeight</span>();</span><br><span class="line">                <span class="keyword">void</span>* TextureData = Texture-&gt;PlatformData-&gt;Mips[<span class="number">0</span>].BulkData.<span class="built_in">Lock</span>(LOCK_READ_WRITE);</span><br><span class="line">                FMemory::<span class="built_in">Memcpy</span>(TextureData, UncompressedRGBA-&gt;<span class="built_in">GetData</span>(), UncompressedRGBA-&gt;<span class="built_in">Num</span>());</span><br><span class="line">                Texture-&gt;PlatformData-&gt;Mips[<span class="number">0</span>].BulkData.<span class="built_in">Unlock</span>();</span><br><span class="line">                Texture-&gt;<span class="built_in">UpdateResource</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Texture;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="build-cs中添加ImageWrapper模块"><a href="#build-cs中添加ImageWrapper模块" class="headerlink" title=".build.cs中添加ImageWrapper模块"></a>.build.cs中添加ImageWrapper模块</h4><p>要解决JPG图片读入UE中出现的Red通道和Blue通道交叉出现的图片颜色错误问题，可将LoadTexture2D中ERGBFormat::RGBA和PF_R8G8B8A8替换为ERGBFormat::BGRA和PF_B8G8R8A8，以BGR存储颜色通道信息即可。</p>
+<h4 id="蓝图Image-设置值"><a href="#蓝图Image-设置值" class="headerlink" title="蓝图Image 设置值"></a>蓝图Image 设置值</h4><img src="/2021/11/04/Unreal/ue4-ue4LoadImg/1.png" class="">
+
+<h4 id="图片转base64"><a href="#图片转base64" class="headerlink" title="图片转base64"></a>图片转base64</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">UTexture2D* OutTex = <span class="literal">NULL</span>;</span><br><span class="line">	IImageWrapperModule&amp; imageWrapperModule = FModuleManager::LoadModuleChecked&lt;IImageWrapperModule&gt;(<span class="built_in">FName</span>(<span class="string">&quot;ImageWrapper&quot;</span>));</span><br><span class="line">	TSharedPtr&lt;IImageWrapper&gt; imageWrapper = imageWrapperModule.<span class="built_in">CreateImageWrapper</span>(EImageFormat::PNG);</span><br><span class="line"></span><br><span class="line">	TArray&lt;uint8&gt; OutArray;</span><br><span class="line">	<span class="keyword">if</span> (FFileHelper::<span class="built_in">LoadFileToArray</span>(OutArray, *_TexPath))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (imageWrapper.<span class="built_in">IsValid</span>() &amp;&amp;</span><br><span class="line">			imageWrapper-&gt;<span class="built_in">SetCompressed</span>(OutArray.<span class="built_in">GetData</span>(), OutArray.<span class="built_in">Num</span>()))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//Dest = OutArray;</span></span><br><span class="line">			<span class="built_in">UE_LOG</span>(LogTemp, Warning, <span class="built_in">TEXT</span>(<span class="string">&quot;Load = %d&quot;</span>),OutArray.<span class="built_in">Num</span>());</span><br><span class="line">			<span class="keyword">const</span> TArray&lt;uint8&gt;* uncompressedRGBA = <span class="literal">NULL</span>;</span><br><span class="line">			<span class="keyword">if</span> (imageWrapper-&gt;<span class="built_in">GetRaw</span>(ERGBFormat::RGBA, <span class="number">8</span>, uncompressedRGBA))</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">const</span> TArray&lt;FColor&gt; uncompressedFColor = <span class="built_in">uint8ToFColor</span>(*uncompressedRGBA);</span><br><span class="line">				OutTex = <span class="built_in">TextureFromImage</span>(</span><br><span class="line">					imageWrapper-&gt;<span class="built_in">GetWidth</span>(),</span><br><span class="line">					imageWrapper-&gt;<span class="built_in">GetHeight</span>(),</span><br><span class="line">					uncompressedFColor,</span><br><span class="line">					<span class="literal">true</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">FString baseImgData = FBase64::<span class="built_in">Encode</span>(OutArray);</span><br></pre></td></tr></table></figure>
+
+</font>]]></content>
+      <categories>
+        <category>UE4</category>
+      </categories>
+      <tags>
+        <tag>UTexture2D</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UEBase</title>
+    <url>/2021/12/12/Unreal/ueBase/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h2 id="Blueprint（蓝图）-Node"><a href="#Blueprint（蓝图）-Node" class="headerlink" title="Blueprint（蓝图） Node"></a>Blueprint（蓝图） Node</h2><h3 id="Event类型节点"><a href="#Event类型节点" class="headerlink" title="Event类型节点"></a>Event类型节点</h3><h5 id="EventBeginPlay-节点"><a href="#EventBeginPlay-节点" class="headerlink" title="EventBeginPlay 节点"></a>EventBeginPlay 节点</h5><h5 id="OnActorBeginOverlap-节点"><a href="#OnActorBeginOverlap-节点" class="headerlink" title="OnActorBeginOverlap 节点"></a>OnActorBeginOverlap 节点</h5><h5 id="OnComponentBeginOverlap-节点"><a href="#OnComponentBeginOverlap-节点" class="headerlink" title="OnComponentBeginOverlap 节点"></a>OnComponentBeginOverlap 节点</h5><h5 id="键盘响应事件-节点"><a href="#键盘响应事件-节点" class="headerlink" title="键盘响应事件 节点"></a>键盘响应事件 节点</h5><font size="2.9">]]></content>
+      <categories>
+        <category>UE4</category>
+      </categories>
+      <tags>
+        <tag>Base</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>uePlugin</title>
+    <url>/2021/11/30/Unreal/uePlugin/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="插件目录"><a href="#插件目录" class="headerlink" title="插件目录"></a>插件目录</h4><img src="/2021/11/30/Unreal/uePlugin/1.png" class="">
+
+<pre><code>Binaries：编译后的dll文件存放位置
+
+Content：游戏资源Asset文件存放位置
+
+Intermediate：编译的中间文件存放位置
+
+Resources：一般为图标的存放位置
+
+Source：代码存放位置
+
+.uplugin：插件模块配置文件，JSON格式
+
+.Build.cs：每个.Build.cs文件声明派生自ModuleRules基类的类，并设置属性控制器从构造函数进行编译的方式。由虚幻编译工具编译，并被构造来确定整体编译环境。使用C#语法。
+</code></pre>
+<h4 id="uplugin-描述文件"><a href="#uplugin-描述文件" class="headerlink" title=".uplugin 描述文件"></a>.uplugin 描述文件</h4><img src="/2021/11/30/Unreal/uePlugin/2.png" class="">
+
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="attr">&quot;FileVersion&quot;</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="attr">&quot;Version&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">&quot;VersionName&quot;</span>: <span class="string">&quot;1.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;FriendlyName&quot;</span>: <span class="string">&quot;PluginName&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Description&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Category&quot;</span>: <span class="string">&quot;Other&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;CreatedBy&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;CreatedByURL&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;DocsURL&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;MarketplaceURL&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;SupportURL&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;CanContainContent&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;IsBetaVersion&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;Installed&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;Modules&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;PluginName&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;Type&quot;</span>: <span class="string">&quot;Editor&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;LoadingPhase&quot;</span>: <span class="string">&quot;Default&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;Plugins&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;AssetManagerEditor&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;Enabled&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Category：类目名即在插件编辑器中所属的类目</p>
+<p>模块描述符Modules<br>必须有Name和Type字段。</p>
+<p>Name：是插件模块的唯一命名，将随着插件而加载。在运行时，插件的Binaries文件夹中需存在正确的插件二进制文件，并带有指定模块命名。</p>
+<p>Type：是模块的类型，决定了该插件适合于那种类型的应用程序加载。有效的几项是：Runtime、RuntimeNoCommandlet、Developer、Editor；其中Runtime 的模块在无论何时都会被加载，哪怕是在最终发行的游戏版本中也会。Developer 的模块只会在 Development 运行时或者编辑器版本中才会被加载，并不在在最终发行版本中加载。Editor 模块只会随着 Editor 的启动被加载。插件也可以使用几种不同类型的组合来达到所需要的目的。</p>
+<p>LoadingPhase：控制插件在引擎启动的何时被加载。</p>
+<p>WhitelistPlatforms：开放的平台<br>BlacklistPlatforms：关闭的平台</p>
+<h3 id="插件描述符Modules"><a href="#插件描述符Modules" class="headerlink" title="插件描述符Modules"></a>插件描述符Modules</h3><pre><code>此插件依赖于另一个插件，所以在插件描述符Modules中的LoadingPhase的属性，如果和另一个插件是依赖关系，则应该编译此插件之前就编译了依赖的那个插件。
+</code></pre>
+<p>插件编译配置文件 .Build.cs 描述模块编译方法</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">using</span> UnrealBuildTool;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PluginName</span> : <span class="title">ModuleRules</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PluginName</span>(<span class="params">ReadOnlyTargetRules Target</span>) : <span class="title">base</span>(<span class="params">Target</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;</span><br><span class="line">        </span><br><span class="line">        PublicIncludePaths.AddRange(</span><br><span class="line">            <span class="keyword">new</span> <span class="built_in">string</span>[] &#123;</span><br><span class="line">                <span class="comment">// ... add public include paths required here ...</span></span><br><span class="line">            &#125;</span><br><span class="line">            );</span><br><span class="line">        PrivateIncludePaths.AddRange(</span><br><span class="line">            <span class="keyword">new</span> <span class="built_in">string</span>[] &#123;</span><br><span class="line">                <span class="comment">// ... add other private include paths required here ...</span></span><br><span class="line">            &#125;</span><br><span class="line">            );</span><br><span class="line">        PublicDependencyModuleNames.AddRange(</span><br><span class="line">            <span class="keyword">new</span> <span class="built_in">string</span>[]</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&quot;Core&quot;</span>,</span><br><span class="line">                <span class="comment">// ... add other public dependencies that you statically link with here ...</span></span><br><span class="line">            &#125;</span><br><span class="line">            );</span><br><span class="line">        PrivateDependencyModuleNames.AddRange(</span><br><span class="line">            <span class="keyword">new</span> <span class="built_in">string</span>[]</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&quot;CoreUObject&quot;</span>,</span><br><span class="line">                <span class="string">&quot;Engine&quot;</span>,</span><br><span class="line">                <span class="string">&quot;Slate&quot;</span>,</span><br><span class="line">                <span class="string">&quot;SlateCore&quot;</span>,</span><br><span class="line">                <span class="comment">// ... add private dependencies that you statically link with here ...  </span></span><br><span class="line">            &#125;</span><br><span class="line">            );</span><br><span class="line">        DynamicallyLoadedModuleNames.AddRange(</span><br><span class="line">            <span class="keyword">new</span> <span class="built_in">string</span>[]</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// ... add any modules that your module loads dynamically here ...</span></span><br><span class="line">            &#125;</span><br><span class="line">            );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="插件头文件-h"><a href="#插件头文件-h" class="headerlink" title="插件头文件 .h"></a>插件头文件 .h</h2><p>插件的头文件中，一般只有一个类，而且以F开头，Module结尾。比如：FPluginNameModule。<br>还有两个函数</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">StartupModule</span><span class="params">()</span> <span class="keyword">override</span></span>;<span class="comment">//插件加载</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">ShutdownModule</span><span class="params">()</span> <span class="keyword">override</span></span>;<span class="comment">//插件卸载</span></span><br></pre></td></tr></table></figure>
+
+<p>Note:</p>
+<pre><code>当创建“编辑器工具栏按钮”的插件，编辑代码结束后，需重新打开编辑器才可生效
+</code></pre>
+</font> ]]></content>
+      <categories>
+        <category>UE4</category>
+      </categories>
+      <tags>
+        <tag>Plugins</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>unrealPackage</title>
     <url>/2021/11/10/Unreal/unrealPackage/</url>
     <content><![CDATA[<font size="2.9">
@@ -2525,19 +2519,6 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       </tags>
   </entry>
   <entry>
-    <title>UEBase</title>
-    <url>/2021/12/12/Unreal/ueBase/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h2 id="Blueprint（蓝图）-Node"><a href="#Blueprint（蓝图）-Node" class="headerlink" title="Blueprint（蓝图） Node"></a>Blueprint（蓝图） Node</h2><h3 id="Event类型节点"><a href="#Event类型节点" class="headerlink" title="Event类型节点"></a>Event类型节点</h3><h5 id="EventBeginPlay-节点"><a href="#EventBeginPlay-节点" class="headerlink" title="EventBeginPlay 节点"></a>EventBeginPlay 节点</h5><h5 id="OnActorBeginOverlap-节点"><a href="#OnActorBeginOverlap-节点" class="headerlink" title="OnActorBeginOverlap 节点"></a>OnActorBeginOverlap 节点</h5><h5 id="OnComponentBeginOverlap-节点"><a href="#OnComponentBeginOverlap-节点" class="headerlink" title="OnComponentBeginOverlap 节点"></a>OnComponentBeginOverlap 节点</h5><h5 id="键盘响应事件-节点"><a href="#键盘响应事件-节点" class="headerlink" title="键盘响应事件 节点"></a>键盘响应事件 节点</h5><font size="2.9">]]></content>
-      <categories>
-        <category>UE4</category>
-      </categories>
-      <tags>
-        <tag>Base</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>openssl</title>
     <url>/2022/01/10/Android/AndroidJNI/openssl/</url>
     <content><![CDATA[<font size="2.9">
@@ -2567,156 +2548,6 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       </categories>
       <tags>
         <tag>openssl,c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>视频解码基础</title>
-    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A300-%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%B0%81%E8%A3%85%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h3 id="视频解码基础01-封裝格式"><a href="#视频解码基础01-封裝格式" class="headerlink" title="视频解码基础01-封裝格式"></a>视频解码基础01-封裝格式</h3><h4 id="二、视频文件封装格式"><a href="#二、视频文件封装格式" class="headerlink" title="二、视频文件封装格式"></a>二、视频文件封装格式</h4><p>封装格式（也叫容器），就是将已经编码压缩好的视频轨和音频轨按照一定的格式放到一个文件中，也就是说仅仅是一个外壳，或者大家把它当成一个放视频轨和音频轨的文件夹也可以。说得通俗点，视频轨相当于饭，而音频轨相当于菜，封装格式就是一个碗，或者一个锅，用来盛放饭菜的容器。 下面是几种常用的 <strong>视频文件后缀类型</strong> 与其相对应的 <strong>封装格式</strong>。</p>
-<table>
-<thead>
-<tr>
-<th>视频文件格式</th>
-<th>视频封装格式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>.avi</strong></td>
-<td>AVI（Audio Video Interleaved）</td>
-</tr>
-<tr>
-<td><strong>.wmv、.asf</strong></td>
-<td>WMV（Windows Media Video）</td>
-</tr>
-<tr>
-<td><strong>.mpg、.mpeg、.vob、.dat、.3gp、.mp4</strong></td>
-<td>MPEG（Moving Picture Experts Group）</td>
-</tr>
-<tr>
-<td><strong>.mkv</strong></td>
-<td>Matroska</td>
-</tr>
-<tr>
-<td><strong>.rm、.rmvb</strong></td>
-<td>Real Video</td>
-</tr>
-<tr>
-<td><strong>.mov</strong></td>
-<td>QuickTime File Format</td>
-</tr>
-<tr>
-<td><strong>.flv</strong></td>
-<td>Flash Video</td>
-</tr>
-</tbody></table>
-<h4 id="三、-音视频编码方式简介"><a href="#三、-音视频编码方式简介" class="headerlink" title="三、 音视频编码方式简介"></a>三、 音视频编码方式简介</h4><h5 id="1、视频编码方式"><a href="#1、视频编码方式" class="headerlink" title="1、视频编码方式"></a>1、视频编码方式</h5><ul>
-<li><strong>视频编码的作用：</strong> 将视频像素数据（<strong>RGB，YUV</strong> 等）压缩成视频码流，从而降低视频的数据量。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th><strong>HEVC（H.265）</strong></th>
-<th><strong>MPEG/ITU-T</strong></th>
-<th>2013</th>
-<th>研发中</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>名称</td>
-<td>推出机构</td>
-<td>推出时间</td>
-<td>目前使用领域</td>
-</tr>
-<tr>
-<td><strong>H.264</strong></td>
-<td><strong>MPEG/ITU-T</strong></td>
-<td>2003</td>
-<td>各个领域</td>
-</tr>
-<tr>
-<td><strong>MPEG4</strong></td>
-<td><strong>MPEG</strong></td>
-<td>2001</td>
-<td>不温不火</td>
-</tr>
-<tr>
-<td><strong>MPEG2</strong></td>
-<td><strong>MPEG</strong></td>
-<td>1994</td>
-<td>数字电视</td>
-</tr>
-<tr>
-<td><strong>VP9</strong></td>
-<td>Google</td>
-<td>2013</td>
-<td>研发中</td>
-</tr>
-<tr>
-<td><strong>VP8</strong></td>
-<td>Google</td>
-<td>2008</td>
-<td>不普及</td>
-</tr>
-<tr>
-<td><strong>VC-1</strong></td>
-<td>Microsoft Inc.</td>
-<td>2006</td>
-<td>微软平台</td>
-</tr>
-</tbody></table>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h4 id="四-音频编码方式"><a href="#四-音频编码方式" class="headerlink" title="四, 音频编码方式"></a>四, 音频编码方式</h4><p><strong>音频编码的作用：</strong> 将音频采样数据（<strong>PCM</strong> 等）压缩成音频码流，从而降低音频的数据量。 常用的音频编码方式有以下几种：</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>推出机构</th>
-<th>推出时间</th>
-<th>目前使用领域</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>AAC</strong></td>
-<td><strong>MPEG</strong></td>
-<td>1997</td>
-<td>各个领域（新）</td>
-</tr>
-<tr>
-<td><strong>MP3</strong></td>
-<td><strong>MPEG</strong></td>
-<td>1993</td>
-<td>各个领域（旧）</td>
-</tr>
-<tr>
-<td><strong>WMV</strong></td>
-<td><strong>Microsoft Inc.</strong></td>
-<td>1999</td>
-<td>微软平台</td>
-</tr>
-<tr>
-<td><strong>AC-3</strong></td>
-<td><strong>Dolby Inc.</strong></td>
-<td>1992</td>
-<td>电影</td>
-</tr>
-</tbody></table>
-<h5 id="1-MP3"><a href="#1-MP3" class="headerlink" title="1  MP3"></a>1  MP3</h5><p><strong>MP3</strong>，英文全称 <strong>MPEG-1 or MPEG-2 Audio Layer III</strong>，是曾经非常流行的一种数字音频编码和有损压缩格式，它被设计来大幅降低音频数据量。它是在 <strong>1991</strong> 年，由位于德国埃尔朗根的研究组织 <strong>Fraunhofer-Gesellschaft</strong> 的一组工程师发明和标准化的。<strong>MP3</strong> 的普及，曾对音乐产业造成极大的冲击与影响。</p>
-<h5 id="2-AAC"><a href="#2-AAC" class="headerlink" title="2 AAC"></a>2 AAC</h5><p><strong>AAC</strong>，英文全称 <strong>Advanced Audio Coding</strong>，是由 <strong>Fraunhofer IIS</strong>、杜比实验室、<strong>AT&amp;T</strong>、<strong>Sony</strong> 等公司共同开发，在 <strong>1997</strong> 年推出的基于 <strong>MPEG-2</strong> 的音频编码技术。<strong>2000</strong> 年，<strong>MPEG-4</strong> 标准出现后，<strong>AAC</strong> 重新集成了其特性，加入了 <strong>SBR</strong> 技术和 <strong>PS</strong> 技术，为了区别于传统的 <strong>MPEG-2 AAC</strong> 又称为 <strong>MPEG-4 AAC</strong>。 <strong>AAC</strong> 比 <strong>MP3</strong> 有更高的压缩比，同样大小的音频文件，<strong>AAC</strong> 的音质更高。</p>
-<h5 id="3-WMA"><a href="#3-WMA" class="headerlink" title="3 WMA"></a>3 WMA</h5><p><strong>WMA</strong>，英文全称 <strong>Windows Media Audio</strong>，由微软公司开发的一种数字音频压缩格式，本身包括有损和无损压缩格式。</p>
-<p>​        我们播放的视频文件一般都是用一种<strong>封装格式</strong>封装起来的，封装格式的作用是什么呢？一般视频文件里不光有视频，还有音频，封装格式的作用就是把视频和音频打包起来。 所以我们先要<strong>解封装格式</strong>，看有哪些视频流和哪些音频流，此时的音频流和视频流都还是<strong>压缩数据</strong>，不能直接用于显示的，这就需要<strong>解码</strong>。下面是播放一个视频文件时的流程图。</p>
-<p><img src="/images/4.webp" alt="1"></p>
-<p>FFmpeg  视频文件  是一个容器  (视频流（H264）  音频流(aac))</p>
-</font>
-
-
-
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>H264</tag>
       </tags>
   </entry>
   <entry>
@@ -2943,6 +2774,156 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
 <p>这样表示9中预测模式只需要8个值 (0 to 7)</p>
 <p><img src="/images/20.png" alt="img"></p>
 </font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>H264</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>视频解码基础</title>
+    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A300-%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%B0%81%E8%A3%85%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h3 id="视频解码基础01-封裝格式"><a href="#视频解码基础01-封裝格式" class="headerlink" title="视频解码基础01-封裝格式"></a>视频解码基础01-封裝格式</h3><h4 id="二、视频文件封装格式"><a href="#二、视频文件封装格式" class="headerlink" title="二、视频文件封装格式"></a>二、视频文件封装格式</h4><p>封装格式（也叫容器），就是将已经编码压缩好的视频轨和音频轨按照一定的格式放到一个文件中，也就是说仅仅是一个外壳，或者大家把它当成一个放视频轨和音频轨的文件夹也可以。说得通俗点，视频轨相当于饭，而音频轨相当于菜，封装格式就是一个碗，或者一个锅，用来盛放饭菜的容器。 下面是几种常用的 <strong>视频文件后缀类型</strong> 与其相对应的 <strong>封装格式</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>视频文件格式</th>
+<th>视频封装格式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>.avi</strong></td>
+<td>AVI（Audio Video Interleaved）</td>
+</tr>
+<tr>
+<td><strong>.wmv、.asf</strong></td>
+<td>WMV（Windows Media Video）</td>
+</tr>
+<tr>
+<td><strong>.mpg、.mpeg、.vob、.dat、.3gp、.mp4</strong></td>
+<td>MPEG（Moving Picture Experts Group）</td>
+</tr>
+<tr>
+<td><strong>.mkv</strong></td>
+<td>Matroska</td>
+</tr>
+<tr>
+<td><strong>.rm、.rmvb</strong></td>
+<td>Real Video</td>
+</tr>
+<tr>
+<td><strong>.mov</strong></td>
+<td>QuickTime File Format</td>
+</tr>
+<tr>
+<td><strong>.flv</strong></td>
+<td>Flash Video</td>
+</tr>
+</tbody></table>
+<h4 id="三、-音视频编码方式简介"><a href="#三、-音视频编码方式简介" class="headerlink" title="三、 音视频编码方式简介"></a>三、 音视频编码方式简介</h4><h5 id="1、视频编码方式"><a href="#1、视频编码方式" class="headerlink" title="1、视频编码方式"></a>1、视频编码方式</h5><ul>
+<li><strong>视频编码的作用：</strong> 将视频像素数据（<strong>RGB，YUV</strong> 等）压缩成视频码流，从而降低视频的数据量。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>HEVC（H.265）</strong></th>
+<th><strong>MPEG/ITU-T</strong></th>
+<th>2013</th>
+<th>研发中</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>名称</td>
+<td>推出机构</td>
+<td>推出时间</td>
+<td>目前使用领域</td>
+</tr>
+<tr>
+<td><strong>H.264</strong></td>
+<td><strong>MPEG/ITU-T</strong></td>
+<td>2003</td>
+<td>各个领域</td>
+</tr>
+<tr>
+<td><strong>MPEG4</strong></td>
+<td><strong>MPEG</strong></td>
+<td>2001</td>
+<td>不温不火</td>
+</tr>
+<tr>
+<td><strong>MPEG2</strong></td>
+<td><strong>MPEG</strong></td>
+<td>1994</td>
+<td>数字电视</td>
+</tr>
+<tr>
+<td><strong>VP9</strong></td>
+<td>Google</td>
+<td>2013</td>
+<td>研发中</td>
+</tr>
+<tr>
+<td><strong>VP8</strong></td>
+<td>Google</td>
+<td>2008</td>
+<td>不普及</td>
+</tr>
+<tr>
+<td><strong>VC-1</strong></td>
+<td>Microsoft Inc.</td>
+<td>2006</td>
+<td>微软平台</td>
+</tr>
+</tbody></table>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h4 id="四-音频编码方式"><a href="#四-音频编码方式" class="headerlink" title="四, 音频编码方式"></a>四, 音频编码方式</h4><p><strong>音频编码的作用：</strong> 将音频采样数据（<strong>PCM</strong> 等）压缩成音频码流，从而降低音频的数据量。 常用的音频编码方式有以下几种：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>推出机构</th>
+<th>推出时间</th>
+<th>目前使用领域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>AAC</strong></td>
+<td><strong>MPEG</strong></td>
+<td>1997</td>
+<td>各个领域（新）</td>
+</tr>
+<tr>
+<td><strong>MP3</strong></td>
+<td><strong>MPEG</strong></td>
+<td>1993</td>
+<td>各个领域（旧）</td>
+</tr>
+<tr>
+<td><strong>WMV</strong></td>
+<td><strong>Microsoft Inc.</strong></td>
+<td>1999</td>
+<td>微软平台</td>
+</tr>
+<tr>
+<td><strong>AC-3</strong></td>
+<td><strong>Dolby Inc.</strong></td>
+<td>1992</td>
+<td>电影</td>
+</tr>
+</tbody></table>
+<h5 id="1-MP3"><a href="#1-MP3" class="headerlink" title="1  MP3"></a>1  MP3</h5><p><strong>MP3</strong>，英文全称 <strong>MPEG-1 or MPEG-2 Audio Layer III</strong>，是曾经非常流行的一种数字音频编码和有损压缩格式，它被设计来大幅降低音频数据量。它是在 <strong>1991</strong> 年，由位于德国埃尔朗根的研究组织 <strong>Fraunhofer-Gesellschaft</strong> 的一组工程师发明和标准化的。<strong>MP3</strong> 的普及，曾对音乐产业造成极大的冲击与影响。</p>
+<h5 id="2-AAC"><a href="#2-AAC" class="headerlink" title="2 AAC"></a>2 AAC</h5><p><strong>AAC</strong>，英文全称 <strong>Advanced Audio Coding</strong>，是由 <strong>Fraunhofer IIS</strong>、杜比实验室、<strong>AT&amp;T</strong>、<strong>Sony</strong> 等公司共同开发，在 <strong>1997</strong> 年推出的基于 <strong>MPEG-2</strong> 的音频编码技术。<strong>2000</strong> 年，<strong>MPEG-4</strong> 标准出现后，<strong>AAC</strong> 重新集成了其特性，加入了 <strong>SBR</strong> 技术和 <strong>PS</strong> 技术，为了区别于传统的 <strong>MPEG-2 AAC</strong> 又称为 <strong>MPEG-4 AAC</strong>。 <strong>AAC</strong> 比 <strong>MP3</strong> 有更高的压缩比，同样大小的音频文件，<strong>AAC</strong> 的音质更高。</p>
+<h5 id="3-WMA"><a href="#3-WMA" class="headerlink" title="3 WMA"></a>3 WMA</h5><p><strong>WMA</strong>，英文全称 <strong>Windows Media Audio</strong>，由微软公司开发的一种数字音频压缩格式，本身包括有损和无损压缩格式。</p>
+<p>​        我们播放的视频文件一般都是用一种<strong>封装格式</strong>封装起来的，封装格式的作用是什么呢？一般视频文件里不光有视频，还有音频，封装格式的作用就是把视频和音频打包起来。 所以我们先要<strong>解封装格式</strong>，看有哪些视频流和哪些音频流，此时的音频流和视频流都还是<strong>压缩数据</strong>，不能直接用于显示的，这就需要<strong>解码</strong>。下面是播放一个视频文件时的流程图。</p>
+<p><img src="/images/4.webp" alt="1"></p>
+<p>FFmpeg  视频文件  是一个容器  (视频流（H264）  音频流(aac))</p>
+</font>
+
+
+
+]]></content>
       <categories>
         <category>Android</category>
       </categories>
@@ -3763,5 +3744,24 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       <tags>
         <tag>H264</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>harmonyos</title>
+    <url>/2022/09/19/Harmonyos/harmonyos/</url>
+    <content><![CDATA[<font size='2.9'>
+
+<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><ol>
+<li><p>获取源码 </p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    # 安装repo 工具</span><br><span class="line">    $ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 &gt; repo</span><br><span class="line">    $ chmod a+x repo</span><br><span class="line">    $ sudo mv repo /usr/local/bin/repo</span><br><span class="line">    $ sudo apt install python3-pip</span><br><span class="line">    $ pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">获取标准系统源码</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir OpenHarmony</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> OpenHarmony</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync -c  <span class="comment"># -c 获取当前分支代码</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">&#x27;git lfs pull&#x27;</span></span></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>如果 repo init 出现以下错误 </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">jackie@USER-20200124ZG:~$ repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify</span><br><span class="line">    Downloading Repo source from http://mirrors.tuna.tsinghua.edu.cn/git/git-repo/</span><br><span class="line">    remote: Enumerating objects: 7113, done.</span><br><span class="line">    remote: Counting objects: 100% (7113/7113), done.</span><br><span class="line">    remote: Compressing objects: 100% (3728/3728), done.</span><br><span class="line">    remote: Total 7113 (delta 4590), reused 5464 (delta 3311)s   s</span><br><span class="line">    Receiving objects: 100% (7113/7113), 3.09 MiB | 1.76 MiB/s, done.</span><br><span class="line">    Resolving deltas: 100% (4590/4590), done.</span><br><span class="line">    repo: warning: verification of repo code has been disabled;</span><br><span class="line">    repo will not be able to verify the integrity of itself.</span><br><span class="line"></span><br><span class="line">    repo: error: unable to resolve &quot;fork_flow&quot;</span><br><span class="line">    fatal: cloning the git-repo repository failed, will remove &#x27;.repo/repo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>切换到root 权限 sudo</code> 可以解决</p>
+</font></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Harmonyos</category>
+      </categories>
   </entry>
 </search>
