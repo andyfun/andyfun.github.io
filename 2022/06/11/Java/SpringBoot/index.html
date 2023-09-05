@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="mysql1234567891011121. start.server startsudo &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;support-files&#x2F;mysql.server start2. mysql -u  root -p password eg: mysql -u root -p 123456783. mac 默认安装位置   &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;  springboo">
+  <meta name="description" content="springboot JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2f8ab988] will not be managed by Spring 对应的service 添加 @Transactional  Springboot 入口   123@SpringBootApplication(exclude">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot">
-<meta property="og:url" content="http://yoursite.com/2022/06/11/Java/SpringBootAdmin/index.html">
+<meta property="og:url" content="http://yoursite.com/2022/06/11/Java/SpringBoot/index.html">
 <meta property="og:site_name" content="andyFun">
-<meta property="og:description" content="mysql1234567891011121. start.server startsudo &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;support-files&#x2F;mysql.server start2. mysql -u  root -p password eg: mysql -u root -p 123456783. mac 默认安装位置   &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;  springboo">
+<meta property="og:description" content="springboot JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2f8ab988] will not be managed by Spring 对应的service 添加 @Transactional  Springboot 入口   123@SpringBootApplication(exclude">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-11T11:38:32.000Z">
-<meta property="article:modified_time" content="2023-08-30T09:14:34.324Z">
+<meta property="article:modified_time" content="2023-09-05T10:55:09.374Z">
 <meta property="article:author" content="andy">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2022/06/11/Java/SpringBootAdmin/">
+<link rel="canonical" href="http://yoursite.com/2022/06/11/Java/SpringBoot/">
 
 
 <script id="page-configurations">
@@ -197,7 +197,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/11/Java/SpringBootAdmin/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/11/Java/SpringBoot/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-08-30 17:14:34" itemprop="dateModified" datetime="2023-08-30T17:14:34+08:00">2023-08-30</time>
+                <time title="修改时间：2023-09-05 18:55:09" itemprop="dateModified" datetime="2023-09-05T18:55:09+08:00">2023-09-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,7 +252,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>625</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -273,7 +273,6 @@
       
         <font size="2.9">
 
-<h4 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. start.server start</span><br><span class="line"></span><br><span class="line">sudo /usr/local/mysql/support-files/mysql.server start</span><br><span class="line"></span><br><span class="line">2. mysql -u  root -p password</span><br><span class="line"></span><br><span class="line"> eg: mysql -u root -p 12345678</span><br><span class="line"></span><br><span class="line">3. mac 默认安装位置</span><br><span class="line">   /usr/local/mysql/</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h4 id="springboot"><a href="#springboot" class="headerlink" title="springboot"></a>springboot</h4><ol>
 <li><p>JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2f8ab988] will not be managed by Spring</p>
@@ -287,6 +286,34 @@
 <li>部署</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">maven  -- package 会生成jar</span><br><span class="line"></span><br><span class="line">java -jar xxx.jar</span><br><span class="line"></span><br><span class="line">./gradlew bootRun</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>关于设计 用户密码 存储</p>
+</li>
+<li><p><strong><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/594276036">https://zhuanlan.zhihu.com/p/594276036</a></strong></p>
+</li>
+<li><p>对称加密 （同一个密钥）</p>
+</li>
+<li><p>非对称加密 （公钥加密 和私钥解密）</p>
+</li>
+<li><p>md5 (MD5是一种Hash算法，也是最常用的一种消息摘要和数字签名算法，常常用于保存密码以及生成数字签名。)</p>
+</li>
+<li><p>MD5 算法具有以下特点：</p>
+</li>
+</ol>
+<p>压缩性：任意长度的数据，算出的 MD5 值长度都是固定的（128 bit）。<br>易计算：从原数据计算出 MD5 值很容易。<br>抗修改：对原数据进行任何改动，哪怕只修改 1 个字节，所得到的 MD5 值都有很大区别。<br>抗碰撞：已知原数据和其 MD5 值，想找到一个具有相同 MD5 值的数据（即伪造数据）是非常困难的（极小碰撞概率）。<br>实际上很多网站都是使用MD5，SHA-1，SHA-256等Hash算法及其变种来进行加密的。</p>
+<p>虽然无法可以直接获取明文，但可以通过穷举，列表查询方式获取明文，md5的查询库是非常丰富的。</p>
+<p>下面我列出三种常用的解密方案。 - 穷举法 - 字典法攻击 - 彩虹表攻击</p>
+<p>也有不少网站可以直接进行 MD5 解密。就是用上述三种方法中之一</p>
+<ol start="6">
+<li>MD5加盐（Salt）进行密码储存</li>
+</ol>
+<p>根据安全级别，salt可以设置为固定值或者每一个用户不同的值，这个值一般为用户数据行的某一个固定值且对用户不可见的值，千万不要用username作为salt。这种如果有人知道了加salt的算法，那就跟普通的MD5没啥区别了。</p>
+<h4 id="Spring-文件上传"><a href="#Spring-文件上传" class="headerlink" title="Spring 文件上传"></a>Spring 文件上传</h4><blockquote>
+<p>parameter (<strong>file</strong>) is required</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@PostMapping(&quot;/upload&quot;)</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">uploadFile</span><span class="params">(<span class="meta">@RequestParam(value = &quot;file&quot;)</span> MultipartFile file,String name )</span></span>&#123;</span><br><span class="line">      <span class="comment">//上传文件 file 固定 所有类型, layui 对应的是file</span></span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 
 <h4 id="layui"><a href="#layui" class="headerlink" title="layui"></a>layui</h4><ol>
 <li><a target="_blank" rel="noopener" href="https://layui.gitee.io/v2/">官网</a></li>
@@ -395,7 +422,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#mysql"><span class="nav-number">1.</span> <span class="nav-text">mysql</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#springboot"><span class="nav-number">2.</span> <span class="nav-text">springboot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#layui"><span class="nav-number">3.</span> <span class="nav-text">layui</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#springboot"><span class="nav-number">1.</span> <span class="nav-text">springboot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-number">2.</span> <span class="nav-text">Spring 文件上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#layui"><span class="nav-number">3.</span> <span class="nav-text">layui</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -459,13 +486,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">213k</span>
+    <span title="站点总字数">214k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:14</span>
+    <span title="站点阅读时长">3:15</span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
