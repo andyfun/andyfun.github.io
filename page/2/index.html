@@ -119,17 +119,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">48</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -189,6 +189,182 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/08/28/Android/android-framework/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/28/Android/android-framework/" class="post-title-link" itemprop="url">android_framework</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-28 23:37:41" itemprop="dateCreated datePublished" datetime="2022-08-28T23:37:41+08:00">2022-08-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-16 23:02:36" itemprop="dateModified" datetime="2023-07-16T23:02:36+08:00">2023-07-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <font size="2.6">
+
+<h5 id="配置中心以及灰度测试"><a href="#配置中心以及灰度测试" class="headerlink" title="配置中心以及灰度测试"></a>配置中心以及灰度测试</h5><p>app必备工具之一，配置中心主要负责的就是动态化的配置，比如文本展示类似这些的。sdk提供方需要负责的是提供动态更新能力，这里有个差异化更新，只更新dif部分，还有就是流量优化等等需要开发同学考虑的。然后可以考虑下存储性能方面的提升等。<br>而abtest也是app必备工具之一了，动态的下发实验策略，之后开发同学可以切换实验的页面。另外主要需要考虑灰度结果计算，分桶以及版本过滤白名单等等。这里只是一个简单的介绍不展开，因为我只是一个使用方。</p>
+<h5 id="调试组件"><a href="#调试组件" class="headerlink" title="调试组件"></a>调试组件</h5><p>个人还是更推荐滴滴的 <a target="_blank" rel="noopener" href="https://github.com/didi/DoraemonKit">Dokit</a>，功能点比较多而且接入相对来说比较简单。而且提供了很多给开发同学定制的能力，可以在debug情况下增加很多业务相关的测试功能，方便测试同学，核心还是浮窗太方便了。<br>当然很多实验性的预研功能等其实都可以直接接在这里，然后在测试环境下充分展开，之后在进行线上灰度方案。还有一些具有风险的hook操作，个人也比较建议放在debug组件上。</p>
+<h5 id="性能监控框架"><a href="#性能监控框架" class="headerlink" title="性能监控框架"></a>性能监控框架</h5><p>这部分有几个不同的方面，首先是异常崩溃方面的，另外则是性能监控方面的，但是他们整体是划分在一起的，都属于线上性能监控体系的。<br>Crash相关的，可以从爱奇艺的<a target="_blank" rel="noopener" href="https://github.com/iqiyi/xCrash">xCrash</a>学起。包含了崩溃日志，ANR以及native crash，因为版本适配的问题ANR在高版本上已经不是这么好捞了，还有就是native crash相关的。是一个非常牛逼的库了。<br>而线上的性能监控框架可以从腾讯的<a target="_blank" rel="noopener" href="https://github.com/Tencent/matrix">Matrix</a>学起,以前有两篇文章介绍的内容也都是和Matrix相关的, Matrix首页上也有介绍，比如fps，卡顿，IO，电池，内存等等方面的监控。其中卡顿监控涉及到的就是方法前后插桩，同时要有函数的mapping表，插桩部分整体来说比较简单感觉。<br>另外关于线上内存相关的，推荐各位可以学习下快手的<a target="_blank" rel="noopener" href="https://github.com/KwaiAppTeam/KOOM">koom</a>, 对于hprof的压缩比例听说能达到70%，也能完成线上的数据回捞以及监控等等，是一个非常屌的框架。下面给大家一个抄答案的方式。字节也有一个类似的原理其实也差不多。</p>
+<blockquote>
+<p>主进程发现内存到达阈值的时候，用leakcanary的方案，通过shark fork进程内存，之后生成hrop。由于hrop文件相对较大，所以我们需要对于我们所要分析的内容进行筛选，可以通过xhook，之后对hrop的写入操作进行hook，当发现写入内容的类型符合我们的需要的情况下才进行写入。</p>
+</blockquote>
+<blockquote>
+<p>而当我们要做线上日志回捞的情况，需要对hprof 进行压缩，具体算法可以参考koom/raphel，有提供对应的压缩算法。</p>
+</blockquote>
+<blockquote>
+<p>最后线上回捞机制就是基于一个指令，回捞线上符合标准的用户的文件操作，这个自行设计。</p>
+</blockquote>
+<p>其实上述几个库都还是有一个本质相关的东西，那么就是plthook,这个上面三个库应该都有对其的使用，之前是爱奇艺的<a target="_blank" rel="noopener" href="https://github.com/iqiyi/xHook">xhook</a>，现在是字节的<a target="_blank" rel="noopener" href="https://github.com/bytedance/bhook">bhook</a>, 这个大佬也是我的偶像之一了，非常离谱了算是。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6890754507639095303">Android 性能采集之Fps,Memory,Cpu</a> 和 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6900810600188739592">Android IO监控</a></p>
+</blockquote>
+<p>最近已经不咋写这部分相关了，所以也就没有深挖，但是后续可能会有一篇关于phtead hook相关的，也是之前matrix更新的一个新东西，还在测试环境灰度阶段。</p>
+<h5 id="基础网络组件"><a href="#基础网络组件" class="headerlink" title="基础网络组件"></a>基础网络组件</h5><p>虽然核心可能还是三方网络库，但是因为基本所有公司都对网络方面有调整和改动，以及解析器等方面的优化，其实可以挖的东西也还是蛮多的。<br>应付面试的同学可以看看<a target="_blank" rel="noopener" href="https://juejin.cn/post/6896302142542315533">Android网络优化方案</a>。当然还是要具体问题具体分析，毕竟头疼医头，脚疼医脚对吧。<br>之前和另外一个朋友聊了下，其实很多厂对json解析这部分有优化调整，通过apt之后更换原生成原生的解析方式，加快反序列化速度的都是可以考虑考虑的。</p>
+<h5 id="埋点框架"><a href="#埋点框架" class="headerlink" title="埋点框架"></a>埋点框架</h5><p>其实这个应该要放在更前面一点的，数据上报数据分析啥的其实都还是蛮重要的。<br>这部分因为我完全没写过哦，所以我压根不咋会，但是如果你会的话，面试的时候展开说说，可以帮助你不少。<br>另外还需要有线上的异常用户数据回捞系统，方便开发同学主动去把线上有异常的用户的日志给收集回来。<br>但是有些刁钻的页面曝光监控啦，自动化埋点啥的其实还是写过一点的，有兴趣的可以翻翻历史，还有github 上还有demo。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/Leifzhang/AndroidAutoTrack">AndroidAutoTrack</a> demo工程</p>
+</blockquote>
+<h5 id="启动相关"><a href="#启动相关" class="headerlink" title="启动相关"></a>启动相关</h5><p>通过DAG(有向无环图)的方式将sdk的初始化拆解成一个个task，之后理顺依赖关系，让他们能按照固定的顺序向下执行。<br>核心需要处理的是依赖关系，比如说其实埋点库依赖于网络库初始化，然后APM相关的则依赖于埋点库和配置中心abtest等等，这样的依赖关系需要开发同学去理顺的。<br>另外就是把sdk的粒度打的细碎一点，更容易观察每个sdk任务的耗时情况，之后增加task阈值告警，超过某个加载速度就通知到相应的同学改一下。<br>多线程是能优化掉一部分，但是也需要避免频繁线程调度。还有就是我个人觉得这些启动相关的东西因为都无法使用sdk级别的灰度，所以改动最好慎重一点。出发点始终都是好的，但是还是结果导向吧。<br>启动优化的核心，我个人始终坚持的就是延迟才能优化。开发人员很难做到优化代码执行的复杂度，执行时间之类的。尽人事听天命，玄学代码。</p>
+<h5 id="中间件-图片-日志-存储-基础信息"><a href="#中间件-图片-日志-存储-基础信息" class="headerlink" title="中间件(图片 日志 存储 基础信息)"></a>中间件(图片 日志 存储 基础信息)</h5><p>这部分没啥，最好是对第三方库有一层隔离的思维，但是这个隔离也需要对应的同学对于程序设计方面有很好的思维，说起来简单，其实也蛮复杂的。<br>这里就不展开了，感觉面试也很少会问的很细。</p>
+<p>第三方sdk大杂烩（偏中台方向）</p>
+<p>基本一个app现在都有啥分享啦，推送啦，支付啦，账号体系啦，webview，jsbridge等等服务于应用内的一些sdk，这些东西就比较偏向于业务。<br>有兴趣的可以看看之前写的两篇关于sdk设计相关的。</p>
+<blockquote>
+<p>活学活用责任链  <a target="_blank" rel="noopener" href="https://juejin.cn/post/6881414546859229192">SDK开发的一点点心得  Android厂商推送Plugin化</a></p>
+</blockquote>
+<h5 id="其他方面"><a href="#其他方面" class="headerlink" title="其他方面"></a>其他方面</h5><p>大公司可能都会有些动态化方案的考虑，比如插件化啊动态化之类的。这部分在下确实不行，我就不展开了啊。<br>编译相关</p>
+<h5 id="描述下android编译流程"><a href="#描述下android编译流程" class="headerlink" title="描述下android编译流程"></a>描述下android编译流程</h5><p>基架很容易碰到的面试题，以前简单的描述写过。聊聊Android编译流程<br>虽然是几年前的知识点了，但是还是要拆开高低版本的agp做比较的。所以这部分可以回答下，基本这题就能简单的拿下了。</p>
+<h5 id="Gradle-生命周期"><a href="#Gradle-生命周期" class="headerlink" title="Gradle 生命周期"></a>Gradle 生命周期</h5><p>简单的说下就是buildSrc先编译，之后是根目录的settings.gradle, 根build.gradle，最后才是module build<br>网上一堆，你自己翻一番就知道了。</p>
+<h5 id="apt是编译中哪个阶段"><a href="#apt是编译中哪个阶段" class="headerlink" title="apt是编译中哪个阶段"></a>apt是编译中哪个阶段</h5><p>APT解析的是java 抽象语法树(AST)，属于javac的一部分流程。大概流程：.java -&gt; AST -&gt; .class</p>
+<p>聊聊AbstractProcessor和Java编译流程</p>
+<h5 id="Dex和class有什么区别"><a href="#Dex和class有什么区别" class="headerlink" title="Dex和class有什么区别"></a>Dex和class有什么区别</h5><p>链接传送门<br>Class与dex的区别<br>1）虚拟机： class用jvm执行，dex用dvm执行<br>2）文档： class中冗余信息多，dex会去除冗余信息，包含所有类，查找方便，适合手机端<br>JVM与DVM<br>1）JVM基于栈（使用栈帧，内存），DVM基于寄存器，速度更快，适合手机端<br>2）JVM执行Class字节码，DVM执行DEX<br>3）JVM只能有一个实例，一个应用启动运行在一个DVM<br>DVM与ART<br>1）DVM：每次运行应用都需要一次编译，效率降低。JIT<br>2）ART：Android5.0以上默认为ART，系统会在进程安装后进行一次预编译，将代码转为机器语言存在本地，这样在每次运行时不用再进行编译，提高启动效率；。 AOP &amp; JIT</p>
+<h5 id="Transform是如何被执行的"><a href="#Transform是如何被执行的" class="headerlink" title="Transform是如何被执行的"></a>Transform是如何被执行的</h5><p>Transform 在编译过程中会被封装成Task 依赖其他编译流程的Task执行。</p>
+<p>Transform和其他系统Transform执行的顺序</p>
+<p>其实这个题目已经是个过期了，后面对这些都合并整合了，而且最新版的api也做了替换，要不然考虑下回怼下面试官？<br>Transform和Task之间有关？</p>
+<p>如何监控编译速度变慢问题</p>
+<p>./gradlew xxxxx – scan</p>
+<p>之后会生成一个gradle的网页，填写下你的邮箱就好了。<br>另外一个相对来说比较简单了。通过gradle原生提供的listener进行就行了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 耗时统计kt化</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TimingsListener</span> : <span class="title">TaskExecutionListener</span>, <span class="title">BuildListener</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> startTime: Long = <span class="number">0L</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> timings = linkedMapOf&lt;String, Long&gt;()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">beforeExecute</span><span class="params">(task: Task)</span> </span>&#123;</span><br><span class="line">        startTime = System.nanoTime()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">afterExecute</span><span class="params">(task: Task, state: TaskState)</span> </span>&#123;</span><br><span class="line">        val ms = TimeUnit.MILLISECONDS.convert(System.nanoTime() - startTime, TimeUnit.NANOSECONDS)</span><br><span class="line">        task.path</span><br><span class="line">        timings[task.path] = ms</span><br><span class="line">        project.logger.warn(<span class="string">&quot;$&#123;task.path&#125; took $&#123;ms&#125;ms&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">buildFinished</span><span class="params">(result: BuildResult)</span> </span>&#123;</span><br><span class="line">        project.logger.warn(<span class="string">&quot;Task timings:&quot;</span>)</span><br><span class="line">        timings.forEach &#123;</span><br><span class="line">            <span class="keyword">if</span> (it.value &gt;= <span class="number">50</span>) &#123;</span><br><span class="line">                project.logger.warn(<span class="string">&quot;$&#123;it.key&#125; cos  ms  $&#123;it.value&#125;\n&quot;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">buildStarted</span><span class="params">(gradle: Gradle)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">settingsEvaluated</span><span class="params">(settings: Settings)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">projectsLoaded</span><span class="params">(gradle: Gradle)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">override fun <span class="title">projectsEvaluated</span><span class="params">(gradle: Gradle)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gradle.addListener(TimingsListener())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="Gradle中如何给一个Task前后插入别的任务"><a href="#Gradle中如何给一个Task前后插入别的任务" class="headerlink" title="Gradle中如何给一个Task前后插入别的任务"></a>Gradle中如何给一个Task前后插入别的任务</h5><p>最简单的可以考虑直接获取到Task实例，之后在after和before插入一些你所需要的代码。<br>另外一个就是通过dependOn前置和finalizedBy挂载一个任务 mustAfter<br>Gradle 使用指南 – Gradle Task</p>
+<p>ksp APT Transform的区别</p>
+<p>ksp 是kotlin专门独立的ast语法树<br>apt 是java 的ast语法树<br>transform是 agp 专门修改字节码的一个方法。<br>反杀时刻AsmClassVisitorFactory,可以看看我之前写的那篇文章。</p>
+<p>Transform上的编译优化能做哪些？</p>
+<p>虽然是个即将过期的api，但是大家对他的改动还是都比较多的。<br>首先肯定是需要完成增量编译的，具体的可以参考我的demo工程。记住，所有的transfrom都要全量。<br>另外可以考虑多线程优化，将转化操作移动到子线程内，建议使用gradle内部的共享线程。<br>参考agp最新做法，抽象出一个新的interface，之后通过spi串联，之后将asm链式调用。我的文章也介绍过，具体的点在哪里自己盘算。<br>现在准备好告别Transform了吗</p>
+<h5 id="aar-源码切换插件原理"><a href="#aar-源码切换插件原理" class="headerlink" title="aar 源码切换插件原理"></a>aar 源码切换插件原理</h5><p>这个前几天刚介绍过，原理和方案业内都差不多，mulite-repo应该都需要这个东西的。我的版本也比较简陋，大厂内部肯定都会有些魔改的。<br>相对来说功能肯定会更丰富，更全面一点。</p>
+<p>aar和源码切换插件Plus</p>
+<p>你们有哪些保证代码质量的手段</p>
+<p>最简单的方式还是通过静态扫描+pipline 处理，之后在合并mr之前进行一次拦截。<br>静态扫描方式比较多，下面给大家简单的介绍下<br>阿里的sonar 但是对kt的支持很糟糕，因为阿里使用，所以有很多现成的规则可以使用，但是如果从0-1接入，你可能会直接放弃。<br>原生的lint，可以基于原生提供的lint api，对其进行开发，支持种类也多，基本上算是一个非常优秀的方案了，但是由于文档资料较少，对于开发的要求可能会较高。</p>
+<p>AndroidLint</p>
+<h5 id="如何对第三方的依赖做静态检查？"><a href="#如何对第三方的依赖做静态检查？" class="headerlink" title="如何对第三方的依赖做静态检查？"></a>如何对第三方的依赖做静态检查？</h5><p>魔高一尺道高一丈。lint还是能解决这个问题的。<br>Tree Api+ClassScanner = 识别三方隐私权限调用</p>
+<p>R.java code too large 解决方案</p>
+<p>又是一个过期的问题，尽早升级agp版本，让R8帮你解决这个问题，R文件完全可以内联的。<br>或者用别的AGP插件的R inline也可以解决这个问题。</p>
+<p>R inline 你需要注意些什么？</p>
+<p>预扫描，先收集调用的信息，之后在进行替换。还有javac 的时候可能就因为文件过大，直接挂掉了。</p>
+<p>一个类替换父类  比如所有activity实现类替换baseactivity</p>
+<p>class node 直接替换 superName ，想起了之前另外一个问题，感觉主要是要对构造函数进行修改，否则也会出异常。</p>
+<p>R8 D8 以及混淆相关的，还有R8除了混淆还能干些什么？ 混淆规则有没有碰到什么奇怪的问题？<br>D8和Dx的区别，主要涉及到编译速度以及编译产物的体积，包体积大概小11%。</p>
+<p>R8 则是变更了整个编译流程的，其中我觉得最微妙的就是java8 lambda相关的，脱糖前后的差别还是比较大的。同时R8也少了很多之前的Transform。<br>R8的混淆部分，混淆除了能增加代码阅读难度意外，更多的是对于代码优化方面的。 比如无效代码优化，  同时也删除代码等等都可以做。</p>
+<h5 id="编译的时候有没有碰到javac的常量优化"><a href="#编译的时候有没有碰到javac的常量优化" class="headerlink" title="编译的时候有没有碰到javac的常量优化"></a>编译的时候有没有碰到javac的常量优化</h5><p>javac会将静态常量直接优化成具体的数值。但是尤其是多模块场景下尤其容易出现异常，看起来是个实际的常量引用，但是产物上却是一个具体的常量值了。<br>其他部分<br>组件化相关<br>不仅仅要聊到路由，还需要聊下业务仓库的设计，如何避免两个模块之间相互相互引用导致的环问题。<br>另外就是路由的apt aop的部分都可以深入的聊一下。<br>如果只聊路由的话，你就只说了一个字符串匹配规则，非常无聊了。<br>路由跳转<br>路由跳转只是一小部分，其核心原理就是字符串匹配，之后筛选出符合逻辑的页面进行跳转。<br>另外就是拦截器的设计，同步异步拦截器两种完全不同的写法。<br>其原理基于apt+transform ，apt负责生成模块德 路由表，而transform则负责将各个模块的路由表进行收集。<br>服务发现<br>类似路由表，但是维护的是一个基于键值的类构造。ab之间当有相互依赖的情况下，可以通过基于接口编程的方式进行调整，互相只依赖抽象的接口，之后实现类在内部，通过注册的机制。之后在实际的使用地方用服务发现的机制寻找。<br>依赖注入<br>和服务发现类似，也是拿来解决不同模块间的依赖问题。可以使用hilt，依赖注入的好处就是连构造的这部分工作也有di完成了，而且构造能力更多样。可以多参数构造。<br>虚拟机部分<br>很多人会觉得虚拟机这部分都是硬八股，比较无聊。但是其实有时候我们碰到的一些字节码相关的问题就和这部分基础姿势相关了。<br>虽然用的比较少，但是也不是一个硬八股，比hashmap好玩太多了。<br>总</p>
+<h5 id="android-电量统计工具"><a href="#android-电量统计工具" class="headerlink" title="android 电量统计工具"></a>android 电量统计工具</h5><blockquote>
+<p>Battery Historian </p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="http://127.0.0.1:9999/">http://127.0.0.1:9999/</a></p>
+<p>docker 安装</p>
+<p>docker – run -p 9999:9999 gcr.io/android-battery-historian/stable:3.0 –port 9999</p>
+<blockquote>
+<p>CgBugReport</p>
+</blockquote>
+<p><img src="https://github.com/sonyxperiadev/ChkBugReport/wiki/How-to-install-it" alt="CgBugReport"></p>
+<p>java -jar chkbugreport-0.5-215.jar  bugreport-NX709S-SKQ1.220502.001-2023-03-27-17-14-47.txt</p>
+<h4 id="系统app-开发"><a href="#系统app-开发" class="headerlink" title="系统app 开发"></a>系统app 开发</h4><ol>
+<li><p>添加Android.bp ，编译需要的配置文件</p>
+</li>
+<li><p>device/rice14/添加目录</p>
+</li>
+<li><p>编译，source build/enriment.sh ,lunch ,make</p>
+</li>
+<li><p>向系统添加aar,已经找到对应的aar</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find . -name &quot;xxx.bp&quot; | xargs grep &quot;androidx.*&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+</font>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -321,7 +497,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/11/Java/SpringBoot/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/11/JavaWeb/SpringBoot/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -335,7 +511,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/06/11/Java/SpringBoot/" class="post-title-link" itemprop="url">SpringBoot</a>
+            <a href="/2022/06/11/JavaWeb/SpringBoot/" class="post-title-link" itemprop="url">SpringBoot</a>
         </h2>
 
         <div class="post-meta">
@@ -352,7 +528,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-05 18:55:09" itemprop="dateModified" datetime="2023-09-05T18:55:09+08:00">2023-09-05</time>
+                <time title="修改时间：2023-09-14 10:31:14" itemprop="dateModified" datetime="2023-09-14T10:31:14+08:00">2023-09-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -360,7 +536,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                  <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
                 </span>
             </span>
 
@@ -922,7 +1098,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/12/Java/Tree/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/12/JavaWeb/Tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -936,7 +1112,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/12/12/Java/Tree/" class="post-title-link" itemprop="url">树的定义</a>
+            <a href="/2021/12/12/JavaWeb/Tree/" class="post-title-link" itemprop="url">树的定义</a>
         </h2>
 
         <div class="post-meta">
@@ -1219,130 +1395,6 @@ Source：代码存放位置
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/22/CPP/cpp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/22/CPP/cpp/" class="post-title-link" itemprop="url">C++</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-22 16:00:05" itemprop="dateCreated datePublished" datetime="2021-11-22T16:00:05+08:00">2021-11-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-13 11:26:39" itemprop="dateModified" datetime="2022-08-13T11:26:39+08:00">2022-08-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>607</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <font size="2.9">
-
-<h4 id="C-常用符号区别"><a href="#C-常用符号区别" class="headerlink" title="C++ 常用符号区别"></a>C++ 常用符号区别</h4><p>在学习C++的过程中我们经常会用到.和::和：和-&gt;，在此整理一下这些常用符号的区别。 </p>
-<pre><code>1、A.B则A为对象或者结构体；
-
-2、A-&gt;B则A为指针，-&gt;是成员提取，A-&gt;B是提取A中的成员B，A只能是指向类、结构、联合的指针；
-
-3、::是作用域运算符，A::B表示作用域A中的名称B，A可以是名字空间、类、结构；
-
-4、：一般用来表示继承；
-</code></pre>
-<p>类方法：即静态方法（静态成员函数），指的是类中被static修饰的方法，无this指针，不属于对象，可用类名调用</p>
-<p>实例方法：即成员方法，属于对象的方法</p>
-<p>性质1：一个类中的其他方法可以互相调用：实例方法可以调用类中的其他方法；但是类方法不能调用实例方法，只能调用其他类方法（非绝对，也可以使用传引用的方法让类方法调用实例方法）</p>
-<p>性质2：当类文件加载到内存，实例方法不会分配内存空间，只有在对象被创建之后，才会为实例方法分配内存空间；而类方法在类被加载到内存时就分配了相应的内存空间</p>
-<p>性质3：类方法不能被覆盖，实例方法可以被覆盖。</p>
-<h2 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h2><ol>
-<li>int (*pFunc)(int,int)<br>&amp;取地址  *取值</li>
-</ol>
-<ol start="2">
-<li><p>void* 指针类型 int long char 数组 当前不做限定 万能指针</p>
-<p>用的时候强转  （int）</p>
-</li>
-</ol>
-<ol start="3">
-<li><p>回调函数是 函数指针的一种业务场景  </p>
-</li>
-<li><p>c核心 内存管理和地址操作 </p>
-</li>
-</ol>
-<h2 id="c链接库和编译流程"><a href="#c链接库和编译流程" class="headerlink" title="c链接库和编译流程"></a>c链接库和编译流程</h2><ol>
-<li><p>.s 汇编文件</p>
-</li>
-<li><p>extern 生成符号表信息，但默认数据是0</p>
-</li>
-</ol>
-</font>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1412,20 +1464,20 @@ Source：代码存放位置
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">48</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

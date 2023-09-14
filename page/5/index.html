@@ -119,17 +119,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">48</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -189,6 +189,101 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/20/Android/messenger/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/20/Android/messenger/" class="post-title-link" itemprop="url">Messenger</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-20 11:07:54" itemprop="dateCreated datePublished" datetime="2021-10-20T11:07:54+08:00">2021-10-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-13 11:30:34" itemprop="dateModified" datetime="2022-08-13T11:30:34+08:00">2022-08-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <font size="2.9">
+
+<h4 id="Messenger"><a href="#Messenger" class="headerlink" title="Messenger"></a>Messenger</h4><p>   服务端<br>   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 服务端</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessagerService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">&quot;MessagerService&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> what_to_server = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> what_to_client = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">private</span> Handler handerServer = <span class="keyword">new</span> Handler(<span class="keyword">new</span> Handler.Callback() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> </span>&#123;</span><br><span class="line">            <span class="comment">//fase 继续想下传递</span></span><br><span class="line">            <span class="comment">//true 不传递自己消费</span></span><br><span class="line">            <span class="keyword">switch</span> (msg.what)&#123;</span><br><span class="line">                <span class="keyword">case</span> what_to_server:</span><br><span class="line">                    System.out.println(<span class="string">&quot;---&gt;client = &quot;</span>+msg.what);</span><br><span class="line">                    Log.e(TAG, <span class="string">&quot;---&gt;client: &quot;</span> +msg.what +<span class="string">&quot;,obj = &quot;</span>+msg.obj);</span><br><span class="line">                    Messenger client = msg.replyTo;</span><br><span class="line">                    <span class="keyword">if</span> (client == <span class="keyword">null</span>) &#123;</span><br><span class="line">                        System.out.println(<span class="string">&quot;---&gt;client null&quot;</span>);</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    Message toClient = Message.obtain(<span class="keyword">null</span>,what_to_client);</span><br><span class="line">                    toClient.arg1 = <span class="number">101</span>;</span><br><span class="line">                    toClient.obj = <span class="string">&quot;服务器发送消息&quot;</span>;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        client.send(toClient);</span><br><span class="line">                        System.out.println(<span class="string">&quot;---&gt;server send &gt;&gt;&gt;&gt;&quot;</span>);</span><br><span class="line">                    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">private</span> Messenger serverMessenger = <span class="keyword">new</span> Messenger(handerServer);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MessagerService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onBind: &quot;</span>+serverMessenger.getBinder() );</span><br><span class="line">        <span class="keyword">return</span> serverMessenger.getBinder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>   客户端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Handler clientHandler = <span class="keyword">new</span> Handler(<span class="keyword">new</span> Handler.Callback() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(<span class="meta">@NonNull</span> Message msg)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">switch</span> (msg.what)&#123;</span><br><span class="line">               <span class="keyword">case</span> WHAT_TO_CLIENT:</span><br><span class="line">                   System.out.println(<span class="string">&quot; client from server &quot;</span>+msg.arg1+<span class="string">&quot;,&quot;</span>+msg.obj);</span><br><span class="line">                   <span class="comment">//TODO 向服务端发送消息</span></span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               <span class="keyword">default</span>:</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    *  信使</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> Messenger clientMessenger = <span class="keyword">new</span> Messenger(clientHandler);</span><br><span class="line">   <span class="comment">//连接远程服务</span></span><br><span class="line">   <span class="keyword">private</span> Messenger serverMessager;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> ServiceConnection messengerConnection = <span class="keyword">new</span> ServiceConnection() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;Success  name = &quot;</span> + name + <span class="string">&quot;, service = &quot;</span> + service);</span><br><span class="line">           Log.e(TAG, <span class="string">&quot;onServiceConnected: &quot;</span>);</span><br><span class="line">           serverMessager = <span class="keyword">new</span> Messenger(service);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot; disconnected name = &quot;</span> + name);</span><br><span class="line">           Log.e(TAG, <span class="string">&quot;onServiceDisconnected: &quot;</span> );</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">bindServer1</span><span class="params">()</span></span>&#123;</span><br><span class="line">       Log.e(TAG, <span class="string">&quot;bindServer1: &quot;</span> );</span><br><span class="line">       Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">       intent.setAction(<span class="string">&quot;com.example.service&quot;</span>);</span><br><span class="line">       intent.setPackage(<span class="string">&quot;com.example.webrtc&quot;</span>);</span><br><span class="line">       bindService(intent,messengerConnection,BIND_AUTO_CREATE);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Message serverMessage = Message.obtain(<span class="keyword">null</span>,WHAT_TO_SERVER);</span><br><span class="line">serverMessage.arg1 = <span class="number">100</span>;</span><br><span class="line">serverMessage.obj = <span class="string">&quot;客户端发送消息&quot;</span>;</span><br><span class="line"><span class="comment">//将toServer.replyTo = clientMessager，这样，对应于服务端接收到此消息，获取到clientMessager，用此clientMessager向客户端回送消息</span></span><br><span class="line">serverMessage.replyTo = clientMessenger;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    serverMessager.send(serverMessage);</span><br><span class="line">&#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</font>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1382,114 +1477,6 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/01/Unity/Unity-AssetBundle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/01/Unity/Unity-AssetBundle/" class="post-title-link" itemprop="url">Unity加载AB包</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-01 22:59:52" itemprop="dateCreated datePublished" datetime="2021-02-01T22:59:52+08:00">2021-02-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-13 11:23:16" itemprop="dateModified" datetime="2022-08-13T11:23:16+08:00">2022-08-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>941</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <font size="2.9">
-
-<h4 id="AssetBundle"><a href="#AssetBundle" class="headerlink" title="AssetBundle"></a>AssetBundle</h4><blockquote>
-<p>加载AB包</p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + <span class="string">&quot;/&quot;</span>+ <span class="string">&quot;model&quot;</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>加载AB包资源 <strong>用泛型 或者 typeof 类型</strong><br><strong>AB包不能重复加载否则报错</strong></p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GameObject gameobject =  ab.LoadAsset&lt;GameObject&gt;(<span class="string">&quot;cube&quot;</span>);</span><br><span class="line">GameObject gameobject2 = ab.LoadAsset(<span class="string">&quot;cube&quot;</span>,<span class="keyword">typeof</span>(GameObject)) <span class="keyword">as</span> GameObject;</span><br><span class="line">Instantiate(gameobject);</span><br><span class="line"><span class="comment">// false 卸载ab 包但 不卸载资源</span></span><br><span class="line">ab.unpack(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>利用主包获取依赖信息</p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  AssetBundle abMain = AssetBundle.LoadFromFile(Application.streamingAssetsPath + <span class="string">&quot;/&quot;</span>+ <span class="string">&quot;PC&quot;</span>);</span><br><span class="line">  </span><br><span class="line">        AssetBundleManifest asBundleManifest = abMain.LoadAsset&lt;AssetBundleManifest&gt;(<span class="string">&quot;AssetBundleManifest&quot;</span>);</span><br><span class="line"><span class="comment">//加载主包中的固定文件</span></span><br><span class="line"><span class="built_in">string</span>[] strs = asBundleManifest.GetAllDependencies(<span class="string">&quot;model&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; strs.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(strs[i]);</span><br><span class="line">            AssetBundle.LoadFromFile(Application.streamingAssetsPath+<span class="string">&quot;/&quot;</span>+strs[i]);</span><br><span class="line">        &#125;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/02/01/Unity/Unity-AssetBundle/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1559,20 +1546,20 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">48</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
