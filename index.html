@@ -124,7 +124,7 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -413,7 +413,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-14 10:31:34" itemprop="dateModified" datetime="2023-09-14T10:31:34+08:00">2023-09-14</time>
+                <time title="修改时间：2023-09-15 23:48:15" itemprop="dateModified" datetime="2023-09-15T23:48:15+08:00">2023-09-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -431,7 +431,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>929</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -506,9 +506,15 @@
 <li>删除数据</li>
 </ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> MIFit_Image <span class="keyword">where</span> folderName <span class="operator">=</span> <span class="string">&#x27;test&#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
+<ol start="12">
+<li> 导入sql文件：source 『将.sql文件拖拽到这里，终端会自动显示其文件目录』（本文需要的.sql文件在文末服务端项目代码的db/mydb.sql目录）</li>
+</ol>
+<h2 id="mysql-修改密码"><a href="#mysql-修改密码" class="headerlink" title="mysql 修改密码"></a>mysql 修改密码</h2><ol>
+<li><p> 用SET PASSWORD命令<br>格式：mysql&gt; set password for 用户名@localhost=‘新密码’;<br>例子：mysql&gt; set password for root@localhost=’123456’;</p>
+</li>
+<li><p>用mysqladmin<br>格式：mysqladmin -u用户名 -p旧密码 password 新密码<br>例子：mysqladmin -uroot -p123456 password 123</p>
+</li>
+</ol>
 </font>
 
 
@@ -1442,7 +1448,7 @@ cocos run -d androd
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1491,7 +1497,7 @@ cocos run -d androd
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:15</span>
+    <span title="站点阅读时长">3:14</span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         

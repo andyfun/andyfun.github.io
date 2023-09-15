@@ -124,7 +124,7 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -543,194 +543,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A301-%E8%A7%86%E9%A2%91%E5%8E%8B%E7%BC%A9%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A301-%E8%A7%86%E9%A2%91%E5%8E%8B%E7%BC%A9%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">视频压缩技术原理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-18 18:34:24" itemprop="dateCreated datePublished" datetime="2021-11-18T18:34:24+08:00">2021-11-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-05 23:22:48" itemprop="dateModified" datetime="2023-04-05T23:22:48+08:00">2023-04-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <font size="2.9">
-
-<p>H264视频压缩算法现在无疑是所有视频压缩技术中使用最广泛，</p>
-<p>最流行的。随着 x264/openh264以及ffmpeg等开源库的推出，大多数使用者无需再对H264的细节做过多的研究，这大降低了人们使用H264的成本。</p>
-<p>但为了用好H264，我们还是要对H264的基本原理弄清楚才行。今天我们就来看看H264的基本原理。</p>
-<h2 id="H264概述"><a href="#H264概述" class="headerlink" title="H264概述"></a>H264概述</h2><p><img src="/images/30.png" alt="img"></p>
-<p>H264压缩技术主要采用了以下几种方法对视频数据进行压缩。包括：</p>
-<p>　　帧内预测压缩，解决的是空域数据冗余问题。<br>　　帧间预测压缩（运动估计与补偿），解决的是时域数据冗徐问题。<br>　　整数离散余弦变换（DCT），将空间上的相关性变为频域上无关的数据然后进行量化。<br>　　CABAC压缩。</p>
-<p>经过压缩后的帧分为：I帧，P帧和B帧:</p>
-<p>　　I帧：关键帧，采用帧内压缩技术。<br>　　P帧：向前参考帧，在压缩时，只参考前面已经处理的帧。采用帧音压缩技术。<br>　　B帧：双向参考帧，在压缩时，它即参考前而的帧，又参考它后面的帧。采用帧间压缩技术。</p>
-<p>除了I/P/B帧外，还有图像序列GOP。</p>
-<p>　　GOP:两个I帧之间是一个图像序列，在一个图像序列中只有一个I帧。如下图所示：</p>
-<p><img src="/images/31.png" alt="img"></p>
-<p>下面我们就来详细描述一下H264压缩技术。</p>
-<h2 id="H264压缩技术"><a href="#H264压缩技术" class="headerlink" title="H264压缩技术"></a>H264压缩技术</h2><p>H264的基本原理其实非常简单，下我们就简单的描述一下H264压缩数据的过程。通过摄像头采集到的视频帧（按每秒 30 帧算），被送到 H264 编码器的缓冲区中。编码器先要为每一幅图片划分宏块。</p>
-<p>以下面这张图为例:</p>
-<p><img src="/images/32.webp" alt="img"></p>
-<h3 id="划分宏块"><a href="#划分宏块" class="headerlink" title="划分宏块"></a>划分宏块</h3><p>H264默认是使用 16X16 大小的区域作为一个宏块，也可以划分成 8X8 大小。</p>
-<p><img src="/images/33.webp" alt="img"></p>
-<p>划分好宏块后，计算宏块的象素值。</p>
-<p><img src="/images/34.webp" alt="img"></p>
-<p>以此类推，计算一幅图像中每个宏块的像素值，所有宏块都处理完后如下面的样子。</p>
-<p><img src="/images/35.webp" alt="img"></p>
-<h3 id="划分子块"><a href="#划分子块" class="headerlink" title="划分子块"></a>划分子块</h3><p>H264对比较平坦的图像使用 16X16 大小的宏块。但为了更高的压缩率，还可以在 16X16 的宏块上更划分出更小的子块。子块的大小可以是 8X16､ 16X8､ 8X8､ 4X8､ 8X4､ 4X4非常的灵活。</p>
-<p><img src="/images/36.webp" alt="img"></p>
-<p>上幅图中，红框内的 16X16 宏块中大部分是蓝色背景，而三只鹰的部分图像被划在了该宏块内，为了更好的处理三只鹰的部分图像，H264就在 16X16 的宏块内又划分出了多个子块。</p>
-<p><img src="/images/37.webp" alt="img"></p>
-<p>这样再经过帧内压缩，可以得到更高效的数据。下图是分别使用mpeg-2和H264对上面宏块进行压缩后的结果。其中左半部分为MPEG-2子块划分后压缩的结果，右半部分为H264的子块划压缩后的结果，可以看出H264的划分方法更具优势。</p>
-<p><img src="/images/39.png" alt="img"></p>
-<p>宏块划分好后，就可以对H264编码器缓存中的所有图片进行分组了。</p>
-<h3 id="帧分组"><a href="#帧分组" class="headerlink" title="帧分组"></a>帧分组</h3><p>对于视频数据主要有两类数据冗余，一类是时间上的数据冗余，另一类是空间上的数据冗余。其中时间上的数据冗余是最大的。下面我们就先来说说视频数据时间上的冗余问题。</p>
-<p>为什么说时间上的冗余是最大的呢？假设摄像头每秒抓取30帧，这30帧的数据大部分情况下都是相关联的。也有可能不止30帧的的数据，可能几十帧，上百帧的数据都是关联特别密切的。</p>
-<p>对于这些关联特别密切的帧，其实我们只需要保存一帧的数据，其它帧都可以通过这一帧再按某种规则预测出来，所以说视频数据在时间上的冗余是最多的。</p>
-<p>为了达到相关帧通过预测的方法来压缩数据，就需要将视频帧进行分组。那么如何判定某些帧关系密切，可以划为一组呢？我们来看一下例子，下面是捕获的一组运动的台球的视频帧，台球从右上角滚到了左下角。</p>
-<p><img src="/images/40.webp" alt="img"></p>
-<p><img src="/images/41.webp" alt="img"></p>
-<p>没有运动补偿的时候  120fps     60fps   60帧电影  视频画面是没有提升</p>
-<p>120fps    60帧视频  60帧虚拟帧</p>
-<p>H264编码器会按顺序，每次取出两幅相邻的帧进行宏块比较，计算两帧的相似度。如下图：</p>
-<p><img src="/images/42.webp" alt="img"></p>
-<p>通过宏块扫描与宏块搜索可以发现这两个帧的关联度是非常高的。进而发现这一组帧的关联度都是非常高的。因此，上面这几帧就可以划分为一组。其算法是：<strong>在相邻几幅图像画面中，一般有差别的像素只有10%以内的点,亮度差值变化不超过2%，而色度差值的变化只有1%以内，我们认为这样的图可以分到一组。</strong></p>
-<p>在这样一组帧中，经过编码后，我们只保留第一帖的完整数据，其它帧都通过参考上一帧计算出来。我们称第一帧为<strong>IDR／I帧</strong>，其它帧我们称为<strong>P／B帧</strong>，这样编码后的数据帧组我们称为<strong>GOP</strong>。</p>
-<h3 id="运动估计与补偿"><a href="#运动估计与补偿" class="headerlink" title="运动估计与补偿"></a>运动估计与补偿</h3><p>在H264编码器中将帧分组后，就要计算帧组内物体的运动矢量了。还以上面运动的台球视频帧为例，我们来看一下它是如何计算运动矢量的。</p>
-<p>H264编码器首先按顺序从缓冲区头部取出两帧视频数据，然后进行宏块扫描。当发现其中一幅图片中有物体时，就在另一幅图的邻近位置（搜索窗口中）进行搜索。如果此时在另一幅图中找到该物体，那么就可以计算出物体的运动矢量了。下面这幅图就是搜索后的台球移动的位置。</p>
-<p><img src="/images/43.png" alt="img"></p>
-<p> 抖音 —-》视频  1M  9M   </p>
-<p>通过上图中台球位置相差，就可以计算出台图运行的方向和距离。H264依次把每一帧中球移动的距离和方向都记录下来就成了下面的样子。</p>
-<p><img src="/images/44.png" alt="img"></p>
-<p>运动矢量计算出来后，将相同部分（也就是绿色部分）减去，就得到了补偿数据。我们最终只需要将补偿数据进行压缩保存，以后在解码时就可以恢复原图了。压缩补偿后的数据只需要记录很少的一点数据。如下所示：</p>
-<p><img src="/images/45.png" alt="img"></p>
-<p>我们把运动矢量与补偿称为<strong>帧间压缩技术</strong>，它解决的是视频帧在时间上的数据冗余。除了帧间压缩，帧内也要进行数据压缩，帧内数据压缩解决的是空间上的数据冗余。下面我们就来介绍一下帧内压缩技术。</p>
-<h3 id="帧内预测"><a href="#帧内预测" class="headerlink" title="帧内预测"></a>帧内预测</h3><p>人眼对图象都有一个识别度，对低频的亮度很敏感，对高频的亮度不太敏感。所以基于一些研究，可以将一幅图像中人眼不敏感的数据去除掉。这样就提出了帧内预测技术。</p>
-<p>H264的帧内压缩与JPEG很相似。一幅图像被划分好宏块后，对每个宏块可以进行 9 种模式的预测。找出与原图最接近的一种预测模式。</p>
-<p><img src="/images/46.webp" alt="img"></p>
-<p>下面这幅图是对整幅图中的每个宏块进行预测的过程。</p>
-<p><img src="/images/145.webp" alt="img"></p>
-<p>帧内预测后的图像与原始图像的对比如下：</p>
-<p><img src="/images/146.webp" alt="img"></p>
-<p>然后，将原始图像与帧内预测后的图像相减得残差值。</p>
-<p><img src="/images/1307424-20181107191253955-1987839456.png" alt="img"></p>
-<p>再将我们之前得到的预测模式信息一起保存起来，这样我们就可以在解码时恢复原图了。效果如下：</p>
-<p><img src="/images/1307424-20181107191259057-1084466018.png" alt="img"></p>
-<p>经过帧内与帧间的压缩后，虽然数据有大幅减少，但还有优化的空间。</p>
-<h3 id="对残差数据做DCT"><a href="#对残差数据做DCT" class="headerlink" title="对残差数据做DCT"></a>对残差数据做DCT</h3><p>可以将残差数据做整数离散余弦变换，去掉数据的相关性，进一步压缩数据。如下图所示，左侧为原数据的宏块，右侧为计算出的残差数据的宏块。</p>
-<p><img src="/images/1307424-20181107191314043-1719104258.png" alt="img"></p>
-<p>将残差数据宏块数字化后如下图所示：</p>
-<p><img src="/images/1307424-20181107191318906-1060673182.png" alt="img"></p>
-<p>将残差数据宏块进行 DCT 转换。</p>
-<p><img src="/images/1307424-20181107191325145-505363573.png" alt="img"></p>
-<p>去掉相关联的数据后，我们可以看出数据被进一步压缩了。</p>
-<p><img src="/images/1307424-20181107191330244-1287304627.png" alt="img"></p>
-<p>做完 DCT 后，还不够，还要进行 CABAC 进行无损压缩。</p>
-<h3 id="DCT原理大白话"><a href="#DCT原理大白话" class="headerlink" title="DCT原理大白话"></a>DCT原理大白话</h3><p> 这是第一帧画面：P1（我们的参考帧） </p>
-<p><img src="/images/50.jpg" alt="50"></p>
-<p> 这是第二帧画面：P2（需要编码的帧） </p>
-<p><img src="/images/51.jpg" alt="50"></p>
-<p> 从视频中截取的两张间隔1-2秒的画面，和实际情况类似，下面我们进行几次运动搜索： </p>
-<p> 这是一个演示程序，鼠标选中P2上任意<strong>16x16</strong>的Block，即可搜索出<strong>P1上的 BestMatch</strong> 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
-<p><img src="/images/53.jpg" alt="50"></p>
-<p> 这是一个演示程序，鼠标选中P2上任意16x16的Block，即可搜索出P1上的 BestMatch 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
-<p> 搜索演示2：空中电线交叉位置（上图P1，下图P2） </p>
-<p><img src="/images/55.jpg" alt="50"></p>
-<p><img src="/images/54.jpg" alt="50"></p>
-<p> 同样顺利在P1中找到最接近P2里海报的宏块位置。 </p>
-<p> 图片全搜索：根据P1和运动矢量数据（在P2中搜索到每一个宏块在P1中最相似的位置集合）还原出来的P2’，即完全用P1各个位置的宏块拼凑出来最像P2的图片P2’，效果如下： </p>
-<p><img src="/images/56.jpg" alt="50"></p>
-<h5 id="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80："><a href="#仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80：" class="headerlink" title="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80："></a>仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80：</h5><p><img src="/images/57.jpg" alt="50"></p>
-<p> 这就是之前支离破碎的 P2` 加上误差 D2之后变成了清晰可见的样子，基本还原了原图P2。 </p>
-<p><img src="/images/58.jpg" alt="50"></p>
-<p> 由于D2仅仅占5KB，加上压缩过后的运动矢量不过7KB，所以参考P1我们只需要额外 7KB的数据量就可以完整表示P2了，而如果独立将P2用质量尚可的有损压缩方式独立压缩，则至少要去到50-60KB，这一下节省了差不多8倍的空间，正就是所谓运动编码的基本原理。 </p>
-<p> 实际在使用中，参考帧并不一定是前面一帧，也不一定是同一个GOP的I帧，因为GOP间隔较长时，后面的图片离I帧变化可能已经很大了，因此常见做法是最近15帧中选择一帧误差最小的作为参考帧，虽然彩色画面有YUV三个分量，但是大量的预测工作和最有选择通常是根据Y分量的灰度帧进行判断的。 </p>
-<p> 再者误差我们保存的是（P2-P2’）/2 + 0x80，实际使用时我们会用更有效率的方式，比如让[-64,64]之间的色差精度为1，[-255,-64], [64, 255] 之间的色差精度为2-3，这样会更加真实一些。 </p>
-<p> 同时上文很多地方用的是直接lzma2进行简单存储，实际使用时一般会引入熵编码，对数据进行一定层次的整理然后再压缩，性能会好不少。 </p>
-<h3 id="CABAC"><a href="#CABAC" class="headerlink" title="CABAC"></a>CABAC</h3><p>上面的帧内压缩是属于有损压缩技术。也就是说图像被压缩后，无法完全复原。而CABAC属于无损压缩技术。</p>
-<p>无损压缩技术大家最熟悉的可能就是哈夫曼编码了，给高频的词一个短码，给低频词一个长码从而达到数据压缩的目的。MPEG-2中使用的VLC就是这种算法，我们以 A-Z 作为例子，A属于高频数据，Z属于低频数据。看看它是如何做的。</p>
-<p><img src="/images/1307424-20181107191345116-277907586.png" alt="img"></p>
-<p>CABAC也是给高频数据短码，给低频数据长码。同时还会根据上下文相关性进行压缩，这种方式又比VLC高效很多。其效果如下：</p>
-<p><img src="/images/1307424-20181107191350500-1400387362.png" alt="img"></p>
-<p>现在将 A-Z 换成视频帧，它就成了下面的样子。</p>
-<p><img src="/images/1307424-20181107191355172-2085276841.png" alt="img"></p>
-<p>从上面这张图中明显可以看出采用 CACBA 的无损压缩方案要比 VLC 高效的多。</p>
-</font>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A302-%E5%B8%A7%E5%86%85%E9%A2%84%E6%B5%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -926,6 +738,137 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A304-H264%E5%88%86%E5%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A304-H264%E5%88%86%E5%B1%82/" class="post-title-link" itemprop="url">H264的分层</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-18 18:34:24" itemprop="dateCreated datePublished" datetime="2021-11-18T18:34:24+08:00">2021-11-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-13 11:36:03" itemprop="dateModified" datetime="2022-08-13T11:36:03+08:00">2022-08-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <font size="2.9">
+
+<h4 id="音视频高手课07-视频流H264码流分析实战"><a href="#音视频高手课07-视频流H264码流分析实战" class="headerlink" title="音视频高手课07-视频流H264码流分析实战"></a>音视频高手课07-视频流H264码流分析实战</h4><h4 id="1-1-H-264编码格式"><a href="#1-1-H-264编码格式" class="headerlink" title="1.1 H.264编码格式"></a>1.1 H.264编码格式</h4><p>H.264的功能分为两层：</p>
+<blockquote>
+<ul>
+<li>视频编码层 </li>
+<li>网络提取层 </li>
+</ul>
+</blockquote>
+<blockquote>
+<p>H.264 的编码视频序列包括一系列的NAL 单元，每个NAL 单元包含一个RBSP。一个原始的H.264由<strong>N个NALU单元组成</strong>、 NALU 单元常由 [StartCode] [NALU Header] [NALU Payload] 三部分组成，其中 Start Code 用于标示这是一个NALU 单元的开始，必须是”00 00 00 01” 或”00 00 01”。    </p>
+</blockquote>
+<p><img src="/images/68.png" alt="images"></p>
+<p>​     </p>
+<h4 id="1-2-H-264网络传输"><a href="#1-2-H-264网络传输" class="headerlink" title="1.2 H.264网络传输"></a>1.2 H.264网络传输</h4><p>​        H.264的编码视频序列包括一系列的<strong>NAL单元</strong>，每个NAL单元包含<strong>一个RBSP</strong>，</p>
+<p>见表1。编码片（包括数据分割片IDR片）和序列RBSP结束符被定义为VCL NAL单元，其余为NAL单元。</p>
+<p>​        <strong>典型的RBSP单元序列如图2所示。</strong></p>
+<p>RBSP  顺丰 头   顺丰公司尾部</p>
+<p>每个单元都按独立的NAL单元传送。单元的信息头（一个字节）定义了RBSP单元的类型，NAL单元的其余部分为RBSP数据。</p>
+<p><img src="/images/69.png" alt="img"></p>
+<p><img src="/images/70.png" alt="img"></p>
+<ol>
+<li>2.1 <strong>H.264码流结构图</strong>     </li>
+</ol>
+<p><img src="/images/71.png" alt="img"></p>
+<p>起始码：如果NALU对应的Slice为一帧的开始，则用4字节表示，即0x00000001；否则用3字节表示，0x000001。 NAL Header：forbidden_bit，nal_reference_bit（优先级），nal_unit_type（类型）。 脱壳操作：为了使NALU主体不包括起始码，在编码时每遇到两个字节（连续）的0，就插入一字节0x03，以和起始码相区别。解码时，则将相应的0x03删除掉。</p>
+<p><img src="/images/72.png" alt="img"></p>
+<p> H.264解码 <strong>NAL头信息</strong>的nal_referrence_idc（NRI）用于在重建过程中标记一个NAL单元的重要性，</p>
+<ol>
+<li>值为0表示这个NAL单元没有用预测，因此可以被解码器抛弃而不会有错误扩散；</li>
+<li>值高于0表示NAL单元要用于无漂移重构，且值越高，对此NAL单元丢失的影响越大。</li>
+<li> NAL头信息的隐藏比特位，在H.264编码器中默认为0，当网络识别到单元中存在比特错误时，可将其置为1。隐藏比特位主要用于适应不同种类的网络环境（比如有线无线相结合的环境）。     </li>
+</ol>
+<p><img src="/images/73.png" alt="img"></p>
+<p>NAL单元解码的流程为：首先从NAL单元中提取出RBSP语法结构，然后按照如图4所示的流程处理RBSP语法结构。输入的是NAL单元，输出结果是经过解码的当前图像的样值点。 NAL单元中分别包含了序列参数集和图像参数集。图像参数集和序列参数集在其他NAL单元传输过程中作为参考使用，在这些数据NAL单元的片头中，通过m语法元素pic_parameter_set_id设置它们所使用的图像参数集编号；而相应的每个图像参数集中，通过语法元素seq_paramter_set_id设置他们使用的序列参数集编号。</p>
+<p>几个例子：</p>
+<p><img src="/images/fc_101.png" alt="img"></p>
+<p>硬解–soc 芯片</p>
+<p>软件   ffmpeg</p>
+<p>3、 ffmpeg解析H264流程分析</p>
+<p>这是一段实际的码流</p>
+<p><img src="/images/fc_100.png" alt="img"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 -vcodec h264 -preset fast -b:v <span class="number">2000</span>k hello.h264</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+ </font>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A303-%E5%88%87%E7%89%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1041,7 +984,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A304-H264%E5%88%86%E5%B1%82/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1055,7 +998,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A304-H264%E5%88%86%E5%B1%82/" class="post-title-link" itemprop="url">H264的分层</a>
+            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/" class="post-title-link" itemprop="url">H.265与H.264的差异详解</a>
         </h2>
 
         <div class="post-meta">
@@ -1072,7 +1015,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-13 11:36:03" itemprop="dateModified" datetime="2022-08-13T11:36:03+08:00">2022-08-13</time>
+                <time title="修改时间：2022-08-13 11:36:48" itemprop="dateModified" datetime="2022-08-13T11:36:48+08:00">2022-08-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1090,14 +1033,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
+              <span>2.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -1111,49 +1054,369 @@
       
           <font size="2.9">
 
-<h4 id="音视频高手课07-视频流H264码流分析实战"><a href="#音视频高手课07-视频流H264码流分析实战" class="headerlink" title="音视频高手课07-视频流H264码流分析实战"></a>音视频高手课07-视频流H264码流分析实战</h4><h4 id="1-1-H-264编码格式"><a href="#1-1-H-264编码格式" class="headerlink" title="1.1 H.264编码格式"></a>1.1 H.264编码格式</h4><p>H.264的功能分为两层：</p>
-<blockquote>
-<ul>
-<li>视频编码层 </li>
-<li>网络提取层 </li>
-</ul>
-</blockquote>
-<blockquote>
-<p>H.264 的编码视频序列包括一系列的NAL 单元，每个NAL 单元包含一个RBSP。一个原始的H.264由<strong>N个NALU单元组成</strong>、 NALU 单元常由 [StartCode] [NALU Header] [NALU Payload] 三部分组成，其中 Start Code 用于标示这是一个NALU 单元的开始，必须是”00 00 00 01” 或”00 00 01”。    </p>
-</blockquote>
-<p><img src="/images/68.png" alt="images"></p>
-<p>​     </p>
-<h4 id="1-2-H-264网络传输"><a href="#1-2-H-264网络传输" class="headerlink" title="1.2 H.264网络传输"></a>1.2 H.264网络传输</h4><p>​        H.264的编码视频序列包括一系列的<strong>NAL单元</strong>，每个NAL单元包含<strong>一个RBSP</strong>，</p>
-<p>见表1。编码片（包括数据分割片IDR片）和序列RBSP结束符被定义为VCL NAL单元，其余为NAL单元。</p>
-<p>​        <strong>典型的RBSP单元序列如图2所示。</strong></p>
-<p>RBSP  顺丰 头   顺丰公司尾部</p>
-<p>每个单元都按独立的NAL单元传送。单元的信息头（一个字节）定义了RBSP单元的类型，NAL单元的其余部分为RBSP数据。</p>
-<p><img src="/images/69.png" alt="img"></p>
-<p><img src="/images/70.png" alt="img"></p>
-<ol>
-<li>2.1 <strong>H.264码流结构图</strong>     </li>
-</ol>
-<p><img src="/images/71.png" alt="img"></p>
-<p>起始码：如果NALU对应的Slice为一帧的开始，则用4字节表示，即0x00000001；否则用3字节表示，0x000001。 NAL Header：forbidden_bit，nal_reference_bit（优先级），nal_unit_type（类型）。 脱壳操作：为了使NALU主体不包括起始码，在编码时每遇到两个字节（连续）的0，就插入一字节0x03，以和起始码相区别。解码时，则将相应的0x03删除掉。</p>
-<p><img src="/images/72.png" alt="img"></p>
-<p> H.264解码 <strong>NAL头信息</strong>的nal_referrence_idc（NRI）用于在重建过程中标记一个NAL单元的重要性，</p>
-<ol>
-<li>值为0表示这个NAL单元没有用预测，因此可以被解码器抛弃而不会有错误扩散；</li>
-<li>值高于0表示NAL单元要用于无漂移重构，且值越高，对此NAL单元丢失的影响越大。</li>
-<li> NAL头信息的隐藏比特位，在H.264编码器中默认为0，当网络识别到单元中存在比特错误时，可将其置为1。隐藏比特位主要用于适应不同种类的网络环境（比如有线无线相结合的环境）。     </li>
-</ol>
-<p><img src="/images/73.png" alt="img"></p>
-<p>NAL单元解码的流程为：首先从NAL单元中提取出RBSP语法结构，然后按照如图4所示的流程处理RBSP语法结构。输入的是NAL单元，输出结果是经过解码的当前图像的样值点。 NAL单元中分别包含了序列参数集和图像参数集。图像参数集和序列参数集在其他NAL单元传输过程中作为参考使用，在这些数据NAL单元的片头中，通过m语法元素pic_parameter_set_id设置它们所使用的图像参数集编号；而相应的每个图像参数集中，通过语法元素seq_paramter_set_id设置他们使用的序列参数集编号。</p>
-<p>几个例子：</p>
-<p><img src="/images/fc_101.png" alt="img"></p>
-<p>硬解–soc 芯片</p>
-<p>软件   ffmpeg</p>
-<p>3、 ffmpeg解析H264流程分析</p>
-<p>这是一段实际的码流</p>
-<p><img src="/images/fc_100.png" alt="img"></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 -vcodec h264 -preset fast -b:v <span class="number">2000</span>k hello.h264</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
- </font>
+<h2 id="H-265与H-264的差异详解"><a href="#H-265与H-264的差异详解" class="headerlink" title="H.265与H.264的差异详解"></a>H.265与H.264的差异详解</h2><blockquote>
+<p><strong>码牛只为跟牛逼的你</strong></p>
+</blockquote>
+<p>通过以下几种来对比H264与H265的差异</p>
+<blockquote>
+<p>1.编解码框架差异</p>
+<p>2.压缩性能比较</p>
+<p>3.各模块技术差异汇总</p>
+<p>4.块划分结构</p>
+<p>5.帧内预测</p>
+<p>6.帧间预测</p>
+<p>7.去块滤波</p>
+<p>8.SAO滤波</p>
+<p>9.Tile</p>
+<p>10.WPP</p>
+<p>11.Dependent slice</p>
+<p>12.其他技术</p>
+</blockquote>
+<h4 id="1-1-H-264与H-265的主要差异"><a href="#1-1-H-264与H-265的主要差异" class="headerlink" title="1.1  H.264与H.265的主要差异"></a>1.1  H.264与H.265的主要差异</h4><p>H.265仍然采用混合编解码，编解码结构域H.264基本一致，</p>
+<p>主要的不同在于：</p>
+<p>Ø 编码块划分结构：采用CU (CodingUnit)、PU(PredictionUnit)和TU(TransformUnit)的递归结构。</p>
+<p>Ø 基本细节：各功能块的内部细节有很多差异</p>
+<p>Ø 并行工具：增加了Tile以及WPP等并行工具集以提高编码速度</p>
+<p>Ø 滤波器：在去块滤波之后增加了SAO（sample adaptive offset）滤波模块</p>
+<p><img src="https://img-blog.csdn.net/20170903222110391?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>Fig.H.265的框架图</p>
+<h4 id="2-压缩性能比较"><a href="#2-压缩性能比较" class="headerlink" title="2.  压缩性能比较"></a>2.  压缩性能比较</h4><p>PSNR计算方式</p>
+<p><img src="https://img-blog.csdn.net/20170903222300500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265/HEVC HM-9.0 和H.264 JM-18.4 的BD-rate 比较：</p>
+<p> AllIntra case:           22%</p>
+<p> RandomAccess case:       34%</p>
+<p> LowDelay case:          37%</p>
+<h4 id="3-各模块技术差异汇总"><a href="#3-各模块技术差异汇总" class="headerlink" title="3.  各模块技术差异汇总"></a>3.  各模块技术差异汇总</h4><p><img src="https://img-blog.csdn.net/20170903222335956?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p><img src="https://img-blog.csdn.net/20170903222351940?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="4-块划分结构"><a href="#4-块划分结构" class="headerlink" title="4.  块划分结构"></a>4.  块划分结构</h4><p>在H.265中，将宏块的大小从H.264的16×16扩展到了64×64，以便于高分辨率视频的压缩。</p>
+<p>同时，采用了更加灵活的编码结构来提高编码效率，</p>
+<p>包括编码单元（CodingUnit）、预测单元（PredictUnit）和变换单元（TransformUnit）。</p>
+<p>如下图所示:</p>
+<p><img src="https://img-blog.csdn.net/20170903222441671?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>其中:</p>
+<p>编码单元类似于H.264/AVC中的宏块的概念，用于编码的过程。</p>
+<p>预测单元是进行预测的基本单元，</p>
+<p>变换单元是进行变换和量化的基本单元。</p>
+<p>这三个单元的分离，使得变换、预测和编码各个处理环节更加灵活，</p>
+<p>也有利于各环节的划分更加符合视频图像的纹理特征，</p>
+<p>有利于各个单元更优化的完成各自的功能。</p>
+<p><img src="https://img-blog.csdn.net/20170903222542263?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>RQT是一种自适应的变换技术，这种思想是对H.264/AVC中ABT（AdaptiveBlock-size Transform）技术的延伸和扩展。</p>
+<p>对于帧间编码来说，它允许变换块的大小根据运动补偿块的大小进行自适应的调整；</p>
+<p>对于帧内编码来说，它允许变换块的大小根据帧内预测残差的特性进行自适应的调整。</p>
+<p>大块的变换相对于小块的变换，一方面能够提供更好的能量集中效果，并能在量化后保存更多的图像细节，但是另一方面在量化后却会带来更多的振铃效应。</p>
+<p>因此，根据当前块信号的特性，自适应的选择变换块大小，如下图所示，可以得到能量集中、细节保留程度以及图像的振铃效应三者最优的折中。</p>
+<p><img src="https://img-blog.csdn.net/20170903222512555?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>Fig. 灵活的块结构示意图</p>
+<h4 id="5-帧内预测模式"><a href="#5-帧内预测模式" class="headerlink" title="5.  帧内预测模式"></a>5.  帧内预测模式</h4><p>本质上H.265是在H.264的预测方向基础上增加了更多的预测方向</p>
+<p>H.265：所有尺寸的CU块，亮度有35种预测方向，色度有5种预测方向</p>
+<p>H.264：亮度 4x4块9个方向，8x8块9个方向，16x16块4种方向，色度4种方向</p>
+<p> <img src="https://img-blog.csdn.net/20170903222603597?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.264的帧内预测方向:</p>
+<p> <img src="https://img-blog.csdn.net/20170903222635669?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265的帧内预测方向：</p>
+<h4 id="6-帧间预测"><a href="#6-帧间预测" class="headerlink" title="6.  帧间预测"></a>6.  帧间预测</h4><p>本质上H.265是在H.264基础上增加插值的抽头系数个数，改变抽头系数值以及增加运动矢量预测值的候选个数，以达到减少预测残差的目的。</p>
+<p>H.265与H.264一样插值精度都是亮度到1/4，色度到1/8精度，但插值滤波器抽头长度和系数不同.</p>
+<p>H.265的增加了运动矢量预测值候选的个数，而H.264预测值只有一个</p>
+<p> <img src="https://img-blog.csdn.net/20170903222712796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265的空域候选项：</p>
+<p><img src="https://img-blog.csdn.net/20170903222726452?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265时域共同位置候选项</p>
+<h4 id="7-去块滤波"><a href="#7-去块滤波" class="headerlink" title="7.  去块滤波"></a>7.  去块滤波</h4><p>本质上H.265的去块滤波与H.264的去块滤波及流程是一致的，做了如下最显著的改变：</p>
+<p>Ø 滤波边界： H.264最小到4x4边界滤波；而H.265适应最新的CU、PU和TU划分结构的滤波边缘，最小滤波边界为8x8，</p>
+<p>Ø 滤波顺序：H264先宏块内采用垂直边界，再当前宏块内水平边界；而H.265先整帧的垂直边界，再整帧的水平边界</p>
+<p>ALF在编解码环路内，位于Deblock和SAO之后，</p>
+<p>用于恢复重建图像以达到重建图像与原始图像之间的均方差（MSE）最小。</p>
+<p>ALF的系数是在帧级计算和传输的，可以整帧应用ALF，</p>
+<p>也可以对于基于块或基于量化树（quadtree）的部分区域进行ALF，</p>
+<p>如果是基于部分区域的ALF，还必须传递指示区域信息的附加信息。</p>
+<h4 id="8-采样点自适应偏移（Sample-AdaptiveOffset）滤波"><a href="#8-采样点自适应偏移（Sample-AdaptiveOffset）滤波" class="headerlink" title="8.  采样点自适应偏移（Sample AdaptiveOffset）滤波"></a>8.  采样点自适应偏移（Sample AdaptiveOffset）滤波</h4><p>SAO(sample adaptive offset)滤波其实就是对去块滤波后的重建像素按照不同的模板进行分类，并对每一种分类像素进行补偿, 分类模板分为BO(Band offset)和EO(Edge offset)。</p>
+<p> <img src="https://img-blog.csdn.net/20170903222824890?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>BO分类：</p>
+<p> <img src="https://img-blog.csdn.net/20170903222838657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>EO分类模块：</p>
+<p>SAO在编解码环路内，位于Deblock之后，通过对重建图像的分类，对每一类图像像素值加减一个偏移，达到减少失真的目的，从而提高压缩率，减少码流。</p>
+<p>采用SAO后，平均可以减少2%~6%的码流,而编码器和解码器的性能消耗仅仅增加了约2%。</p>
+<h4 id="9-Tile划分"><a href="#9-Tile划分" class="headerlink" title="9.  Tile划分"></a>9.  Tile划分</h4><p>Tile： 将图像分割为矩形区域。</p>
+<p>其主要目的是增强并行处理性能。</p>
+<p>每个tile区域相当于一幅子图像，可独立的以LCU块为单位进行编解码。</p>
+<p>一个Tile块为基本的并行单元，每个Tile为一个子码流</p>
+<p> <img src="https://img-blog.csdn.net/20170903222909352?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\10. WPP</p>
+<p>WPP:  全称为wavefront parallel process，以LCU行为基本的编码单位。</p>
+<p>以一行LCU块为基本的并行单元，每一行LCU为一个子码流</p>
+<p> <img src="https://img-blog.csdn.net/20170903222931315?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\11. Dependentslice</p>
+<p>Dependent slice：该技术可以理解为对原先Slice NALU的数据划分，使其可以适合更加灵活的打包方式。</p>
+<p>Slice 和dependent slice 的示意图如下</p>
+<p><img src="https://img-blog.csdn.net/20170903223007796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\12. 其他相关技术</p>
+<p>Ø Transform_skip模式：transform_skip_flag，该模式不进行变换，但是要进行量化，该模式对文本桌面视频有较好效果</p>
+<p>Ø 内部比特深度增加：为了保证中间预测、变换以及量化过程中的内部比特精度，以达到更好的压缩性能</p>
+</font>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A305-%E6%89%8B%E5%86%99H264%E7%BC%96%E7%A0%81%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A305-%E6%89%8B%E5%86%99H264%E7%BC%96%E7%A0%81%E5%99%A8/" class="post-title-link" itemprop="url">视频流H264的编码器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-18 18:34:24" itemprop="dateCreated datePublished" datetime="2021-11-18T18:34:24+08:00">2021-11-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-13 11:36:21" itemprop="dateModified" datetime="2022-08-13T11:36:21+08:00">2022-08-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <font size="2.9">
+
+<h3 id="音视频高手课08-H264-I帧-P帧-B帧及手写H264编码器"><a href="#音视频高手课08-H264-I帧-P帧-B帧及手写H264编码器" class="headerlink" title="音视频高手课08-H264 I帧 P帧 B帧及手写H264编码器"></a>音视频高手课08-H264 I帧 P帧 B帧及手写H264编码器</h3><h5 id="1-三种帧的说明"><a href="#1-三种帧的说明" class="headerlink" title="1  三种帧的说明"></a>1  三种帧的说明</h5><p>1、I 帧：帧内编码帧，帧表示关键帧，你可以理解为这一帧画面的完整保留；解码时只需要本帧数据就可以完成（因为包含完整画面）</p>
+<p><strong>I 帧的特点：</strong></p>
+<ul>
+<li><p>a. 它是一个全帧压缩编码帧，它将全帧图像信息进行JPEG压缩编码及传输</p>
+</li>
+<li><p>b. 解码时仅用I 帧的数据就可重构完整图像</p>
+</li>
+<li><p>c. I 帧描述了图像背景和运动主体的详情</p>
+</li>
+<li><p>d. I 帧不需要参考其他画面而生成</p>
+</li>
+<li><p>e. I 帧是P帧和B帧的参考帧（其质量直接影响到同组中以后各帧的质量）</p>
+</li>
+<li><p>f. I 帧不需要考虑运动矢量</p>
+</li>
+<li><p>g. I 帧所占数据的信息量比较大</p>
+</li>
+</ul>
+<p>  、<strong>P帧</strong>：前向预测编码帧。P帧表示的是这一帧跟之前的一个关键帧（或P帧）的差别，解码时需要之前缓存的画面叠加上本帧定义的差别，生成最终画面。（也就是差别帧，P帧没有完整画面数据，只有与前一帧的画面差别的数据）</p>
+<p>​    <strong>P帧的预测与重构</strong>：P帧是以 I 帧为参考帧，在 I 帧中找出P帧“某点”的预测值和运动矢量，取预测差值和运动矢量一起传送。在接收端根据运行矢量从 I 帧找出P帧“某点”的预测值并与差值相加以得到P帧“某点”样值，从而可得到完整的P帧。</p>
+<p><strong>P帧的特点：</strong></p>
+<ul>
+<li><p>a. P帧是 I 帧后面相隔1~2帧的编码帧</p>
+</li>
+<li><p>b. P帧采用运动补偿的方法传送它与前面的I或P帧的差值及运动矢量（预测误差）</p>
+</li>
+<li><p>c. 解码时必须将帧中的预测值与预测误差求和后才能重构完整的P帧图像</p>
+</li>
+<li><p>d. P帧属于前向预测的帧间编码。它只参考前面最靠近它的 I 帧或P帧</p>
+</li>
+<li><p>e. 由于P帧是参考帧，它可能造成解码错误的扩散</p>
+</li>
+<li><p>f. 由于是差值传送，P帧的压缩比较高</p>
+</li>
+</ul>
+<p>3、<strong>B帧</strong>：双向预测内插编码帧。B帧是双向差别帧，也就是B帧记录的是本帧与前后帧的差别（具体比较复杂，有4种情况，但我这样说简单些），换言之，要解码B帧。不仅要取得之前的缓存画面，还要解码之后的画面，通过前后画面的与本帧数据的叠加取得最终的画面。B帧压缩率高，但是解码时CPU会比较累。</p>
+<p><strong>B帧的预测与重构</strong></p>
+<p>​    B帧以前面的 I 或P帧和后面的P帧为参考帧，“找出”B帧“某点”的预测值和两个运动矢量，并取预测差值和运动矢量传送。接收端根据运动矢量在两个参考帧中“找出（算出）”预测值并与差值求和，得到B帧“某点”样值，从而可得到完整的B帧。</p>
+<p><strong>B帧的特点：</strong></p>
+<ul>
+<li><p>a. B帧是由前面的 I 或P帧和后面的P帧进行预测的</p>
+</li>
+<li><p>b. B帧传送的是它与前面的 I 或P帧和后面的P帧之间的预测误差及运动矢量</p>
+</li>
+<li><p>c. B帧是双向预测编码帧</p>
+</li>
+<li><p>d. B帧压缩比最高，因为它只反映并参考帧间运动主体的变化情况，预测比较准确</p>
+</li>
+<li><p>e. B帧不是参考帧，不会造成解码错误的扩散</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">注：I、B、P帧是根据压缩算法的需要，是人为定义的，他们都是实实在在的物理帧。</span><br><span class="line">一般来说，帧的压缩率是7（跟JPG差不多），</span><br><span class="line">P帧是20，B帧可以达到50.可见使用B帧能节省大量空间，</span><br><span class="line">节省出来的空间可以用来保存多一些帧，这样在相同码率下，可以提供更好的画质。</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-2-压缩算法的说明"><a href="#1-2-压缩算法的说明" class="headerlink" title="1.2 压缩算法的说明"></a>1.2 压缩算法的说明</h4><p><strong>h264的压缩方法</strong>：</p>
+<ul>
+<li><p>1、分组：把几帧图像分为一组（GOP，也就是一个序列），为防止运动变化，帧数不宜取多</p>
+</li>
+<li><p>2、定义帧：将每组内各帧图像定义为三种类型，即 I 帧、B帧和P帧</p>
+</li>
+<li><p>3、预测帧：以帧作为基础帧，以帧预测P帧，再由 I 帧和P帧预测B帧</p>
+</li>
+<li><p>4、数据传输：最后将 I  帧数据与预测的差值信息进行存储和传输</p>
+</li>
+</ul>
+<p>​    <strong>帧内</strong>（Intraframe）压缩也称为空间压缩（Spatial compression）。当压缩一帧图像时，仅考虑本帧的数据而不考虑相邻帧之间的冗余信息，这实际上与静态图像压缩类似。帧内一般采用有损压缩算法，由于帧内压缩是编码一个完整的图像，因此可以独立的解码、显示。帧内压缩一般达不到很高的压缩，跟编码jpeg差不多。</p>
+<p>​    <strong>帧间</strong>（Interframe）压缩的原理是：相邻几帧的数据有很大的相关性，或者说前后两帧信息变化很小的特点，也即连续的视频及其相邻帧之间具有冗余信息，根据这一特性，压缩相邻帧之间的冗余量就可以进一步提高压缩量，减少压缩比。帧间压缩也称为时间压缩，它通过比较时间轴上不同帧之间的数据进行压缩。帧间压缩一般是无损的。帧差值（Frame differencing）算法是一种典型的时间压缩发，它通过比较本帧与相邻帧之间的差异，仅记录本帧与其相邻帧的差值，这样可以大大减少数据量。</p>
+<p>​    <strong>顺便说下有损</strong>（Lossy）压缩和无损（Lossy less）压缩。无损压缩也即压缩前和解压缩后的数据完全一致。多数的无损压缩都采用RLE行程编码算法。有损压缩意味着解压缩后的数据与压缩前的数据不一致。在压缩的过程中要丢失一些人眼和耳朵所不敏感的图像或音频信息，而且丢失的信息不可恢复。几乎所有高压缩的算法都采用有损压缩，这样才能达到低数据率的目标。丢失的数据率与压缩比有关，压缩比越小，丢失的数据越多，解压缩后的效果一般越差。此外，某些有损压缩算法采用多次重复压缩的方式，这样还会引起额外的数据丢失。</p>
+<hr>
+<h3 id="2-手写H264编码器"><a href="#2-手写H264编码器" class="headerlink" title="2  手写H264编码器"></a>2  手写H264编码器</h3><p>要彻底理解视频编码原理，看书都是虚的，需要实际动手，实现一个简单的视频编码器：</p>
+<p>知识准备：基本图像处理知识，信号的时域和频域问题，熟练掌握傅立叶正反变换，一维、二维傅立叶变换，以及其变种，dct变换，快速dct变换。 </p>
+<p><strong>2.1.1 第一步：实现有损图像压缩和解压</strong><br>        参考 JPEG原理，将RGB-&gt;YUV，然后Y/U/V看成三张不同的图片，将其中一张图片分为 8x8的block进行 dct变换（可以直接进行二维dct变换，或者按一定顺序将8x8的二维数组整理成一个64字节的一维数组），还是得到一个8x8的整数频率数据。于是表示图像大轮廓的低频信号（人眼敏感的信号）集中在 8x8的左上角；表示图像细节的高频信号集中在右下角。</p>
+<p>​         接着将其量化，所谓<strong>量化</strong>，就是信号采样的步长，8x8的整数频率数据块，每个数据都要除以对应位置的步长，左上角相对重要的低频信号步长是1，也就是说0-255，是多少就是多少。而右下角是不太重要的高频信号，比如步长取10，那么这些位置的数据都要/10，实际解码的时候再将他们<em>10恢复出来，这样经过编码的时候/10和解码的时候</em>10，那么步长为10的信号1, 13, 25, 37就会变成规矩的：0, 10, 20, 30, 对小于步长10的部分我们直接丢弃了，因为高频不太重要。 </p>
+<p>​         <strong>经过量化以后</strong>，8x8的数据块左上角的数据由于步长小，都是比较离散的，而靠近右下角的高频数据，都比较统一，或者是一串0，因此图像大量的细节被我们丢弃了，这时候，我们用无损压缩方式，比如lzma2算法（jpeg是rle + huffman）将这64个byte压缩起来，由于后面高频数据步长大，做了除法以后，这些值都比较小，而且比较靠近，甚至右下部分都是一串0，十分便于压缩。</p>
+<p>​        JPEG图像有个问题就是低码率时 block边界比较严重，现代图片压缩技术往往要配合一些de-block算法，比如最简单的就是边界部分几个像素点和周围插值模糊一下。 </p>
+<blockquote>
+<p> 做到这里我们实现了一个同 jpeg类似的静态图片有损压缩算法。在视频里面用来保存I帧数据。 </p>
+</blockquote>
+<p>​     </p>
+<p> <strong>2.1.2 第二步：实现宏块误差计算</strong> </p>
+<p>​        <strong>视频</strong>由连续的若干图像帧组成，分为 I帧，P帧，所谓I帧，就是不依赖就可以独立解码的视频图像帧，而P帧则需要依赖前面已解码的视频帧，配合一定数据才能生成出来。所以视频中I帧往往都比较大，而P帧比较小，如果播放器一开始收到了P帧那么是无法播放的，只有收到下一个I帧才能开始播放。I帧多了视频就变大，I帧少了，数据量是小了，但视频受到丢包或者数据错误的影响却又会更严重。</p>
+<p>​         那么所谓运动预测编码，其实就是P帧的生成过程：继续将图片分成 16x16的block（为了简单只讨论yuv的y分量压缩）。I帧内部单帧图片压缩我们采用了8x8的block，而这里用16x16的block来提高帧间编码压缩率（当然也会有更多细节损失），我们用 x, y表示像素点坐标，而s,t表示block坐标，那么坐标为（x,y）的像素点所属的block坐标为： </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = x / <span class="number">16</span> = x &gt;&gt; <span class="number">4</span></span><br><span class="line">t = y / <span class="number">16</span> = y &gt;&gt; <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>​         接着要计算两个<strong>block的相似度</strong>，即矢量的距离，可以表示为一个256维矢量（16x16）像素点色彩距离的平方，我们先定义两个颜色的误差为： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PixelDiff(c1, c2) = (c1- c2) ^ 2</span><br></pre></td></tr></table></figure>
+
+<p>​        <strong>那么256个点的误差</strong>可以表示为所有对应点的像素误差和：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BlockDiff(b1, b2) = sum( PixelDiff(c1, c2) for c1 in b1 for c2 in b2)</span><br></pre></td></tr></table></figure>
+
+
+<p>代码化为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">block_diff</span><span class="params">(<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> b1[<span class="number">16</span>][<span class="number">16</span>], <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> b2[<span class="number">16</span>][<span class="number">16</span>])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">16</span>; i++) &#123;</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">16</span>; j++) &#123;</span><br><span class="line">              <span class="keyword">int</span> c1 = b1[i][j];</span><br><span class="line">              <span class="keyword">int</span> c2 = b2[i][j];</span><br><span class="line">              sum += (c1 - c2) * (c1 - c2);</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>有了这个block求差的函数，我们就可以针对<strong>特定block</strong>，搜索另外若<strong>干个block</strong>中哪个和它最相似了（误差最小）。</p>
+<h5 id="1-2-3-第三步：实现运动预测编码"><a href="#1-2-3-第三步：实现运动预测编码" class="headerlink" title="1.2.3 第三步：实现运动预测编码"></a>1.2.3 <strong>第三步：实现运动预测编码</strong></h5><p>​        根据上面的宏块比较函数，你已经可以知道两个block到底像不像了，越象的block，block_diff返回值越低。那么我们有两帧相邻的图片，P1，P2，假设 P1已经完成编码了，现在要对 P2进行P帧编码，其实就是轮询 P2里面的每一个 block，为P2中每一个block找出上一帧中相似度最高的block坐标，并记录下来，具体伪代码可以表示为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> block[<span class="number">16</span>][<span class="number">16</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> t = <span class="number">0</span>; t &lt;= maxt; t++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> s = <span class="number">0</span>; s &lt;= maxs; s++) &#123;</span><br><span class="line">         picture_get_block(P2, s * <span class="number">16</span>, t * <span class="number">16</span>, block); <span class="comment">// 取得图片 P2 的 block</span></span><br><span class="line">         <span class="keyword">int</span> x, y;</span><br><span class="line">         block_search_nearest(P1, &amp;x, &amp;y, block); <span class="comment">// 在P1中搜索最相似的block</span></span><br><span class="line">         output(x, y);  <span class="comment">// 将P1中最相似的block的左上角像素坐标 (x, y) 输出</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>​        其中在P1中搜索最相似 block的 block_search_nearest 函数原理是比较简单的，我们可以暴力点用两个for循环轮询 P1中每个像素点开始的16x16的block（速度较慢），当然实际中不可能这么暴力搜索，而是围绕P2中该block对应坐标在P1中位置作为中心，慢慢四周扩散，搜索一定步长，并得到一个 ：<strong>按照一定顺序进行搜索，并且在一定范围内最相似的宏块坐标</strong>。 。</p>
+<blockquote>
+<p>于是P2进行运动预测编码的结果就是一大堆(x,y)的坐标，代表P2上每个block在上一帧P1里面最相似的 block的位置。反过来说可能更容易理解，我们可以把第三步整个过程定义为： </p>
+</blockquote>
+<h5 id="怎么用若干-P1里不同起始位置的block拼凑出图片P2来，使得拼凑以后的结果和P2最像。"><a href="#怎么用若干-P1里不同起始位置的block拼凑出图片P2来，使得拼凑以后的结果和P2最像。" class="headerlink" title="怎么用若干 P1里不同起始位置的block拼凑出图片P2来，使得拼凑以后的结果和P2最像。"></a>怎么用若干 P1里不同起始位置的block拼凑出图片P2来，使得拼凑以后的结果和P2最像。</h5><p><strong>1.2.4 第四步：实现P帧编码</strong></p>
+<p>​         拼凑的结果就是一系列(x,y)的坐标数据，我们继续用lzma2将它们先压缩起来，按照 vcd的分辨率</p>
+<p>352 x 240，我们横向需要 352 / 16 = 22个block，纵向需要 240 / 16 = 15 个block，可以用 P1中 22 x 15 = 330 </p>
+<p>个 block的坐标信息生成一张和P2很类似的图片 P2’ ： </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> t = <span class="number">0</span>; t &lt; <span class="number">15</span>; t++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> s = <span class="number">0</span>; s &lt; <span class="number">22</span>; s++, next++) &#123;</span><br><span class="line">         <span class="keyword">int</span> x = block_positions[next].x;   <span class="comment">// 取得对应 P1上的 block像素位置 x</span></span><br><span class="line">         <span class="keyword">int</span> y = block_positions[next].y;   <span class="comment">// 取得对应 P1上的 block像素位置 y</span></span><br><span class="line">         <span class="comment">// 将 P1位置(x,y)开始的 16 x 16 的图块拷贝到 P2&#x27;的 (s * 16, t * 16)处</span></span><br><span class="line">         CopyRect(P2<span class="number">&#x27;</span>, s * <span class="number">16</span>, t * <span class="number">16</span>, P1, x, y, <span class="number">16</span>, <span class="number">16</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>     我们把用来生成P2的P1称为 P2的 “参考帧”，再把刚才那一堆P1内用来拼成P2的 block坐标称为 “**运动矢量**”，这是P帧里面最主要的数据内容。但是此时由P1和这些坐标数据拼凑出来的P2，你会发现粗看和P2很象，但细看会发现有些支离破碎，并且边缘比较明显，怎么办呢？我们需要第四步。
+     
+</code></pre>
+<h5 id="1-2-5第五步：实现P帧编码"><a href="#1-2-5第五步：实现P帧编码" class="headerlink" title="1.2.5第五步：实现P帧编码"></a><strong>1.2.5第五步：实现P帧编码</strong></h5><pre><code>     有了刚才的运动预测矢量（一堆block的坐标），我们先用P1按照这些数据拼凑出一张类似 P2的新图片叫做P2&#39;，然后同P2上每个像素做减法，得到一张保存 differ的图片： 
+</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D2 = (P2 - P2<span class="number">&#x27;</span>) / <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>​        误差图片 D2上每一个点等于 P2上对应位置的点的颜色减去 P2’上对应位置的点的颜色再除以2，用8位表示差值，值是循环的，比如-2就是255，这里一般可以在结果上 + 0x80，即 128代表0，129代表2，127代表-2。继续用一个 8位的整数可以表示 [-254, 254] 之间的误差范围，步长精度是2。 </p>
+<p>​        按照第三步实现的逻辑，P2’其实已经很像P2了，只是有些误差，我们将这些误差保存成了图片D2，所以图片D2中，信息量其实已经很小了，都是些细节修善，比起直接保存一张完整图片熵要低很多的。所以我们将 D2用类似第一步提到的有损图片压缩方法进行编码，得到最终的P帧数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Encode(P2) = Lzma2(block_positions) + 有损图像编码（D2）</span><br></pre></td></tr></table></figure>
+
+
+<p>​        具体在操作的时候，D2的图像块可以用16x16进行有损编码，因为前面的运动预测数据是按16x16的宏块搜索的，而不用象I帧那样精确的用8x8表示，同时保存误差图时，量化的精度可以更粗一些用不着象I帧那么精确，可以理解成用质量更低的JPEG编码，按照16x16的块进行编码，加上误差图D2本来信息量就不高，这样的保存方式能够节省不少空间。</p>
+<p>​    </p>
+<p> <strong>1.2.6 第六步：实现GOP生成</strong> </p>
+<p>​        通过前面的代码，我们实现了I帧编码和P帧编码，P帧是参考P1对P2进行编码，而所谓B帧，就是参考 P1和 P3对P2进行编码，当然间隔不一定是1，比如可以是参考P1和P5对P2进行编码，前提条件是P5可以依赖P1及以前的数据进行解码。</p>
+<p>​         不过对于一个完整的简版视频编码器，I帧和P帧编码已经够了，市面上任然有很多面向低延迟的商用编码器是直接干掉B帧的，因为做实时传输时收到B帧没法播放，之后再往后好几帧收到下一个I或者P帧时，先前收到的B帧才能被解码出来，造成不少的延迟。 </p>
+<p>​        而所谓的 GOP (Group of picture) 就是由一系列类似 I, P, B, B, P, B, B, P, B, B P 组成的一个可以完整被解码出来的图像组，而所谓视频文件，就是一个接一个的GOP，每个GOP由一个I帧开头，然后接下来一组连续的P 或者 B构成，播放时只有完整收到下一个GOP的I帧才能开始播放。</p>
+<pre><code>     最后是关于参考帧选择，前面提到的 P2生成过程是参考了 P1，假设一个GOP中十张图片，是 I1, P1, P2, P3, P4, ... P9 保存的，如果P1参考I1，P2参考P1, P3参考P2 .... P9参考P8这样每一个P帧都是参考上一帧进行编码的话，误差容易越来越大，因为P1已经引入一定误差了，P2在P1的基础上误差更大，到了P9的话，图片质量可能已经没法看了。 
+</code></pre>
+<p>​        因此正确的参考帧选择往往不需要这样死板，比如可以P1-P9全部参考I1来生成，或者，P1-P4参考I1来生成，而P5-P9则参考P5来生成，这样步子小点，误差也不算太离谱。</p>
+<p> <strong>1.2.7 第七步：容器组装</strong> </p>
+<p>​        我们生成了一组组编码过的GOP了，这时候需要一定的文件格式将他们恰当的保存下来，记录视频信息，比如分辨率，帧率，时间索引等，就是一个类似MP4（h.264的容器）文件的东西。至此一个简单的小型编码器我们已经完成了，可以用 SDL / DirectX / OpenGL 配合实现一个播放器，愉快的将自己编码器编码的视频播放出来。</p>
+<p><strong>1.2.8第八步：优化改进</strong> </p>
+<p>​        这时候你已经大概学习并掌握了视频编码的基础原理了，接下来大量的优化改进的坑等着你去填呢。优化有两大方向，编码效率优化和编码性能优化：前者追求同质量（同信噪比）下更低的码率，后者追求同样质量和码率的情况下，更快的编码速度。</p>
+<p>​         有这个基础后接下来可以回过头去看JPEG标准，MPEG1-2标准，并阅读相关实现代码，你会发现简单很多了，接着肯H.264代码，不用全部看可以针对性的了解以下H.264的I帧编码和各种搜索预测方法，有H.264的底子，你了解 HEVC和 vpx就比较容易了。 </p>
+<p>​        参考这些编码器一些有意思的实现来改进自己的编码器，试验性质，可以侧重原理，各种优化技巧了解下即可，本来就是hack性质的。</p>
+<blockquote>
+<pre><code>     有卯用呢？首先肯定很好玩，其次，当你有需要使用并修改这些编码器为他们增加新特性的时候，你会发现前面的知识很管用了。 
+</code></pre>
+</blockquote>
+<p>——有朋友说光有代码没有图片演示看不大明白，好我们补充一下图片演示：</p>
+<h4 id="1-3-画面演示"><a href="#1-3-画面演示" class="headerlink" title="1.3 画面演示"></a>1.3 画面演示</h4><ol>
+<li><h5 id="3-1-这是第一帧画面：P1（我们的参考帧）"><a href="#3-1-这是第一帧画面：P1（我们的参考帧）" class="headerlink" title="3.1 这是第一帧画面：P1（我们的参考帧）"></a>3.1 这是第一帧画面：P1（我们的参考帧）</h5></li>
+</ol>
+<p><img src="/images/71.jpg"></p>
+<p> <strong>这是第二帧画面：P2（需要编码的帧）</strong> </p>
+<p><img src="/images/72.jpg"></p>
+<blockquote>
+<p>从视频中截取的两张间隔1-2秒的画面，和实际情况类似，下面我们进行几次运动搜索：</p>
+</blockquote>
+<h5 id="1-3-2-搜索演示1：搜索P2中车辆的车牌在P1中最接近的位置（上图P1，下图P2）"><a href="#1-3-2-搜索演示1：搜索P2中车辆的车牌在P1中最接近的位置（上图P1，下图P2）" class="headerlink" title="1.3.2 搜索演示1：搜索P2中车辆的车牌在P1中最接近的位置（上图P1，下图P2）"></a>1.3.2 搜索演示1：搜索P2中车辆的车牌在P1中最接近的位置（上图P1，下图P2）</h5><p><img src="/images/73.jpg"></p>
+<p>这是一个<strong>演示程序</strong>，鼠标选中P2上任意16x16的Block，即可搜索出P1上的 BestMatch 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的<strong>宏块坐标</strong>。</p>
+<h5 id="1-3-3-搜索演示2：空中电线交叉位置（上图P1，下图P2）"><a href="#1-3-3-搜索演示2：空中电线交叉位置（上图P1，下图P2）" class="headerlink" title="1.3.3 搜索演示2：空中电线交叉位置（上图P1，下图P2）"></a>1.3.3 搜索演示2：空中电线交叉位置（上图P1，下图P2）</h5><p><img src="/images/74.jpg"></p>
+<h5 id="1-3-3-搜索演示3：报刊停的广告海报"><a href="#1-3-3-搜索演示3：报刊停的广告海报" class="headerlink" title="1.3.3  搜索演示3：报刊停的广告海报"></a>1.3.3  搜索演示3：报刊停的广告海报</h5><p><img src="/images/75.jpg" alt="75.jpg"></p>
+<blockquote>
+<p>同样顺利在P1中找到最接近P2里海报的宏块位置。</p>
+</blockquote>
+<p> 图片全搜索：根据P1和运动矢量数据（在P2中搜索到每一个宏块在P1中最相似的位置集合）还原出来的P2’，即完全用P1各个位置的宏块拼凑出来最像P2的图片P2’，效果如下： </p>
+<p><img src="/images/76.jpg"></p>
+<p>仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80：</p>
+<p><img src="https://pic4.zhimg.com/50/9a08b5dae6c53d11076027c5f3e47391_hd.jpg" alt="img"> </p>
+<p>嗯，这就是P2`和P2两幅图片的不同处，看到没？基本只有低频了！高频数据少到我们可以忽略，这时用有损压缩方式比较差的效果来保存误差图D2，只要5KB的大小。<br>接着我们根据运动矢量还原的 P2’及差分图D2来还原新的 P2，NewP2 = P2’ + (D2 - 0x80) * 2：</p>
+<p><img src="https://pic3.zhimg.com/50/2d2f1026f8fe2f6242c7a952d1ac1ec8_hd.jpg" alt="img"> </p>
+<blockquote>
+<p>​        这就是之前支离破碎的 P2` 加上误差 D2之后变成了清晰可见的样子，基本还原了原图P2。<br>​    由于D2仅仅占5KB，加上压缩过后的运动矢量不过7KB，</p>
+</blockquote>
+<p>​        <strong>所以参考P1我们只需要额外 7KB的数据量就可以完整表示P2了，而如果独立将P2用质量尚可的有损压缩方式独立压缩，则至少要去到50-60KB，这一下节省了差不多8倍的空间，正就是所谓运动编码的基本原理。</strong></p>
+<p>再者误差我们保存的是（P2-P2’）/2 + 0x80，实际使用时我们会用更有效率的方式，比如让[-64,64]之间的色差精度为1，[-255,-64], [64, 255] 之间的色差精度为2-3，这样会更加真实一些。</p>
+<p>​        现代视频编码中，除了帧间预测，I帧还使用了大量帧内预测，而不是完全dct量化后编码，前面帧间预测我们使用了参考帧的宏块移动拼凑新帧的方式进行，而所谓帧内预测就是同一幅画面中，未编码部分使用已编码部分拼凑而成。。。。。。。</p>
+<h5 id="H264是新一代的编码标准，以高压缩高质量和支持多种网络的流媒体传输著称在编码方面，"><a href="#H264是新一代的编码标准，以高压缩高质量和支持多种网络的流媒体传输著称在编码方面，" class="headerlink" title="H264是新一代的编码标准，以高压缩高质量和支持多种网络的流媒体传输著称在编码方面，"></a>H264是新一代的编码标准，以高压缩高质量和支持多种网络的流媒体传输著称在编码方面，</h5></font>
       
     </div>
 
@@ -1669,7 +1932,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A305-%E6%89%8B%E5%86%99H264%E7%BC%96%E7%A0%81%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A301-%E8%A7%86%E9%A2%91%E5%8E%8B%E7%BC%A9%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1683,7 +1946,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A305-%E6%89%8B%E5%86%99H264%E7%BC%96%E7%A0%81%E5%99%A8/" class="post-title-link" itemprop="url">视频流H264的编码器</a>
+            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A301-%E8%A7%86%E9%A2%91%E5%8E%8B%E7%BC%A9%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">视频压缩技术原理</a>
         </h2>
 
         <div class="post-meta">
@@ -1700,7 +1963,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-13 11:36:21" itemprop="dateModified" datetime="2022-08-13T11:36:21+08:00">2022-08-13</time>
+                <time title="修改时间：2023-04-05 23:22:48" itemprop="dateModified" datetime="2023-04-05T23:22:48+08:00">2023-04-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1718,14 +1981,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>8.8k</span>
+              <span>3.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -1739,368 +2002,105 @@
       
           <font size="2.9">
 
-<h3 id="音视频高手课08-H264-I帧-P帧-B帧及手写H264编码器"><a href="#音视频高手课08-H264-I帧-P帧-B帧及手写H264编码器" class="headerlink" title="音视频高手课08-H264 I帧 P帧 B帧及手写H264编码器"></a>音视频高手课08-H264 I帧 P帧 B帧及手写H264编码器</h3><h5 id="1-三种帧的说明"><a href="#1-三种帧的说明" class="headerlink" title="1  三种帧的说明"></a>1  三种帧的说明</h5><p>1、I 帧：帧内编码帧，帧表示关键帧，你可以理解为这一帧画面的完整保留；解码时只需要本帧数据就可以完成（因为包含完整画面）</p>
-<p><strong>I 帧的特点：</strong></p>
-<ul>
-<li><p>a. 它是一个全帧压缩编码帧，它将全帧图像信息进行JPEG压缩编码及传输</p>
-</li>
-<li><p>b. 解码时仅用I 帧的数据就可重构完整图像</p>
-</li>
-<li><p>c. I 帧描述了图像背景和运动主体的详情</p>
-</li>
-<li><p>d. I 帧不需要参考其他画面而生成</p>
-</li>
-<li><p>e. I 帧是P帧和B帧的参考帧（其质量直接影响到同组中以后各帧的质量）</p>
-</li>
-<li><p>f. I 帧不需要考虑运动矢量</p>
-</li>
-<li><p>g. I 帧所占数据的信息量比较大</p>
-</li>
-</ul>
-<p>  、<strong>P帧</strong>：前向预测编码帧。P帧表示的是这一帧跟之前的一个关键帧（或P帧）的差别，解码时需要之前缓存的画面叠加上本帧定义的差别，生成最终画面。（也就是差别帧，P帧没有完整画面数据，只有与前一帧的画面差别的数据）</p>
-<p>​    <strong>P帧的预测与重构</strong>：P帧是以 I 帧为参考帧，在 I 帧中找出P帧“某点”的预测值和运动矢量，取预测差值和运动矢量一起传送。在接收端根据运行矢量从 I 帧找出P帧“某点”的预测值并与差值相加以得到P帧“某点”样值，从而可得到完整的P帧。</p>
-<p><strong>P帧的特点：</strong></p>
-<ul>
-<li><p>a. P帧是 I 帧后面相隔1~2帧的编码帧</p>
-</li>
-<li><p>b. P帧采用运动补偿的方法传送它与前面的I或P帧的差值及运动矢量（预测误差）</p>
-</li>
-<li><p>c. 解码时必须将帧中的预测值与预测误差求和后才能重构完整的P帧图像</p>
-</li>
-<li><p>d. P帧属于前向预测的帧间编码。它只参考前面最靠近它的 I 帧或P帧</p>
-</li>
-<li><p>e. 由于P帧是参考帧，它可能造成解码错误的扩散</p>
-</li>
-<li><p>f. 由于是差值传送，P帧的压缩比较高</p>
-</li>
-</ul>
-<p>3、<strong>B帧</strong>：双向预测内插编码帧。B帧是双向差别帧，也就是B帧记录的是本帧与前后帧的差别（具体比较复杂，有4种情况，但我这样说简单些），换言之，要解码B帧。不仅要取得之前的缓存画面，还要解码之后的画面，通过前后画面的与本帧数据的叠加取得最终的画面。B帧压缩率高，但是解码时CPU会比较累。</p>
-<p><strong>B帧的预测与重构</strong></p>
-<p>​    B帧以前面的 I 或P帧和后面的P帧为参考帧，“找出”B帧“某点”的预测值和两个运动矢量，并取预测差值和运动矢量传送。接收端根据运动矢量在两个参考帧中“找出（算出）”预测值并与差值求和，得到B帧“某点”样值，从而可得到完整的B帧。</p>
-<p><strong>B帧的特点：</strong></p>
-<ul>
-<li><p>a. B帧是由前面的 I 或P帧和后面的P帧进行预测的</p>
-</li>
-<li><p>b. B帧传送的是它与前面的 I 或P帧和后面的P帧之间的预测误差及运动矢量</p>
-</li>
-<li><p>c. B帧是双向预测编码帧</p>
-</li>
-<li><p>d. B帧压缩比最高，因为它只反映并参考帧间运动主体的变化情况，预测比较准确</p>
-</li>
-<li><p>e. B帧不是参考帧，不会造成解码错误的扩散</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">注：I、B、P帧是根据压缩算法的需要，是人为定义的，他们都是实实在在的物理帧。</span><br><span class="line">一般来说，帧的压缩率是7（跟JPG差不多），</span><br><span class="line">P帧是20，B帧可以达到50.可见使用B帧能节省大量空间，</span><br><span class="line">节省出来的空间可以用来保存多一些帧，这样在相同码率下，可以提供更好的画质。</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-2-压缩算法的说明"><a href="#1-2-压缩算法的说明" class="headerlink" title="1.2 压缩算法的说明"></a>1.2 压缩算法的说明</h4><p><strong>h264的压缩方法</strong>：</p>
-<ul>
-<li><p>1、分组：把几帧图像分为一组（GOP，也就是一个序列），为防止运动变化，帧数不宜取多</p>
-</li>
-<li><p>2、定义帧：将每组内各帧图像定义为三种类型，即 I 帧、B帧和P帧</p>
-</li>
-<li><p>3、预测帧：以帧作为基础帧，以帧预测P帧，再由 I 帧和P帧预测B帧</p>
-</li>
-<li><p>4、数据传输：最后将 I  帧数据与预测的差值信息进行存储和传输</p>
-</li>
-</ul>
-<p>​    <strong>帧内</strong>（Intraframe）压缩也称为空间压缩（Spatial compression）。当压缩一帧图像时，仅考虑本帧的数据而不考虑相邻帧之间的冗余信息，这实际上与静态图像压缩类似。帧内一般采用有损压缩算法，由于帧内压缩是编码一个完整的图像，因此可以独立的解码、显示。帧内压缩一般达不到很高的压缩，跟编码jpeg差不多。</p>
-<p>​    <strong>帧间</strong>（Interframe）压缩的原理是：相邻几帧的数据有很大的相关性，或者说前后两帧信息变化很小的特点，也即连续的视频及其相邻帧之间具有冗余信息，根据这一特性，压缩相邻帧之间的冗余量就可以进一步提高压缩量，减少压缩比。帧间压缩也称为时间压缩，它通过比较时间轴上不同帧之间的数据进行压缩。帧间压缩一般是无损的。帧差值（Frame differencing）算法是一种典型的时间压缩发，它通过比较本帧与相邻帧之间的差异，仅记录本帧与其相邻帧的差值，这样可以大大减少数据量。</p>
-<p>​    <strong>顺便说下有损</strong>（Lossy）压缩和无损（Lossy less）压缩。无损压缩也即压缩前和解压缩后的数据完全一致。多数的无损压缩都采用RLE行程编码算法。有损压缩意味着解压缩后的数据与压缩前的数据不一致。在压缩的过程中要丢失一些人眼和耳朵所不敏感的图像或音频信息，而且丢失的信息不可恢复。几乎所有高压缩的算法都采用有损压缩，这样才能达到低数据率的目标。丢失的数据率与压缩比有关，压缩比越小，丢失的数据越多，解压缩后的效果一般越差。此外，某些有损压缩算法采用多次重复压缩的方式，这样还会引起额外的数据丢失。</p>
-<hr>
-<h3 id="2-手写H264编码器"><a href="#2-手写H264编码器" class="headerlink" title="2  手写H264编码器"></a>2  手写H264编码器</h3><p>要彻底理解视频编码原理，看书都是虚的，需要实际动手，实现一个简单的视频编码器：</p>
-<p>知识准备：基本图像处理知识，信号的时域和频域问题，熟练掌握傅立叶正反变换，一维、二维傅立叶变换，以及其变种，dct变换，快速dct变换。 </p>
-<p><strong>2.1.1 第一步：实现有损图像压缩和解压</strong><br>        参考 JPEG原理，将RGB-&gt;YUV，然后Y/U/V看成三张不同的图片，将其中一张图片分为 8x8的block进行 dct变换（可以直接进行二维dct变换，或者按一定顺序将8x8的二维数组整理成一个64字节的一维数组），还是得到一个8x8的整数频率数据。于是表示图像大轮廓的低频信号（人眼敏感的信号）集中在 8x8的左上角；表示图像细节的高频信号集中在右下角。</p>
-<p>​         接着将其量化，所谓<strong>量化</strong>，就是信号采样的步长，8x8的整数频率数据块，每个数据都要除以对应位置的步长，左上角相对重要的低频信号步长是1，也就是说0-255，是多少就是多少。而右下角是不太重要的高频信号，比如步长取10，那么这些位置的数据都要/10，实际解码的时候再将他们<em>10恢复出来，这样经过编码的时候/10和解码的时候</em>10，那么步长为10的信号1, 13, 25, 37就会变成规矩的：0, 10, 20, 30, 对小于步长10的部分我们直接丢弃了，因为高频不太重要。 </p>
-<p>​         <strong>经过量化以后</strong>，8x8的数据块左上角的数据由于步长小，都是比较离散的，而靠近右下角的高频数据，都比较统一，或者是一串0，因此图像大量的细节被我们丢弃了，这时候，我们用无损压缩方式，比如lzma2算法（jpeg是rle + huffman）将这64个byte压缩起来，由于后面高频数据步长大，做了除法以后，这些值都比较小，而且比较靠近，甚至右下部分都是一串0，十分便于压缩。</p>
-<p>​        JPEG图像有个问题就是低码率时 block边界比较严重，现代图片压缩技术往往要配合一些de-block算法，比如最简单的就是边界部分几个像素点和周围插值模糊一下。 </p>
-<blockquote>
-<p> 做到这里我们实现了一个同 jpeg类似的静态图片有损压缩算法。在视频里面用来保存I帧数据。 </p>
-</blockquote>
-<p>​     </p>
-<p> <strong>2.1.2 第二步：实现宏块误差计算</strong> </p>
-<p>​        <strong>视频</strong>由连续的若干图像帧组成，分为 I帧，P帧，所谓I帧，就是不依赖就可以独立解码的视频图像帧，而P帧则需要依赖前面已解码的视频帧，配合一定数据才能生成出来。所以视频中I帧往往都比较大，而P帧比较小，如果播放器一开始收到了P帧那么是无法播放的，只有收到下一个I帧才能开始播放。I帧多了视频就变大，I帧少了，数据量是小了，但视频受到丢包或者数据错误的影响却又会更严重。</p>
-<p>​         那么所谓运动预测编码，其实就是P帧的生成过程：继续将图片分成 16x16的block（为了简单只讨论yuv的y分量压缩）。I帧内部单帧图片压缩我们采用了8x8的block，而这里用16x16的block来提高帧间编码压缩率（当然也会有更多细节损失），我们用 x, y表示像素点坐标，而s,t表示block坐标，那么坐标为（x,y）的像素点所属的block坐标为： </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = x / <span class="number">16</span> = x &gt;&gt; <span class="number">4</span></span><br><span class="line">t = y / <span class="number">16</span> = y &gt;&gt; <span class="number">4</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>​         接着要计算两个<strong>block的相似度</strong>，即矢量的距离，可以表示为一个256维矢量（16x16）像素点色彩距离的平方，我们先定义两个颜色的误差为： </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PixelDiff(c1, c2) = (c1- c2) ^ 2</span><br></pre></td></tr></table></figure>
-
-<p>​        <strong>那么256个点的误差</strong>可以表示为所有对应点的像素误差和：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BlockDiff(b1, b2) = sum( PixelDiff(c1, c2) for c1 in b1 for c2 in b2)</span><br></pre></td></tr></table></figure>
-
-
-<p>代码化为：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">block_diff</span><span class="params">(<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> b1[<span class="number">16</span>][<span class="number">16</span>], <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> b2[<span class="number">16</span>][<span class="number">16</span>])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">16</span>; i++) &#123;</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">16</span>; j++) &#123;</span><br><span class="line">              <span class="keyword">int</span> c1 = b1[i][j];</span><br><span class="line">              <span class="keyword">int</span> c2 = b2[i][j];</span><br><span class="line">              sum += (c1 - c2) * (c1 - c2);</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>有了这个block求差的函数，我们就可以针对<strong>特定block</strong>，搜索另外若<strong>干个block</strong>中哪个和它最相似了（误差最小）。</p>
-<h5 id="1-2-3-第三步：实现运动预测编码"><a href="#1-2-3-第三步：实现运动预测编码" class="headerlink" title="1.2.3 第三步：实现运动预测编码"></a>1.2.3 <strong>第三步：实现运动预测编码</strong></h5><p>​        根据上面的宏块比较函数，你已经可以知道两个block到底像不像了，越象的block，block_diff返回值越低。那么我们有两帧相邻的图片，P1，P2，假设 P1已经完成编码了，现在要对 P2进行P帧编码，其实就是轮询 P2里面的每一个 block，为P2中每一个block找出上一帧中相似度最高的block坐标，并记录下来，具体伪代码可以表示为：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> block[<span class="number">16</span>][<span class="number">16</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> t = <span class="number">0</span>; t &lt;= maxt; t++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> s = <span class="number">0</span>; s &lt;= maxs; s++) &#123;</span><br><span class="line">         picture_get_block(P2, s * <span class="number">16</span>, t * <span class="number">16</span>, block); <span class="comment">// 取得图片 P2 的 block</span></span><br><span class="line">         <span class="keyword">int</span> x, y;</span><br><span class="line">         block_search_nearest(P1, &amp;x, &amp;y, block); <span class="comment">// 在P1中搜索最相似的block</span></span><br><span class="line">         output(x, y);  <span class="comment">// 将P1中最相似的block的左上角像素坐标 (x, y) 输出</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>​        其中在P1中搜索最相似 block的 block_search_nearest 函数原理是比较简单的，我们可以暴力点用两个for循环轮询 P1中每个像素点开始的16x16的block（速度较慢），当然实际中不可能这么暴力搜索，而是围绕P2中该block对应坐标在P1中位置作为中心，慢慢四周扩散，搜索一定步长，并得到一个 ：<strong>按照一定顺序进行搜索，并且在一定范围内最相似的宏块坐标</strong>。 。</p>
-<blockquote>
-<p>于是P2进行运动预测编码的结果就是一大堆(x,y)的坐标，代表P2上每个block在上一帧P1里面最相似的 block的位置。反过来说可能更容易理解，我们可以把第三步整个过程定义为： </p>
-</blockquote>
-<h5 id="怎么用若干-P1里不同起始位置的block拼凑出图片P2来，使得拼凑以后的结果和P2最像。"><a href="#怎么用若干-P1里不同起始位置的block拼凑出图片P2来，使得拼凑以后的结果和P2最像。" class="headerlink" title="怎么用若干 P1里不同起始位置的block拼凑出图片P2来，使得拼凑以后的结果和P2最像。"></a>怎么用若干 P1里不同起始位置的block拼凑出图片P2来，使得拼凑以后的结果和P2最像。</h5><p><strong>1.2.4 第四步：实现P帧编码</strong></p>
-<p>​         拼凑的结果就是一系列(x,y)的坐标数据，我们继续用lzma2将它们先压缩起来，按照 vcd的分辨率</p>
-<p>352 x 240，我们横向需要 352 / 16 = 22个block，纵向需要 240 / 16 = 15 个block，可以用 P1中 22 x 15 = 330 </p>
-<p>个 block的坐标信息生成一张和P2很类似的图片 P2’ ： </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> t = <span class="number">0</span>; t &lt; <span class="number">15</span>; t++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> s = <span class="number">0</span>; s &lt; <span class="number">22</span>; s++, next++) &#123;</span><br><span class="line">         <span class="keyword">int</span> x = block_positions[next].x;   <span class="comment">// 取得对应 P1上的 block像素位置 x</span></span><br><span class="line">         <span class="keyword">int</span> y = block_positions[next].y;   <span class="comment">// 取得对应 P1上的 block像素位置 y</span></span><br><span class="line">         <span class="comment">// 将 P1位置(x,y)开始的 16 x 16 的图块拷贝到 P2&#x27;的 (s * 16, t * 16)处</span></span><br><span class="line">         CopyRect(P2<span class="number">&#x27;</span>, s * <span class="number">16</span>, t * <span class="number">16</span>, P1, x, y, <span class="number">16</span>, <span class="number">16</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<pre><code>     我们把用来生成P2的P1称为 P2的 “参考帧”，再把刚才那一堆P1内用来拼成P2的 block坐标称为 “**运动矢量**”，这是P帧里面最主要的数据内容。但是此时由P1和这些坐标数据拼凑出来的P2，你会发现粗看和P2很象，但细看会发现有些支离破碎，并且边缘比较明显，怎么办呢？我们需要第四步。
-     
-</code></pre>
-<h5 id="1-2-5第五步：实现P帧编码"><a href="#1-2-5第五步：实现P帧编码" class="headerlink" title="1.2.5第五步：实现P帧编码"></a><strong>1.2.5第五步：实现P帧编码</strong></h5><pre><code>     有了刚才的运动预测矢量（一堆block的坐标），我们先用P1按照这些数据拼凑出一张类似 P2的新图片叫做P2&#39;，然后同P2上每个像素做减法，得到一张保存 differ的图片： 
-</code></pre>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D2 = (P2 - P2<span class="number">&#x27;</span>) / <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<p>​        误差图片 D2上每一个点等于 P2上对应位置的点的颜色减去 P2’上对应位置的点的颜色再除以2，用8位表示差值，值是循环的，比如-2就是255，这里一般可以在结果上 + 0x80，即 128代表0，129代表2，127代表-2。继续用一个 8位的整数可以表示 [-254, 254] 之间的误差范围，步长精度是2。 </p>
-<p>​        按照第三步实现的逻辑，P2’其实已经很像P2了，只是有些误差，我们将这些误差保存成了图片D2，所以图片D2中，信息量其实已经很小了，都是些细节修善，比起直接保存一张完整图片熵要低很多的。所以我们将 D2用类似第一步提到的有损图片压缩方法进行编码，得到最终的P帧数据：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Encode(P2) = Lzma2(block_positions) + 有损图像编码（D2）</span><br></pre></td></tr></table></figure>
-
-
-<p>​        具体在操作的时候，D2的图像块可以用16x16进行有损编码，因为前面的运动预测数据是按16x16的宏块搜索的，而不用象I帧那样精确的用8x8表示，同时保存误差图时，量化的精度可以更粗一些用不着象I帧那么精确，可以理解成用质量更低的JPEG编码，按照16x16的块进行编码，加上误差图D2本来信息量就不高，这样的保存方式能够节省不少空间。</p>
-<p>​    </p>
-<p> <strong>1.2.6 第六步：实现GOP生成</strong> </p>
-<p>​        通过前面的代码，我们实现了I帧编码和P帧编码，P帧是参考P1对P2进行编码，而所谓B帧，就是参考 P1和 P3对P2进行编码，当然间隔不一定是1，比如可以是参考P1和P5对P2进行编码，前提条件是P5可以依赖P1及以前的数据进行解码。</p>
-<p>​         不过对于一个完整的简版视频编码器，I帧和P帧编码已经够了，市面上任然有很多面向低延迟的商用编码器是直接干掉B帧的，因为做实时传输时收到B帧没法播放，之后再往后好几帧收到下一个I或者P帧时，先前收到的B帧才能被解码出来，造成不少的延迟。 </p>
-<p>​        而所谓的 GOP (Group of picture) 就是由一系列类似 I, P, B, B, P, B, B, P, B, B P 组成的一个可以完整被解码出来的图像组，而所谓视频文件，就是一个接一个的GOP，每个GOP由一个I帧开头，然后接下来一组连续的P 或者 B构成，播放时只有完整收到下一个GOP的I帧才能开始播放。</p>
-<pre><code>     最后是关于参考帧选择，前面提到的 P2生成过程是参考了 P1，假设一个GOP中十张图片，是 I1, P1, P2, P3, P4, ... P9 保存的，如果P1参考I1，P2参考P1, P3参考P2 .... P9参考P8这样每一个P帧都是参考上一帧进行编码的话，误差容易越来越大，因为P1已经引入一定误差了，P2在P1的基础上误差更大，到了P9的话，图片质量可能已经没法看了。 
-</code></pre>
-<p>​        因此正确的参考帧选择往往不需要这样死板，比如可以P1-P9全部参考I1来生成，或者，P1-P4参考I1来生成，而P5-P9则参考P5来生成，这样步子小点，误差也不算太离谱。</p>
-<p> <strong>1.2.7 第七步：容器组装</strong> </p>
-<p>​        我们生成了一组组编码过的GOP了，这时候需要一定的文件格式将他们恰当的保存下来，记录视频信息，比如分辨率，帧率，时间索引等，就是一个类似MP4（h.264的容器）文件的东西。至此一个简单的小型编码器我们已经完成了，可以用 SDL / DirectX / OpenGL 配合实现一个播放器，愉快的将自己编码器编码的视频播放出来。</p>
-<p><strong>1.2.8第八步：优化改进</strong> </p>
-<p>​        这时候你已经大概学习并掌握了视频编码的基础原理了，接下来大量的优化改进的坑等着你去填呢。优化有两大方向，编码效率优化和编码性能优化：前者追求同质量（同信噪比）下更低的码率，后者追求同样质量和码率的情况下，更快的编码速度。</p>
-<p>​         有这个基础后接下来可以回过头去看JPEG标准，MPEG1-2标准，并阅读相关实现代码，你会发现简单很多了，接着肯H.264代码，不用全部看可以针对性的了解以下H.264的I帧编码和各种搜索预测方法，有H.264的底子，你了解 HEVC和 vpx就比较容易了。 </p>
-<p>​        参考这些编码器一些有意思的实现来改进自己的编码器，试验性质，可以侧重原理，各种优化技巧了解下即可，本来就是hack性质的。</p>
-<blockquote>
-<pre><code>     有卯用呢？首先肯定很好玩，其次，当你有需要使用并修改这些编码器为他们增加新特性的时候，你会发现前面的知识很管用了。 
-</code></pre>
-</blockquote>
-<p>——有朋友说光有代码没有图片演示看不大明白，好我们补充一下图片演示：</p>
-<h4 id="1-3-画面演示"><a href="#1-3-画面演示" class="headerlink" title="1.3 画面演示"></a>1.3 画面演示</h4><ol>
-<li><h5 id="3-1-这是第一帧画面：P1（我们的参考帧）"><a href="#3-1-这是第一帧画面：P1（我们的参考帧）" class="headerlink" title="3.1 这是第一帧画面：P1（我们的参考帧）"></a>3.1 这是第一帧画面：P1（我们的参考帧）</h5></li>
-</ol>
-<p><img src="/images/71.jpg"></p>
-<p> <strong>这是第二帧画面：P2（需要编码的帧）</strong> </p>
-<p><img src="/images/72.jpg"></p>
-<blockquote>
-<p>从视频中截取的两张间隔1-2秒的画面，和实际情况类似，下面我们进行几次运动搜索：</p>
-</blockquote>
-<h5 id="1-3-2-搜索演示1：搜索P2中车辆的车牌在P1中最接近的位置（上图P1，下图P2）"><a href="#1-3-2-搜索演示1：搜索P2中车辆的车牌在P1中最接近的位置（上图P1，下图P2）" class="headerlink" title="1.3.2 搜索演示1：搜索P2中车辆的车牌在P1中最接近的位置（上图P1，下图P2）"></a>1.3.2 搜索演示1：搜索P2中车辆的车牌在P1中最接近的位置（上图P1，下图P2）</h5><p><img src="/images/73.jpg"></p>
-<p>这是一个<strong>演示程序</strong>，鼠标选中P2上任意16x16的Block，即可搜索出P1上的 BestMatch 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的<strong>宏块坐标</strong>。</p>
-<h5 id="1-3-3-搜索演示2：空中电线交叉位置（上图P1，下图P2）"><a href="#1-3-3-搜索演示2：空中电线交叉位置（上图P1，下图P2）" class="headerlink" title="1.3.3 搜索演示2：空中电线交叉位置（上图P1，下图P2）"></a>1.3.3 搜索演示2：空中电线交叉位置（上图P1，下图P2）</h5><p><img src="/images/74.jpg"></p>
-<h5 id="1-3-3-搜索演示3：报刊停的广告海报"><a href="#1-3-3-搜索演示3：报刊停的广告海报" class="headerlink" title="1.3.3  搜索演示3：报刊停的广告海报"></a>1.3.3  搜索演示3：报刊停的广告海报</h5><p><img src="/images/75.jpg" alt="75.jpg"></p>
-<blockquote>
-<p>同样顺利在P1中找到最接近P2里海报的宏块位置。</p>
-</blockquote>
+<p>H264视频压缩算法现在无疑是所有视频压缩技术中使用最广泛，</p>
+<p>最流行的。随着 x264/openh264以及ffmpeg等开源库的推出，大多数使用者无需再对H264的细节做过多的研究，这大降低了人们使用H264的成本。</p>
+<p>但为了用好H264，我们还是要对H264的基本原理弄清楚才行。今天我们就来看看H264的基本原理。</p>
+<h2 id="H264概述"><a href="#H264概述" class="headerlink" title="H264概述"></a>H264概述</h2><p><img src="/images/30.png" alt="img"></p>
+<p>H264压缩技术主要采用了以下几种方法对视频数据进行压缩。包括：</p>
+<p>　　帧内预测压缩，解决的是空域数据冗余问题。<br>　　帧间预测压缩（运动估计与补偿），解决的是时域数据冗徐问题。<br>　　整数离散余弦变换（DCT），将空间上的相关性变为频域上无关的数据然后进行量化。<br>　　CABAC压缩。</p>
+<p>经过压缩后的帧分为：I帧，P帧和B帧:</p>
+<p>　　I帧：关键帧，采用帧内压缩技术。<br>　　P帧：向前参考帧，在压缩时，只参考前面已经处理的帧。采用帧音压缩技术。<br>　　B帧：双向参考帧，在压缩时，它即参考前而的帧，又参考它后面的帧。采用帧间压缩技术。</p>
+<p>除了I/P/B帧外，还有图像序列GOP。</p>
+<p>　　GOP:两个I帧之间是一个图像序列，在一个图像序列中只有一个I帧。如下图所示：</p>
+<p><img src="/images/31.png" alt="img"></p>
+<p>下面我们就来详细描述一下H264压缩技术。</p>
+<h2 id="H264压缩技术"><a href="#H264压缩技术" class="headerlink" title="H264压缩技术"></a>H264压缩技术</h2><p>H264的基本原理其实非常简单，下我们就简单的描述一下H264压缩数据的过程。通过摄像头采集到的视频帧（按每秒 30 帧算），被送到 H264 编码器的缓冲区中。编码器先要为每一幅图片划分宏块。</p>
+<p>以下面这张图为例:</p>
+<p><img src="/images/32.webp" alt="img"></p>
+<h3 id="划分宏块"><a href="#划分宏块" class="headerlink" title="划分宏块"></a>划分宏块</h3><p>H264默认是使用 16X16 大小的区域作为一个宏块，也可以划分成 8X8 大小。</p>
+<p><img src="/images/33.webp" alt="img"></p>
+<p>划分好宏块后，计算宏块的象素值。</p>
+<p><img src="/images/34.webp" alt="img"></p>
+<p>以此类推，计算一幅图像中每个宏块的像素值，所有宏块都处理完后如下面的样子。</p>
+<p><img src="/images/35.webp" alt="img"></p>
+<h3 id="划分子块"><a href="#划分子块" class="headerlink" title="划分子块"></a>划分子块</h3><p>H264对比较平坦的图像使用 16X16 大小的宏块。但为了更高的压缩率，还可以在 16X16 的宏块上更划分出更小的子块。子块的大小可以是 8X16､ 16X8､ 8X8､ 4X8､ 8X4､ 4X4非常的灵活。</p>
+<p><img src="/images/36.webp" alt="img"></p>
+<p>上幅图中，红框内的 16X16 宏块中大部分是蓝色背景，而三只鹰的部分图像被划在了该宏块内，为了更好的处理三只鹰的部分图像，H264就在 16X16 的宏块内又划分出了多个子块。</p>
+<p><img src="/images/37.webp" alt="img"></p>
+<p>这样再经过帧内压缩，可以得到更高效的数据。下图是分别使用mpeg-2和H264对上面宏块进行压缩后的结果。其中左半部分为MPEG-2子块划分后压缩的结果，右半部分为H264的子块划压缩后的结果，可以看出H264的划分方法更具优势。</p>
+<p><img src="/images/39.png" alt="img"></p>
+<p>宏块划分好后，就可以对H264编码器缓存中的所有图片进行分组了。</p>
+<h3 id="帧分组"><a href="#帧分组" class="headerlink" title="帧分组"></a>帧分组</h3><p>对于视频数据主要有两类数据冗余，一类是时间上的数据冗余，另一类是空间上的数据冗余。其中时间上的数据冗余是最大的。下面我们就先来说说视频数据时间上的冗余问题。</p>
+<p>为什么说时间上的冗余是最大的呢？假设摄像头每秒抓取30帧，这30帧的数据大部分情况下都是相关联的。也有可能不止30帧的的数据，可能几十帧，上百帧的数据都是关联特别密切的。</p>
+<p>对于这些关联特别密切的帧，其实我们只需要保存一帧的数据，其它帧都可以通过这一帧再按某种规则预测出来，所以说视频数据在时间上的冗余是最多的。</p>
+<p>为了达到相关帧通过预测的方法来压缩数据，就需要将视频帧进行分组。那么如何判定某些帧关系密切，可以划为一组呢？我们来看一下例子，下面是捕获的一组运动的台球的视频帧，台球从右上角滚到了左下角。</p>
+<p><img src="/images/40.webp" alt="img"></p>
+<p><img src="/images/41.webp" alt="img"></p>
+<p>没有运动补偿的时候  120fps     60fps   60帧电影  视频画面是没有提升</p>
+<p>120fps    60帧视频  60帧虚拟帧</p>
+<p>H264编码器会按顺序，每次取出两幅相邻的帧进行宏块比较，计算两帧的相似度。如下图：</p>
+<p><img src="/images/42.webp" alt="img"></p>
+<p>通过宏块扫描与宏块搜索可以发现这两个帧的关联度是非常高的。进而发现这一组帧的关联度都是非常高的。因此，上面这几帧就可以划分为一组。其算法是：<strong>在相邻几幅图像画面中，一般有差别的像素只有10%以内的点,亮度差值变化不超过2%，而色度差值的变化只有1%以内，我们认为这样的图可以分到一组。</strong></p>
+<p>在这样一组帧中，经过编码后，我们只保留第一帖的完整数据，其它帧都通过参考上一帧计算出来。我们称第一帧为<strong>IDR／I帧</strong>，其它帧我们称为<strong>P／B帧</strong>，这样编码后的数据帧组我们称为<strong>GOP</strong>。</p>
+<h3 id="运动估计与补偿"><a href="#运动估计与补偿" class="headerlink" title="运动估计与补偿"></a>运动估计与补偿</h3><p>在H264编码器中将帧分组后，就要计算帧组内物体的运动矢量了。还以上面运动的台球视频帧为例，我们来看一下它是如何计算运动矢量的。</p>
+<p>H264编码器首先按顺序从缓冲区头部取出两帧视频数据，然后进行宏块扫描。当发现其中一幅图片中有物体时，就在另一幅图的邻近位置（搜索窗口中）进行搜索。如果此时在另一幅图中找到该物体，那么就可以计算出物体的运动矢量了。下面这幅图就是搜索后的台球移动的位置。</p>
+<p><img src="/images/43.png" alt="img"></p>
+<p> 抖音 —-》视频  1M  9M   </p>
+<p>通过上图中台球位置相差，就可以计算出台图运行的方向和距离。H264依次把每一帧中球移动的距离和方向都记录下来就成了下面的样子。</p>
+<p><img src="/images/44.png" alt="img"></p>
+<p>运动矢量计算出来后，将相同部分（也就是绿色部分）减去，就得到了补偿数据。我们最终只需要将补偿数据进行压缩保存，以后在解码时就可以恢复原图了。压缩补偿后的数据只需要记录很少的一点数据。如下所示：</p>
+<p><img src="/images/45.png" alt="img"></p>
+<p>我们把运动矢量与补偿称为<strong>帧间压缩技术</strong>，它解决的是视频帧在时间上的数据冗余。除了帧间压缩，帧内也要进行数据压缩，帧内数据压缩解决的是空间上的数据冗余。下面我们就来介绍一下帧内压缩技术。</p>
+<h3 id="帧内预测"><a href="#帧内预测" class="headerlink" title="帧内预测"></a>帧内预测</h3><p>人眼对图象都有一个识别度，对低频的亮度很敏感，对高频的亮度不太敏感。所以基于一些研究，可以将一幅图像中人眼不敏感的数据去除掉。这样就提出了帧内预测技术。</p>
+<p>H264的帧内压缩与JPEG很相似。一幅图像被划分好宏块后，对每个宏块可以进行 9 种模式的预测。找出与原图最接近的一种预测模式。</p>
+<p><img src="/images/46.webp" alt="img"></p>
+<p>下面这幅图是对整幅图中的每个宏块进行预测的过程。</p>
+<p><img src="/images/145.webp" alt="img"></p>
+<p>帧内预测后的图像与原始图像的对比如下：</p>
+<p><img src="/images/146.webp" alt="img"></p>
+<p>然后，将原始图像与帧内预测后的图像相减得残差值。</p>
+<p><img src="/images/1307424-20181107191253955-1987839456.png" alt="img"></p>
+<p>再将我们之前得到的预测模式信息一起保存起来，这样我们就可以在解码时恢复原图了。效果如下：</p>
+<p><img src="/images/1307424-20181107191259057-1084466018.png" alt="img"></p>
+<p>经过帧内与帧间的压缩后，虽然数据有大幅减少，但还有优化的空间。</p>
+<h3 id="对残差数据做DCT"><a href="#对残差数据做DCT" class="headerlink" title="对残差数据做DCT"></a>对残差数据做DCT</h3><p>可以将残差数据做整数离散余弦变换，去掉数据的相关性，进一步压缩数据。如下图所示，左侧为原数据的宏块，右侧为计算出的残差数据的宏块。</p>
+<p><img src="/images/1307424-20181107191314043-1719104258.png" alt="img"></p>
+<p>将残差数据宏块数字化后如下图所示：</p>
+<p><img src="/images/1307424-20181107191318906-1060673182.png" alt="img"></p>
+<p>将残差数据宏块进行 DCT 转换。</p>
+<p><img src="/images/1307424-20181107191325145-505363573.png" alt="img"></p>
+<p>去掉相关联的数据后，我们可以看出数据被进一步压缩了。</p>
+<p><img src="/images/1307424-20181107191330244-1287304627.png" alt="img"></p>
+<p>做完 DCT 后，还不够，还要进行 CABAC 进行无损压缩。</p>
+<h3 id="DCT原理大白话"><a href="#DCT原理大白话" class="headerlink" title="DCT原理大白话"></a>DCT原理大白话</h3><p> 这是第一帧画面：P1（我们的参考帧） </p>
+<p><img src="/images/50.jpg" alt="50"></p>
+<p> 这是第二帧画面：P2（需要编码的帧） </p>
+<p><img src="/images/51.jpg" alt="50"></p>
+<p> 从视频中截取的两张间隔1-2秒的画面，和实际情况类似，下面我们进行几次运动搜索： </p>
+<p> 这是一个演示程序，鼠标选中P2上任意<strong>16x16</strong>的Block，即可搜索出<strong>P1上的 BestMatch</strong> 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
+<p><img src="/images/53.jpg" alt="50"></p>
+<p> 这是一个演示程序，鼠标选中P2上任意16x16的Block，即可搜索出P1上的 BestMatch 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
+<p> 搜索演示2：空中电线交叉位置（上图P1，下图P2） </p>
+<p><img src="/images/55.jpg" alt="50"></p>
+<p><img src="/images/54.jpg" alt="50"></p>
+<p> 同样顺利在P1中找到最接近P2里海报的宏块位置。 </p>
 <p> 图片全搜索：根据P1和运动矢量数据（在P2中搜索到每一个宏块在P1中最相似的位置集合）还原出来的P2’，即完全用P1各个位置的宏块拼凑出来最像P2的图片P2’，效果如下： </p>
-<p><img src="/images/76.jpg"></p>
-<p>仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80：</p>
-<p><img src="https://pic4.zhimg.com/50/9a08b5dae6c53d11076027c5f3e47391_hd.jpg" alt="img"> </p>
-<p>嗯，这就是P2`和P2两幅图片的不同处，看到没？基本只有低频了！高频数据少到我们可以忽略，这时用有损压缩方式比较差的效果来保存误差图D2，只要5KB的大小。<br>接着我们根据运动矢量还原的 P2’及差分图D2来还原新的 P2，NewP2 = P2’ + (D2 - 0x80) * 2：</p>
-<p><img src="https://pic3.zhimg.com/50/2d2f1026f8fe2f6242c7a952d1ac1ec8_hd.jpg" alt="img"> </p>
-<blockquote>
-<p>​        这就是之前支离破碎的 P2` 加上误差 D2之后变成了清晰可见的样子，基本还原了原图P2。<br>​    由于D2仅仅占5KB，加上压缩过后的运动矢量不过7KB，</p>
-</blockquote>
-<p>​        <strong>所以参考P1我们只需要额外 7KB的数据量就可以完整表示P2了，而如果独立将P2用质量尚可的有损压缩方式独立压缩，则至少要去到50-60KB，这一下节省了差不多8倍的空间，正就是所谓运动编码的基本原理。</strong></p>
-<p>再者误差我们保存的是（P2-P2’）/2 + 0x80，实际使用时我们会用更有效率的方式，比如让[-64,64]之间的色差精度为1，[-255,-64], [64, 255] 之间的色差精度为2-3，这样会更加真实一些。</p>
-<p>​        现代视频编码中，除了帧间预测，I帧还使用了大量帧内预测，而不是完全dct量化后编码，前面帧间预测我们使用了参考帧的宏块移动拼凑新帧的方式进行，而所谓帧内预测就是同一幅画面中，未编码部分使用已编码部分拼凑而成。。。。。。。</p>
-<h5 id="H264是新一代的编码标准，以高压缩高质量和支持多种网络的流媒体传输著称在编码方面，"><a href="#H264是新一代的编码标准，以高压缩高质量和支持多种网络的流媒体传输著称在编码方面，" class="headerlink" title="H264是新一代的编码标准，以高压缩高质量和支持多种网络的流媒体传输著称在编码方面，"></a>H264是新一代的编码标准，以高压缩高质量和支持多种网络的流媒体传输著称在编码方面，</h5></font>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/" class="post-title-link" itemprop="url">H.265与H.264的差异详解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-18 18:34:24" itemprop="dateCreated datePublished" datetime="2021-11-18T18:34:24+08:00">2021-11-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-13 11:36:48" itemprop="dateModified" datetime="2022-08-13T11:36:48+08:00">2022-08-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <font size="2.9">
-
-
-<h2 id="H-265与H-264的差异详解"><a href="#H-265与H-264的差异详解" class="headerlink" title="H.265与H.264的差异详解"></a>H.265与H.264的差异详解</h2><blockquote>
-<p><strong>码牛只为跟牛逼的你</strong></p>
-</blockquote>
-<p>通过以下几种来对比H264与H265的差异</p>
-<blockquote>
-<p>1.编解码框架差异</p>
-<p>2.压缩性能比较</p>
-<p>3.各模块技术差异汇总</p>
-<p>4.块划分结构</p>
-<p>5.帧内预测</p>
-<p>6.帧间预测</p>
-<p>7.去块滤波</p>
-<p>8.SAO滤波</p>
-<p>9.Tile</p>
-<p>10.WPP</p>
-<p>11.Dependent slice</p>
-<p>12.其他技术</p>
-</blockquote>
-<h4 id="1-1-H-264与H-265的主要差异"><a href="#1-1-H-264与H-265的主要差异" class="headerlink" title="1.1  H.264与H.265的主要差异"></a>1.1  H.264与H.265的主要差异</h4><p>H.265仍然采用混合编解码，编解码结构域H.264基本一致，</p>
-<p>主要的不同在于：</p>
-<p>Ø 编码块划分结构：采用CU (CodingUnit)、PU(PredictionUnit)和TU(TransformUnit)的递归结构。</p>
-<p>Ø 基本细节：各功能块的内部细节有很多差异</p>
-<p>Ø 并行工具：增加了Tile以及WPP等并行工具集以提高编码速度</p>
-<p>Ø 滤波器：在去块滤波之后增加了SAO（sample adaptive offset）滤波模块</p>
-<p><img src="https://img-blog.csdn.net/20170903222110391?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>Fig.H.265的框架图</p>
-<h4 id="2-压缩性能比较"><a href="#2-压缩性能比较" class="headerlink" title="2.  压缩性能比较"></a>2.  压缩性能比较</h4><p>PSNR计算方式</p>
-<p><img src="https://img-blog.csdn.net/20170903222300500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265/HEVC HM-9.0 和H.264 JM-18.4 的BD-rate 比较：</p>
-<p> AllIntra case:           22%</p>
-<p> RandomAccess case:       34%</p>
-<p> LowDelay case:          37%</p>
-<h4 id="3-各模块技术差异汇总"><a href="#3-各模块技术差异汇总" class="headerlink" title="3.  各模块技术差异汇总"></a>3.  各模块技术差异汇总</h4><p><img src="https://img-blog.csdn.net/20170903222335956?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p><img src="https://img-blog.csdn.net/20170903222351940?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="4-块划分结构"><a href="#4-块划分结构" class="headerlink" title="4.  块划分结构"></a>4.  块划分结构</h4><p>在H.265中，将宏块的大小从H.264的16×16扩展到了64×64，以便于高分辨率视频的压缩。</p>
-<p>同时，采用了更加灵活的编码结构来提高编码效率，</p>
-<p>包括编码单元（CodingUnit）、预测单元（PredictUnit）和变换单元（TransformUnit）。</p>
-<p>如下图所示:</p>
-<p><img src="https://img-blog.csdn.net/20170903222441671?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>其中:</p>
-<p>编码单元类似于H.264/AVC中的宏块的概念，用于编码的过程。</p>
-<p>预测单元是进行预测的基本单元，</p>
-<p>变换单元是进行变换和量化的基本单元。</p>
-<p>这三个单元的分离，使得变换、预测和编码各个处理环节更加灵活，</p>
-<p>也有利于各环节的划分更加符合视频图像的纹理特征，</p>
-<p>有利于各个单元更优化的完成各自的功能。</p>
-<p><img src="https://img-blog.csdn.net/20170903222542263?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>RQT是一种自适应的变换技术，这种思想是对H.264/AVC中ABT（AdaptiveBlock-size Transform）技术的延伸和扩展。</p>
-<p>对于帧间编码来说，它允许变换块的大小根据运动补偿块的大小进行自适应的调整；</p>
-<p>对于帧内编码来说，它允许变换块的大小根据帧内预测残差的特性进行自适应的调整。</p>
-<p>大块的变换相对于小块的变换，一方面能够提供更好的能量集中效果，并能在量化后保存更多的图像细节，但是另一方面在量化后却会带来更多的振铃效应。</p>
-<p>因此，根据当前块信号的特性，自适应的选择变换块大小，如下图所示，可以得到能量集中、细节保留程度以及图像的振铃效应三者最优的折中。</p>
-<p><img src="https://img-blog.csdn.net/20170903222512555?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>Fig. 灵活的块结构示意图</p>
-<h4 id="5-帧内预测模式"><a href="#5-帧内预测模式" class="headerlink" title="5.  帧内预测模式"></a>5.  帧内预测模式</h4><p>本质上H.265是在H.264的预测方向基础上增加了更多的预测方向</p>
-<p>H.265：所有尺寸的CU块，亮度有35种预测方向，色度有5种预测方向</p>
-<p>H.264：亮度 4x4块9个方向，8x8块9个方向，16x16块4种方向，色度4种方向</p>
-<p> <img src="https://img-blog.csdn.net/20170903222603597?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.264的帧内预测方向:</p>
-<p> <img src="https://img-blog.csdn.net/20170903222635669?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265的帧内预测方向：</p>
-<h4 id="6-帧间预测"><a href="#6-帧间预测" class="headerlink" title="6.  帧间预测"></a>6.  帧间预测</h4><p>本质上H.265是在H.264基础上增加插值的抽头系数个数，改变抽头系数值以及增加运动矢量预测值的候选个数，以达到减少预测残差的目的。</p>
-<p>H.265与H.264一样插值精度都是亮度到1/4，色度到1/8精度，但插值滤波器抽头长度和系数不同.</p>
-<p>H.265的增加了运动矢量预测值候选的个数，而H.264预测值只有一个</p>
-<p> <img src="https://img-blog.csdn.net/20170903222712796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265的空域候选项：</p>
-<p><img src="https://img-blog.csdn.net/20170903222726452?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265时域共同位置候选项</p>
-<h4 id="7-去块滤波"><a href="#7-去块滤波" class="headerlink" title="7.  去块滤波"></a>7.  去块滤波</h4><p>本质上H.265的去块滤波与H.264的去块滤波及流程是一致的，做了如下最显著的改变：</p>
-<p>Ø 滤波边界： H.264最小到4x4边界滤波；而H.265适应最新的CU、PU和TU划分结构的滤波边缘，最小滤波边界为8x8，</p>
-<p>Ø 滤波顺序：H264先宏块内采用垂直边界，再当前宏块内水平边界；而H.265先整帧的垂直边界，再整帧的水平边界</p>
-<p>ALF在编解码环路内，位于Deblock和SAO之后，</p>
-<p>用于恢复重建图像以达到重建图像与原始图像之间的均方差（MSE）最小。</p>
-<p>ALF的系数是在帧级计算和传输的，可以整帧应用ALF，</p>
-<p>也可以对于基于块或基于量化树（quadtree）的部分区域进行ALF，</p>
-<p>如果是基于部分区域的ALF，还必须传递指示区域信息的附加信息。</p>
-<h4 id="8-采样点自适应偏移（Sample-AdaptiveOffset）滤波"><a href="#8-采样点自适应偏移（Sample-AdaptiveOffset）滤波" class="headerlink" title="8.  采样点自适应偏移（Sample AdaptiveOffset）滤波"></a>8.  采样点自适应偏移（Sample AdaptiveOffset）滤波</h4><p>SAO(sample adaptive offset)滤波其实就是对去块滤波后的重建像素按照不同的模板进行分类，并对每一种分类像素进行补偿, 分类模板分为BO(Band offset)和EO(Edge offset)。</p>
-<p> <img src="https://img-blog.csdn.net/20170903222824890?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>BO分类：</p>
-<p> <img src="https://img-blog.csdn.net/20170903222838657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>EO分类模块：</p>
-<p>SAO在编解码环路内，位于Deblock之后，通过对重建图像的分类，对每一类图像像素值加减一个偏移，达到减少失真的目的，从而提高压缩率，减少码流。</p>
-<p>采用SAO后，平均可以减少2%~6%的码流,而编码器和解码器的性能消耗仅仅增加了约2%。</p>
-<h4 id="9-Tile划分"><a href="#9-Tile划分" class="headerlink" title="9.  Tile划分"></a>9.  Tile划分</h4><p>Tile： 将图像分割为矩形区域。</p>
-<p>其主要目的是增强并行处理性能。</p>
-<p>每个tile区域相当于一幅子图像，可独立的以LCU块为单位进行编解码。</p>
-<p>一个Tile块为基本的并行单元，每个Tile为一个子码流</p>
-<p> <img src="https://img-blog.csdn.net/20170903222909352?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\10. WPP</p>
-<p>WPP:  全称为wavefront parallel process，以LCU行为基本的编码单位。</p>
-<p>以一行LCU块为基本的并行单元，每一行LCU为一个子码流</p>
-<p> <img src="https://img-blog.csdn.net/20170903222931315?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\11. Dependentslice</p>
-<p>Dependent slice：该技术可以理解为对原先Slice NALU的数据划分，使其可以适合更加灵活的打包方式。</p>
-<p>Slice 和dependent slice 的示意图如下</p>
-<p><img src="https://img-blog.csdn.net/20170903223007796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\12. 其他相关技术</p>
-<p>Ø Transform_skip模式：transform_skip_flag，该模式不进行变换，但是要进行量化，该模式对文本桌面视频有较好效果</p>
-<p>Ø 内部比特深度增加：为了保证中间预测、变换以及量化过程中的内部比特精度，以达到更好的压缩性能</p>
+<p><img src="/images/56.jpg" alt="50"></p>
+<h5 id="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80："><a href="#仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80：" class="headerlink" title="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80："></a>仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80：</h5><p><img src="/images/57.jpg" alt="50"></p>
+<p> 这就是之前支离破碎的 P2` 加上误差 D2之后变成了清晰可见的样子，基本还原了原图P2。 </p>
+<p><img src="/images/58.jpg" alt="50"></p>
+<p> 由于D2仅仅占5KB，加上压缩过后的运动矢量不过7KB，所以参考P1我们只需要额外 7KB的数据量就可以完整表示P2了，而如果独立将P2用质量尚可的有损压缩方式独立压缩，则至少要去到50-60KB，这一下节省了差不多8倍的空间，正就是所谓运动编码的基本原理。 </p>
+<p> 实际在使用中，参考帧并不一定是前面一帧，也不一定是同一个GOP的I帧，因为GOP间隔较长时，后面的图片离I帧变化可能已经很大了，因此常见做法是最近15帧中选择一帧误差最小的作为参考帧，虽然彩色画面有YUV三个分量，但是大量的预测工作和最有选择通常是根据Y分量的灰度帧进行判断的。 </p>
+<p> 再者误差我们保存的是（P2-P2’）/2 + 0x80，实际使用时我们会用更有效率的方式，比如让[-64,64]之间的色差精度为1，[-255,-64], [64, 255] 之间的色差精度为2-3，这样会更加真实一些。 </p>
+<p> 同时上文很多地方用的是直接lzma2进行简单存储，实际使用时一般会引入熵编码，对数据进行一定层次的整理然后再压缩，性能会好不少。 </p>
+<h3 id="CABAC"><a href="#CABAC" class="headerlink" title="CABAC"></a>CABAC</h3><p>上面的帧内压缩是属于有损压缩技术。也就是说图像被压缩后，无法完全复原。而CABAC属于无损压缩技术。</p>
+<p>无损压缩技术大家最熟悉的可能就是哈夫曼编码了，给高频的词一个短码，给低频词一个长码从而达到数据压缩的目的。MPEG-2中使用的VLC就是这种算法，我们以 A-Z 作为例子，A属于高频数据，Z属于低频数据。看看它是如何做的。</p>
+<p><img src="/images/1307424-20181107191345116-277907586.png" alt="img"></p>
+<p>CABAC也是给高频数据短码，给低频数据长码。同时还会根据上下文相关性进行压缩，这种方式又比VLC高效很多。其效果如下：</p>
+<p><img src="/images/1307424-20181107191350500-1400387362.png" alt="img"></p>
+<p>现在将 A-Z 换成视频帧，它就成了下面的样子。</p>
+<p><img src="/images/1307424-20181107191355172-2085276841.png" alt="img"></p>
+<p>从上面这张图中明显可以看出采用 CACBA 的无损压缩方案要比 VLC 高效的多。</p>
 </font>
       
     </div>
@@ -2345,7 +2345,7 @@ self-&gt;deviceType和deviceType是等价的。
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -2394,7 +2394,7 @@ self-&gt;deviceType和deviceType是等价的。
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:15</span>
+    <span title="站点阅读时长">3:14</span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
