@@ -119,7 +119,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">48</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">50</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -129,7 +129,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">67</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -189,6 +189,348 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/" class="post-title-link" itemprop="url">H.265与H.264的差异详解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-18 18:34:24" itemprop="dateCreated datePublished" datetime="2021-11-18T18:34:24+08:00">2021-11-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-13 11:36:48" itemprop="dateModified" datetime="2022-08-13T11:36:48+08:00">2022-08-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <font size="2.9">
+
+
+<h2 id="H-265与H-264的差异详解"><a href="#H-265与H-264的差异详解" class="headerlink" title="H.265与H.264的差异详解"></a>H.265与H.264的差异详解</h2><blockquote>
+<p><strong>码牛只为跟牛逼的你</strong></p>
+</blockquote>
+<p>通过以下几种来对比H264与H265的差异</p>
+<blockquote>
+<p>1.编解码框架差异</p>
+<p>2.压缩性能比较</p>
+<p>3.各模块技术差异汇总</p>
+<p>4.块划分结构</p>
+<p>5.帧内预测</p>
+<p>6.帧间预测</p>
+<p>7.去块滤波</p>
+<p>8.SAO滤波</p>
+<p>9.Tile</p>
+<p>10.WPP</p>
+<p>11.Dependent slice</p>
+<p>12.其他技术</p>
+</blockquote>
+<h4 id="1-1-H-264与H-265的主要差异"><a href="#1-1-H-264与H-265的主要差异" class="headerlink" title="1.1  H.264与H.265的主要差异"></a>1.1  H.264与H.265的主要差异</h4><p>H.265仍然采用混合编解码，编解码结构域H.264基本一致，</p>
+<p>主要的不同在于：</p>
+<p>Ø 编码块划分结构：采用CU (CodingUnit)、PU(PredictionUnit)和TU(TransformUnit)的递归结构。</p>
+<p>Ø 基本细节：各功能块的内部细节有很多差异</p>
+<p>Ø 并行工具：增加了Tile以及WPP等并行工具集以提高编码速度</p>
+<p>Ø 滤波器：在去块滤波之后增加了SAO（sample adaptive offset）滤波模块</p>
+<p><img src="https://img-blog.csdn.net/20170903222110391?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>Fig.H.265的框架图</p>
+<h4 id="2-压缩性能比较"><a href="#2-压缩性能比较" class="headerlink" title="2.  压缩性能比较"></a>2.  压缩性能比较</h4><p>PSNR计算方式</p>
+<p><img src="https://img-blog.csdn.net/20170903222300500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265/HEVC HM-9.0 和H.264 JM-18.4 的BD-rate 比较：</p>
+<p> AllIntra case:           22%</p>
+<p> RandomAccess case:       34%</p>
+<p> LowDelay case:          37%</p>
+<h4 id="3-各模块技术差异汇总"><a href="#3-各模块技术差异汇总" class="headerlink" title="3.  各模块技术差异汇总"></a>3.  各模块技术差异汇总</h4><p><img src="https://img-blog.csdn.net/20170903222335956?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p><img src="https://img-blog.csdn.net/20170903222351940?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="4-块划分结构"><a href="#4-块划分结构" class="headerlink" title="4.  块划分结构"></a>4.  块划分结构</h4><p>在H.265中，将宏块的大小从H.264的16×16扩展到了64×64，以便于高分辨率视频的压缩。</p>
+<p>同时，采用了更加灵活的编码结构来提高编码效率，</p>
+<p>包括编码单元（CodingUnit）、预测单元（PredictUnit）和变换单元（TransformUnit）。</p>
+<p>如下图所示:</p>
+<p><img src="https://img-blog.csdn.net/20170903222441671?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>其中:</p>
+<p>编码单元类似于H.264/AVC中的宏块的概念，用于编码的过程。</p>
+<p>预测单元是进行预测的基本单元，</p>
+<p>变换单元是进行变换和量化的基本单元。</p>
+<p>这三个单元的分离，使得变换、预测和编码各个处理环节更加灵活，</p>
+<p>也有利于各环节的划分更加符合视频图像的纹理特征，</p>
+<p>有利于各个单元更优化的完成各自的功能。</p>
+<p><img src="https://img-blog.csdn.net/20170903222542263?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>RQT是一种自适应的变换技术，这种思想是对H.264/AVC中ABT（AdaptiveBlock-size Transform）技术的延伸和扩展。</p>
+<p>对于帧间编码来说，它允许变换块的大小根据运动补偿块的大小进行自适应的调整；</p>
+<p>对于帧内编码来说，它允许变换块的大小根据帧内预测残差的特性进行自适应的调整。</p>
+<p>大块的变换相对于小块的变换，一方面能够提供更好的能量集中效果，并能在量化后保存更多的图像细节，但是另一方面在量化后却会带来更多的振铃效应。</p>
+<p>因此，根据当前块信号的特性，自适应的选择变换块大小，如下图所示，可以得到能量集中、细节保留程度以及图像的振铃效应三者最优的折中。</p>
+<p><img src="https://img-blog.csdn.net/20170903222512555?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>Fig. 灵活的块结构示意图</p>
+<h4 id="5-帧内预测模式"><a href="#5-帧内预测模式" class="headerlink" title="5.  帧内预测模式"></a>5.  帧内预测模式</h4><p>本质上H.265是在H.264的预测方向基础上增加了更多的预测方向</p>
+<p>H.265：所有尺寸的CU块，亮度有35种预测方向，色度有5种预测方向</p>
+<p>H.264：亮度 4x4块9个方向，8x8块9个方向，16x16块4种方向，色度4种方向</p>
+<p> <img src="https://img-blog.csdn.net/20170903222603597?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.264的帧内预测方向:</p>
+<p> <img src="https://img-blog.csdn.net/20170903222635669?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265的帧内预测方向：</p>
+<h4 id="6-帧间预测"><a href="#6-帧间预测" class="headerlink" title="6.  帧间预测"></a>6.  帧间预测</h4><p>本质上H.265是在H.264基础上增加插值的抽头系数个数，改变抽头系数值以及增加运动矢量预测值的候选个数，以达到减少预测残差的目的。</p>
+<p>H.265与H.264一样插值精度都是亮度到1/4，色度到1/8精度，但插值滤波器抽头长度和系数不同.</p>
+<p>H.265的增加了运动矢量预测值候选的个数，而H.264预测值只有一个</p>
+<p> <img src="https://img-blog.csdn.net/20170903222712796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265的空域候选项：</p>
+<p><img src="https://img-blog.csdn.net/20170903222726452?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265时域共同位置候选项</p>
+<h4 id="7-去块滤波"><a href="#7-去块滤波" class="headerlink" title="7.  去块滤波"></a>7.  去块滤波</h4><p>本质上H.265的去块滤波与H.264的去块滤波及流程是一致的，做了如下最显著的改变：</p>
+<p>Ø 滤波边界： H.264最小到4x4边界滤波；而H.265适应最新的CU、PU和TU划分结构的滤波边缘，最小滤波边界为8x8，</p>
+<p>Ø 滤波顺序：H264先宏块内采用垂直边界，再当前宏块内水平边界；而H.265先整帧的垂直边界，再整帧的水平边界</p>
+<p>ALF在编解码环路内，位于Deblock和SAO之后，</p>
+<p>用于恢复重建图像以达到重建图像与原始图像之间的均方差（MSE）最小。</p>
+<p>ALF的系数是在帧级计算和传输的，可以整帧应用ALF，</p>
+<p>也可以对于基于块或基于量化树（quadtree）的部分区域进行ALF，</p>
+<p>如果是基于部分区域的ALF，还必须传递指示区域信息的附加信息。</p>
+<h4 id="8-采样点自适应偏移（Sample-AdaptiveOffset）滤波"><a href="#8-采样点自适应偏移（Sample-AdaptiveOffset）滤波" class="headerlink" title="8.  采样点自适应偏移（Sample AdaptiveOffset）滤波"></a>8.  采样点自适应偏移（Sample AdaptiveOffset）滤波</h4><p>SAO(sample adaptive offset)滤波其实就是对去块滤波后的重建像素按照不同的模板进行分类，并对每一种分类像素进行补偿, 分类模板分为BO(Band offset)和EO(Edge offset)。</p>
+<p> <img src="https://img-blog.csdn.net/20170903222824890?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>BO分类：</p>
+<p> <img src="https://img-blog.csdn.net/20170903222838657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>EO分类模块：</p>
+<p>SAO在编解码环路内，位于Deblock之后，通过对重建图像的分类，对每一类图像像素值加减一个偏移，达到减少失真的目的，从而提高压缩率，减少码流。</p>
+<p>采用SAO后，平均可以减少2%~6%的码流,而编码器和解码器的性能消耗仅仅增加了约2%。</p>
+<h4 id="9-Tile划分"><a href="#9-Tile划分" class="headerlink" title="9.  Tile划分"></a>9.  Tile划分</h4><p>Tile： 将图像分割为矩形区域。</p>
+<p>其主要目的是增强并行处理性能。</p>
+<p>每个tile区域相当于一幅子图像，可独立的以LCU块为单位进行编解码。</p>
+<p>一个Tile块为基本的并行单元，每个Tile为一个子码流</p>
+<p> <img src="https://img-blog.csdn.net/20170903222909352?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\10. WPP</p>
+<p>WPP:  全称为wavefront parallel process，以LCU行为基本的编码单位。</p>
+<p>以一行LCU块为基本的并行单元，每一行LCU为一个子码流</p>
+<p> <img src="https://img-blog.csdn.net/20170903222931315?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\11. Dependentslice</p>
+<p>Dependent slice：该技术可以理解为对原先Slice NALU的数据划分，使其可以适合更加灵活的打包方式。</p>
+<p>Slice 和dependent slice 的示意图如下</p>
+<p><img src="https://img-blog.csdn.net/20170903223007796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\12. 其他相关技术</p>
+<p>Ø Transform_skip模式：transform_skip_flag，该模式不进行变换，但是要进行量化，该模式对文本桌面视频有较好效果</p>
+<p>Ø 内部比特深度增加：为了保证中间预测、变换以及量化过程中的内部比特精度，以达到更好的压缩性能</p>
+</font>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/15/IOS/ocClassDifferent/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/15/IOS/ocClassDifferent/" class="post-title-link" itemprop="url">ocClassDifferent</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-15 10:32:56" itemprop="dateCreated datePublished" datetime="2021-11-15T10:32:56+08:00">2021-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-08-30 17:14:31" itemprop="dateModified" datetime="2023-08-30T17:14:31+08:00">2023-08-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IOS/" itemprop="url" rel="index"><span itemprop="name">IOS</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <font size="2.9">
+
+<h4 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h4><blockquote>
+<p><code>引用类型用</code> oc的类指针 nil</p>
+</blockquote>
+<blockquote>
+<p><code>基本类型用</code> NULL</p>
+</blockquote>
+<blockquote>
+<p>本质上是一样的 ，都是宏定义 ，0</p>
+</blockquote>
+<blockquote>
+<p>Person *p = nil 代表不指向任何对象</p>
+</blockquote>
+<h4 id="2-分组导航标记"><a href="#2-分组导航标记" class="headerlink" title="2.分组导航标记"></a>2.分组导航标记</h4><blockquote>
+<p>#pragma mark 名字</p>
+</blockquote>
+<blockquote>
+<p>#pragma mark - 产生分割线</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h5><blockquote>
+<p>方法定义@interface  实现在@implement</p>
+</blockquote>
+<blockquote>
+<p>函数 调用不 一样   可以写在  类 中除了 大括号<br>类的声明和 实现 都要有， 声明要在前  实现 可以放在使用类的后面 </p>
+</blockquote>
+<blockquote>
+<p><code>+</code> 方法就是类方法，<code>-</code> 方法就是实例方法</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)thisIsAClassMethod; <span class="comment">// 类方法，不需要实例化对象就可以调用</span></span><br><span class="line">- (<span class="keyword">void</span>)thisIsAnInstanceMethod; <span class="comment">// 实例方法，必须通过实例化的对象调用</span></span><br><span class="line"><span class="comment">// 对象的初始化 OC中以消息机制传递信息，发送 alloc 消息给类分配内存空间，发送 init 消息生成对象，指针指向对象本身。</span></span><br><span class="line">ClassName *obj = [[ClassName alloc] init];</span><br></pre></td></tr></table></figure>
+<pre><code>类方法：
+1、类方法可以调用类方法；
+2、类方法不可以调用实例方法，但是类方法可以通过创建对象来访问实例方法；
+3、类方法不可以使用实例变量。（可以使用self ，因为 self 不是实例变量。）
+4、类方法作为消息，可以发送到类或者对象里面去（就是可以通过类或者对象调用类方法）
+实例方法里面的 self ，是对象的首地址。
+类方法里面的 self ，是 class 。
+
+用过程中既可以使用新定义的方法名，也可以使用以前的方法（点表示法）
+
+属性特征：readwrite readonly assign retain copy nonatomic
+
+assign：默认行为，使用 @property int num 就是使用了 assign 行为，就是给实例变量赋了一个值
+
+retain：实现了两个功能，一个是保留了赋值时传递的对象，一个是赋值前释放了以前的值，使用时加上 @property (retain) int num;
+
+copy：发送一条复制的消息给被传递的对象，保留它，并释放任何以前的值；
+
+nonatomic：非原子访问器，加上后可以保证属性在被一个线程使用时不被另一个线程访问，不存在 atomic 关键字，默认情况下，所有方法都是自动合成的。（类似Java中的线程锁机制 synchronised）
+readwrite：可读写
+readonly：只读
+</code></pre>
+<h4 id="OC点和右箭头访问变量的区别"><a href="#OC点和右箭头访问变量的区别" class="headerlink" title="OC点和右箭头访问变量的区别"></a>OC点和右箭头访问变量的区别</h4><pre><code>语法
+OC中.语法实际上就是方法调用，比如通过self.deviceID访问属性，如果它出现在=的左边那么就是调用属性的setter方法，如果出现在=右边就是调用属性的getter方法。
+所以如下所示的定义：
+</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">self.deviceID = @<span class="string">&quot;123&quot;</span>;和[self setDeviceID:@<span class="string">&quot;123&quot;</span>];是等价的。</span><br><span class="line"></span><br><span class="line">NSString *str = self.deviceID;和NSString *str = [self deviceID];是等价的。</span><br></pre></td></tr></table></figure>
+<p> -&gt;语法<br>    OC中-&gt;用于访问成员变量。所以：</p>
+<pre><code>self-&gt;_deviceID和_deviceID是等价的。
+
+self-&gt;deviceType和deviceType是等价的。
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@interface Device : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    @<span class="keyword">public</span> NSString *deviceType;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="built_in">property</span> (nonatomic , strong) NSString *deviceID;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</code></pre>
+<h4 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h4><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
+</font>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -642,7 +984,7 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-31 10:05:43" itemprop="dateModified" datetime="2023-01-31T10:05:43+08:00">2023-01-31</time>
+                <time title="修改时间：2023-10-10 15:42:32" itemprop="dateModified" datetime="2023-10-10T15:42:32+08:00">2023-10-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -660,7 +1002,7 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.7k</span>
+              <span>7.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -718,7 +1060,7 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
 <h4 id="查找ANR分析"><a href="#查找ANR分析" class="headerlink" title="查找ANR分析"></a>查找ANR分析</h4><ol>
 <li><p>adb bugreport  目录 ，  拉去日志  分析  ，里面有个墓碑日志，保留堆栈函数调用现场。</p>
 <p>bugrepotxxxx.txt </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;am_anr&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">0369  grep -r &quot;am_proc_died&quot;</span><br><span class="line">grep -r &quot;am_anr&quot;</span><br><span class="line"> grep -r &quot;anr&quot;</span><br><span class="line"> grep &quot;am_anr&quot;</span><br><span class="line">grep &quot;am_anr&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;ANR&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;com.ztgame.fire&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;com.ztgame.fir&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;com.ztgame.fir.vivo&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;am_low_memory&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">grep &quot;com.ztgame&quot;</span><br><span class="line">grep  -r   &quot;com.ztgame&quot;</span><br><span class="line">grep  -r   &quot;com.ztgame.fir.eagle&quot;</span><br><span class="line">grep  -r   &quot;com.ztgame.fir.vivo&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">   grep &quot;am_anr&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">   0369  grep -r &quot;am_proc_died&quot;</span><br><span class="line">   grep -r &quot;am_anr&quot;</span><br><span class="line">    grep -r &quot;anr&quot;</span><br><span class="line">    grep &quot;am_anr&quot;</span><br><span class="line">   grep &quot;am_anr&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">   grep &quot;ANR&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">   grep &quot;com.ztgame.fire&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">   grep &quot;com.ztgame.fir&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">   grep &quot;com.ztgame.fir.vivo&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">   grep &quot;am_low_memory&quot; bugreport-PD2178-SP1A.210812.003-2022-06-16-14-20-45.txt</span><br><span class="line">   grep &quot;com.ztgame&quot;</span><br><span class="line">   grep  -r   &quot;com.ztgame&quot;</span><br><span class="line">   grep  -r   &quot;com.ztgame.fir.eagle&quot;</span><br><span class="line">   grep  -r   &quot;com.ztgame.fir.vivo&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">logcat | grep -E  &quot;GiantListener|GiantSdkDC&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p><code>adb pull /data/local/traces</code></p>
 </li>
 <li><p>查找依赖</p>
@@ -1109,224 +1451,6 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/20/Android/AndroidAidl/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/20/Android/AndroidAidl/" class="post-title-link" itemprop="url">AndroidAidl</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-20 11:12:02" itemprop="dateCreated datePublished" datetime="2021-10-20T11:12:02+08:00">2021-10-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-13 11:24:52" itemprop="dateModified" datetime="2022-08-13T11:24:52+08:00">2022-08-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <font size="2.9">
-
-<h4 id="为了让远程Service与多个应用程序的组件（四大组件）进行跨进程通信（IPC），需要使用AIDL"><a href="#为了让远程Service与多个应用程序的组件（四大组件）进行跨进程通信（IPC），需要使用AIDL" class="headerlink" title="为了让远程Service与多个应用程序的组件（四大组件）进行跨进程通信（IPC），需要使用AIDL"></a>为了让远程Service与多个应用程序的组件（四大组件）进行跨进程通信（IPC），需要使用AIDL</h4><p><img src="img.png"><br>IPC：Inter-Process Communication，即跨进程通信<br>AIDL：Android Interface Definition Language，即Android接口定义语言；用于让某个Service与多个应用程序组件之间进行跨进程通信，从而可以实现多个应用程序共享同一个Service的功能。</p>
-<h5 id="远程服务-app"><a href="#远程服务-app" class="headerlink" title="远程服务 app"></a>远程服务 app</h5><p>新建一个server-app ，创建src/main/aidl/包名/名字.adil, src/main/java/包名/名字.service.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 远程服务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AidlService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">&quot;AidlService&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> IServer_AidlInterface.Stub mBinder = <span class="keyword">new</span> IServer_AidlInterface.Stub() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connectTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;------&gt;客户端通过aidl  和远程服务成功通信&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">sendStartMsg</span><span class="params">(<span class="keyword">int</span> a)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (a == <span class="number">100</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;hello a !!! from service&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate();</span><br><span class="line">        System.out.println(<span class="string">&quot;onCreate---&gt;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">onStartCommand</span><span class="params">(Intent intent, <span class="keyword">int</span> flags, <span class="keyword">int</span> startId)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onStartCommand: &quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onStartCommand(intent, flags, startId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy();</span><br><span class="line">        System.out.println(<span class="string">&quot;OnDestroy---&gt;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;OnBind--服务端启动-&gt;&quot;</span>);</span><br><span class="line">        <span class="comment">//在onBind()返回继承自Binder的Stub类型的Binder，非常重要</span></span><br><span class="line">        <span class="keyword">return</span> mBinder;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onUnbind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;onUnbind---&gt;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onUnbind(intent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//aidl </span></span><br><span class="line"><span class="comment">// IServer_AidlInterface.aidl</span></span><br><span class="line"><span class="keyword">package</span> com.example.server;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Declare any non-default types here with import statements</span></span><br><span class="line"><span class="comment">//在新建AIDL文件里定义Service需要与Activity进行通信的内容（方法）</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IServer_AidlInterface</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Demonstrates some basic types that you can use as parameters</span></span><br><span class="line"><span class="comment">     * and return values in AIDL.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="comment">//    void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat,</span></span><br><span class="line"><span class="comment">//            double aDouble, String aString);</span></span><br><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">connectTest</span><span class="params">()</span></span>;</span><br><span class="line">     <span class="function">String <span class="title">sendStartMsg</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>service 声明</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">queries</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">package</span> <span class="attr">android:name</span>=<span class="string">&quot;com.example.server&quot;</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">queries</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- exported =true 可以被其他进程访问--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">service</span> <span class="attr">android:name</span>=<span class="string">&quot;com.example.server.AidlService&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:process</span>=<span class="string">&quot;:remote&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">           &gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.DEFAULT&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--  //该Service可以响应带有scut.carson_ho.service_server.AIDL_Service1这个action的Intent。</span></span><br><span class="line"><span class="comment">           //此处Intent的action必须写成“服务器端包名.aidl文件名”--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;com.example.server.IServer_AidlInterface&quot;</span>/&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">service</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="客户端连接-服务端"><a href="#客户端连接-服务端" class="headerlink" title="客户端连接 服务端"></a>客户端连接 服务端</h4><p>拷贝server_app声明的aidl 和包名一起 ，创建src/main/aidl/包名/名字.adil, 最好什么都不修改</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接口变量</span></span><br><span class="line">   <span class="keyword">private</span> IServer_AidlInterface maidl_service;</span><br><span class="line">   <span class="keyword">private</span> ServiceConnection connection = <span class="keyword">new</span> ServiceConnection() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;name = &quot;</span> + name + <span class="string">&quot;, service = &quot;</span> + service);</span><br><span class="line">           maidl_service = IServer_AidlInterface.Stub.asInterface(service); <span class="comment">//获取服务端返回的binder 对象  讲ibinder 对象 复值给maidl_service;</span></span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               <span class="comment">//通过该对象调用在IServer_AidlInterface.aidl文件中定义的接口方法,从而实现跨进程通信</span></span><br><span class="line">               maidl_service.connectTest();</span><br><span class="line">               System.out.println(<span class="string">&quot;模拟发送&quot;</span>+maidl_service.sendStartMsg(<span class="number">100</span>));</span><br><span class="line">           &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;name = &quot;</span> + name);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//绑定服务</span></span><br><span class="line">   Intent intentService = <span class="keyword">new</span> Intent(<span class="string">&quot;com.example.server.IServer_AidlInterface&quot;</span>);</span><br><span class="line">   <span class="comment">//需要指定包名</span></span><br><span class="line">   <span class="comment">// intentService.setPackage(&quot;com.example.service_server&quot;);</span></span><br><span class="line">   intentService.setClassName(<span class="string">&quot;com.example.server&quot;</span>,<span class="string">&quot;com.example.server.AidlService&quot;</span>);</span><br><span class="line">   System.out.println(getApplicationContext().bindService(intentService, connection, Context.BIND_AUTO_CREATE));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="comment">//发送消息</span></span><br><span class="line">    System.out.println(<span class="string">&quot;模拟发送&quot;</span>+maidl_service.sendStartMsg(<span class="number">100</span>));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="本地服务-service"><a href="#本地服务-service" class="headerlink" title="本地服务 service"></a>本地服务 service</h4><p>开启服务2中方式<br>bindserice:<br>oncreate-&gt;onBinder()–&gt;onUnbind()-&gt;onDestoy</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Intent intentService = <span class="keyword">new</span> Intent(<span class="string">&quot;android.test.local.service&quot;</span>);</span><br><span class="line">    <span class="comment">//需要指定包名</span></span><br><span class="line">  intentService.setPackage(<span class="string">&quot;com.example.webrtc&quot;</span>);</span><br><span class="line">   <span class="comment">// intentService.setClassName(&quot;com.example.server&quot;,&quot;com.example.server.AidlService&quot;);</span></span><br><span class="line">   getApplicationContext().bindService(intentService, localConnection, Context.BIND_AUTO_CREATE);</span><br></pre></td></tr></table></figure>
-
-
-<p>startserice:<br>onCreate–&gt;onStartCommand(Intent intent,int flags,int starId)-&gt;StopService()-&gt;onDestory()</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Intent mService = <span class="keyword">new</span> Intent(<span class="keyword">this</span>,MyLocalService.class);</span><br><span class="line">     startService(mService);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</font>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/20/Unity/BehaviourTree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/20/Unity/BehaviourTree/" class="post-title-link" itemprop="url">MonoBehaviourTree</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-20 11:11:47" itemprop="dateCreated datePublished" datetime="2021-10-20T11:11:47+08:00">2021-10-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-13 11:34:14" itemprop="dateModified" datetime="2022-08-13T11:34:14+08:00">2022-08-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <font size="2.9">
-
-<h4 id="Unity-AI-行为树"><a href="#Unity-AI-行为树" class="headerlink" title="Unity AI 行为树"></a>Unity AI 行为树</h4><pre><code>遍历从左边 中 右  左边优先级最高，右边最低
-</code></pre>
-<h4 id="角色-吃饭-睡觉-地震"><a href="#角色-吃饭-睡觉-地震" class="headerlink" title="角色 吃饭 睡觉 地震"></a>角色 吃饭 睡觉 地震</h4><pre><code>地震 xxx　会中断 吃饭睡觉
-吃饭 xxx  会中断 睡觉
-睡觉 优先级最低
-</code></pre>
-<h4 id="Tools-简单操作"><a href="#Tools-简单操作" class="headerlink" title="Tools 简单操作"></a>Tools 简单操作</h4><img src="/2021/10/20/Unity/BehaviourTree/1.png" class="">
-
-<blockquote>
-<p>Eat action</p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> BehaviorDesigner.Runtime;</span><br><span class="line"><span class="keyword">using</span> BehaviorDesigner.Runtime.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Eat</span> : <span class="title">Action</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 变量：食物。会在行为树编辑器中赋值</span></span><br><span class="line">    <span class="keyword">public</span> SharedString food;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> TaskStatus <span class="title">OnUpdate</span>(<span class="params"></span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(<span class="string">&quot;eat: &quot;</span> + food.GetValue());</span><br><span class="line">        <span class="keyword">return</span> TaskStatus.Success;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>Sleep action</p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Sleep1</span> : <span class="title">Action</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//行为树中赋值</span></span><br><span class="line">    <span class="keyword">public</span> SharedFloat sleepTime;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">float</span> m_sleepTime;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">float</span> m_startTime;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnStart</span>(<span class="params"></span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">base</span>.OnStart();</span><br><span class="line">        m_startTime = Time.time;</span><br><span class="line">        m_sleepTime = (<span class="built_in">float</span>)sleepTime.GetValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> TaskStatus <span class="title">OnUpdate</span>(<span class="params"></span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (m_startTime +m_sleepTime &lt;Time.time)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;Time OK ----&gt;&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> TaskStatus.Success;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> TaskStatus.Running;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>新建Empty GameObject , 新建C# 脚本 ，挂在空物体上</p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">RunCustom</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> BehaviorTree m_bt;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start is called before the first frame update</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//获取行为树</span></span><br><span class="line">        m_bt = gameObject.AddComponent&lt;BehaviorTree&gt;();</span><br><span class="line">        <span class="comment">//加载树资源</span></span><br><span class="line">        <span class="keyword">var</span> extBt = Resources.Load&lt;ExternalBehaviorTree&gt;(<span class="string">&quot;Behavior1&quot;</span>);</span><br><span class="line">        m_bt.StartWhenEnabled = <span class="literal">false</span>;</span><br><span class="line">        m_bt.RestartWhenComplete = <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">//设置行为树 (UI面板已经赋值)</span></span><br><span class="line">        m_bt.ExternalBehavior = extBt;</span><br><span class="line">        m_bt.EnableBehavior();</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 行为树左边节点 优先 右边</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 地震中断吃饭睡觉</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span>  吃饭中断睡觉</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span>  </span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment">// Update is called once per frame</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (Input.GetKeyDown(KeyCode.A))</span><br><span class="line">        &#123;</span><br><span class="line">            m_bt.SetVariableValue(<span class="string">&quot;eatFood&quot;</span>,<span class="string">&quot;apple code&quot;</span>); </span><br><span class="line">            m_bt.SendEvent(<span class="string">&quot;Eat1&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (Input.GetKeyDown(KeyCode.S))</span><br><span class="line">        &#123;</span><br><span class="line">            m_bt.SetVariableValue(<span class="string">&quot;sleepTime1&quot;</span>, <span class="number">1000f</span>);</span><br><span class="line">            m_bt.SendEvent(<span class="string">&quot;Sleep1&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (Input.GetKeyDown(KeyCode.D))</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;ddd&quot;</span>);</span><br><span class="line">            m_bt.SendEvent(<span class="string">&quot;EarthQuake&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        transform.Rotate(Vector3.up*Time.deltaTime*<span class="number">20</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</font>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1396,7 +1520,7 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1409,7 +1533,7 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1446,13 +1570,13 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">214k</span>
+    <span title="站点总字数">216k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:14</span>
+    <span title="站点阅读时长">3:16</span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
