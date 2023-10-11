@@ -49,45 +49,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Android架构</title>
-    <url>/2018/08/07/Android/Android-Jetpack/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h3 id="Android移动app架构设计浅谈"><a href="#Android移动app架构设计浅谈" class="headerlink" title="Android移动app架构设计浅谈"></a>Android移动app架构设计浅谈</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>架构，又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计。</p>
-<h4 id="软件架构设计目标："><a href="#软件架构设计目标：" class="headerlink" title="软件架构设计目标："></a>软件架构设计目标：</h4><p>1.可靠性（Reliable）。软件架构的可靠是产品设计的前提。<br>2.安全性（Secure）。软件架构的安全性是产品可持续发展的条件。<br>3.可扩展性（Scalable）。软件架构必须能够不同的功能需求情况下，支持可扩散性。<br>4.可定制化（Customizable）。同样的一套软件，可以根据客户群的不同和市场需求的变化进行调整。<br>5.可伸缩 （Extensible）。在新技术出现的时候，一个软件架构应当允许导入新技术，从而对现有系统进行功能和性能的扩展。<br>6.可维护性（Maintainable）。软件系统的维护包括两方面，一是排除现有的错误，二是将新的软件需求反映到现有系统中去。一个易于维护的系统可以有效地降低技术支持的花费。</p>
-<span id="more"></span>
-<p>架构是项目形成到一定阶段的趋势。是对整个产品是否合格的有效保证。对于很多项目设计人员，在不考虑产品本身，不考虑团队，不考虑时间周期的前提下，一味的强调软件构架，是不合理的，也不利于整个产品的发展。当然，一个好的项目架构师，是很能清楚，项目在不同阶段，所需要处理的不同职责。能够最大限度的发挥能效，将产品周期，与功能模块做出最合适的匹配规划，这才是一个架构师所必须追求的。</p>
-<p>以下是个人对Android移动项目架构设计简单的经验之谈。欢迎与更多的朋友交流，若有疑问，或不合理之处，都可以随时交流。</p>
-<h4 id="从项目功能开始"><a href="#从项目功能开始" class="headerlink" title="从项目功能开始"></a>从项目功能开始</h4><p>每一个项目架构师，在拿到一个新项目的时候，都会不同的着重点。在项目规划风格上，都会有不同的考虑。而我个人在着手项目时，都会从功能上去着手。先了解项目整体的功能模块，区分出主体功能模块有哪些类，对不同的功能模块进行细致的划分。这是我开始的第一步。因为，只有对项目整体有个把握，才能更快的对项目有了解，才能知道怎样去合理安排项目的研发，才能更好的去安排项目进度流程，和人员的安排调度。</p>
-<p>功能划分之后，接下来就是项目的实际研发阶段。这个阶段就是项目实际进展阶段了。必须要有合理的安排调度，才是保证项目的高效。比如：我们进行的大部分项目，都有网络交互的部分，也有本地功能部分，还有一些基础数据模块部分，这些功能必须要有合理的时间安排。</p>
-<p>项目研发之前，几点提要说明：<br>一、团队之间统一编码规范。<br>二、需求文档统一管理。<br>三、多人协同开发，根据文档开发（一切以文档为主）。</p>
-<p>项目以功能划分，功能以模块划分。在项目初期，除了产品原型可能是提前设计成形外，其它的项目文档都还未出来，产品也是有个确定功能，但是细节文档还未成形，这个时候已经是项目开始阶段，即使在有一些文档还未成形前，也可以开始项目的基础开发了。</p>
-<h4 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h4><p>网络模块，数据库存储模块，数据加密模块，数据缓存模块，数据解析器，日志信息收集模块等。这些都是项目的基本模块，也可以独立于功能的模块，可以提前开发，测试。便于后期直接使用。</p>
-<h4 id="移动安全机制"><a href="#移动安全机制" class="headerlink" title="移动安全机制"></a>移动安全机制</h4><p>做过移动项目的都知道，移动安全是项目前期需要考虑的一个重要环节。所以，在项目之初，就应该对自身的数据存储做必要的数据加密，对网络传输的数据进行必要加密。<br>移动数据加密分为两种：<br>一种是本地数据加密，只是本机存储的信息，本地加密保存。<br>一种是网络传输数据加密，这是涉及到网络协议，与服务器之间的加密协议。</p>
-<p>本地加密方式有很多种：<br>一、MD5加密算法。 MD5是个不可逆的算法 没有解密的算法（目前也有方法破解）。<br>二、DES,Aes加密。可逆(对称加密，通一个密钥)<br>三、RSA加密。可逆 （非对称加密，公钥，私钥）<br>对于不是需要绝对足够安全的项目，以上三种加密足够用。</p>
-<p>网络数据加密主要从两个方面考虑： </p>
-<ol>
-<li>保证API的调用者是经过自己授权的App； </li>
-<li>保证数据传输的安全。</li>
-</ol>
-<p>保证API是自己授权的App，采用设计签名的方式。对每个移动平台，都会有不同的AppKey和AppSecret。在调用API时，将AppKey加入到请求参数中，然后，把AppSecret与其它参数，通过某种签名算法生成一个签名字符串，把数据传输给服务器端。而服务器根据AppKey和AppSecret，用相同的签名算法生成的签名与之一致，则说明请求安全。签名算法可以采用自己规定的一套签名算法（更安全），也可采用外部公开的签名算法（初期使用）。另外，在参数列表中再加入一个时间戳，还可以防止部分重放攻击。<br>对于数据传输安全，可以使用HTTPS。因为HTTPS添加了ssl安全协议。但是android项目开发，大部分都没有去实现。主要是没有对ssl证书进行安全性检查。</p>
-<h4 id="API协议标准化"><a href="#API协议标准化" class="headerlink" title="API协议标准化"></a>API协议标准化</h4><p>项目开发，协议一定需要标准化，并且需要严格执行接口协议。完成每个版本的协议文档更新，方便后续使用者查看。<br>目前协议都是使用Json格式传输。需要注意的是，JSON数据和实体对象在传输时，序列化和反序列化因平台不同，会产生不同的区别。比如：JSON库将Date类型的数据序列化时会转为String，传输到服务器时，服务器反序列化经常会出现不同的结果。</p>
-<h4 id="API接口版本控制"><a href="#API接口版本控制" class="headerlink" title="API接口版本控制"></a>API接口版本控制</h4><p>一般解决接口更新变化问题，我们采取的做法是，每个API接口，都会带有协议的版本，若是协议发生改变，则版本号相应改变，在处理数据请求时，则可以根据不同协议的版本进行处理，解决了版本的兼容性问题。</p>
-<h4 id="架构分层"><a href="#架构分层" class="headerlink" title="架构分层"></a>架构分层</h4><p>架构设计，主要的目的就解决功能和代码的复用，减少重复开发，方便功能扩展，降低功能和代码层级的耦合。<br>目前移动设计框架，主流的有三种：MVC、MVP、MVVM三种方式（具体详情，请参考框架小结）。<br>任何的框架设计都是在满足开发需求为前提，千万不能为了设计而设计，不要问我这三种设计，哪种最合适开发？如果你还这样去问，那只能说你还不是一个成熟的产品设计者。三种框架都有各自的利弊，是应该在不同的阶段和不同人员的配备情况下，选择更合理的方式。我曾经参与一个创业团队开发视频项目，前期只有两个移动开发人员，项目时间紧的情况下。项目负责人就只会天天在那里修改需求，谈项目架构。初期的项目，在产品验证功能阶段，在项目需要快速迭代阶段，应该使用最有效的框架，才是合理的选择。而且项目的发展，一定是随着项目功能的确立，产品的定型和需求完善，对项目本身的稳定性和性能的要求，才是一个逐步提高的过程。想要一步达到完美的产品，不仅是在设计上很难做到，而且在目前所有的产品中，都是很难达到的。</p>
-<p>任何框架都是在此三层数据模型上。View，Model，Controller/Presenter/ViewModel。上层View：用户行为操作，数据结果显示。底层Model：数据处理，提供显示数据。中间的就是业务逻辑层。<br>Android项目设计，重在对项目的理解，重在对需求功能的划分，重在对团队合理分配。高效的产出，快速的迭代，才是移动项目的生存之道。</p>
-<h4 id="Android测试"><a href="#Android测试" class="headerlink" title="Android测试"></a>Android测试</h4><p>移动开发，为保证质量产出，需要进行必须要逻辑测试。而在项目框架设计中，简单的mvc模式，若view和model中混有业务逻辑，则不利于接口测试。所以，在后续版本的迭代中，需要逐渐使用mvp或mvvm框架设计，让view和model与业务逻辑实现完整的解耦合。</p>
-<h4 id="Android环境"><a href="#Android环境" class="headerlink" title="Android环境"></a>Android环境</h4><p>自从Android提供了更高效稳定的android studio之后，对于开发者来说是更便捷，更方便了。在android gradle多平台打包。proguard代码优化，混淆。随着android studio的越来越强大，越来越稳定，相信开发android项目也会变得越来越so easy了。</p>
-<h4 id="总结在最后"><a href="#总结在最后" class="headerlink" title="总结在最后"></a>总结在最后</h4><p>一个合格的移动项目架构师，必须是在不断的项目开发中成长的。不仅仅懂得项目的高效快速部署，也懂得怎样合理优化团队，才能有更优质的产品产出。移动产品，是一个快速产出的产品，怎样做出适合团队产出的产品，才是移动架构师的学习之道</p>
-<h5 id="新方向"><a href="#新方向" class="headerlink" title="新方向"></a>新方向</h5><p><img src="https://juejin.cn/post/7032625978023084062" alt="资料"></p>
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Jetpack</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>android编译</title>
     <url>/2020/12/21/Android/Android/</url>
     <content><![CDATA[<font size="2.9">
@@ -159,6 +120,45 @@
 ]]></content>
       <tags>
         <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android架构</title>
+    <url>/2018/08/07/Android/Android-Jetpack/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h3 id="Android移动app架构设计浅谈"><a href="#Android移动app架构设计浅谈" class="headerlink" title="Android移动app架构设计浅谈"></a>Android移动app架构设计浅谈</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>架构，又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计。</p>
+<h4 id="软件架构设计目标："><a href="#软件架构设计目标：" class="headerlink" title="软件架构设计目标："></a>软件架构设计目标：</h4><p>1.可靠性（Reliable）。软件架构的可靠是产品设计的前提。<br>2.安全性（Secure）。软件架构的安全性是产品可持续发展的条件。<br>3.可扩展性（Scalable）。软件架构必须能够不同的功能需求情况下，支持可扩散性。<br>4.可定制化（Customizable）。同样的一套软件，可以根据客户群的不同和市场需求的变化进行调整。<br>5.可伸缩 （Extensible）。在新技术出现的时候，一个软件架构应当允许导入新技术，从而对现有系统进行功能和性能的扩展。<br>6.可维护性（Maintainable）。软件系统的维护包括两方面，一是排除现有的错误，二是将新的软件需求反映到现有系统中去。一个易于维护的系统可以有效地降低技术支持的花费。</p>
+<span id="more"></span>
+<p>架构是项目形成到一定阶段的趋势。是对整个产品是否合格的有效保证。对于很多项目设计人员，在不考虑产品本身，不考虑团队，不考虑时间周期的前提下，一味的强调软件构架，是不合理的，也不利于整个产品的发展。当然，一个好的项目架构师，是很能清楚，项目在不同阶段，所需要处理的不同职责。能够最大限度的发挥能效，将产品周期，与功能模块做出最合适的匹配规划，这才是一个架构师所必须追求的。</p>
+<p>以下是个人对Android移动项目架构设计简单的经验之谈。欢迎与更多的朋友交流，若有疑问，或不合理之处，都可以随时交流。</p>
+<h4 id="从项目功能开始"><a href="#从项目功能开始" class="headerlink" title="从项目功能开始"></a>从项目功能开始</h4><p>每一个项目架构师，在拿到一个新项目的时候，都会不同的着重点。在项目规划风格上，都会有不同的考虑。而我个人在着手项目时，都会从功能上去着手。先了解项目整体的功能模块，区分出主体功能模块有哪些类，对不同的功能模块进行细致的划分。这是我开始的第一步。因为，只有对项目整体有个把握，才能更快的对项目有了解，才能知道怎样去合理安排项目的研发，才能更好的去安排项目进度流程，和人员的安排调度。</p>
+<p>功能划分之后，接下来就是项目的实际研发阶段。这个阶段就是项目实际进展阶段了。必须要有合理的安排调度，才是保证项目的高效。比如：我们进行的大部分项目，都有网络交互的部分，也有本地功能部分，还有一些基础数据模块部分，这些功能必须要有合理的时间安排。</p>
+<p>项目研发之前，几点提要说明：<br>一、团队之间统一编码规范。<br>二、需求文档统一管理。<br>三、多人协同开发，根据文档开发（一切以文档为主）。</p>
+<p>项目以功能划分，功能以模块划分。在项目初期，除了产品原型可能是提前设计成形外，其它的项目文档都还未出来，产品也是有个确定功能，但是细节文档还未成形，这个时候已经是项目开始阶段，即使在有一些文档还未成形前，也可以开始项目的基础开发了。</p>
+<h4 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h4><p>网络模块，数据库存储模块，数据加密模块，数据缓存模块，数据解析器，日志信息收集模块等。这些都是项目的基本模块，也可以独立于功能的模块，可以提前开发，测试。便于后期直接使用。</p>
+<h4 id="移动安全机制"><a href="#移动安全机制" class="headerlink" title="移动安全机制"></a>移动安全机制</h4><p>做过移动项目的都知道，移动安全是项目前期需要考虑的一个重要环节。所以，在项目之初，就应该对自身的数据存储做必要的数据加密，对网络传输的数据进行必要加密。<br>移动数据加密分为两种：<br>一种是本地数据加密，只是本机存储的信息，本地加密保存。<br>一种是网络传输数据加密，这是涉及到网络协议，与服务器之间的加密协议。</p>
+<p>本地加密方式有很多种：<br>一、MD5加密算法。 MD5是个不可逆的算法 没有解密的算法（目前也有方法破解）。<br>二、DES,Aes加密。可逆(对称加密，通一个密钥)<br>三、RSA加密。可逆 （非对称加密，公钥，私钥）<br>对于不是需要绝对足够安全的项目，以上三种加密足够用。</p>
+<p>网络数据加密主要从两个方面考虑： </p>
+<ol>
+<li>保证API的调用者是经过自己授权的App； </li>
+<li>保证数据传输的安全。</li>
+</ol>
+<p>保证API是自己授权的App，采用设计签名的方式。对每个移动平台，都会有不同的AppKey和AppSecret。在调用API时，将AppKey加入到请求参数中，然后，把AppSecret与其它参数，通过某种签名算法生成一个签名字符串，把数据传输给服务器端。而服务器根据AppKey和AppSecret，用相同的签名算法生成的签名与之一致，则说明请求安全。签名算法可以采用自己规定的一套签名算法（更安全），也可采用外部公开的签名算法（初期使用）。另外，在参数列表中再加入一个时间戳，还可以防止部分重放攻击。<br>对于数据传输安全，可以使用HTTPS。因为HTTPS添加了ssl安全协议。但是android项目开发，大部分都没有去实现。主要是没有对ssl证书进行安全性检查。</p>
+<h4 id="API协议标准化"><a href="#API协议标准化" class="headerlink" title="API协议标准化"></a>API协议标准化</h4><p>项目开发，协议一定需要标准化，并且需要严格执行接口协议。完成每个版本的协议文档更新，方便后续使用者查看。<br>目前协议都是使用Json格式传输。需要注意的是，JSON数据和实体对象在传输时，序列化和反序列化因平台不同，会产生不同的区别。比如：JSON库将Date类型的数据序列化时会转为String，传输到服务器时，服务器反序列化经常会出现不同的结果。</p>
+<h4 id="API接口版本控制"><a href="#API接口版本控制" class="headerlink" title="API接口版本控制"></a>API接口版本控制</h4><p>一般解决接口更新变化问题，我们采取的做法是，每个API接口，都会带有协议的版本，若是协议发生改变，则版本号相应改变，在处理数据请求时，则可以根据不同协议的版本进行处理，解决了版本的兼容性问题。</p>
+<h4 id="架构分层"><a href="#架构分层" class="headerlink" title="架构分层"></a>架构分层</h4><p>架构设计，主要的目的就解决功能和代码的复用，减少重复开发，方便功能扩展，降低功能和代码层级的耦合。<br>目前移动设计框架，主流的有三种：MVC、MVP、MVVM三种方式（具体详情，请参考框架小结）。<br>任何的框架设计都是在满足开发需求为前提，千万不能为了设计而设计，不要问我这三种设计，哪种最合适开发？如果你还这样去问，那只能说你还不是一个成熟的产品设计者。三种框架都有各自的利弊，是应该在不同的阶段和不同人员的配备情况下，选择更合理的方式。我曾经参与一个创业团队开发视频项目，前期只有两个移动开发人员，项目时间紧的情况下。项目负责人就只会天天在那里修改需求，谈项目架构。初期的项目，在产品验证功能阶段，在项目需要快速迭代阶段，应该使用最有效的框架，才是合理的选择。而且项目的发展，一定是随着项目功能的确立，产品的定型和需求完善，对项目本身的稳定性和性能的要求，才是一个逐步提高的过程。想要一步达到完美的产品，不仅是在设计上很难做到，而且在目前所有的产品中，都是很难达到的。</p>
+<p>任何框架都是在此三层数据模型上。View，Model，Controller/Presenter/ViewModel。上层View：用户行为操作，数据结果显示。底层Model：数据处理，提供显示数据。中间的就是业务逻辑层。<br>Android项目设计，重在对项目的理解，重在对需求功能的划分，重在对团队合理分配。高效的产出，快速的迭代，才是移动项目的生存之道。</p>
+<h4 id="Android测试"><a href="#Android测试" class="headerlink" title="Android测试"></a>Android测试</h4><p>移动开发，为保证质量产出，需要进行必须要逻辑测试。而在项目框架设计中，简单的mvc模式，若view和model中混有业务逻辑，则不利于接口测试。所以，在后续版本的迭代中，需要逐渐使用mvp或mvvm框架设计，让view和model与业务逻辑实现完整的解耦合。</p>
+<h4 id="Android环境"><a href="#Android环境" class="headerlink" title="Android环境"></a>Android环境</h4><p>自从Android提供了更高效稳定的android studio之后，对于开发者来说是更便捷，更方便了。在android gradle多平台打包。proguard代码优化，混淆。随着android studio的越来越强大，越来越稳定，相信开发android项目也会变得越来越so easy了。</p>
+<h4 id="总结在最后"><a href="#总结在最后" class="headerlink" title="总结在最后"></a>总结在最后</h4><p>一个合格的移动项目架构师，必须是在不断的项目开发中成长的。不仅仅懂得项目的高效快速部署，也懂得怎样合理优化团队，才能有更优质的产品产出。移动产品，是一个快速产出的产品，怎样做出适合团队产出的产品，才是移动架构师的学习之道</p>
+<h5 id="新方向"><a href="#新方向" class="headerlink" title="新方向"></a>新方向</h5><p><img src="https://juejin.cn/post/7032625978023084062" alt="资料"></p>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Jetpack</tag>
       </tags>
   </entry>
   <entry>
@@ -448,6 +448,76 @@
       </tags>
   </entry>
   <entry>
+    <title>AndroidSdkHotFix</title>
+    <url>/2022/08/13/Android/AndroidSdkHotFix/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h6 id="关于插件"><a href="#关于插件" class="headerlink" title="关于插件"></a>关于插件</h6><p>插件化的使用场景：</p>
+<p>1、线上新增功能（如淘宝、支付宝等）</p>
+<p>2、热修复（通过下发补丁插件，完成对功能的修复）</p>
+<p>3、当编译太慢时，可以使用插件化，对某些不改动的代码做成插件，加快编译速度</p>
+<h6 id="关于类加载"><a href="#关于类加载" class="headerlink" title="关于类加载"></a>关于类加载</h6><img src="/2022/08/13/Android/AndroidSdkHotFix/img.webp" class="" title="classLoader">
+
+
+<h5 id="关于插件实现"><a href="#关于插件实现" class="headerlink" title="关于插件实现"></a>关于插件实现</h5><p><code>占位式实现插件化</code></p>
+<p>1、特点</p>
+<p>1、插件遵从宿主的定义的标准，使用宿主的上下文环境。</p>
+<p>2、优点：只使用了少量反射，无hook，实现简单</p>
+<p>3、缺点：在插件中只能使用宿主提供的上下文环境，如插件Activity中，不能使用this当上下文，也就是说有一定侵入性，需要修改插件Activity的实现。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ActivityInterface</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 把宿主(app)的环境  给  插件</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> appActivity</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insertAppContext</span><span class="params">(Activity appActivity)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生命周期方法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//此处省略了其他声明周期，只做演示使用</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>在插件模块中，根据标准实现插件Activity</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//根据标准实现的插件模块中的BaseActivity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseActivity</span> <span class="keyword">implements</span> <span class="title">ActivityInterface</span> </span>&#123;</span><br><span class="line">	<span class="comment">//宿主传递过来的上下文</span></span><br><span class="line">    <span class="keyword">public</span> Activity appActivity; <span class="comment">// 宿主的环境</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertAppContext</span><span class="params">(Activity appActivity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.appActivity = appActivity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressLint(&quot;MissingSuperCall&quot;)</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressLint(&quot;MissingSuperCall&quot;)</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressLint(&quot;MissingSuperCall&quot;)</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressLint(&quot;MissingSuperCall&quot;)</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//实际上走的是宿主的setContentView方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setContentView</span><span class="params">(<span class="keyword">int</span> resId)</span> </span>&#123;</span><br><span class="line">        appActivity.setContentView(resId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">findViewById</span><span class="params">(<span class="keyword">int</span> layoutId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> appActivity.findViewById(layoutId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startActivity</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        Intent intentNew = <span class="keyword">new</span> Intent();</span><br><span class="line">        intentNew.putExtra(<span class="string">&quot;className&quot;</span>, intent.getComponent().getClassName()); <span class="comment">// TestActivity 全类名</span></span><br><span class="line">        appActivity.startActivity(intentNew);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//BaseActivity是关键</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PluginActivity</span> <span class="keyword">extends</span> <span class="title">BaseActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.plugin_main);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// this 会报错，因为插件没有安装，也没有组件的环境，所以必须使用宿主环境</span></span><br><span class="line">        Toast.makeText(appActivity, <span class="string">&quot;我是插件&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">		</span><br><span class="line">        findViewById(R.id.bt_start_activity).setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">            	<span class="comment">//这个startActivity走的是BaseActivity的startActivity，也是被代理过的</span></span><br><span class="line">                startActivity(<span class="keyword">new</span> Intent(appActivity, TestActivity.class));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>将插件模块打包apk，在宿主中加载该apk</code></p>
+<p>对插件apk的加载主要分为两个步骤，即加载类和加载资源。加载类使用的是自定义的DexClassLoader，加载资源使用的是反射调用AssetManager的addAssetPath方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PluginManager</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = PluginManager.class.getSimpleName();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> PluginManager pluginManager;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Context context;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> PluginManager <span class="title">getInstance</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pluginManager == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (PluginManager.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (pluginManager == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    pluginManager = <span class="keyword">new</span> PluginManager(context);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pluginManager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PluginManager</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.context = context;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> DexClassLoader dexClassLoader;</span><br><span class="line">    <span class="keyword">private</span> Resources resources;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 1、加载类</span></span><br><span class="line"><span class="comment">     * 2、加载资源</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadPlugin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            File file = AssetUtils.copyAssetPlugin(context, <span class="string">&quot;p.apk&quot;</span>, <span class="string">&quot;plugin&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span> (!file.exists()) &#123;</span><br><span class="line">                Log.d(TAG, <span class="string">&quot;插件包 不存在...&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            String pluginPath = file.getAbsolutePath();</span><br><span class="line">            File fileDir = context.getDir(<span class="string">&quot;pDir&quot;</span>, Context.MODE_PRIVATE);</span><br><span class="line">            dexClassLoader = <span class="keyword">new</span> DexClassLoader(pluginPath, fileDir.getAbsolutePath(), <span class="keyword">null</span>, context.getClassLoader());</span><br><span class="line"></span><br><span class="line">         </span><br><span class="line">            <span class="comment">// 加载资源</span></span><br><span class="line">            AssetManager assetManager = AssetManager.class.newInstance();</span><br><span class="line">            Method addAssetPathMethod = assetManager.getClass().getMethod(<span class="string">&quot;addAssetPath&quot;</span>, String.class); </span><br><span class="line">            addAssetPathMethod.invoke(assetManager, pluginPath); <span class="comment">// 插件包的路径   pluginPath</span></span><br><span class="line">            Resources r = context.getResources(); <span class="comment">// 宿主的资源配置信息</span></span><br><span class="line">            <span class="comment">// 特殊的 Resources，加载插件里面的资源的 Resources</span></span><br><span class="line">            resources = <span class="keyword">new</span> Resources(assetManager, r.getDisplayMetrics(), r.getConfiguration()); </span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> ClassLoader <span class="title">getClassLoader</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dexClassLoader;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Resources <span class="title">getResources</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> resources;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>在宿主中定义占位的Activity</code><br>这里最重要的步骤为：</p>
+<p>1、重写getResources和getClassLoader方法，使用插件的ClassLoader和插件的Resources</p>
+<p>2、实例化出来插件Activity</p>
+<p>3、给插件Activity注入上下文</p>
+<p>4、调用插件Activity的onCreate方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里使用的是插件中的资源</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Resources <span class="title">getResources</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> PluginManager.getInstance(<span class="keyword">this</span>).getResources();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里使用的是插件中的类加载器</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ClassLoader <span class="title">getClassLoader</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> PluginManager.getInstance(<span class="keyword">this</span>).getClassLoader();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(<span class="meta">@Nullable</span> Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 真正的加载 插件里面的 Activity</span></span><br><span class="line">        String className = getIntent().getStringExtra(<span class="string">&quot;className&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class mPluginActivityClass = getClassLoader().loadClass(className);</span><br><span class="line">            <span class="comment">// 实例化 插件包里面的 Activity</span></span><br><span class="line">            Constructor constructor = mPluginActivityClass.getConstructor(<span class="keyword">new</span> Class[]&#123;&#125;);</span><br><span class="line">            Object mPluginActivity = constructor.newInstance(<span class="keyword">new</span> Object[]&#123;&#125;);</span><br><span class="line"></span><br><span class="line">            ActivityInterface activityInterface = (ActivityInterface) mPluginActivity;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 给插件注入上下文</span></span><br><span class="line">            activityInterface.insertAppContext(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">            Bundle bundle = <span class="keyword">new</span> Bundle();</span><br><span class="line">            bundle.putString(<span class="string">&quot;appName&quot;</span>, <span class="string">&quot;我是宿主传递过来的信息&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 执行插件里面的onCreate方法</span></span><br><span class="line">            activityInterface.onCreate(bundle);</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startActivity</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        String className = intent.getStringExtra(<span class="string">&quot;className&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Intent proxyIntent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, ProxyActivity.class);</span><br><span class="line">        proxyIntent.putExtra(<span class="string">&quot;className&quot;</span>, className); <span class="comment">// 包名+TestActivity</span></span><br><span class="line">        <span class="comment">// 要给TestActivity 进栈</span></span><br><span class="line">        <span class="keyword">super</span>.startActivity(proxyIntent);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>小结</code></p>
+<p>至此，可以实现简单的占位式插件化了，我们来总结下步骤：<br>1、定义宿主和插件之间的标准，如Activity的标准为IActivityInterface</p>
+<p>2、根据标准实现插件模块，打成apk文件（这里最重要的是插件中使用的上下文是宿主中传递过来的）</p>
+<p>3、宿主中加载插件模块apk</p>
+<p>4、定义占位Activity，在OnCreate方法中，根据Intent携带的插件Activity信息，反射插件Activity实例，为插件Activity注入占位Activity的上下文，调用插件Activity实例的onCreate方法启动<br>这种实现方式的优点是：全程仅有少量的反射，并无hook系统操作，适配工作简单。<br>缺点也很明显，在插件Activity中，需要遵守宿主规则，如果要做成框架，侵入性这个问题难以解决</p>
+<h5 id="关于dpi"><a href="#关于dpi" class="headerlink" title="关于dpi"></a>关于dpi</h5><img src="/2022/08/13/Android/AndroidSdkHotFix/img_1.webp" class="" title="classLoader">
+
+
+<h5 id="Java还有两个和动态化相关的特性，一个是接口，另一个是向上转型。"><a href="#Java还有两个和动态化相关的特性，一个是接口，另一个是向上转型。" class="headerlink" title="Java还有两个和动态化相关的特性，一个是接口，另一个是向上转型。"></a>Java还有两个和动态化相关的特性，一个是接口，另一个是向上转型。</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class&lt;?&gt; implClass = classLoader.loadClass(<span class="string">&quot;com.xxx.AImpl&quot;</span>);</span><br><span class="line">Object implObject = implClass.newInstance();</span><br><span class="line">A a = (A) implObject;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这里假设classLoader动态加载了一些Java类，其中就有一个类叫做com.xxx.AImpl，AImpl继承自A，或者AImpl实现了A接口。注意这里用了强制类型转换，是因为代码层面是将Object类型向下转型成了A。但实际上我们知道implObject的类型是AImpl，AImpl转换成A是一个向上转型。向上转型总是安全的。所以用这种方法总是可以先定义出接口，精心设计接口，让接口足够通用和稳定。只要接口不变，它的实现总是可以修改的。我们将接口打包在宿主中，接口就轻易不能更新了。但是它的实现总是可以更新的。</p>
+<p>所有的插件框架中，Activity的加载都是这样的，new一个DexClassLoader加载插件apk。然后从插件ClassLoader中load指定的插件Activity名字，newInstance之后强转为Activity类型使用。实际上Android系统自身在启动Activity时也是这样做的。所以这就是插件机制能动态更新Activity的基本原理。<br>所以，所有的插件框架在解决的问题都不是如何动态加载类，而是动态加载的Activity没有在AndroidManifest中注册，该如何能正常运行。如果Android系统没有AndroidManifest的限制，那么所有插件框架都没有存在的必要了。因为Java语言本身就支持动态更新实现的能力。</p>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>HotFix</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java通用代码分装</title>
+    <url>/2021/01/05/Android/GeneralCode/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="封装通用类型"><a href="#封装通用类型" class="headerlink" title="封装通用类型"></a>封装通用类型</h4><span id="more"></span>
+<blockquote>
+<p>csharp 通过jni调用Java   </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">Show</span><span class="params">(String methodName, String args)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (!TextUtils.isEmpty(methodName) &amp;&amp; methodName.equals(<span class="string">&quot;RegCallback&quot;</span>))&#123;</span><br><span class="line">           GiantSDK.athenaCallback(args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">0</span>],args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">1</span>]);</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       ReflectUtils mReflectUtils = <span class="keyword">null</span>;</span><br><span class="line">       Method mReflectMothod = <span class="keyword">null</span>;</span><br><span class="line">       <span class="keyword">int</span> length = JumpArgs(args);</span><br><span class="line">       Log.e(TAG, <span class="string">&quot;args = &quot;</span> + args);</span><br><span class="line">       <span class="keyword">if</span> (mGaSdkClass != <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="comment">//无返回值的方法</span></span><br><span class="line">           mReflectUtils = ReflectUtils.reflect(mGaSdkClass).newInstance();</span><br><span class="line"></span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">1</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">2</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   classes[<span class="number">1</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (mReflectMothod.getReturnType().equals(Void.TYPE)) &#123;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                       <span class="comment">//无参数</span></span><br><span class="line">                       mReflectUtils.method(methodName);</span><br><span class="line">                       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                       <span class="comment">//一个参数</span></span><br><span class="line">                       mReflectUtils.method(methodName, args);</span><br><span class="line">                   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                       String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                       mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]);</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="comment">//有返回值</span></span><br><span class="line">               String result = <span class="keyword">null</span>;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, args).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               Log.d(TAG, <span class="string">&quot;result = &quot;</span> + result);</span><br><span class="line">               <span class="keyword">return</span> result;</span><br><span class="line">           &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Code</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AndroidRecord</title>
     <url>/2021/11/02/Android/AndroidLog/</url>
     <content><![CDATA[<font size="2.9">
@@ -546,79 +616,37 @@
       </tags>
   </entry>
   <entry>
-    <title>AndroidSdkHotFix</title>
-    <url>/2022/08/13/Android/AndroidSdkHotFix/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h6 id="关于插件"><a href="#关于插件" class="headerlink" title="关于插件"></a>关于插件</h6><p>插件化的使用场景：</p>
-<p>1、线上新增功能（如淘宝、支付宝等）</p>
-<p>2、热修复（通过下发补丁插件，完成对功能的修复）</p>
-<p>3、当编译太慢时，可以使用插件化，对某些不改动的代码做成插件，加快编译速度</p>
-<h6 id="关于类加载"><a href="#关于类加载" class="headerlink" title="关于类加载"></a>关于类加载</h6><img src="/2022/08/13/Android/AndroidSdkHotFix/img.webp" class="" title="classLoader">
-
-
-<h5 id="关于插件实现"><a href="#关于插件实现" class="headerlink" title="关于插件实现"></a>关于插件实现</h5><p><code>占位式实现插件化</code></p>
-<p>1、特点</p>
-<p>1、插件遵从宿主的定义的标准，使用宿主的上下文环境。</p>
-<p>2、优点：只使用了少量反射，无hook，实现简单</p>
-<p>3、缺点：在插件中只能使用宿主提供的上下文环境，如插件Activity中，不能使用this当上下文，也就是说有一定侵入性，需要修改插件Activity的实现。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ActivityInterface</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 把宿主(app)的环境  给  插件</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> appActivity</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insertAppContext</span><span class="params">(Activity appActivity)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生命周期方法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//此处省略了其他声明周期，只做演示使用</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><code>在插件模块中，根据标准实现插件Activity</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//根据标准实现的插件模块中的BaseActivity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseActivity</span> <span class="keyword">implements</span> <span class="title">ActivityInterface</span> </span>&#123;</span><br><span class="line">	<span class="comment">//宿主传递过来的上下文</span></span><br><span class="line">    <span class="keyword">public</span> Activity appActivity; <span class="comment">// 宿主的环境</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertAppContext</span><span class="params">(Activity appActivity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.appActivity = appActivity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressLint(&quot;MissingSuperCall&quot;)</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressLint(&quot;MissingSuperCall&quot;)</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressLint(&quot;MissingSuperCall&quot;)</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressLint(&quot;MissingSuperCall&quot;)</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//实际上走的是宿主的setContentView方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setContentView</span><span class="params">(<span class="keyword">int</span> resId)</span> </span>&#123;</span><br><span class="line">        appActivity.setContentView(resId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">findViewById</span><span class="params">(<span class="keyword">int</span> layoutId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> appActivity.findViewById(layoutId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startActivity</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        Intent intentNew = <span class="keyword">new</span> Intent();</span><br><span class="line">        intentNew.putExtra(<span class="string">&quot;className&quot;</span>, intent.getComponent().getClassName()); <span class="comment">// TestActivity 全类名</span></span><br><span class="line">        appActivity.startActivity(intentNew);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//BaseActivity是关键</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PluginActivity</span> <span class="keyword">extends</span> <span class="title">BaseActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.plugin_main);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// this 会报错，因为插件没有安装，也没有组件的环境，所以必须使用宿主环境</span></span><br><span class="line">        Toast.makeText(appActivity, <span class="string">&quot;我是插件&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">		</span><br><span class="line">        findViewById(R.id.bt_start_activity).setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">            	<span class="comment">//这个startActivity走的是BaseActivity的startActivity，也是被代理过的</span></span><br><span class="line">                startActivity(<span class="keyword">new</span> Intent(appActivity, TestActivity.class));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>将插件模块打包apk，在宿主中加载该apk</code></p>
-<p>对插件apk的加载主要分为两个步骤，即加载类和加载资源。加载类使用的是自定义的DexClassLoader，加载资源使用的是反射调用AssetManager的addAssetPath方法。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PluginManager</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = PluginManager.class.getSimpleName();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> PluginManager pluginManager;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Context context;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> PluginManager <span class="title">getInstance</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pluginManager == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (PluginManager.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (pluginManager == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    pluginManager = <span class="keyword">new</span> PluginManager(context);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pluginManager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PluginManager</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.context = context;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> DexClassLoader dexClassLoader;</span><br><span class="line">    <span class="keyword">private</span> Resources resources;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 1、加载类</span></span><br><span class="line"><span class="comment">     * 2、加载资源</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadPlugin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            File file = AssetUtils.copyAssetPlugin(context, <span class="string">&quot;p.apk&quot;</span>, <span class="string">&quot;plugin&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span> (!file.exists()) &#123;</span><br><span class="line">                Log.d(TAG, <span class="string">&quot;插件包 不存在...&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            String pluginPath = file.getAbsolutePath();</span><br><span class="line">            File fileDir = context.getDir(<span class="string">&quot;pDir&quot;</span>, Context.MODE_PRIVATE);</span><br><span class="line">            dexClassLoader = <span class="keyword">new</span> DexClassLoader(pluginPath, fileDir.getAbsolutePath(), <span class="keyword">null</span>, context.getClassLoader());</span><br><span class="line"></span><br><span class="line">         </span><br><span class="line">            <span class="comment">// 加载资源</span></span><br><span class="line">            AssetManager assetManager = AssetManager.class.newInstance();</span><br><span class="line">            Method addAssetPathMethod = assetManager.getClass().getMethod(<span class="string">&quot;addAssetPath&quot;</span>, String.class); </span><br><span class="line">            addAssetPathMethod.invoke(assetManager, pluginPath); <span class="comment">// 插件包的路径   pluginPath</span></span><br><span class="line">            Resources r = context.getResources(); <span class="comment">// 宿主的资源配置信息</span></span><br><span class="line">            <span class="comment">// 特殊的 Resources，加载插件里面的资源的 Resources</span></span><br><span class="line">            resources = <span class="keyword">new</span> Resources(assetManager, r.getDisplayMetrics(), r.getConfiguration()); </span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> ClassLoader <span class="title">getClassLoader</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dexClassLoader;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Resources <span class="title">getResources</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> resources;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><code>在宿主中定义占位的Activity</code><br>这里最重要的步骤为：</p>
-<p>1、重写getResources和getClassLoader方法，使用插件的ClassLoader和插件的Resources</p>
-<p>2、实例化出来插件Activity</p>
-<p>3、给插件Activity注入上下文</p>
-<p>4、调用插件Activity的onCreate方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里使用的是插件中的资源</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Resources <span class="title">getResources</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> PluginManager.getInstance(<span class="keyword">this</span>).getResources();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里使用的是插件中的类加载器</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ClassLoader <span class="title">getClassLoader</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> PluginManager.getInstance(<span class="keyword">this</span>).getClassLoader();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(<span class="meta">@Nullable</span> Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 真正的加载 插件里面的 Activity</span></span><br><span class="line">        String className = getIntent().getStringExtra(<span class="string">&quot;className&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class mPluginActivityClass = getClassLoader().loadClass(className);</span><br><span class="line">            <span class="comment">// 实例化 插件包里面的 Activity</span></span><br><span class="line">            Constructor constructor = mPluginActivityClass.getConstructor(<span class="keyword">new</span> Class[]&#123;&#125;);</span><br><span class="line">            Object mPluginActivity = constructor.newInstance(<span class="keyword">new</span> Object[]&#123;&#125;);</span><br><span class="line"></span><br><span class="line">            ActivityInterface activityInterface = (ActivityInterface) mPluginActivity;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 给插件注入上下文</span></span><br><span class="line">            activityInterface.insertAppContext(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">            Bundle bundle = <span class="keyword">new</span> Bundle();</span><br><span class="line">            bundle.putString(<span class="string">&quot;appName&quot;</span>, <span class="string">&quot;我是宿主传递过来的信息&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 执行插件里面的onCreate方法</span></span><br><span class="line">            activityInterface.onCreate(bundle);</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startActivity</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        String className = intent.getStringExtra(<span class="string">&quot;className&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Intent proxyIntent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, ProxyActivity.class);</span><br><span class="line">        proxyIntent.putExtra(<span class="string">&quot;className&quot;</span>, className); <span class="comment">// 包名+TestActivity</span></span><br><span class="line">        <span class="comment">// 要给TestActivity 进栈</span></span><br><span class="line">        <span class="keyword">super</span>.startActivity(proxyIntent);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>小结</code></p>
-<p>至此，可以实现简单的占位式插件化了，我们来总结下步骤：<br>1、定义宿主和插件之间的标准，如Activity的标准为IActivityInterface</p>
-<p>2、根据标准实现插件模块，打成apk文件（这里最重要的是插件中使用的上下文是宿主中传递过来的）</p>
-<p>3、宿主中加载插件模块apk</p>
-<p>4、定义占位Activity，在OnCreate方法中，根据Intent携带的插件Activity信息，反射插件Activity实例，为插件Activity注入占位Activity的上下文，调用插件Activity实例的onCreate方法启动<br>这种实现方式的优点是：全程仅有少量的反射，并无hook系统操作，适配工作简单。<br>缺点也很明显，在插件Activity中，需要遵守宿主规则，如果要做成框架，侵入性这个问题难以解决</p>
-<h5 id="关于dpi"><a href="#关于dpi" class="headerlink" title="关于dpi"></a>关于dpi</h5><img src="/2022/08/13/Android/AndroidSdkHotFix/img_1.webp" class="" title="classLoader">
-
-
-<h5 id="Java还有两个和动态化相关的特性，一个是接口，另一个是向上转型。"><a href="#Java还有两个和动态化相关的特性，一个是接口，另一个是向上转型。" class="headerlink" title="Java还有两个和动态化相关的特性，一个是接口，另一个是向上转型。"></a>Java还有两个和动态化相关的特性，一个是接口，另一个是向上转型。</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class&lt;?&gt; implClass = classLoader.loadClass(<span class="string">&quot;com.xxx.AImpl&quot;</span>);</span><br><span class="line">Object implObject = implClass.newInstance();</span><br><span class="line">A a = (A) implObject;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>这里假设classLoader动态加载了一些Java类，其中就有一个类叫做com.xxx.AImpl，AImpl继承自A，或者AImpl实现了A接口。注意这里用了强制类型转换，是因为代码层面是将Object类型向下转型成了A。但实际上我们知道implObject的类型是AImpl，AImpl转换成A是一个向上转型。向上转型总是安全的。所以用这种方法总是可以先定义出接口，精心设计接口，让接口足够通用和稳定。只要接口不变，它的实现总是可以修改的。我们将接口打包在宿主中，接口就轻易不能更新了。但是它的实现总是可以更新的。</p>
-<p>所有的插件框架中，Activity的加载都是这样的，new一个DexClassLoader加载插件apk。然后从插件ClassLoader中load指定的插件Activity名字，newInstance之后强转为Activity类型使用。实际上Android系统自身在启动Activity时也是这样做的。所以这就是插件机制能动态更新Activity的基本原理。<br>所以，所有的插件框架在解决的问题都不是如何动态加载类，而是动态加载的Activity没有在AndroidManifest中注册，该如何能正常运行。如果Android系统没有AndroidManifest的限制，那么所有插件框架都没有存在的必要了。因为Java语言本身就支持动态更新实现的能力。</p>
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>HotFix</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java通用代码分装</title>
-    <url>/2021/01/05/Android/GeneralCode/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="封装通用类型"><a href="#封装通用类型" class="headerlink" title="封装通用类型"></a>封装通用类型</h4><span id="more"></span>
-<blockquote>
-<p>csharp 通过jni调用Java   </p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">Show</span><span class="params">(String methodName, String args)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (!TextUtils.isEmpty(methodName) &amp;&amp; methodName.equals(<span class="string">&quot;RegCallback&quot;</span>))&#123;</span><br><span class="line">           GiantSDK.athenaCallback(args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">0</span>],args.split(<span class="string">&quot;&amp;&quot;</span>)[<span class="number">1</span>]);</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       ReflectUtils mReflectUtils = <span class="keyword">null</span>;</span><br><span class="line">       Method mReflectMothod = <span class="keyword">null</span>;</span><br><span class="line">       <span class="keyword">int</span> length = JumpArgs(args);</span><br><span class="line">       Log.e(TAG, <span class="string">&quot;args = &quot;</span> + args);</span><br><span class="line">       <span class="keyword">if</span> (mGaSdkClass != <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="comment">//无返回值的方法</span></span><br><span class="line">           mReflectUtils = ReflectUtils.reflect(mGaSdkClass).newInstance();</span><br><span class="line"></span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">1</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   Class[] classes = <span class="keyword">new</span> Class[<span class="number">2</span>];</span><br><span class="line">                   classes[<span class="number">0</span>] = String.class;</span><br><span class="line">                   classes[<span class="number">1</span>] = String.class;</span><br><span class="line">                   mReflectMothod = mReflectUtils.get().getClass().getDeclaredMethod(methodName, classes);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (mReflectMothod.getReturnType().equals(Void.TYPE)) &#123;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                       <span class="comment">//无参数</span></span><br><span class="line">                       mReflectUtils.method(methodName);</span><br><span class="line">                       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                       <span class="comment">//一个参数</span></span><br><span class="line">                       mReflectUtils.method(methodName, args);</span><br><span class="line">                   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                       String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                       mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]);</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="comment">//有返回值</span></span><br><span class="line">               String result = <span class="keyword">null</span>;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length == <span class="number">1</span>) &#123;</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, args).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                   String[] argsArray = args.split(<span class="string">&quot;&amp;&quot;</span>);</span><br><span class="line">                   result = <span class="string">&quot;&#123;\&quot;&quot;</span> + methodName + <span class="string">&quot;\&quot;:&quot;</span> + mReflectUtils.method(methodName, argsArray[<span class="number">0</span>], argsArray[<span class="number">1</span>]).get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               Log.d(TAG, <span class="string">&quot;result = &quot;</span> + result);</span><br><span class="line">               <span class="keyword">return</span> result;</span><br><span class="line">           &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Code</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HandlerBinder</title>
     <url>/2021/12/06/Android/HandlerBinder/</url>
     <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>Video记录</title>
+    <url>/2020/12/24/Android/Videoview/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h5 id="VideoView"><a href="#VideoView" class="headerlink" title="VideoView"></a>VideoView</h5><blockquote>
+<p>测试链接 <strong><a href="https://media.w3.org/2010/05/sintel/trailer.mp4">https://media.w3.org/2010/05/sintel/trailer.mp4</a></strong></p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">lateinit</span> <span class="keyword">var</span> progressBar: ProgressBar</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> videoView: VideoView</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> mediaController: MediaController</span><br><span class="line">    <span class="keyword">var</span> positionWhenPause: <span class="built_in">Int</span> = -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_audio)</span><br><span class="line"></span><br><span class="line">        videoView  = findViewById(R.id.videoVideo)</span><br><span class="line">        progressBar = findViewById(R.id.progress_circular)</span><br><span class="line"></span><br><span class="line"> mediaController = MediaController(<span class="keyword">this</span>)</span><br><span class="line">        videoView.setMediaController(mediaController)</span><br><span class="line">        mediaController.show(<span class="number">0</span>)</span><br><span class="line">        <span class="comment">//complete</span></span><br><span class="line">        videoView.setOnCompletionListener &#123; MediaPlayer.OnCompletionListener &#123;</span><br><span class="line">           Log.e(<span class="string">&quot;TAG&quot;</span>,<span class="string">&quot;播放 完成&quot;</span>)</span><br><span class="line">        &#125; &#125;</span><br><span class="line">        videoView.setOnErrorListener(MediaPlayer.OnErrorListener &#123; mp, what, extra -&gt;</span><br><span class="line">            println(<span class="string">&quot;<span class="variable">$mp</span>,what = <span class="variable">$what</span>,extra = <span class="variable">$extra</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span><span class="symbol">@OnErrorListener</span> <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line">        videoView.setOnPreparedListener &#123;</span><br><span class="line">            videoView.start()</span><br><span class="line">            progressBar.visibility = View.GONE</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//设置videoView 的点击监听</span></span><br><span class="line">        videoView.setOnTouchListener(View.OnTouchListener &#123; v, event -&gt;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span><span class="symbol">@OnTouchListener</span> <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        <span class="comment">//http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4</span></span><br><span class="line">        <span class="keyword">val</span> mp4id = resources.getIdentifier(<span class="string">&quot;trailer&quot;</span>,<span class="string">&quot;raw&quot;</span>,<span class="keyword">this</span>.packageName)</span><br><span class="line">     <span class="comment">//   val uri = Uri.parse(&quot;android.resource://com.bytedance.scenedemo/$mp4id&quot;)</span></span><br><span class="line">        <span class="keyword">val</span> uri = Uri.parse(<span class="string">&quot;http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4&quot;</span>)</span><br><span class="line"><span class="comment">//        videoView.setVideoPath()</span></span><br><span class="line">        videoView.setVideoURI(uri)</span><br><span class="line">        setVideoViewLayoutParams(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p><strong>view宽和高</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setVideoViewLayoutParams</span><span class="params">(x: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">//全屏</span></span><br><span class="line">        <span class="keyword">val</span> layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)</span><br><span class="line">        videoView.layoutParams = layoutParams</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//窗口模式</span></span><br><span class="line">        <span class="keyword">val</span> display = DisplayMetrics()</span><br><span class="line">        windowManager.defaultDisplay.getMetrics(display)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> vHeight = DisplayMetrics.DENSITY_HIGH</span><br><span class="line">        <span class="keyword">val</span> vWidth = DisplayMetrics.DENSITY_DEFAULT</span><br><span class="line">        <span class="keyword">val</span> layoutParams = RelativeLayout.LayoutParams(vWidth,vHeight)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_TOP)</span><br><span class="line">        videoView.layoutParams = layoutParams</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>布局</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VideoView</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:id</span>=<span class="string">&quot;@+id/videoVideo&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">       /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">ProgressBar</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:id</span>=<span class="string">&quot;@+id/progress_circular&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_centerInParent</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">       /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>我测试的是本地视频</strong></p>
+<blockquote>
+<p>获取Raw资源</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> mp4id = resources.getIdentifier(<span class="string">&quot;trailer&quot;</span>,<span class="string">&quot;raw&quot;</span>,<span class="keyword">this</span>.packageName)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>VideoView</tag>
+      </tags>
   </entry>
   <entry>
     <title>Kotlin学习记录</title>
@@ -647,34 +675,6 @@
       </categories>
       <tags>
         <tag>Kotlin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Video记录</title>
-    <url>/2020/12/24/Android/Videoview/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h5 id="VideoView"><a href="#VideoView" class="headerlink" title="VideoView"></a>VideoView</h5><blockquote>
-<p>测试链接 <strong><a href="https://media.w3.org/2010/05/sintel/trailer.mp4">https://media.w3.org/2010/05/sintel/trailer.mp4</a></strong></p>
-</blockquote>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">lateinit</span> <span class="keyword">var</span> progressBar: ProgressBar</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> videoView: VideoView</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> mediaController: MediaController</span><br><span class="line">    <span class="keyword">var</span> positionWhenPause: <span class="built_in">Int</span> = -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_audio)</span><br><span class="line"></span><br><span class="line">        videoView  = findViewById(R.id.videoVideo)</span><br><span class="line">        progressBar = findViewById(R.id.progress_circular)</span><br><span class="line"></span><br><span class="line"> mediaController = MediaController(<span class="keyword">this</span>)</span><br><span class="line">        videoView.setMediaController(mediaController)</span><br><span class="line">        mediaController.show(<span class="number">0</span>)</span><br><span class="line">        <span class="comment">//complete</span></span><br><span class="line">        videoView.setOnCompletionListener &#123; MediaPlayer.OnCompletionListener &#123;</span><br><span class="line">           Log.e(<span class="string">&quot;TAG&quot;</span>,<span class="string">&quot;播放 完成&quot;</span>)</span><br><span class="line">        &#125; &#125;</span><br><span class="line">        videoView.setOnErrorListener(MediaPlayer.OnErrorListener &#123; mp, what, extra -&gt;</span><br><span class="line">            println(<span class="string">&quot;<span class="variable">$mp</span>,what = <span class="variable">$what</span>,extra = <span class="variable">$extra</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span><span class="symbol">@OnErrorListener</span> <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line">        videoView.setOnPreparedListener &#123;</span><br><span class="line">            videoView.start()</span><br><span class="line">            progressBar.visibility = View.GONE</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//设置videoView 的点击监听</span></span><br><span class="line">        videoView.setOnTouchListener(View.OnTouchListener &#123; v, event -&gt;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span><span class="symbol">@OnTouchListener</span> <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        <span class="comment">//http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4</span></span><br><span class="line">        <span class="keyword">val</span> mp4id = resources.getIdentifier(<span class="string">&quot;trailer&quot;</span>,<span class="string">&quot;raw&quot;</span>,<span class="keyword">this</span>.packageName)</span><br><span class="line">     <span class="comment">//   val uri = Uri.parse(&quot;android.resource://com.bytedance.scenedemo/$mp4id&quot;)</span></span><br><span class="line">        <span class="keyword">val</span> uri = Uri.parse(<span class="string">&quot;http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4&quot;</span>)</span><br><span class="line"><span class="comment">//        videoView.setVideoPath()</span></span><br><span class="line">        videoView.setVideoURI(uri)</span><br><span class="line">        setVideoViewLayoutParams(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p><strong>view宽和高</strong></p>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setVideoViewLayoutParams</span><span class="params">(x: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">//全屏</span></span><br><span class="line">        <span class="keyword">val</span> layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)</span><br><span class="line">        videoView.layoutParams = layoutParams</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//窗口模式</span></span><br><span class="line">        <span class="keyword">val</span> display = DisplayMetrics()</span><br><span class="line">        windowManager.defaultDisplay.getMetrics(display)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> vHeight = DisplayMetrics.DENSITY_HIGH</span><br><span class="line">        <span class="keyword">val</span> vWidth = DisplayMetrics.DENSITY_DEFAULT</span><br><span class="line">        <span class="keyword">val</span> layoutParams = RelativeLayout.LayoutParams(vWidth,vHeight)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_TOP)</span><br><span class="line">        videoView.layoutParams = layoutParams</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>布局</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VideoView</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:id</span>=<span class="string">&quot;@+id/videoVideo&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">       /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">ProgressBar</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:id</span>=<span class="string">&quot;@+id/progress_circular&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_centerInParent</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">       /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>我测试的是本地视频</strong></p>
-<blockquote>
-<p>获取Raw资源</p>
-</blockquote>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> mp4id = resources.getIdentifier(<span class="string">&quot;trailer&quot;</span>,<span class="string">&quot;raw&quot;</span>,<span class="keyword">this</span>.packageName)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>VideoView</tag>
       </tags>
   </entry>
   <entry>
@@ -947,25 +947,6 @@
       </tags>
   </entry>
   <entry>
-    <title>androidota</title>
-    <url>/2021/11/12/Android/androidota/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="刷入ota"><a href="#刷入ota" class="headerlink" title="刷入ota"></a>刷入ota</h4><p>连接adb 开启开发者模式 </p>
-<p><code>https://developer.android.google.cn/about/versions/12/download-ota</code></p>
-<p>1.adb reboot recovery (或者手动 电源键 + 音量+/-) </p>
-<p>2.选择adb 安装</p>
-<p>3.adb sideload filename.zip</p>
-<p>4.reboot system now 重启系统</p>
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>ota</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>androidJvm</title>
     <url>/2021/10/18/Android/androidJvm/</url>
     <content><![CDATA[<font size="2.9">
@@ -1024,6 +1005,25 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       </categories>
       <tags>
         <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>androidota</title>
+    <url>/2021/11/12/Android/androidota/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="刷入ota"><a href="#刷入ota" class="headerlink" title="刷入ota"></a>刷入ota</h4><p>连接adb 开启开发者模式 </p>
+<p><code>https://developer.android.google.cn/about/versions/12/download-ota</code></p>
+<p>1.adb reboot recovery (或者手动 电源键 + 音量+/-) </p>
+<p>2.选择adb 安装</p>
+<p>3.adb sideload filename.zip</p>
+<p>4.reboot system now 重启系统</p>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>ota</tag>
       </tags>
   </entry>
   <entry>
@@ -1331,6 +1331,25 @@ cocos run -d androd
       </tags>
   </entry>
   <entry>
+    <title>harmonyos</title>
+    <url>/2022/09/19/Harmonyos/harmonyos/</url>
+    <content><![CDATA[<font size='2.9'>
+
+<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><ol>
+<li><p>获取源码 </p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    # 安装repo 工具</span><br><span class="line">    $ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 &gt; repo</span><br><span class="line">    $ chmod a+x repo</span><br><span class="line">    $ sudo mv repo /usr/local/bin/repo</span><br><span class="line">    $ sudo apt install python3-pip</span><br><span class="line">    $ pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">获取标准系统源码</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir OpenHarmony</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> OpenHarmony</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync -c  <span class="comment"># -c 获取当前分支代码</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">&#x27;git lfs pull&#x27;</span></span></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>如果 repo init 出现以下错误 </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">jackie@USER-20200124ZG:~$ repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify</span><br><span class="line">    Downloading Repo source from http://mirrors.tuna.tsinghua.edu.cn/git/git-repo/</span><br><span class="line">    remote: Enumerating objects: 7113, done.</span><br><span class="line">    remote: Counting objects: 100% (7113/7113), done.</span><br><span class="line">    remote: Compressing objects: 100% (3728/3728), done.</span><br><span class="line">    remote: Total 7113 (delta 4590), reused 5464 (delta 3311)s   s</span><br><span class="line">    Receiving objects: 100% (7113/7113), 3.09 MiB | 1.76 MiB/s, done.</span><br><span class="line">    Resolving deltas: 100% (4590/4590), done.</span><br><span class="line">    repo: warning: verification of repo code has been disabled;</span><br><span class="line">    repo will not be able to verify the integrity of itself.</span><br><span class="line"></span><br><span class="line">    repo: error: unable to resolve &quot;fork_flow&quot;</span><br><span class="line">    fatal: cloning the git-repo repository failed, will remove &#x27;.repo/repo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>切换到root 权限 sudo</code> 可以解决</p>
+</font></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Harmonyos</category>
+      </categories>
+  </entry>
+  <entry>
     <title>docker</title>
     <url>/2023/02/08/Docker/docker/</url>
     <content><![CDATA[<font size="2.9">
@@ -1404,260 +1423,6 @@ cocos run -d androd
       </categories>
       <tags>
         <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>harmonyos</title>
-    <url>/2022/09/19/Harmonyos/harmonyos/</url>
-    <content><![CDATA[<font size='2.9'>
-
-<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><ol>
-<li><p>获取源码 </p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    # 安装repo 工具</span><br><span class="line">    $ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 &gt; repo</span><br><span class="line">    $ chmod a+x repo</span><br><span class="line">    $ sudo mv repo /usr/local/bin/repo</span><br><span class="line">    $ sudo apt install python3-pip</span><br><span class="line">    $ pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">获取标准系统源码</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir OpenHarmony</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> OpenHarmony</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync -c  <span class="comment"># -c 获取当前分支代码</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">&#x27;git lfs pull&#x27;</span></span></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>如果 repo init 出现以下错误 </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">jackie@USER-20200124ZG:~$ repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify</span><br><span class="line">    Downloading Repo source from http://mirrors.tuna.tsinghua.edu.cn/git/git-repo/</span><br><span class="line">    remote: Enumerating objects: 7113, done.</span><br><span class="line">    remote: Counting objects: 100% (7113/7113), done.</span><br><span class="line">    remote: Compressing objects: 100% (3728/3728), done.</span><br><span class="line">    remote: Total 7113 (delta 4590), reused 5464 (delta 3311)s   s</span><br><span class="line">    Receiving objects: 100% (7113/7113), 3.09 MiB | 1.76 MiB/s, done.</span><br><span class="line">    Resolving deltas: 100% (4590/4590), done.</span><br><span class="line">    repo: warning: verification of repo code has been disabled;</span><br><span class="line">    repo will not be able to verify the integrity of itself.</span><br><span class="line"></span><br><span class="line">    repo: error: unable to resolve &quot;fork_flow&quot;</span><br><span class="line">    fatal: cloning the git-repo repository failed, will remove &#x27;.repo/repo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><code>切换到root 权限 sudo</code> 可以解决</p>
-</font></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Harmonyos</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>ios_block</title>
-    <url>/2023/10/08/IOS/ios-block/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="block"><a href="#block" class="headerlink" title="block"></a>block</h4><blockquote>
-<p>Block：带有自动变量（局部变量）的匿名函数。它是C语言的扩充功能。之所以是拓展，是因为C语言不允许存在这样匿名函数。</p>
-</blockquote>
-<blockquote>
-<p>1.1 匿名函数<br>匿名函数是指不带函数名称函数。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> count)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> result = func(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以通过指针调用函数，看起来没用到函数名：</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> result = (*funcptr)(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//实际，在赋值给函数指针时，必须通过函数的名称才能获得该函数的地址。完整的步骤应该是</span></span><br><span class="line"><span class="keyword">int</span> (*funcptr)(<span class="keyword">int</span>) = &amp;func;</span><br><span class="line"><span class="keyword">int</span> result = (*funcptr)(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<p>而通过Block，就能够使用匿名函数，即不带函数名称的函数。</p>
-<blockquote>
-<p>1.2 捕获外部变量，看一个经典block面试题：</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> val = <span class="number">10</span>; </span><br><span class="line"><span class="keyword">void</span> (^blk)(<span class="keyword">void</span>) = ^&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;val=%d\n&quot;</span>,val);</span><br><span class="line">&#125;; </span><br><span class="line">val = <span class="number">2</span>; </span><br><span class="line">blk(); </span><br><span class="line"></span><br><span class="line"><span class="comment">//上面这段代码，输出值是：val = 10，而不是2。</span></span><br><span class="line"><span class="comment">//block 在实现时就会对它引用到的它所在方法中定义的栈变量进行一次只读拷贝，然后在 block 块内使用该只读拷贝；换句话说block截获自动变量的瞬时值；或者block捕获的是自动变量的副本。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>解决block不能修改自动变量的值，这一问题的另外一个办法是使用__block修饰符。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">__block <span class="keyword">int</span> val = <span class="number">10</span>;  </span><br><span class="line"><span class="keyword">void</span> (^blk)(<span class="keyword">void</span>) = ^&#123;<span class="built_in">printf</span>(<span class="string">&quot;val=%d\n&quot;</span>,val);&#125;;  </span><br><span class="line">val = <span class="number">2</span>;  </span><br><span class="line">blk(); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//上面的代码，跟第一个代码段相比只是多了一个__block修饰符。但是输出结果确是2。</span></span><br></pre></td></tr></table></figure>
-
-<p>2.1   Block声明及定义语法，及其变形<br>(1) 标准声明与定义</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">return_type (^blockName)(var_type) = ^return_type (var_type varName) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName(var);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当返回类型为void</span></span><br><span class="line"><span class="keyword">void</span> (^blockName)(var_type) = ^<span class="keyword">void</span> (var_type varName) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName(var);</span><br><span class="line"><span class="comment">//省略void 写法</span></span><br><span class="line"><span class="keyword">void</span> (^blockName)(var_type) = ^(var_type varName) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName(var);</span><br><span class="line"><span class="comment">//https://xiaozhuanlan.com/topic/2953746180</span></span><br><span class="line"> <span class="comment">//当返回类型和参数类型都为void</span></span><br><span class="line"><span class="keyword">void</span> (^blockName)(<span class="keyword">void</span>) = ^&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName();</span><br><span class="line"></span><br><span class="line"><span class="comment">//匿名Block</span></span><br><span class="line"><span class="comment">//Block实现时，等号右边就是一个匿名Block，它没有blockName，称之为匿名Block：</span></span><br><span class="line">^return_type (var_type varName)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-</font>]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>iOS block</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ios_nsstring</title>
-    <url>/2023/10/10/IOS/ios-nsstring/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="NSString"><a href="#NSString" class="headerlink" title="NSString"></a>NSString</h4><p><code>NSString</code> 是一个数据类型，保存字符串，本质是一个类</p>
-<p><code>NSString</code>对象的创建方式，存储在堆区<br>占位符为 <code>%a</code>,打印 <code>指针变量</code> 指向的对象</p>
-<p>占位符为<code>%p</code>,打印指针变量的值</p>
-<p>快捷创建方式，指针存储在栈， <code>对象存储</code>在常量区</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">NSString *str = @&quot;ccc&quot;；</span><br><span class="line">NSLog(@&quot;沙盒主目录 home = %@ &quot;,home);</span><br><span class="line">NSLog(@&quot;沙盒主目录 home = %p &quot;,home);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-</font>]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>iOS nstring</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iosMasonryLayout</title>
-    <url>/2021/11/08/IOS/iosMasonryLayout/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="Masonry"><a href="#Masonry" class="headerlink" title="Masonry"></a>Masonry</h4><p>Masonry是一个轻量级的布局框架，拥有自己的描述语法，采用更优雅的链式语法封装AutoLayout，简洁明了并具有高可读性，而且同时支持 iOS 和 Max OS X</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">UIButton  *smsSendBtn = [UIButton  buttonWithType:UIButtonTypeSystem];</span><br><span class="line">   [smsSendBtn setTitle:@<span class="string">&quot;发送验证码&quot;</span> forState:UIControlStateNormal];</span><br><span class="line">   [smsSendBtn addTarget:self action:@<span class="built_in">selector</span>(smsSendBtnRequest) forControlEvents:UIControlEventTouchUpInside];</span><br><span class="line">   [scrollview addSubview:smsSendBtn];</span><br><span class="line">   [smsSendBtn mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">       make.top.<span class="built_in">mas_equalTo</span>(lineView.mas_bottom).<span class="built_in">offset</span>(<span class="number">5</span>);</span><br><span class="line">       make.right.<span class="built_in">mas_equalTo</span>(scrollview.mas_right).<span class="built_in">offset</span>(<span class="number">-30</span>);</span><br><span class="line">       make.size.<span class="built_in">mas_equalTo</span>(<span class="built_in">CGSizeMake</span>(<span class="number">100.0</span>, <span class="number">50</span>));<span class="comment">//top = bottom + offset()</span></span><br><span class="line">   &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="关于签名"><a href="#关于签名" class="headerlink" title="关于签名"></a>关于签名</h4><blockquote>
-<p>dev 开发(Development)证书和描述文件      开发使用，可以直接装手机上</p>
-<blockquote>
-<p>p12 .p12文件本身就是一个加密的证书<br>.mobileprovision  是一个设置文件，实质是一个XML文件，不是证书。在部署 iOS 设备时可以使用苹果官方的「iPhone 配置实用工具.app」或者 Apple Configurator.app 创建一个描述文件，然后将其安装到 iOS 设备上对该设备进行管理</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>dis 发布(Distribution)证书和描述文件      用于提交 AppStore</p>
-</blockquote>
-<h4 id="pod"><a href="#pod" class="headerlink" title="pod"></a>pod</h4><ol>
-<li><p>podfile 编写</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">platform :ios, &#x27;9.0&#x27;</span><br><span class="line">use_frameworks!</span><br><span class="line"></span><br><span class="line">target  &#x27;SiguaApp&#x27; do</span><br><span class="line">   pod &#x27;AFNetworking&#x27;</span><br><span class="line">   pod &#x27;Masonry&#x27;</span><br><span class="line">   pod &#x27;SDWebImage&#x27;</span><br><span class="line">   pod &#x27;YYModel&#x27;</span><br><span class="line">   pod &#x27;MJRefresh&#x27;</span><br><span class="line">   pod &#x27;IQKeyboardManager&#x27;</span><br><span class="line"><span class="meta">  #</span><span class="bash"> pod <span class="string">&#x27;MMPlaceHolder&#x27;</span></span></span><br><span class="line">   pod &#x27;MJExtension&#x27;</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>pod 安装</p>
-</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">pod install  # install</span><br><span class="line"></span><br><span class="line"> pod update  # update</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="xcode-14-模拟器"><a href="#xcode-14-模拟器" class="headerlink" title="xcode 14 模拟器"></a>xcode 14 模拟器</h4><ol>
-<li><p>xcodedefault.xctoolchain/usr/lib/arc/libarclite_iphonesimulator.a not found</p>
-<p>设置target &gt;=11</p>
-</li>
-</ol>
-</font>]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>Masonry sign</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iosThread</title>
-    <url>/2021/10/20/IOS/iosThread/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="Unity-UE-调用iOS接口-crash"><a href="#Unity-UE-调用iOS接口-crash" class="headerlink" title="Unity /UE 调用iOS接口 crash"></a>Unity /UE 调用iOS接口 crash</h4><pre><code>带UI的接口 要回到主线程
-</code></pre>
-<h4 id="Unity-iOS包切后台-没有回调"><a href="#Unity-iOS包切后台-没有回调" class="headerlink" title="Unity iOS包切后台 没有回调"></a>Unity iOS包切后台 没有回调</h4><pre><code>回调被替换或者重置  查看代码
-</code></pre>
-<h4 id="警告-iOS-主线程问题-提醒Main-Thread-Checker-UI-API-called-on-a-background-thread的解释"><a href="#警告-iOS-主线程问题-提醒Main-Thread-Checker-UI-API-called-on-a-background-thread的解释" class="headerlink" title="警告 [iOS]主线程问题:提醒Main Thread Checker: UI API called on a background thread的解释"></a>警告 [iOS]主线程问题:提醒Main Thread Checker: UI API called on a background thread的解释</h4><p>没有在主线程操作</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">dispatch_async(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), <span class="operator">^</span>&#123;  </span><br><span class="line">    <span class="comment">// 处理耗时操作的代码块...  </span></span><br><span class="line">      </span><br><span class="line">    <span class="comment">//通知主线程刷新  </span></span><br><span class="line">    dispatch_async(dispatch_get_main_queue(), <span class="operator">^</span>&#123;  </span><br><span class="line">        <span class="comment">//回调或者说是通知主线程刷新，  </span></span><br><span class="line">    &#125;);  </span><br><span class="line">      </span><br><span class="line">&#125;);  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>dispatch_async开启一个异步操作，第一个参数是指定一个gcd队列，第二个参数是分配一个处理事物的程序块到该队列。<br>dispatch_get_global_queue(0, 0)，指用了全局队列。<br>一般来说系统本身会有3个队列。global_queue，current_queue,以及main_queue.</p>
-<p>获取一个全局队列是接受两个参数，第一个是我分配的事物处理程序块队列优先级。分高低和默认，0为默认2为高，-2为低</p>
-<p>处理完事物后，需要将结果返回给或者是刷新UI主线程，同样，和上面一样，抓取主线程，程序块操作。</p>
-<h4 id="ios-状态栏"><a href="#ios-状态栏" class="headerlink" title="ios 状态栏"></a>ios 状态栏</h4><p>在 Info.plist 文件中添加 Status bar is initially hidden 设置为 YES ，这个是隐藏 App 在 LunchScreen（欢迎界面）时的状态栏。</p>
-<p>在 Info.plist 文件中添加 View controller-based status bar appearance 设置为 NO，这个是隐藏 App 在所有 UIViewController 时的状态栏</p>
-<p>Status Bar 状态栏的颜色<br>状态栏分前后两部分，要分清这两个概念，后面会用到：</p>
-<blockquote>
-<p>文字部分：就是指的显示电池、时间等部分。<br>背景部分：就是显示黑色或者图片的背景部分</p>
-</blockquote>
-</font>
-]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>IOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ioshotfix</title>
-    <url>/2023/08/30/IOS/ioshotfix/</url>
-    <content><![CDATA[<font size="2.9">
-
-
-<h4 id="iOS热更新"><a href="#iOS热更新" class="headerlink" title="iOS热更新"></a>iOS热更新</h4><blockquote>
-<p>一般都是 js/lua来搞的.</p>
-</blockquote>
-<p> jspatch(过审核版本收费)  ttpatch , waxSDK(阿里)，momo(MLN)</p>
-<blockquote>
-<p>sot 虚拟机</p>
-</blockquote>
-<blockquote>
-<p>wax (lua)</p>
-</blockquote>
-<p> “愤怒的小鸟”的用法和热更的用法是两个性质，它是使用Wax，脚本是带在App的bundle里运行的，不是在Document里运行的。这是符合苹果的要求的。</p>
-<p><code>与 JSPatch 不同的是，lua热更新技术主要的实现方式是把动态脚本下载之后，让动态脚本调用游戏引擎提供的接口实现缺陷修复。 与 JSPatch 不同的是，动态脚本并不能任意调用全部原生代码，而是只能根据游戏引擎提供的接口调用相关功能</code></p>
-<h4 id="主流代表"><a href="#主流代表" class="headerlink" title="主流代表"></a>主流代表</h4><p> jspatch  安全考虑，安全漏洞</p>
-<p><strong><a href="http://www.jspatch.com/">http://www.jspatch.com</a></strong> </p>
-<p><strong><a href="https://github.com/bang590/JSPatch">https://github.com/bang590/JSPatch</a></strong></p>
-<blockquote>
-<p>热更新时，从服务器拉去js脚本。理论上可以修改和新建所有的模块，但是不建议这样做。建议用来做紧急的小需求和 修复严重的线上bug。官网说： JSPatch 平台 SDK 1.7.2 以上版本可以通过苹果审核，可以正常使用。Github 开源版本暂不可用</p>
-</blockquote>
-<h4 id="dylib"><a href="#dylib" class="headerlink" title="dylib"></a>dylib</h4><blockquote>
-<p>可以做demo用，真实使用的时候会被苹果禁止。因为 打包发到AppStore的ipa安装包 里的每个动态库 都有唯一的编码，iOS系统会进行验证，所以动态通过网络获取 新的动态库 也用不了。</p>
-</blockquote>
-</font>]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>iOS hotfix</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ocClassDifferent</title>
-    <url>/2021/11/15/IOS/ocClassDifferent/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h4><blockquote>
-<p><code>引用类型用</code> oc的类指针 nil</p>
-</blockquote>
-<blockquote>
-<p><code>基本类型用</code> NULL</p>
-</blockquote>
-<blockquote>
-<p>本质上是一样的 ，都是宏定义 ，0</p>
-</blockquote>
-<blockquote>
-<p>Person *p = nil 代表不指向任何对象</p>
-</blockquote>
-<h4 id="2-分组导航标记"><a href="#2-分组导航标记" class="headerlink" title="2.分组导航标记"></a>2.分组导航标记</h4><blockquote>
-<p>#pragma mark 名字</p>
-</blockquote>
-<blockquote>
-<p>#pragma mark - 产生分割线</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h5 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h5><blockquote>
-<p>方法定义@interface  实现在@implement</p>
-</blockquote>
-<blockquote>
-<p>函数 调用不 一样   可以写在  类 中除了 大括号<br>类的声明和 实现 都要有， 声明要在前  实现 可以放在使用类的后面 </p>
-</blockquote>
-<blockquote>
-<p><code>+</code> 方法就是类方法，<code>-</code> 方法就是实例方法</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)thisIsAClassMethod; <span class="comment">// 类方法，不需要实例化对象就可以调用</span></span><br><span class="line">- (<span class="keyword">void</span>)thisIsAnInstanceMethod; <span class="comment">// 实例方法，必须通过实例化的对象调用</span></span><br><span class="line"><span class="comment">// 对象的初始化 OC中以消息机制传递信息，发送 alloc 消息给类分配内存空间，发送 init 消息生成对象，指针指向对象本身。</span></span><br><span class="line">ClassName *obj = [[ClassName alloc] init];</span><br></pre></td></tr></table></figure>
-<pre><code>类方法：
-1、类方法可以调用类方法；
-2、类方法不可以调用实例方法，但是类方法可以通过创建对象来访问实例方法；
-3、类方法不可以使用实例变量。（可以使用self ，因为 self 不是实例变量。）
-4、类方法作为消息，可以发送到类或者对象里面去（就是可以通过类或者对象调用类方法）
-实例方法里面的 self ，是对象的首地址。
-类方法里面的 self ，是 class 。
-
-用过程中既可以使用新定义的方法名，也可以使用以前的方法（点表示法）
-
-属性特征：readwrite readonly assign retain copy nonatomic
-
-assign：默认行为，使用 @property int num 就是使用了 assign 行为，就是给实例变量赋了一个值
-
-retain：实现了两个功能，一个是保留了赋值时传递的对象，一个是赋值前释放了以前的值，使用时加上 @property (retain) int num;
-
-copy：发送一条复制的消息给被传递的对象，保留它，并释放任何以前的值；
-
-nonatomic：非原子访问器，加上后可以保证属性在被一个线程使用时不被另一个线程访问，不存在 atomic 关键字，默认情况下，所有方法都是自动合成的。（类似Java中的线程锁机制 synchronised）
-readwrite：可读写
-readonly：只读
-</code></pre>
-<h4 id="OC点和右箭头访问变量的区别"><a href="#OC点和右箭头访问变量的区别" class="headerlink" title="OC点和右箭头访问变量的区别"></a>OC点和右箭头访问变量的区别</h4><pre><code>语法
-OC中.语法实际上就是方法调用，比如通过self.deviceID访问属性，如果它出现在=的左边那么就是调用属性的setter方法，如果出现在=右边就是调用属性的getter方法。
-所以如下所示的定义：
-</code></pre>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">self.deviceID = @<span class="string">&quot;123&quot;</span>;和[self setDeviceID:@<span class="string">&quot;123&quot;</span>];是等价的。</span><br><span class="line"></span><br><span class="line">NSString *str = self.deviceID;和NSString *str = [self deviceID];是等价的。</span><br></pre></td></tr></table></figure>
-<p> -&gt;语法<br>    OC中-&gt;用于访问成员变量。所以：</p>
-<pre><code>self-&gt;_deviceID和_deviceID是等价的。
-
-self-&gt;deviceType和deviceType是等价的。
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">@interface Device : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    @<span class="keyword">public</span> NSString *deviceType;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="built_in">property</span> (nonatomic , strong) NSString *deviceID;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</code></pre>
-<h4 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h4><p><a href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
-</font>]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1929,6 +1694,253 @@ self-&gt;deviceType和deviceType是等价的。
       </tags>
   </entry>
   <entry>
+    <title>ios_block</title>
+    <url>/2023/10/08/IOS/ios-block/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="block"><a href="#block" class="headerlink" title="block"></a>block</h4><blockquote>
+<p>Block：带有自动变量（局部变量）的匿名函数。它是C语言的扩充功能。之所以是拓展，是因为C语言不允许存在这样匿名函数。</p>
+</blockquote>
+<blockquote>
+<p>1.1 匿名函数<br>匿名函数是指不带函数名称函数。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> count)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> result = func(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以通过指针调用函数，看起来没用到函数名：</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> result = (*funcptr)(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//实际，在赋值给函数指针时，必须通过函数的名称才能获得该函数的地址。完整的步骤应该是</span></span><br><span class="line"><span class="keyword">int</span> (*funcptr)(<span class="keyword">int</span>) = &amp;func;</span><br><span class="line"><span class="keyword">int</span> result = (*funcptr)(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>而通过Block，就能够使用匿名函数，即不带函数名称的函数。</p>
+<blockquote>
+<p>1.2 捕获外部变量，看一个经典block面试题：</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> val = <span class="number">10</span>; </span><br><span class="line"><span class="keyword">void</span> (^blk)(<span class="keyword">void</span>) = ^&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;val=%d\n&quot;</span>,val);</span><br><span class="line">&#125;; </span><br><span class="line">val = <span class="number">2</span>; </span><br><span class="line">blk(); </span><br><span class="line"></span><br><span class="line"><span class="comment">//上面这段代码，输出值是：val = 10，而不是2。</span></span><br><span class="line"><span class="comment">//block 在实现时就会对它引用到的它所在方法中定义的栈变量进行一次只读拷贝，然后在 block 块内使用该只读拷贝；换句话说block截获自动变量的瞬时值；或者block捕获的是自动变量的副本。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>解决block不能修改自动变量的值，这一问题的另外一个办法是使用__block修饰符。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">__block <span class="keyword">int</span> val = <span class="number">10</span>;  </span><br><span class="line"><span class="keyword">void</span> (^blk)(<span class="keyword">void</span>) = ^&#123;<span class="built_in">printf</span>(<span class="string">&quot;val=%d\n&quot;</span>,val);&#125;;  </span><br><span class="line">val = <span class="number">2</span>;  </span><br><span class="line">blk(); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//上面的代码，跟第一个代码段相比只是多了一个__block修饰符。但是输出结果确是2。</span></span><br></pre></td></tr></table></figure>
+
+<p>2.1   Block声明及定义语法，及其变形<br>(1) 标准声明与定义</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">return_type (^blockName)(var_type) = ^return_type (var_type varName) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName(var);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当返回类型为void</span></span><br><span class="line"><span class="keyword">void</span> (^blockName)(var_type) = ^<span class="keyword">void</span> (var_type varName) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName(var);</span><br><span class="line"><span class="comment">//省略void 写法</span></span><br><span class="line"><span class="keyword">void</span> (^blockName)(var_type) = ^(var_type varName) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName(var);</span><br><span class="line"><span class="comment">//https://xiaozhuanlan.com/topic/2953746180</span></span><br><span class="line"> <span class="comment">//当返回类型和参数类型都为void</span></span><br><span class="line"><span class="keyword">void</span> (^blockName)(<span class="keyword">void</span>) = ^&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName();</span><br><span class="line"></span><br><span class="line"><span class="comment">//匿名Block</span></span><br><span class="line"><span class="comment">//Block实现时，等号右边就是一个匿名Block，它没有blockName，称之为匿名Block：</span></span><br><span class="line">^return_type (var_type varName)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+</font>]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>iOS block</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ios_nsstring</title>
+    <url>/2023/10/10/IOS/ios-nsstring/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="NSString"><a href="#NSString" class="headerlink" title="NSString"></a>NSString</h4><p><code>NSString</code> 是一个数据类型，保存字符串，本质是一个类</p>
+<p><code>NSString</code>对象的创建方式，存储在堆区<br>占位符为 <code>%a</code>,打印 <code>指针变量</code> 指向的对象</p>
+<p>占位符为<code>%p</code>,打印指针变量的值</p>
+<p>快捷创建方式，指针存储在栈， <code>对象存储</code>在常量区</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">NSString *str = @&quot;ccc&quot;；</span><br><span class="line">NSLog(@&quot;沙盒主目录 home = %@ &quot;,home);</span><br><span class="line">NSLog(@&quot;沙盒主目录 home = %p &quot;,home);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</font>]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>iOS nstring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iosMasonryLayout</title>
+    <url>/2021/11/08/IOS/iosMasonryLayout/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="Masonry"><a href="#Masonry" class="headerlink" title="Masonry"></a>Masonry</h4><p>Masonry是一个轻量级的布局框架，拥有自己的描述语法，采用更优雅的链式语法封装AutoLayout，简洁明了并具有高可读性，而且同时支持 iOS 和 Max OS X</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">UIButton  *smsSendBtn = [UIButton  buttonWithType:UIButtonTypeSystem];</span><br><span class="line">   [smsSendBtn setTitle:@<span class="string">&quot;发送验证码&quot;</span> forState:UIControlStateNormal];</span><br><span class="line">   [smsSendBtn addTarget:self action:@<span class="built_in">selector</span>(smsSendBtnRequest) forControlEvents:UIControlEventTouchUpInside];</span><br><span class="line">   [scrollview addSubview:smsSendBtn];</span><br><span class="line">   [smsSendBtn mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">       make.top.<span class="built_in">mas_equalTo</span>(lineView.mas_bottom).<span class="built_in">offset</span>(<span class="number">5</span>);</span><br><span class="line">       make.right.<span class="built_in">mas_equalTo</span>(scrollview.mas_right).<span class="built_in">offset</span>(<span class="number">-30</span>);</span><br><span class="line">       make.size.<span class="built_in">mas_equalTo</span>(<span class="built_in">CGSizeMake</span>(<span class="number">100.0</span>, <span class="number">50</span>));<span class="comment">//top = bottom + offset()</span></span><br><span class="line">   &#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="关于签名"><a href="#关于签名" class="headerlink" title="关于签名"></a>关于签名</h4><blockquote>
+<p>dev 开发(Development)证书和描述文件      开发使用，可以直接装手机上</p>
+<blockquote>
+<p>p12 .p12文件本身就是一个加密的证书<br>.mobileprovision  是一个设置文件，实质是一个XML文件，不是证书。在部署 iOS 设备时可以使用苹果官方的「iPhone 配置实用工具.app」或者 Apple Configurator.app 创建一个描述文件，然后将其安装到 iOS 设备上对该设备进行管理</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>dis 发布(Distribution)证书和描述文件      用于提交 AppStore</p>
+</blockquote>
+<h4 id="pod"><a href="#pod" class="headerlink" title="pod"></a>pod</h4><ol>
+<li><p>podfile 编写</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">platform :ios, &#x27;9.0&#x27;</span><br><span class="line">use_frameworks!</span><br><span class="line"></span><br><span class="line">target  &#x27;SiguaApp&#x27; do</span><br><span class="line">   pod &#x27;AFNetworking&#x27;</span><br><span class="line">   pod &#x27;Masonry&#x27;</span><br><span class="line">   pod &#x27;SDWebImage&#x27;</span><br><span class="line">   pod &#x27;YYModel&#x27;</span><br><span class="line">   pod &#x27;MJRefresh&#x27;</span><br><span class="line">   pod &#x27;IQKeyboardManager&#x27;</span><br><span class="line"><span class="meta">  #</span><span class="bash"> pod <span class="string">&#x27;MMPlaceHolder&#x27;</span></span></span><br><span class="line">   pod &#x27;MJExtension&#x27;</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>pod 安装</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">pod install  # install</span><br><span class="line"></span><br><span class="line"> pod update  # update</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="xcode-14-模拟器"><a href="#xcode-14-模拟器" class="headerlink" title="xcode 14 模拟器"></a>xcode 14 模拟器</h4><ol>
+<li><p>xcodedefault.xctoolchain/usr/lib/arc/libarclite_iphonesimulator.a not found</p>
+<p>设置target &gt;=11</p>
+</li>
+</ol>
+</font>]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>Masonry sign</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iosThread</title>
+    <url>/2021/10/20/IOS/iosThread/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="Unity-UE-调用iOS接口-crash"><a href="#Unity-UE-调用iOS接口-crash" class="headerlink" title="Unity /UE 调用iOS接口 crash"></a>Unity /UE 调用iOS接口 crash</h4><pre><code>带UI的接口 要回到主线程
+</code></pre>
+<h4 id="Unity-iOS包切后台-没有回调"><a href="#Unity-iOS包切后台-没有回调" class="headerlink" title="Unity iOS包切后台 没有回调"></a>Unity iOS包切后台 没有回调</h4><pre><code>回调被替换或者重置  查看代码
+</code></pre>
+<h4 id="警告-iOS-主线程问题-提醒Main-Thread-Checker-UI-API-called-on-a-background-thread的解释"><a href="#警告-iOS-主线程问题-提醒Main-Thread-Checker-UI-API-called-on-a-background-thread的解释" class="headerlink" title="警告 [iOS]主线程问题:提醒Main Thread Checker: UI API called on a background thread的解释"></a>警告 [iOS]主线程问题:提醒Main Thread Checker: UI API called on a background thread的解释</h4><p>没有在主线程操作</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">dispatch_async(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), <span class="operator">^</span>&#123;  </span><br><span class="line">    <span class="comment">// 处理耗时操作的代码块...  </span></span><br><span class="line">      </span><br><span class="line">    <span class="comment">//通知主线程刷新  </span></span><br><span class="line">    dispatch_async(dispatch_get_main_queue(), <span class="operator">^</span>&#123;  </span><br><span class="line">        <span class="comment">//回调或者说是通知主线程刷新，  </span></span><br><span class="line">    &#125;);  </span><br><span class="line">      </span><br><span class="line">&#125;);  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>dispatch_async开启一个异步操作，第一个参数是指定一个gcd队列，第二个参数是分配一个处理事物的程序块到该队列。<br>dispatch_get_global_queue(0, 0)，指用了全局队列。<br>一般来说系统本身会有3个队列。global_queue，current_queue,以及main_queue.</p>
+<p>获取一个全局队列是接受两个参数，第一个是我分配的事物处理程序块队列优先级。分高低和默认，0为默认2为高，-2为低</p>
+<p>处理完事物后，需要将结果返回给或者是刷新UI主线程，同样，和上面一样，抓取主线程，程序块操作。</p>
+<h4 id="ios-状态栏"><a href="#ios-状态栏" class="headerlink" title="ios 状态栏"></a>ios 状态栏</h4><p>在 Info.plist 文件中添加 Status bar is initially hidden 设置为 YES ，这个是隐藏 App 在 LunchScreen（欢迎界面）时的状态栏。</p>
+<p>在 Info.plist 文件中添加 View controller-based status bar appearance 设置为 NO，这个是隐藏 App 在所有 UIViewController 时的状态栏</p>
+<p>Status Bar 状态栏的颜色<br>状态栏分前后两部分，要分清这两个概念，后面会用到：</p>
+<blockquote>
+<p>文字部分：就是指的显示电池、时间等部分。<br>背景部分：就是显示黑色或者图片的背景部分</p>
+</blockquote>
+</font>
+]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>IOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ioshotfix</title>
+    <url>/2023/08/30/IOS/ioshotfix/</url>
+    <content><![CDATA[<font size="2.9">
+
+
+<h4 id="iOS热更新方案"><a href="#iOS热更新方案" class="headerlink" title="iOS热更新方案"></a>iOS热更新方案</h4><blockquote>
+<p> js</p>
+</blockquote>
+<p> jspatch(过审核版本收费,5000+ app上线，收费版本混淆 ，加密)<br> ttpatch（js） </p>
+<p> <code>http://www.jspatch.com</code></p>
+<p><code>https://github.com/bang590/JSPatch </code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">_import(<span class="string">&#x27;GameViewController,NSString,NSBundle,SFSafariViewController,UIView,UILabel,UIImage,UIButton,UIColor,TTView,ViewController,UITableViewCell,UITableView,NSIndexPath,UIFont,UIScreen,UIImageView,UIScrollView,WKWebView,NSURLRequest,NSURL,UIApplication,GitHomeViewController&#x27;</span>)</span><br><span class="line"></span><br><span class="line">defineClass(<span class="string">&#x27;HomeViewController:UIViewController&#x27;</span>,&#123;</span><br><span class="line">	<span class="attr">scrollView</span>:property(),</span><br><span class="line">	<span class="attr">viewDidLoad</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		Super().viewDidLoad();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">var</span> adbundle = NSBundle.bundleWithPath_(<span class="string">&quot;/System/Library/Frameworks/SafariServices.framework&quot;</span>);</span><br><span class="line">		adbundle.load();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">let</span> dataSource = [<span class="string">&#x27;加载下发模块&#x27;</span>,<span class="string">&#x27;JS-OC间block&#x27;</span>,<span class="string">&#x27;点击加载更多&#x27;</span>,];</span><br><span class="line"></span><br><span class="line">		self.view().setBackgroundColor_(UIColor.whiteColor());</span><br><span class="line">		Utils.log(<span class="string">&#x27;js调用 viewDidLoad&#x27;</span>);</span><br><span class="line">		self.setTitle_(<span class="string">&#x27;TTPatch.js&#x27;</span>);</span><br><span class="line">		self.getScorllView().addSubview_(self.getHomeModule1());</span><br><span class="line">		self.scrollView().addSubview_(self.getHomeModule2());</span><br><span class="line">		<span class="comment">// self.scrollView().addSubview_(self.getHomeModule3());</span></span><br><span class="line">		self.scrollView().addSubview_(self.getHomeModule4());</span><br><span class="line">		self.scrollView().addSubview_(self.getHomeModule5());</span><br><span class="line"></span><br><span class="line">		self.scrollView().setBackgroundColor_(UIColor.groupTableViewBackgroundColor());</span><br><span class="line">    &#125;,</span><br><span class="line">	 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>lua</p>
+</blockquote>
+<p> LuaViewSDK(阿里2019 很久不维护) <code>https://alibaba.github.io/LuaViewSDK/download.html</code></p>
+<p> mumo（3年前起不维护） <code>https://github.com/momotech/MLN</code></p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">local</span> _class = &#123;</span><br><span class="line">    _name = <span class="string">&#x27;HomePagerView&#x27;</span>,</span><br><span class="line">    _version = <span class="string">&#x27;1.0&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">---@public</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_class:new</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">local</span> o = &#123;&#125;</span><br><span class="line">    <span class="built_in">setmetatable</span>(o, &#123;<span class="built_in">__index</span> = <span class="built_in">self</span>&#125;)</span><br><span class="line">    <span class="keyword">return</span> o</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">---@public</span></span><br><span class="line"><span class="comment">---@return View containerView</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_class:rootView</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">self</span>.containerView <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">self</span>.containerView</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">self</span>.containerView = LinearLayout(LinearType.VERTICAL)</span><br><span class="line">    <span class="built_in">self</span>.containerView:width(MeasurementType.MATCH_PARENT):height(MeasurementType.MATCH_PARENT)</span><br><span class="line">    <span class="built_in">self</span>:setupTabSegmentView()</span><br><span class="line">    <span class="built_in">self</span>:setupViewPager()</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">self</span>.containerView</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>sot 虚拟机 收费</p>
+</blockquote>
+<p><code>http://www.sotvm.com/</code></p>
+<blockquote>
+<p>wax (lua)</p>
+</blockquote>
+<p> “愤怒的小鸟”的用法和热更的用法是两个性质，它是使用Wax，脚本是带在App的bundle里运行的，不是在Document里运行的。这是符合苹果的要求的。</p>
+<blockquote>
+<p>dylib</p>
+</blockquote>
+<p>可以做demo用，真实使用的时候会被苹果禁止。因为 打包发到AppStore的ipa安装包 里的每个动态库 都有唯一的编码，iOS系统会进行验证，所以动态通过网络获取 新的动态库 也用不了。</p>
+<p><code>与 JSPatch 不同的是，lua热更新技术主要的实现方式是把动态脚本下载之后，让动态脚本调用游戏引擎提供的接口实现缺陷修复。 与 JSPatch 不同的是，动态脚本并不能任意调用全部原生代码，而是只能根据游戏引擎提供的接口调用相关功能</code></p>
+<h4 id="主流代表"><a href="#主流代表" class="headerlink" title="主流代表"></a>主流代表</h4><p> jspatch  平台封杀 出于安全考虑，有安全漏洞，官网是可以通过加密 混淆方式解决了，没有开源</p>
+<p>js 一般支持block 匿名函数。</p>
+<blockquote>
+<p>热更新时，从服务器拉去js脚本。理论上可以修改和新建所有的模块，但是不建议这样做。建议用来做紧急的小需求和 修复严重的线上bug。官网说： JSPatch 平台 SDK 1.7.2 以上版本可以通过苹果审核，可以正常使用。Github 开源版本暂不可用</p>
+</blockquote>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1></font>]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>iOS hotfix</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ocClassDifferent</title>
+    <url>/2021/11/15/IOS/ocClassDifferent/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="1-nil-和NULL"><a href="#1-nil-和NULL" class="headerlink" title="1.nil 和NULL"></a>1.nil 和NULL</h4><blockquote>
+<p><code>引用类型用</code> oc的类指针 nil</p>
+</blockquote>
+<blockquote>
+<p><code>基本类型用</code> NULL</p>
+</blockquote>
+<blockquote>
+<p>本质上是一样的 ，都是宏定义 ，0</p>
+</blockquote>
+<blockquote>
+<p>Person *p = nil 代表不指向任何对象</p>
+</blockquote>
+<h4 id="2-分组导航标记"><a href="#2-分组导航标记" class="headerlink" title="2.分组导航标记"></a>2.分组导航标记</h4><blockquote>
+<p>#pragma mark 名字</p>
+</blockquote>
+<blockquote>
+<p>#pragma mark - 产生分割线</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@interface</span> Person : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@public</span></span><br><span class="line">    NSString *_name;</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">    <span class="keyword">float</span> _height;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>) sayMi:(NSString *)json;</span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark - Person</span><br><span class="line"><span class="meta">@implementation</span> Person</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)sayMi:(NSString *)json&#123;</span><br><span class="line">    NSLog(@<span class="string">&quot;name = %@,json= %@&quot;</span>,_name,json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br><span class="line"></span><br><span class="line">#pragma mark  - 实现</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="meta">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        NSLog(@<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        Person *person = [Person  <span class="keyword">new</span>];</span><br><span class="line">        person-&gt;_height = <span class="number">30.0f</span>;</span><br><span class="line">        person-&gt;_name =  @<span class="string">&quot;zx shanzu&quot;</span>;</span><br><span class="line">        </span><br><span class="line">        [person  sayMi:@<span class="string">&quot;&#123;\&quot;price\&quot;:\&quot;1000\&quot;&#125;&quot;</span>];</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h5><blockquote>
+<p>方法定义@interface  实现在@implement</p>
+</blockquote>
+<blockquote>
+<p>函数 调用不 一样   可以写在  类 中除了 大括号<br>类的声明和 实现 都要有， 声明要在前  实现 可以放在使用类的后面 </p>
+</blockquote>
+<blockquote>
+<p><code>+</code> 方法就是类方法，<code>-</code> 方法就是实例方法</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)thisIsAClassMethod; <span class="comment">// 类方法，不需要实例化对象就可以调用</span></span><br><span class="line">- (<span class="keyword">void</span>)thisIsAnInstanceMethod; <span class="comment">// 实例方法，必须通过实例化的对象调用</span></span><br><span class="line"><span class="comment">// 对象的初始化 OC中以消息机制传递信息，发送 alloc 消息给类分配内存空间，发送 init 消息生成对象，指针指向对象本身。</span></span><br><span class="line">ClassName *obj = [[ClassName alloc] init];</span><br></pre></td></tr></table></figure>
+<pre><code>类方法：
+1、类方法可以调用类方法；
+2、类方法不可以调用实例方法，但是类方法可以通过创建对象来访问实例方法；
+3、类方法不可以使用实例变量。（可以使用self ，因为 self 不是实例变量。）
+4、类方法作为消息，可以发送到类或者对象里面去（就是可以通过类或者对象调用类方法）
+实例方法里面的 self ，是对象的首地址。
+类方法里面的 self ，是 class 。
+
+用过程中既可以使用新定义的方法名，也可以使用以前的方法（点表示法）
+
+属性特征：readwrite readonly assign retain copy nonatomic
+
+assign：默认行为，使用 @property int num 就是使用了 assign 行为，就是给实例变量赋了一个值
+
+retain：实现了两个功能，一个是保留了赋值时传递的对象，一个是赋值前释放了以前的值，使用时加上 @property (retain) int num;
+
+copy：发送一条复制的消息给被传递的对象，保留它，并释放任何以前的值；
+
+nonatomic：非原子访问器，加上后可以保证属性在被一个线程使用时不被另一个线程访问，不存在 atomic 关键字，默认情况下，所有方法都是自动合成的。（类似Java中的线程锁机制 synchronised）
+readwrite：可读写
+readonly：只读
+</code></pre>
+<h4 id="OC点和右箭头访问变量的区别"><a href="#OC点和右箭头访问变量的区别" class="headerlink" title="OC点和右箭头访问变量的区别"></a>OC点和右箭头访问变量的区别</h4><pre><code>语法
+OC中.语法实际上就是方法调用，比如通过self.deviceID访问属性，如果它出现在=的左边那么就是调用属性的setter方法，如果出现在=右边就是调用属性的getter方法。
+所以如下所示的定义：
+</code></pre>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">self.deviceID = @<span class="string">&quot;123&quot;</span>;和[self setDeviceID:@<span class="string">&quot;123&quot;</span>];是等价的。</span><br><span class="line"></span><br><span class="line">NSString *str = self.deviceID;和NSString *str = [self deviceID];是等价的。</span><br></pre></td></tr></table></figure>
+<p> -&gt;语法<br>    OC中-&gt;用于访问成员变量。所以：</p>
+<pre><code>self-&gt;_deviceID和_deviceID是等价的。
+
+self-&gt;deviceType和deviceType是等价的。
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">@interface Device : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    @<span class="keyword">public</span> NSString *deviceType;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="built_in">property</span> (nonatomic , strong) NSString *deviceID;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</code></pre>
+<h4 id="ios-性能优化"><a href="#ios-性能优化" class="headerlink" title="ios 性能优化"></a>ios 性能优化</h4><p><a href="https://www.jianshu.com/p/a9c86e7df095">https://www.jianshu.com/p/a9c86e7df095</a><br>模拟内存警告</p>
+</font>]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux_command</title>
     <url>/2023/04/06/Linux/Linux-command/</url>
     <content><![CDATA[<font size="2.9">
@@ -1980,33 +1992,6 @@ self-&gt;deviceType和deviceType是等价的。
       </tags>
   </entry>
   <entry>
-    <title>调研记录一下</title>
-    <url>/2020/12/21/Tools/MoreLear/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="1-能力考试院"><a href="#1-能力考试院" class="headerlink" title="1.能力考试院"></a>1.能力考试院</h4><span id="more"></span>
-<blockquote>
-<p><a href="http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384">http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384</a> </p>
-</blockquote>
-<h4 id="2-查询"><a href="#2-查询" class="headerlink" title="2.查询"></a>2.查询</h4><blockquote>
-<p><a href="http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/">http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://sh.offcn.com/html/2020/11/191560.html">http://sh.offcn.com/html/2020/11/191560.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://sh.offcn.com/zg/shsydwdg/">http://sh.offcn.com/zg/shsydwdg/</a></p>
-</blockquote>
-</font>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>Link</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>评论配置</title>
     <url>/2020/12/23/Tools/LeanCloud-md/</url>
     <content><![CDATA[<font size="2.9">
@@ -2044,6 +2029,33 @@ self-&gt;deviceType和deviceType是等价的。
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>调研记录一下</title>
+    <url>/2020/12/21/Tools/MoreLear/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="1-能力考试院"><a href="#1-能力考试院" class="headerlink" title="1.能力考试院"></a>1.能力考试院</h4><span id="more"></span>
+<blockquote>
+<p><a href="http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384">http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384</a> </p>
+</blockquote>
+<h4 id="2-查询"><a href="#2-查询" class="headerlink" title="2.查询"></a>2.查询</h4><blockquote>
+<p><a href="http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/">http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://sh.offcn.com/html/2020/11/191560.html">http://sh.offcn.com/html/2020/11/191560.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://sh.offcn.com/zg/shsydwdg/">http://sh.offcn.com/zg/shsydwdg/</a></p>
+</blockquote>
+</font>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Link</tag>
       </tags>
   </entry>
   <entry>
@@ -2468,27 +2480,6 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </tags>
   </entry>
   <entry>
-    <title>UnityBase</title>
-    <url>/2021/10/14/Unity/UnityBase/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="1-Unity基础-ref-和-out"><a href="#1-Unity基础-ref-和-out" class="headerlink" title="1.Unity基础  ref 和 out"></a>1.Unity基础  ref 和 out</h4><p>影响外部传入，让其被修改</p>
-<p>ref: 变量先初始化</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueRef</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> a</span>)</span>&#123;</span><br><span class="line">  a = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> b = <span class="number">99</span>;</span><br><span class="line">ChagneValueRef(<span class="keyword">ref</span> b);</span><br><span class="line">Debug.Log(b);<span class="comment">//b = 9</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>out: 方法里初始化</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueOut</span>(<span class="params"><span class="keyword">out</span> <span class="built_in">int</span> <span class="keyword">value</span></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">value</span> = <span class="number">88</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> cc ;</span><br><span class="line">ChangeValueOut(<span class="keyword">out</span> cc);</span><br><span class="line">Debug.Log(cc);<span class="comment">//b = 88</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-冒泡排序优化"><a href="#2-冒泡排序优化" class="headerlink" title="2.冒泡排序优化"></a>2.冒泡排序优化</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span>[] arrs = &#123;<span class="number">7</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">bool</span> isShot = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> m =<span class="number">0</span>;m &lt; arrs.Length;m++)&#123;</span><br><span class="line">    isShot = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> n =<span class="number">0</span>;n&lt;arrs.Length<span class="number">-1</span>-m;n++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arrs[n]&gt; arrs[n+<span class="number">1</span>])&#123;</span><br><span class="line">            isShot = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">int</span> temp =  arrs[n];</span><br><span class="line">            arrs[n] = arrs[n+<span class="number">1</span>];</span><br><span class="line">            arrs[n+<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//正常情况 每次都交换，如果达到 没有进入交换 就不需要了</span></span><br><span class="line">    <span class="keyword">if</span>(!isShot)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</font>]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>UnityBase</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UnityPluginForMac</title>
     <url>/2019/06/09/Unity/UnityPluginForMac/</url>
     <content><![CDATA[<font size="2.9">
@@ -2518,6 +2509,27 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </categories>
       <tags>
         <tag>UnityPlugin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UnityBase</title>
+    <url>/2021/10/14/Unity/UnityBase/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="1-Unity基础-ref-和-out"><a href="#1-Unity基础-ref-和-out" class="headerlink" title="1.Unity基础  ref 和 out"></a>1.Unity基础  ref 和 out</h4><p>影响外部传入，让其被修改</p>
+<p>ref: 变量先初始化</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueRef</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> a</span>)</span>&#123;</span><br><span class="line">  a = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> b = <span class="number">99</span>;</span><br><span class="line">ChagneValueRef(<span class="keyword">ref</span> b);</span><br><span class="line">Debug.Log(b);<span class="comment">//b = 9</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>out: 方法里初始化</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueOut</span>(<span class="params"><span class="keyword">out</span> <span class="built_in">int</span> <span class="keyword">value</span></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">value</span> = <span class="number">88</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> cc ;</span><br><span class="line">ChangeValueOut(<span class="keyword">out</span> cc);</span><br><span class="line">Debug.Log(cc);<span class="comment">//b = 88</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-冒泡排序优化"><a href="#2-冒泡排序优化" class="headerlink" title="2.冒泡排序优化"></a>2.冒泡排序优化</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span>[] arrs = &#123;<span class="number">7</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">bool</span> isShot = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> m =<span class="number">0</span>;m &lt; arrs.Length;m++)&#123;</span><br><span class="line">    isShot = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> n =<span class="number">0</span>;n&lt;arrs.Length<span class="number">-1</span>-m;n++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arrs[n]&gt; arrs[n+<span class="number">1</span>])&#123;</span><br><span class="line">            isShot = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">int</span> temp =  arrs[n];</span><br><span class="line">            arrs[n] = arrs[n+<span class="number">1</span>];</span><br><span class="line">            arrs[n+<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//正常情况 每次都交换，如果达到 没有进入交换 就不需要了</span></span><br><span class="line">    <span class="keyword">if</span>(!isShot)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</font>]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>UnityBase</tag>
       </tags>
   </entry>
   <entry>
@@ -2767,118 +2779,6 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       </tags>
   </entry>
   <entry>
-    <title>视频压缩技术原理</title>
-    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A301-%E8%A7%86%E9%A2%91%E5%8E%8B%E7%BC%A9%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<font size="2.9">
-
-<p>H264视频压缩算法现在无疑是所有视频压缩技术中使用最广泛，</p>
-<p>最流行的。随着 x264/openh264以及ffmpeg等开源库的推出，大多数使用者无需再对H264的细节做过多的研究，这大降低了人们使用H264的成本。</p>
-<p>但为了用好H264，我们还是要对H264的基本原理弄清楚才行。今天我们就来看看H264的基本原理。</p>
-<h2 id="H264概述"><a href="#H264概述" class="headerlink" title="H264概述"></a>H264概述</h2><p><img src="/images/30.png" alt="img"></p>
-<p>H264压缩技术主要采用了以下几种方法对视频数据进行压缩。包括：</p>
-<p>　　帧内预测压缩，解决的是空域数据冗余问题。<br>　　帧间预测压缩（运动估计与补偿），解决的是时域数据冗徐问题。<br>　　整数离散余弦变换（DCT），将空间上的相关性变为频域上无关的数据然后进行量化。<br>　　CABAC压缩。</p>
-<p>经过压缩后的帧分为：I帧，P帧和B帧:</p>
-<p>　　I帧：关键帧，采用帧内压缩技术。<br>　　P帧：向前参考帧，在压缩时，只参考前面已经处理的帧。采用帧音压缩技术。<br>　　B帧：双向参考帧，在压缩时，它即参考前而的帧，又参考它后面的帧。采用帧间压缩技术。</p>
-<p>除了I/P/B帧外，还有图像序列GOP。</p>
-<p>　　GOP:两个I帧之间是一个图像序列，在一个图像序列中只有一个I帧。如下图所示：</p>
-<p><img src="/images/31.png" alt="img"></p>
-<p>下面我们就来详细描述一下H264压缩技术。</p>
-<h2 id="H264压缩技术"><a href="#H264压缩技术" class="headerlink" title="H264压缩技术"></a>H264压缩技术</h2><p>H264的基本原理其实非常简单，下我们就简单的描述一下H264压缩数据的过程。通过摄像头采集到的视频帧（按每秒 30 帧算），被送到 H264 编码器的缓冲区中。编码器先要为每一幅图片划分宏块。</p>
-<p>以下面这张图为例:</p>
-<p><img src="/images/32.webp" alt="img"></p>
-<h3 id="划分宏块"><a href="#划分宏块" class="headerlink" title="划分宏块"></a>划分宏块</h3><p>H264默认是使用 16X16 大小的区域作为一个宏块，也可以划分成 8X8 大小。</p>
-<p><img src="/images/33.webp" alt="img"></p>
-<p>划分好宏块后，计算宏块的象素值。</p>
-<p><img src="/images/34.webp" alt="img"></p>
-<p>以此类推，计算一幅图像中每个宏块的像素值，所有宏块都处理完后如下面的样子。</p>
-<p><img src="/images/35.webp" alt="img"></p>
-<h3 id="划分子块"><a href="#划分子块" class="headerlink" title="划分子块"></a>划分子块</h3><p>H264对比较平坦的图像使用 16X16 大小的宏块。但为了更高的压缩率，还可以在 16X16 的宏块上更划分出更小的子块。子块的大小可以是 8X16､ 16X8､ 8X8､ 4X8､ 8X4､ 4X4非常的灵活。</p>
-<p><img src="/images/36.webp" alt="img"></p>
-<p>上幅图中，红框内的 16X16 宏块中大部分是蓝色背景，而三只鹰的部分图像被划在了该宏块内，为了更好的处理三只鹰的部分图像，H264就在 16X16 的宏块内又划分出了多个子块。</p>
-<p><img src="/images/37.webp" alt="img"></p>
-<p>这样再经过帧内压缩，可以得到更高效的数据。下图是分别使用mpeg-2和H264对上面宏块进行压缩后的结果。其中左半部分为MPEG-2子块划分后压缩的结果，右半部分为H264的子块划压缩后的结果，可以看出H264的划分方法更具优势。</p>
-<p><img src="/images/39.png" alt="img"></p>
-<p>宏块划分好后，就可以对H264编码器缓存中的所有图片进行分组了。</p>
-<h3 id="帧分组"><a href="#帧分组" class="headerlink" title="帧分组"></a>帧分组</h3><p>对于视频数据主要有两类数据冗余，一类是时间上的数据冗余，另一类是空间上的数据冗余。其中时间上的数据冗余是最大的。下面我们就先来说说视频数据时间上的冗余问题。</p>
-<p>为什么说时间上的冗余是最大的呢？假设摄像头每秒抓取30帧，这30帧的数据大部分情况下都是相关联的。也有可能不止30帧的的数据，可能几十帧，上百帧的数据都是关联特别密切的。</p>
-<p>对于这些关联特别密切的帧，其实我们只需要保存一帧的数据，其它帧都可以通过这一帧再按某种规则预测出来，所以说视频数据在时间上的冗余是最多的。</p>
-<p>为了达到相关帧通过预测的方法来压缩数据，就需要将视频帧进行分组。那么如何判定某些帧关系密切，可以划为一组呢？我们来看一下例子，下面是捕获的一组运动的台球的视频帧，台球从右上角滚到了左下角。</p>
-<p><img src="/images/40.webp" alt="img"></p>
-<p><img src="/images/41.webp" alt="img"></p>
-<p>没有运动补偿的时候  120fps     60fps   60帧电影  视频画面是没有提升</p>
-<p>120fps    60帧视频  60帧虚拟帧</p>
-<p>H264编码器会按顺序，每次取出两幅相邻的帧进行宏块比较，计算两帧的相似度。如下图：</p>
-<p><img src="/images/42.webp" alt="img"></p>
-<p>通过宏块扫描与宏块搜索可以发现这两个帧的关联度是非常高的。进而发现这一组帧的关联度都是非常高的。因此，上面这几帧就可以划分为一组。其算法是：<strong>在相邻几幅图像画面中，一般有差别的像素只有10%以内的点,亮度差值变化不超过2%，而色度差值的变化只有1%以内，我们认为这样的图可以分到一组。</strong></p>
-<p>在这样一组帧中，经过编码后，我们只保留第一帖的完整数据，其它帧都通过参考上一帧计算出来。我们称第一帧为<strong>IDR／I帧</strong>，其它帧我们称为<strong>P／B帧</strong>，这样编码后的数据帧组我们称为<strong>GOP</strong>。</p>
-<h3 id="运动估计与补偿"><a href="#运动估计与补偿" class="headerlink" title="运动估计与补偿"></a>运动估计与补偿</h3><p>在H264编码器中将帧分组后，就要计算帧组内物体的运动矢量了。还以上面运动的台球视频帧为例，我们来看一下它是如何计算运动矢量的。</p>
-<p>H264编码器首先按顺序从缓冲区头部取出两帧视频数据，然后进行宏块扫描。当发现其中一幅图片中有物体时，就在另一幅图的邻近位置（搜索窗口中）进行搜索。如果此时在另一幅图中找到该物体，那么就可以计算出物体的运动矢量了。下面这幅图就是搜索后的台球移动的位置。</p>
-<p><img src="/images/43.png" alt="img"></p>
-<p> 抖音 —-》视频  1M  9M   </p>
-<p>通过上图中台球位置相差，就可以计算出台图运行的方向和距离。H264依次把每一帧中球移动的距离和方向都记录下来就成了下面的样子。</p>
-<p><img src="/images/44.png" alt="img"></p>
-<p>运动矢量计算出来后，将相同部分（也就是绿色部分）减去，就得到了补偿数据。我们最终只需要将补偿数据进行压缩保存，以后在解码时就可以恢复原图了。压缩补偿后的数据只需要记录很少的一点数据。如下所示：</p>
-<p><img src="/images/45.png" alt="img"></p>
-<p>我们把运动矢量与补偿称为<strong>帧间压缩技术</strong>，它解决的是视频帧在时间上的数据冗余。除了帧间压缩，帧内也要进行数据压缩，帧内数据压缩解决的是空间上的数据冗余。下面我们就来介绍一下帧内压缩技术。</p>
-<h3 id="帧内预测"><a href="#帧内预测" class="headerlink" title="帧内预测"></a>帧内预测</h3><p>人眼对图象都有一个识别度，对低频的亮度很敏感，对高频的亮度不太敏感。所以基于一些研究，可以将一幅图像中人眼不敏感的数据去除掉。这样就提出了帧内预测技术。</p>
-<p>H264的帧内压缩与JPEG很相似。一幅图像被划分好宏块后，对每个宏块可以进行 9 种模式的预测。找出与原图最接近的一种预测模式。</p>
-<p><img src="/images/46.webp" alt="img"></p>
-<p>下面这幅图是对整幅图中的每个宏块进行预测的过程。</p>
-<p><img src="/images/145.webp" alt="img"></p>
-<p>帧内预测后的图像与原始图像的对比如下：</p>
-<p><img src="/images/146.webp" alt="img"></p>
-<p>然后，将原始图像与帧内预测后的图像相减得残差值。</p>
-<p><img src="/images/1307424-20181107191253955-1987839456.png" alt="img"></p>
-<p>再将我们之前得到的预测模式信息一起保存起来，这样我们就可以在解码时恢复原图了。效果如下：</p>
-<p><img src="/images/1307424-20181107191259057-1084466018.png" alt="img"></p>
-<p>经过帧内与帧间的压缩后，虽然数据有大幅减少，但还有优化的空间。</p>
-<h3 id="对残差数据做DCT"><a href="#对残差数据做DCT" class="headerlink" title="对残差数据做DCT"></a>对残差数据做DCT</h3><p>可以将残差数据做整数离散余弦变换，去掉数据的相关性，进一步压缩数据。如下图所示，左侧为原数据的宏块，右侧为计算出的残差数据的宏块。</p>
-<p><img src="/images/1307424-20181107191314043-1719104258.png" alt="img"></p>
-<p>将残差数据宏块数字化后如下图所示：</p>
-<p><img src="/images/1307424-20181107191318906-1060673182.png" alt="img"></p>
-<p>将残差数据宏块进行 DCT 转换。</p>
-<p><img src="/images/1307424-20181107191325145-505363573.png" alt="img"></p>
-<p>去掉相关联的数据后，我们可以看出数据被进一步压缩了。</p>
-<p><img src="/images/1307424-20181107191330244-1287304627.png" alt="img"></p>
-<p>做完 DCT 后，还不够，还要进行 CABAC 进行无损压缩。</p>
-<h3 id="DCT原理大白话"><a href="#DCT原理大白话" class="headerlink" title="DCT原理大白话"></a>DCT原理大白话</h3><p> 这是第一帧画面：P1（我们的参考帧） </p>
-<p><img src="/images/50.jpg" alt="50"></p>
-<p> 这是第二帧画面：P2（需要编码的帧） </p>
-<p><img src="/images/51.jpg" alt="50"></p>
-<p> 从视频中截取的两张间隔1-2秒的画面，和实际情况类似，下面我们进行几次运动搜索： </p>
-<p> 这是一个演示程序，鼠标选中P2上任意<strong>16x16</strong>的Block，即可搜索出<strong>P1上的 BestMatch</strong> 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
-<p><img src="/images/53.jpg" alt="50"></p>
-<p> 这是一个演示程序，鼠标选中P2上任意16x16的Block，即可搜索出P1上的 BestMatch 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
-<p> 搜索演示2：空中电线交叉位置（上图P1，下图P2） </p>
-<p><img src="/images/55.jpg" alt="50"></p>
-<p><img src="/images/54.jpg" alt="50"></p>
-<p> 同样顺利在P1中找到最接近P2里海报的宏块位置。 </p>
-<p> 图片全搜索：根据P1和运动矢量数据（在P2中搜索到每一个宏块在P1中最相似的位置集合）还原出来的P2’，即完全用P1各个位置的宏块拼凑出来最像P2的图片P2’，效果如下： </p>
-<p><img src="/images/56.jpg" alt="50"></p>
-<h5 id="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80："><a href="#仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80：" class="headerlink" title="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80："></a>仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80：</h5><p><img src="/images/57.jpg" alt="50"></p>
-<p> 这就是之前支离破碎的 P2` 加上误差 D2之后变成了清晰可见的样子，基本还原了原图P2。 </p>
-<p><img src="/images/58.jpg" alt="50"></p>
-<p> 由于D2仅仅占5KB，加上压缩过后的运动矢量不过7KB，所以参考P1我们只需要额外 7KB的数据量就可以完整表示P2了，而如果独立将P2用质量尚可的有损压缩方式独立压缩，则至少要去到50-60KB，这一下节省了差不多8倍的空间，正就是所谓运动编码的基本原理。 </p>
-<p> 实际在使用中，参考帧并不一定是前面一帧，也不一定是同一个GOP的I帧，因为GOP间隔较长时，后面的图片离I帧变化可能已经很大了，因此常见做法是最近15帧中选择一帧误差最小的作为参考帧，虽然彩色画面有YUV三个分量，但是大量的预测工作和最有选择通常是根据Y分量的灰度帧进行判断的。 </p>
-<p> 再者误差我们保存的是（P2-P2’）/2 + 0x80，实际使用时我们会用更有效率的方式，比如让[-64,64]之间的色差精度为1，[-255,-64], [64, 255] 之间的色差精度为2-3，这样会更加真实一些。 </p>
-<p> 同时上文很多地方用的是直接lzma2进行简单存储，实际使用时一般会引入熵编码，对数据进行一定层次的整理然后再压缩，性能会好不少。 </p>
-<h3 id="CABAC"><a href="#CABAC" class="headerlink" title="CABAC"></a>CABAC</h3><p>上面的帧内压缩是属于有损压缩技术。也就是说图像被压缩后，无法完全复原。而CABAC属于无损压缩技术。</p>
-<p>无损压缩技术大家最熟悉的可能就是哈夫曼编码了，给高频的词一个短码，给低频词一个长码从而达到数据压缩的目的。MPEG-2中使用的VLC就是这种算法，我们以 A-Z 作为例子，A属于高频数据，Z属于低频数据。看看它是如何做的。</p>
-<p><img src="/images/1307424-20181107191345116-277907586.png" alt="img"></p>
-<p>CABAC也是给高频数据短码，给低频数据长码。同时还会根据上下文相关性进行压缩，这种方式又比VLC高效很多。其效果如下：</p>
-<p><img src="/images/1307424-20181107191350500-1400387362.png" alt="img"></p>
-<p>现在将 A-Z 换成视频帧，它就成了下面的样子。</p>
-<p><img src="/images/1307424-20181107191355172-2085276841.png" alt="img"></p>
-<p>从上面这张图中明显可以看出采用 CACBA 的无损压缩方案要比 VLC 高效的多。</p>
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>H264</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>视频解码基础</title>
     <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A300-%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%B0%81%E8%A3%85%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<font size="2.9">
@@ -3029,36 +2929,109 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       </tags>
   </entry>
   <entry>
-    <title>视频流H264的组装</title>
-    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A303-%E5%88%87%E7%89%87/</url>
+    <title>视频压缩技术原理</title>
+    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A301-%E8%A7%86%E9%A2%91%E5%8E%8B%E7%BC%A9%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<font size="2.9">
 
-<h4 id="1-H264介绍"><a href="#1-H264介绍" class="headerlink" title="1 H264介绍"></a>1 H264介绍</h4><blockquote>
-<p> 我们了解了什么是宏快，宏快作为压缩视频的最小的一部分，需要被组织，然后在网络之间做相互传输。</p>
-</blockquote>
-<p>H264更深层次    —》宏块   太浅了</p>
-<p>​        如果单纯的用<strong>宏快</strong>来发送数据是<strong>杂乱无章</strong>的，就好像在没有<strong>集装箱</strong> 出现之前，货物总是随意被堆放到船上。</p>
-<p>上货（编码），下货是非常痛苦的。 当集装箱出现之后，一切都发生了改变，传输效率大大增高。</p>
-<p>​        集装箱可以理解成<strong>H264编码标准</strong>，他制定了相互传输的格式，将宏快 有组织，有结构，有顺序的形成一系列的码流。这种码流既可 通过 InputStream 网络流的数据进行传输，也可以封装成一个文件进行保存</p>
-<p><strong>H264: H264/AVC是广泛采用的一种编码方式。</strong>主要作用是为了传输</p>
-<h4 id="1-1-H264码流组成"><a href="#1-1-H264码流组成" class="headerlink" title="1.1 H264码流组成"></a>1.1 H264码流组成</h4><p><strong>组成H264码流的结构中 包含以下几部分 ，从大到小排序依次是</strong> </p>
-<blockquote>
-<p><strong>H264视频序列，图像，片组，片，NALU，宏块 ，像素。</strong> </p>
-<p>类似 地球 国家 城市  镇 村落</p>
-</blockquote>
-<p><img src="/images/66.png"></p>
-<h5 id="1-1-1-H264编码分层"><a href="#1-1-1-H264编码分层" class="headerlink" title="1.1.1  H264编码分层"></a>1.1.1  H264编码分层</h5><ul>
-<li><strong>NAL层:（Network Abstraction Layer,视频数据网络抽象层）</strong>：  它的作用是H264只要在网络上传输，在传输的过程每个包以太网是1500字节，而H264的帧往往会大于1500字节，所以要进行拆包，将一个帧拆成多个包进行传输，所有的拆包或者组包都是通过NAL层去处理的。</li>
-<li><strong>VCL层:（Video Coding Layer,视频数据编码层）</strong>： 对视频原始数据进行压缩</li>
-</ul>
-<h5 id="1-1-2-H264的传输"><a href="#1-1-2-H264的传输" class="headerlink" title="1.1.2  H264的传输"></a>1.1.2  H264的传输</h5><p>​    <strong>H264是一种码流</strong>  类似与一种不见头，也不见尾的一条<strong>河流</strong>。如何从和流中取到自己想要的<strong>数据</strong>呢，</p>
-<p>在H264的标砖中有这样的一个封装格式叫做”Annex-B”的字节流格式。 它是H264编码的主要字节流格式。</p>
-<p>几乎市面上的编码器是以这种格式进行输出的。<strong>起始码0x 00 00 00 01 或者 0x 00 00 01</strong> 作为<strong>分隔符</strong>。 </p>
-<p>两个 0x 00 00 00 01之间的字节数据 是表示一个NAL Unit</p>
-<p><img src="/images/67.png"></p>
-<h5 id="1-1-3-编码结构"><a href="#1-1-3-编码结构" class="headerlink" title="1.1.3  编码结构"></a>1.1.3  编码结构</h5><p><img src="/images/68.jpg"></p>
-<p> <strong>切片头</strong>：包含了一组片的信息，比如片的数量，顺序等等 </p>
-<h5 id="1-1-4-H264码流分层结构图"><a href="#1-1-4-H264码流分层结构图" class="headerlink" title="1.1.4  H264码流分层结构图"></a>1.1.4  H264码流分层结构图</h5><p><img src="/images/69.jpg"></p>
+<p>H264视频压缩算法现在无疑是所有视频压缩技术中使用最广泛，</p>
+<p>最流行的。随着 x264/openh264以及ffmpeg等开源库的推出，大多数使用者无需再对H264的细节做过多的研究，这大降低了人们使用H264的成本。</p>
+<p>但为了用好H264，我们还是要对H264的基本原理弄清楚才行。今天我们就来看看H264的基本原理。</p>
+<h2 id="H264概述"><a href="#H264概述" class="headerlink" title="H264概述"></a>H264概述</h2><p><img src="/images/30.png" alt="img"></p>
+<p>H264压缩技术主要采用了以下几种方法对视频数据进行压缩。包括：</p>
+<p>　　帧内预测压缩，解决的是空域数据冗余问题。<br>　　帧间预测压缩（运动估计与补偿），解决的是时域数据冗徐问题。<br>　　整数离散余弦变换（DCT），将空间上的相关性变为频域上无关的数据然后进行量化。<br>　　CABAC压缩。</p>
+<p>经过压缩后的帧分为：I帧，P帧和B帧:</p>
+<p>　　I帧：关键帧，采用帧内压缩技术。<br>　　P帧：向前参考帧，在压缩时，只参考前面已经处理的帧。采用帧音压缩技术。<br>　　B帧：双向参考帧，在压缩时，它即参考前而的帧，又参考它后面的帧。采用帧间压缩技术。</p>
+<p>除了I/P/B帧外，还有图像序列GOP。</p>
+<p>　　GOP:两个I帧之间是一个图像序列，在一个图像序列中只有一个I帧。如下图所示：</p>
+<p><img src="/images/31.png" alt="img"></p>
+<p>下面我们就来详细描述一下H264压缩技术。</p>
+<h2 id="H264压缩技术"><a href="#H264压缩技术" class="headerlink" title="H264压缩技术"></a>H264压缩技术</h2><p>H264的基本原理其实非常简单，下我们就简单的描述一下H264压缩数据的过程。通过摄像头采集到的视频帧（按每秒 30 帧算），被送到 H264 编码器的缓冲区中。编码器先要为每一幅图片划分宏块。</p>
+<p>以下面这张图为例:</p>
+<p><img src="/images/32.webp" alt="img"></p>
+<h3 id="划分宏块"><a href="#划分宏块" class="headerlink" title="划分宏块"></a>划分宏块</h3><p>H264默认是使用 16X16 大小的区域作为一个宏块，也可以划分成 8X8 大小。</p>
+<p><img src="/images/33.webp" alt="img"></p>
+<p>划分好宏块后，计算宏块的象素值。</p>
+<p><img src="/images/34.webp" alt="img"></p>
+<p>以此类推，计算一幅图像中每个宏块的像素值，所有宏块都处理完后如下面的样子。</p>
+<p><img src="/images/35.webp" alt="img"></p>
+<h3 id="划分子块"><a href="#划分子块" class="headerlink" title="划分子块"></a>划分子块</h3><p>H264对比较平坦的图像使用 16X16 大小的宏块。但为了更高的压缩率，还可以在 16X16 的宏块上更划分出更小的子块。子块的大小可以是 8X16､ 16X8､ 8X8､ 4X8､ 8X4､ 4X4非常的灵活。</p>
+<p><img src="/images/36.webp" alt="img"></p>
+<p>上幅图中，红框内的 16X16 宏块中大部分是蓝色背景，而三只鹰的部分图像被划在了该宏块内，为了更好的处理三只鹰的部分图像，H264就在 16X16 的宏块内又划分出了多个子块。</p>
+<p><img src="/images/37.webp" alt="img"></p>
+<p>这样再经过帧内压缩，可以得到更高效的数据。下图是分别使用mpeg-2和H264对上面宏块进行压缩后的结果。其中左半部分为MPEG-2子块划分后压缩的结果，右半部分为H264的子块划压缩后的结果，可以看出H264的划分方法更具优势。</p>
+<p><img src="/images/39.png" alt="img"></p>
+<p>宏块划分好后，就可以对H264编码器缓存中的所有图片进行分组了。</p>
+<h3 id="帧分组"><a href="#帧分组" class="headerlink" title="帧分组"></a>帧分组</h3><p>对于视频数据主要有两类数据冗余，一类是时间上的数据冗余，另一类是空间上的数据冗余。其中时间上的数据冗余是最大的。下面我们就先来说说视频数据时间上的冗余问题。</p>
+<p>为什么说时间上的冗余是最大的呢？假设摄像头每秒抓取30帧，这30帧的数据大部分情况下都是相关联的。也有可能不止30帧的的数据，可能几十帧，上百帧的数据都是关联特别密切的。</p>
+<p>对于这些关联特别密切的帧，其实我们只需要保存一帧的数据，其它帧都可以通过这一帧再按某种规则预测出来，所以说视频数据在时间上的冗余是最多的。</p>
+<p>为了达到相关帧通过预测的方法来压缩数据，就需要将视频帧进行分组。那么如何判定某些帧关系密切，可以划为一组呢？我们来看一下例子，下面是捕获的一组运动的台球的视频帧，台球从右上角滚到了左下角。</p>
+<p><img src="/images/40.webp" alt="img"></p>
+<p><img src="/images/41.webp" alt="img"></p>
+<p>没有运动补偿的时候  120fps     60fps   60帧电影  视频画面是没有提升</p>
+<p>120fps    60帧视频  60帧虚拟帧</p>
+<p>H264编码器会按顺序，每次取出两幅相邻的帧进行宏块比较，计算两帧的相似度。如下图：</p>
+<p><img src="/images/42.webp" alt="img"></p>
+<p>通过宏块扫描与宏块搜索可以发现这两个帧的关联度是非常高的。进而发现这一组帧的关联度都是非常高的。因此，上面这几帧就可以划分为一组。其算法是：<strong>在相邻几幅图像画面中，一般有差别的像素只有10%以内的点,亮度差值变化不超过2%，而色度差值的变化只有1%以内，我们认为这样的图可以分到一组。</strong></p>
+<p>在这样一组帧中，经过编码后，我们只保留第一帖的完整数据，其它帧都通过参考上一帧计算出来。我们称第一帧为<strong>IDR／I帧</strong>，其它帧我们称为<strong>P／B帧</strong>，这样编码后的数据帧组我们称为<strong>GOP</strong>。</p>
+<h3 id="运动估计与补偿"><a href="#运动估计与补偿" class="headerlink" title="运动估计与补偿"></a>运动估计与补偿</h3><p>在H264编码器中将帧分组后，就要计算帧组内物体的运动矢量了。还以上面运动的台球视频帧为例，我们来看一下它是如何计算运动矢量的。</p>
+<p>H264编码器首先按顺序从缓冲区头部取出两帧视频数据，然后进行宏块扫描。当发现其中一幅图片中有物体时，就在另一幅图的邻近位置（搜索窗口中）进行搜索。如果此时在另一幅图中找到该物体，那么就可以计算出物体的运动矢量了。下面这幅图就是搜索后的台球移动的位置。</p>
+<p><img src="/images/43.png" alt="img"></p>
+<p> 抖音 —-》视频  1M  9M   </p>
+<p>通过上图中台球位置相差，就可以计算出台图运行的方向和距离。H264依次把每一帧中球移动的距离和方向都记录下来就成了下面的样子。</p>
+<p><img src="/images/44.png" alt="img"></p>
+<p>运动矢量计算出来后，将相同部分（也就是绿色部分）减去，就得到了补偿数据。我们最终只需要将补偿数据进行压缩保存，以后在解码时就可以恢复原图了。压缩补偿后的数据只需要记录很少的一点数据。如下所示：</p>
+<p><img src="/images/45.png" alt="img"></p>
+<p>我们把运动矢量与补偿称为<strong>帧间压缩技术</strong>，它解决的是视频帧在时间上的数据冗余。除了帧间压缩，帧内也要进行数据压缩，帧内数据压缩解决的是空间上的数据冗余。下面我们就来介绍一下帧内压缩技术。</p>
+<h3 id="帧内预测"><a href="#帧内预测" class="headerlink" title="帧内预测"></a>帧内预测</h3><p>人眼对图象都有一个识别度，对低频的亮度很敏感，对高频的亮度不太敏感。所以基于一些研究，可以将一幅图像中人眼不敏感的数据去除掉。这样就提出了帧内预测技术。</p>
+<p>H264的帧内压缩与JPEG很相似。一幅图像被划分好宏块后，对每个宏块可以进行 9 种模式的预测。找出与原图最接近的一种预测模式。</p>
+<p><img src="/images/46.webp" alt="img"></p>
+<p>下面这幅图是对整幅图中的每个宏块进行预测的过程。</p>
+<p><img src="/images/145.webp" alt="img"></p>
+<p>帧内预测后的图像与原始图像的对比如下：</p>
+<p><img src="/images/146.webp" alt="img"></p>
+<p>然后，将原始图像与帧内预测后的图像相减得残差值。</p>
+<p><img src="/images/1307424-20181107191253955-1987839456.png" alt="img"></p>
+<p>再将我们之前得到的预测模式信息一起保存起来，这样我们就可以在解码时恢复原图了。效果如下：</p>
+<p><img src="/images/1307424-20181107191259057-1084466018.png" alt="img"></p>
+<p>经过帧内与帧间的压缩后，虽然数据有大幅减少，但还有优化的空间。</p>
+<h3 id="对残差数据做DCT"><a href="#对残差数据做DCT" class="headerlink" title="对残差数据做DCT"></a>对残差数据做DCT</h3><p>可以将残差数据做整数离散余弦变换，去掉数据的相关性，进一步压缩数据。如下图所示，左侧为原数据的宏块，右侧为计算出的残差数据的宏块。</p>
+<p><img src="/images/1307424-20181107191314043-1719104258.png" alt="img"></p>
+<p>将残差数据宏块数字化后如下图所示：</p>
+<p><img src="/images/1307424-20181107191318906-1060673182.png" alt="img"></p>
+<p>将残差数据宏块进行 DCT 转换。</p>
+<p><img src="/images/1307424-20181107191325145-505363573.png" alt="img"></p>
+<p>去掉相关联的数据后，我们可以看出数据被进一步压缩了。</p>
+<p><img src="/images/1307424-20181107191330244-1287304627.png" alt="img"></p>
+<p>做完 DCT 后，还不够，还要进行 CABAC 进行无损压缩。</p>
+<h3 id="DCT原理大白话"><a href="#DCT原理大白话" class="headerlink" title="DCT原理大白话"></a>DCT原理大白话</h3><p> 这是第一帧画面：P1（我们的参考帧） </p>
+<p><img src="/images/50.jpg" alt="50"></p>
+<p> 这是第二帧画面：P2（需要编码的帧） </p>
+<p><img src="/images/51.jpg" alt="50"></p>
+<p> 从视频中截取的两张间隔1-2秒的画面，和实际情况类似，下面我们进行几次运动搜索： </p>
+<p> 这是一个演示程序，鼠标选中P2上任意<strong>16x16</strong>的Block，即可搜索出<strong>P1上的 BestMatch</strong> 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
+<p><img src="/images/53.jpg" alt="50"></p>
+<p> 这是一个演示程序，鼠标选中P2上任意16x16的Block，即可搜索出P1上的 BestMatch 宏块。虽然车辆在运动，从远到近，但是依然找到了最接近的宏块坐标。 </p>
+<p> 搜索演示2：空中电线交叉位置（上图P1，下图P2） </p>
+<p><img src="/images/55.jpg" alt="50"></p>
+<p><img src="/images/54.jpg" alt="50"></p>
+<p> 同样顺利在P1中找到最接近P2里海报的宏块位置。 </p>
+<p> 图片全搜索：根据P1和运动矢量数据（在P2中搜索到每一个宏块在P1中最相似的位置集合）还原出来的P2’，即完全用P1各个位置的宏块拼凑出来最像P2的图片P2’，效果如下： </p>
+<p><img src="/images/56.jpg" alt="50"></p>
+<h5 id="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80："><a href="#仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2-和P2像素相减，得到差分图-D2-P2’-P2-2-0x80：" class="headerlink" title="仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80："></a>仔细观察，有些支离破碎对吧？肯定啊，拼凑出来的东西就是这样，现在我们用P2`和P2像素相减，得到差分图 D2 = (P2’ - P2) / 2 + 0x80：</h5><p><img src="/images/57.jpg" alt="50"></p>
+<p> 这就是之前支离破碎的 P2` 加上误差 D2之后变成了清晰可见的样子，基本还原了原图P2。 </p>
+<p><img src="/images/58.jpg" alt="50"></p>
+<p> 由于D2仅仅占5KB，加上压缩过后的运动矢量不过7KB，所以参考P1我们只需要额外 7KB的数据量就可以完整表示P2了，而如果独立将P2用质量尚可的有损压缩方式独立压缩，则至少要去到50-60KB，这一下节省了差不多8倍的空间，正就是所谓运动编码的基本原理。 </p>
+<p> 实际在使用中，参考帧并不一定是前面一帧，也不一定是同一个GOP的I帧，因为GOP间隔较长时，后面的图片离I帧变化可能已经很大了，因此常见做法是最近15帧中选择一帧误差最小的作为参考帧，虽然彩色画面有YUV三个分量，但是大量的预测工作和最有选择通常是根据Y分量的灰度帧进行判断的。 </p>
+<p> 再者误差我们保存的是（P2-P2’）/2 + 0x80，实际使用时我们会用更有效率的方式，比如让[-64,64]之间的色差精度为1，[-255,-64], [64, 255] 之间的色差精度为2-3，这样会更加真实一些。 </p>
+<p> 同时上文很多地方用的是直接lzma2进行简单存储，实际使用时一般会引入熵编码，对数据进行一定层次的整理然后再压缩，性能会好不少。 </p>
+<h3 id="CABAC"><a href="#CABAC" class="headerlink" title="CABAC"></a>CABAC</h3><p>上面的帧内压缩是属于有损压缩技术。也就是说图像被压缩后，无法完全复原。而CABAC属于无损压缩技术。</p>
+<p>无损压缩技术大家最熟悉的可能就是哈夫曼编码了，给高频的词一个短码，给低频词一个长码从而达到数据压缩的目的。MPEG-2中使用的VLC就是这种算法，我们以 A-Z 作为例子，A属于高频数据，Z属于低频数据。看看它是如何做的。</p>
+<p><img src="/images/1307424-20181107191345116-277907586.png" alt="img"></p>
+<p>CABAC也是给高频数据短码，给低频数据长码。同时还会根据上下文相关性进行压缩，这种方式又比VLC高效很多。其效果如下：</p>
+<p><img src="/images/1307424-20181107191350500-1400387362.png" alt="img"></p>
+<p>现在将 A-Z 换成视频帧，它就成了下面的样子。</p>
+<p><img src="/images/1307424-20181107191355172-2085276841.png" alt="img"></p>
+<p>从上面这张图中明显可以看出采用 CACBA 的无损压缩方案要比 VLC 高效的多。</p>
 </font>]]></content>
       <categories>
         <category>Android</category>
@@ -3178,6 +3151,45 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
 
 <p>这样表示9中预测模式只需要8个值 (0 to 7)</p>
 <p><img src="/images/20.png" alt="img"></p>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>H264</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>视频流H264的组装</title>
+    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A303-%E5%88%87%E7%89%87/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="1-H264介绍"><a href="#1-H264介绍" class="headerlink" title="1 H264介绍"></a>1 H264介绍</h4><blockquote>
+<p> 我们了解了什么是宏快，宏快作为压缩视频的最小的一部分，需要被组织，然后在网络之间做相互传输。</p>
+</blockquote>
+<p>H264更深层次    —》宏块   太浅了</p>
+<p>​        如果单纯的用<strong>宏快</strong>来发送数据是<strong>杂乱无章</strong>的，就好像在没有<strong>集装箱</strong> 出现之前，货物总是随意被堆放到船上。</p>
+<p>上货（编码），下货是非常痛苦的。 当集装箱出现之后，一切都发生了改变，传输效率大大增高。</p>
+<p>​        集装箱可以理解成<strong>H264编码标准</strong>，他制定了相互传输的格式，将宏快 有组织，有结构，有顺序的形成一系列的码流。这种码流既可 通过 InputStream 网络流的数据进行传输，也可以封装成一个文件进行保存</p>
+<p><strong>H264: H264/AVC是广泛采用的一种编码方式。</strong>主要作用是为了传输</p>
+<h4 id="1-1-H264码流组成"><a href="#1-1-H264码流组成" class="headerlink" title="1.1 H264码流组成"></a>1.1 H264码流组成</h4><p><strong>组成H264码流的结构中 包含以下几部分 ，从大到小排序依次是</strong> </p>
+<blockquote>
+<p><strong>H264视频序列，图像，片组，片，NALU，宏块 ，像素。</strong> </p>
+<p>类似 地球 国家 城市  镇 村落</p>
+</blockquote>
+<p><img src="/images/66.png"></p>
+<h5 id="1-1-1-H264编码分层"><a href="#1-1-1-H264编码分层" class="headerlink" title="1.1.1  H264编码分层"></a>1.1.1  H264编码分层</h5><ul>
+<li><strong>NAL层:（Network Abstraction Layer,视频数据网络抽象层）</strong>：  它的作用是H264只要在网络上传输，在传输的过程每个包以太网是1500字节，而H264的帧往往会大于1500字节，所以要进行拆包，将一个帧拆成多个包进行传输，所有的拆包或者组包都是通过NAL层去处理的。</li>
+<li><strong>VCL层:（Video Coding Layer,视频数据编码层）</strong>： 对视频原始数据进行压缩</li>
+</ul>
+<h5 id="1-1-2-H264的传输"><a href="#1-1-2-H264的传输" class="headerlink" title="1.1.2  H264的传输"></a>1.1.2  H264的传输</h5><p>​    <strong>H264是一种码流</strong>  类似与一种不见头，也不见尾的一条<strong>河流</strong>。如何从和流中取到自己想要的<strong>数据</strong>呢，</p>
+<p>在H264的标砖中有这样的一个封装格式叫做”Annex-B”的字节流格式。 它是H264编码的主要字节流格式。</p>
+<p>几乎市面上的编码器是以这种格式进行输出的。<strong>起始码0x 00 00 00 01 或者 0x 00 00 01</strong> 作为<strong>分隔符</strong>。 </p>
+<p>两个 0x 00 00 00 01之间的字节数据 是表示一个NAL Unit</p>
+<p><img src="/images/67.png"></p>
+<h5 id="1-1-3-编码结构"><a href="#1-1-3-编码结构" class="headerlink" title="1.1.3  编码结构"></a>1.1.3  编码结构</h5><p><img src="/images/68.jpg"></p>
+<p> <strong>切片头</strong>：包含了一组片的信息，比如片的数量，顺序等等 </p>
+<h5 id="1-1-4-H264码流分层结构图"><a href="#1-1-4-H264码流分层结构图" class="headerlink" title="1.1.4  H264码流分层结构图"></a>1.1.4  H264码流分层结构图</h5><p><img src="/images/69.jpg"></p>
 </font>]]></content>
       <categories>
         <category>Android</category>
