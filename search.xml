@@ -88,36 +88,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AndroidAidl</title>
-    <url>/2021/10/20/Android/AndroidAidl/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="为了让远程Service与多个应用程序的组件（四大组件）进行跨进程通信（IPC），需要使用AIDL"><a href="#为了让远程Service与多个应用程序的组件（四大组件）进行跨进程通信（IPC），需要使用AIDL" class="headerlink" title="为了让远程Service与多个应用程序的组件（四大组件）进行跨进程通信（IPC），需要使用AIDL"></a>为了让远程Service与多个应用程序的组件（四大组件）进行跨进程通信（IPC），需要使用AIDL</h4><p><img src="img.png"><br>IPC：Inter-Process Communication，即跨进程通信<br>AIDL：Android Interface Definition Language，即Android接口定义语言；用于让某个Service与多个应用程序组件之间进行跨进程通信，从而可以实现多个应用程序共享同一个Service的功能。</p>
-<h5 id="远程服务-app"><a href="#远程服务-app" class="headerlink" title="远程服务 app"></a>远程服务 app</h5><p>新建一个server-app ，创建src/main/aidl/包名/名字.adil, src/main/java/包名/名字.service.java</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">  </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 远程服务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AidlService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">&quot;AidlService&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> IServer_AidlInterface.Stub mBinder = <span class="keyword">new</span> IServer_AidlInterface.Stub() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connectTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;------&gt;客户端通过aidl  和远程服务成功通信&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">sendStartMsg</span><span class="params">(<span class="keyword">int</span> a)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (a == <span class="number">100</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;hello a !!! from service&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate();</span><br><span class="line">        System.out.println(<span class="string">&quot;onCreate---&gt;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">onStartCommand</span><span class="params">(Intent intent, <span class="keyword">int</span> flags, <span class="keyword">int</span> startId)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onStartCommand: &quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onStartCommand(intent, flags, startId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy();</span><br><span class="line">        System.out.println(<span class="string">&quot;OnDestroy---&gt;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;OnBind--服务端启动-&gt;&quot;</span>);</span><br><span class="line">        <span class="comment">//在onBind()返回继承自Binder的Stub类型的Binder，非常重要</span></span><br><span class="line">        <span class="keyword">return</span> mBinder;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onUnbind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;onUnbind---&gt;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onUnbind(intent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//aidl </span></span><br><span class="line"><span class="comment">// IServer_AidlInterface.aidl</span></span><br><span class="line"><span class="keyword">package</span> com.example.server;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Declare any non-default types here with import statements</span></span><br><span class="line"><span class="comment">//在新建AIDL文件里定义Service需要与Activity进行通信的内容（方法）</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IServer_AidlInterface</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Demonstrates some basic types that you can use as parameters</span></span><br><span class="line"><span class="comment">     * and return values in AIDL.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="comment">//    void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat,</span></span><br><span class="line"><span class="comment">//            double aDouble, String aString);</span></span><br><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">connectTest</span><span class="params">()</span></span>;</span><br><span class="line">     <span class="function">String <span class="title">sendStartMsg</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>service 声明</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">queries</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">package</span> <span class="attr">android:name</span>=<span class="string">&quot;com.example.server&quot;</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">queries</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- exported =true 可以被其他进程访问--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">service</span> <span class="attr">android:name</span>=<span class="string">&quot;com.example.server.AidlService&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:process</span>=<span class="string">&quot;:remote&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">           &gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.DEFAULT&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--  //该Service可以响应带有scut.carson_ho.service_server.AIDL_Service1这个action的Intent。</span></span><br><span class="line"><span class="comment">           //此处Intent的action必须写成“服务器端包名.aidl文件名”--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;com.example.server.IServer_AidlInterface&quot;</span>/&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">service</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="客户端连接-服务端"><a href="#客户端连接-服务端" class="headerlink" title="客户端连接 服务端"></a>客户端连接 服务端</h4><p>拷贝server_app声明的aidl 和包名一起 ，创建src/main/aidl/包名/名字.adil, 最好什么都不修改</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//接口变量</span></span><br><span class="line">   <span class="keyword">private</span> IServer_AidlInterface maidl_service;</span><br><span class="line">   <span class="keyword">private</span> ServiceConnection connection = <span class="keyword">new</span> ServiceConnection() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;name = &quot;</span> + name + <span class="string">&quot;, service = &quot;</span> + service);</span><br><span class="line">           maidl_service = IServer_AidlInterface.Stub.asInterface(service); <span class="comment">//获取服务端返回的binder 对象  讲ibinder 对象 复值给maidl_service;</span></span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               <span class="comment">//通过该对象调用在IServer_AidlInterface.aidl文件中定义的接口方法,从而实现跨进程通信</span></span><br><span class="line">               maidl_service.connectTest();</span><br><span class="line">               System.out.println(<span class="string">&quot;模拟发送&quot;</span>+maidl_service.sendStartMsg(<span class="number">100</span>));</span><br><span class="line">           &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;name = &quot;</span> + name);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//绑定服务</span></span><br><span class="line">   Intent intentService = <span class="keyword">new</span> Intent(<span class="string">&quot;com.example.server.IServer_AidlInterface&quot;</span>);</span><br><span class="line">   <span class="comment">//需要指定包名</span></span><br><span class="line">   <span class="comment">// intentService.setPackage(&quot;com.example.service_server&quot;);</span></span><br><span class="line">   intentService.setClassName(<span class="string">&quot;com.example.server&quot;</span>,<span class="string">&quot;com.example.server.AidlService&quot;</span>);</span><br><span class="line">   System.out.println(getApplicationContext().bindService(intentService, connection, Context.BIND_AUTO_CREATE));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="comment">//发送消息</span></span><br><span class="line">    System.out.println(<span class="string">&quot;模拟发送&quot;</span>+maidl_service.sendStartMsg(<span class="number">100</span>));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="本地服务-service"><a href="#本地服务-service" class="headerlink" title="本地服务 service"></a>本地服务 service</h4><p>开启服务2中方式<br>bindserice:<br>oncreate-&gt;onBinder()–&gt;onUnbind()-&gt;onDestoy</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Intent intentService = <span class="keyword">new</span> Intent(<span class="string">&quot;android.test.local.service&quot;</span>);</span><br><span class="line">    <span class="comment">//需要指定包名</span></span><br><span class="line">  intentService.setPackage(<span class="string">&quot;com.example.webrtc&quot;</span>);</span><br><span class="line">   <span class="comment">// intentService.setClassName(&quot;com.example.server&quot;,&quot;com.example.server.AidlService&quot;);</span></span><br><span class="line">   getApplicationContext().bindService(intentService, localConnection, Context.BIND_AUTO_CREATE);</span><br></pre></td></tr></table></figure>
-
-
-<p>startserice:<br>onCreate–&gt;onStartCommand(Intent intent,int flags,int starId)-&gt;StopService()-&gt;onDestory()</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Intent mService = <span class="keyword">new</span> Intent(<span class="keyword">this</span>,MyLocalService.class);</span><br><span class="line">     startService(mService);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</font>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Aidl</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>android编译</title>
     <url>/2020/12/21/Android/Android/</url>
     <content><![CDATA[<font size="2.9">
@@ -185,10 +155,42 @@
 <blockquote>
 <p>hdiutil resize -size 200g ~/xxx.dmg   <strong>大小为总大小 扩容比较容易 缩减要用另外的方式</strong></p>
 </blockquote>
+<h4 id="7-查看文件大小-排序"><a href="#7-查看文件大小-排序" class="headerlink" title="7. 查看文件大小 排序"></a>7. 查看文件大小 排序</h4><p>du -sh /data/atclog/*  | sort -n</p>
+<h4 id="8-查看目录大小"><a href="#8-查看目录大小" class="headerlink" title="8. 查看目录大小"></a>8. 查看目录大小</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">du -hs * //每个文件</span><br><span class="line">du -shc *  //目录大小</span><br></pre></td></tr></table></figure>
 </font>
 ]]></content>
       <tags>
         <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AndroidAidl</title>
+    <url>/2021/10/20/Android/AndroidAidl/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="为了让远程Service与多个应用程序的组件（四大组件）进行跨进程通信（IPC），需要使用AIDL"><a href="#为了让远程Service与多个应用程序的组件（四大组件）进行跨进程通信（IPC），需要使用AIDL" class="headerlink" title="为了让远程Service与多个应用程序的组件（四大组件）进行跨进程通信（IPC），需要使用AIDL"></a>为了让远程Service与多个应用程序的组件（四大组件）进行跨进程通信（IPC），需要使用AIDL</h4><p><img src="img.png"><br>IPC：Inter-Process Communication，即跨进程通信<br>AIDL：Android Interface Definition Language，即Android接口定义语言；用于让某个Service与多个应用程序组件之间进行跨进程通信，从而可以实现多个应用程序共享同一个Service的功能。</p>
+<h5 id="远程服务-app"><a href="#远程服务-app" class="headerlink" title="远程服务 app"></a>远程服务 app</h5><p>新建一个server-app ，创建src/main/aidl/包名/名字.adil, src/main/java/包名/名字.service.java</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">  </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 远程服务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AidlService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">&quot;AidlService&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> IServer_AidlInterface.Stub mBinder = <span class="keyword">new</span> IServer_AidlInterface.Stub() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connectTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;------&gt;客户端通过aidl  和远程服务成功通信&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">sendStartMsg</span><span class="params">(<span class="keyword">int</span> a)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (a == <span class="number">100</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;hello a !!! from service&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate();</span><br><span class="line">        System.out.println(<span class="string">&quot;onCreate---&gt;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">onStartCommand</span><span class="params">(Intent intent, <span class="keyword">int</span> flags, <span class="keyword">int</span> startId)</span> </span>&#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onStartCommand: &quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onStartCommand(intent, flags, startId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy();</span><br><span class="line">        System.out.println(<span class="string">&quot;OnDestroy---&gt;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;OnBind--服务端启动-&gt;&quot;</span>);</span><br><span class="line">        <span class="comment">//在onBind()返回继承自Binder的Stub类型的Binder，非常重要</span></span><br><span class="line">        <span class="keyword">return</span> mBinder;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onUnbind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;onUnbind---&gt;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onUnbind(intent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//aidl </span></span><br><span class="line"><span class="comment">// IServer_AidlInterface.aidl</span></span><br><span class="line"><span class="keyword">package</span> com.example.server;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Declare any non-default types here with import statements</span></span><br><span class="line"><span class="comment">//在新建AIDL文件里定义Service需要与Activity进行通信的内容（方法）</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IServer_AidlInterface</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Demonstrates some basic types that you can use as parameters</span></span><br><span class="line"><span class="comment">     * and return values in AIDL.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="comment">//    void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat,</span></span><br><span class="line"><span class="comment">//            double aDouble, String aString);</span></span><br><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">connectTest</span><span class="params">()</span></span>;</span><br><span class="line">     <span class="function">String <span class="title">sendStartMsg</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>service 声明</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">queries</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">package</span> <span class="attr">android:name</span>=<span class="string">&quot;com.example.server&quot;</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">queries</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- exported =true 可以被其他进程访问--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">service</span> <span class="attr">android:name</span>=<span class="string">&quot;com.example.server.AidlService&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:process</span>=<span class="string">&quot;:remote&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">           &gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.DEFAULT&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--  //该Service可以响应带有scut.carson_ho.service_server.AIDL_Service1这个action的Intent。</span></span><br><span class="line"><span class="comment">           //此处Intent的action必须写成“服务器端包名.aidl文件名”--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;com.example.server.IServer_AidlInterface&quot;</span>/&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">service</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="客户端连接-服务端"><a href="#客户端连接-服务端" class="headerlink" title="客户端连接 服务端"></a>客户端连接 服务端</h4><p>拷贝server_app声明的aidl 和包名一起 ，创建src/main/aidl/包名/名字.adil, 最好什么都不修改</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//接口变量</span></span><br><span class="line">   <span class="keyword">private</span> IServer_AidlInterface maidl_service;</span><br><span class="line">   <span class="keyword">private</span> ServiceConnection connection = <span class="keyword">new</span> ServiceConnection() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;name = &quot;</span> + name + <span class="string">&quot;, service = &quot;</span> + service);</span><br><span class="line">           maidl_service = IServer_AidlInterface.Stub.asInterface(service); <span class="comment">//获取服务端返回的binder 对象  讲ibinder 对象 复值给maidl_service;</span></span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               <span class="comment">//通过该对象调用在IServer_AidlInterface.aidl文件中定义的接口方法,从而实现跨进程通信</span></span><br><span class="line">               maidl_service.connectTest();</span><br><span class="line">               System.out.println(<span class="string">&quot;模拟发送&quot;</span>+maidl_service.sendStartMsg(<span class="number">100</span>));</span><br><span class="line">           &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;name = &quot;</span> + name);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//绑定服务</span></span><br><span class="line">   Intent intentService = <span class="keyword">new</span> Intent(<span class="string">&quot;com.example.server.IServer_AidlInterface&quot;</span>);</span><br><span class="line">   <span class="comment">//需要指定包名</span></span><br><span class="line">   <span class="comment">// intentService.setPackage(&quot;com.example.service_server&quot;);</span></span><br><span class="line">   intentService.setClassName(<span class="string">&quot;com.example.server&quot;</span>,<span class="string">&quot;com.example.server.AidlService&quot;</span>);</span><br><span class="line">   System.out.println(getApplicationContext().bindService(intentService, connection, Context.BIND_AUTO_CREATE));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="comment">//发送消息</span></span><br><span class="line">    System.out.println(<span class="string">&quot;模拟发送&quot;</span>+maidl_service.sendStartMsg(<span class="number">100</span>));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="本地服务-service"><a href="#本地服务-service" class="headerlink" title="本地服务 service"></a>本地服务 service</h4><p>开启服务2中方式<br>bindserice:<br>oncreate-&gt;onBinder()–&gt;onUnbind()-&gt;onDestoy</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Intent intentService = <span class="keyword">new</span> Intent(<span class="string">&quot;android.test.local.service&quot;</span>);</span><br><span class="line">    <span class="comment">//需要指定包名</span></span><br><span class="line">  intentService.setPackage(<span class="string">&quot;com.example.webrtc&quot;</span>);</span><br><span class="line">   <span class="comment">// intentService.setClassName(&quot;com.example.server&quot;,&quot;com.example.server.AidlService&quot;);</span></span><br><span class="line">   getApplicationContext().bindService(intentService, localConnection, Context.BIND_AUTO_CREATE);</span><br></pre></td></tr></table></figure>
+
+
+<p>startserice:<br>onCreate–&gt;onStartCommand(Intent intent,int flags,int starId)-&gt;StopService()-&gt;onDestory()</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Intent mService = <span class="keyword">new</span> Intent(<span class="keyword">this</span>,MyLocalService.class);</span><br><span class="line">     startService(mService);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</font>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Aidl</tag>
       </tags>
   </entry>
   <entry>
@@ -650,6 +652,34 @@
       </tags>
   </entry>
   <entry>
+    <title>Video记录</title>
+    <url>/2020/12/24/Android/Videoview/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h5 id="VideoView"><a href="#VideoView" class="headerlink" title="VideoView"></a>VideoView</h5><blockquote>
+<p>测试链接 <strong><a href="https://media.w3.org/2010/05/sintel/trailer.mp4">https://media.w3.org/2010/05/sintel/trailer.mp4</a></strong></p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">lateinit</span> <span class="keyword">var</span> progressBar: ProgressBar</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> videoView: VideoView</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> mediaController: MediaController</span><br><span class="line">    <span class="keyword">var</span> positionWhenPause: <span class="built_in">Int</span> = -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_audio)</span><br><span class="line"></span><br><span class="line">        videoView  = findViewById(R.id.videoVideo)</span><br><span class="line">        progressBar = findViewById(R.id.progress_circular)</span><br><span class="line"></span><br><span class="line"> mediaController = MediaController(<span class="keyword">this</span>)</span><br><span class="line">        videoView.setMediaController(mediaController)</span><br><span class="line">        mediaController.show(<span class="number">0</span>)</span><br><span class="line">        <span class="comment">//complete</span></span><br><span class="line">        videoView.setOnCompletionListener &#123; MediaPlayer.OnCompletionListener &#123;</span><br><span class="line">           Log.e(<span class="string">&quot;TAG&quot;</span>,<span class="string">&quot;播放 完成&quot;</span>)</span><br><span class="line">        &#125; &#125;</span><br><span class="line">        videoView.setOnErrorListener(MediaPlayer.OnErrorListener &#123; mp, what, extra -&gt;</span><br><span class="line">            println(<span class="string">&quot;<span class="variable">$mp</span>,what = <span class="variable">$what</span>,extra = <span class="variable">$extra</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span><span class="symbol">@OnErrorListener</span> <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line">        videoView.setOnPreparedListener &#123;</span><br><span class="line">            videoView.start()</span><br><span class="line">            progressBar.visibility = View.GONE</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//设置videoView 的点击监听</span></span><br><span class="line">        videoView.setOnTouchListener(View.OnTouchListener &#123; v, event -&gt;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span><span class="symbol">@OnTouchListener</span> <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        <span class="comment">//http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4</span></span><br><span class="line">        <span class="keyword">val</span> mp4id = resources.getIdentifier(<span class="string">&quot;trailer&quot;</span>,<span class="string">&quot;raw&quot;</span>,<span class="keyword">this</span>.packageName)</span><br><span class="line">     <span class="comment">//   val uri = Uri.parse(&quot;android.resource://com.bytedance.scenedemo/$mp4id&quot;)</span></span><br><span class="line">        <span class="keyword">val</span> uri = Uri.parse(<span class="string">&quot;http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4&quot;</span>)</span><br><span class="line"><span class="comment">//        videoView.setVideoPath()</span></span><br><span class="line">        videoView.setVideoURI(uri)</span><br><span class="line">        setVideoViewLayoutParams(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p><strong>view宽和高</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setVideoViewLayoutParams</span><span class="params">(x: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">//全屏</span></span><br><span class="line">        <span class="keyword">val</span> layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)</span><br><span class="line">        videoView.layoutParams = layoutParams</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//窗口模式</span></span><br><span class="line">        <span class="keyword">val</span> display = DisplayMetrics()</span><br><span class="line">        windowManager.defaultDisplay.getMetrics(display)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> vHeight = DisplayMetrics.DENSITY_HIGH</span><br><span class="line">        <span class="keyword">val</span> vWidth = DisplayMetrics.DENSITY_DEFAULT</span><br><span class="line">        <span class="keyword">val</span> layoutParams = RelativeLayout.LayoutParams(vWidth,vHeight)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_TOP)</span><br><span class="line">        videoView.layoutParams = layoutParams</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>布局</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VideoView</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:id</span>=<span class="string">&quot;@+id/videoVideo&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">       /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">ProgressBar</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:id</span>=<span class="string">&quot;@+id/progress_circular&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_centerInParent</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">       /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>我测试的是本地视频</strong></p>
+<blockquote>
+<p>获取Raw资源</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> mp4id = resources.getIdentifier(<span class="string">&quot;trailer&quot;</span>,<span class="string">&quot;raw&quot;</span>,<span class="keyword">this</span>.packageName)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>VideoView</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>webrtc记录</title>
     <url>/2020/12/21/Android/Webrtc/</url>
     <content><![CDATA[<font size="2.9">
@@ -670,6 +700,63 @@
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">implementation &#x27;org.webrtc:google-webrtc:1.0.26131&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>1.打开摄像头<br>2.本地回环<br>3.信令<br>4.多人视频</p>
 </font>]]></content>
+  </entry>
+  <entry>
+    <title>adbTools</title>
+    <url>/2022/09/05/Android/adbTools/</url>
+    <content><![CDATA[<font size='2.9'>
+
+<h4 id="adb-shell"><a href="#adb-shell" class="headerlink" title="adb shell"></a>adb shell</h4><ol>
+<li><p>获取当前任务栈</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell dumpsys activity | grep -i run</span><br><span class="line"><span class="comment">//查看activity 栈   </span></span><br><span class="line">adb shell dumpsys activity activities | findstr com.ztgame.yyzy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取手机安装包</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//grep 搜索</span></span><br><span class="line">adb shell pm list packages | grep -i 包名  </span><br><span class="line"></span><br><span class="line"><span class="comment">//路径</span></span><br><span class="line">adb shell pm path com.ztgame.yyzy</span><br><span class="line"></span><br><span class="line">adb pull path</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>清楚数据缓存目录</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell pm clear com.ztgame.yyzy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动activity</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell am start -n com.googleplayapp.storerootsuaction/.MainActivity</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动service</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line">adb shell am startService  com.googleplayapp.storerootsuaction/.MainActivity  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>发送广播</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell am broadcast -a <span class="string">&quot;xxxAction&quot;</span></span><br><span class="line">adb shell am broadcast -n  com.ztgame.yyzy/.MyService</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>adb shell logcat 过滤字符串</p>
+<pre><code class="shell">
+  logcat ｜ grep &quot;com.ztgame.bob&quot;
+</code></pre>
+</li>
+</ol>
+<ol start="8">
+<li><p>本地检索</p>
+<pre><code class="shell">
+    find . -name &quot;xxx.java&quot; | xargs grep &quot;content&quot;
+</code></pre>
+</li>
+<li><p>app 使用相关内存</p>
+</li>
+</ol>
+<pre><code>```shell
+
+   adb shell  dumpsys meminfo com.ztgame.pz
+
+```   
+</code></pre>
+
+
+
+
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>adb</tag>
+      </tags>
   </entry>
   <entry>
     <title>android_framework</title>
@@ -769,91 +856,6 @@
       </categories>
       <tags>
         <tag>tree</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>adbTools</title>
-    <url>/2022/09/05/Android/adbTools/</url>
-    <content><![CDATA[<font size='2.9'>
-
-<h4 id="adb-shell"><a href="#adb-shell" class="headerlink" title="adb shell"></a>adb shell</h4><ol>
-<li><p>获取当前任务栈</p>
- <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell dumpsys activity | grep -i run</span><br><span class="line"><span class="comment">//查看activity 栈   </span></span><br><span class="line">adb shell dumpsys activity activities | findstr com.ztgame.yyzy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取手机安装包</p>
- <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//grep 搜索</span></span><br><span class="line">adb shell pm list packages | grep -i 包名  </span><br><span class="line"></span><br><span class="line"><span class="comment">//路径</span></span><br><span class="line">adb shell pm path com.ztgame.yyzy</span><br><span class="line"></span><br><span class="line">adb pull path</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>清楚数据缓存目录</p>
- <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell pm clear com.ztgame.yyzy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动activity</p>
- <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell am start -n com.googleplayapp.storerootsuaction/.MainActivity</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动service</p>
- <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line">adb shell am startService  com.googleplayapp.storerootsuaction/.MainActivity  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>发送广播</p>
- <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell am broadcast -a <span class="string">&quot;xxxAction&quot;</span></span><br><span class="line">adb shell am broadcast -n  com.ztgame.yyzy/.MyService</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>adb shell logcat 过滤字符串</p>
-<pre><code class="shell">
-  logcat ｜ grep &quot;com.ztgame.bob&quot;
-</code></pre>
-</li>
-</ol>
-<ol start="8">
-<li><p>本地检索</p>
-<pre><code class="shell">
-    find . -name &quot;xxx.java&quot; | xargs grep &quot;content&quot;
-</code></pre>
-</li>
-<li><p>app 使用相关内存</p>
-</li>
-</ol>
-<pre><code>```shell
-
-   adb shell  dumpsys meminfo com.ztgame.pz
-
-```   
-</code></pre>
-
-
-
-
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>adb</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Video记录</title>
-    <url>/2020/12/24/Android/Videoview/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h5 id="VideoView"><a href="#VideoView" class="headerlink" title="VideoView"></a>VideoView</h5><blockquote>
-<p>测试链接 <strong><a href="https://media.w3.org/2010/05/sintel/trailer.mp4">https://media.w3.org/2010/05/sintel/trailer.mp4</a></strong></p>
-</blockquote>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">lateinit</span> <span class="keyword">var</span> progressBar: ProgressBar</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> videoView: VideoView</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> mediaController: MediaController</span><br><span class="line">    <span class="keyword">var</span> positionWhenPause: <span class="built_in">Int</span> = -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_audio)</span><br><span class="line"></span><br><span class="line">        videoView  = findViewById(R.id.videoVideo)</span><br><span class="line">        progressBar = findViewById(R.id.progress_circular)</span><br><span class="line"></span><br><span class="line"> mediaController = MediaController(<span class="keyword">this</span>)</span><br><span class="line">        videoView.setMediaController(mediaController)</span><br><span class="line">        mediaController.show(<span class="number">0</span>)</span><br><span class="line">        <span class="comment">//complete</span></span><br><span class="line">        videoView.setOnCompletionListener &#123; MediaPlayer.OnCompletionListener &#123;</span><br><span class="line">           Log.e(<span class="string">&quot;TAG&quot;</span>,<span class="string">&quot;播放 完成&quot;</span>)</span><br><span class="line">        &#125; &#125;</span><br><span class="line">        videoView.setOnErrorListener(MediaPlayer.OnErrorListener &#123; mp, what, extra -&gt;</span><br><span class="line">            println(<span class="string">&quot;<span class="variable">$mp</span>,what = <span class="variable">$what</span>,extra = <span class="variable">$extra</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span><span class="symbol">@OnErrorListener</span> <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line">        videoView.setOnPreparedListener &#123;</span><br><span class="line">            videoView.start()</span><br><span class="line">            progressBar.visibility = View.GONE</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//设置videoView 的点击监听</span></span><br><span class="line">        videoView.setOnTouchListener(View.OnTouchListener &#123; v, event -&gt;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span><span class="symbol">@OnTouchListener</span> <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        <span class="comment">//http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4</span></span><br><span class="line">        <span class="keyword">val</span> mp4id = resources.getIdentifier(<span class="string">&quot;trailer&quot;</span>,<span class="string">&quot;raw&quot;</span>,<span class="keyword">this</span>.packageName)</span><br><span class="line">     <span class="comment">//   val uri = Uri.parse(&quot;android.resource://com.bytedance.scenedemo/$mp4id&quot;)</span></span><br><span class="line">        <span class="keyword">val</span> uri = Uri.parse(<span class="string">&quot;http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4&quot;</span>)</span><br><span class="line"><span class="comment">//        videoView.setVideoPath()</span></span><br><span class="line">        videoView.setVideoURI(uri)</span><br><span class="line">        setVideoViewLayoutParams(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p><strong>view宽和高</strong></p>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setVideoViewLayoutParams</span><span class="params">(x: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">//全屏</span></span><br><span class="line">        <span class="keyword">val</span> layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)</span><br><span class="line">        videoView.layoutParams = layoutParams</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//窗口模式</span></span><br><span class="line">        <span class="keyword">val</span> display = DisplayMetrics()</span><br><span class="line">        windowManager.defaultDisplay.getMetrics(display)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> vHeight = DisplayMetrics.DENSITY_HIGH</span><br><span class="line">        <span class="keyword">val</span> vWidth = DisplayMetrics.DENSITY_DEFAULT</span><br><span class="line">        <span class="keyword">val</span> layoutParams = RelativeLayout.LayoutParams(vWidth,vHeight)</span><br><span class="line">        layoutParams.addRule(RelativeLayout.ALIGN_TOP)</span><br><span class="line">        videoView.layoutParams = layoutParams</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>布局</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VideoView</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:id</span>=<span class="string">&quot;@+id/videoVideo&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">       /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">ProgressBar</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:id</span>=<span class="string">&quot;@+id/progress_circular&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_centerInParent</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">       /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>我测试的是本地视频</strong></p>
-<blockquote>
-<p>获取Raw资源</p>
-</blockquote>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> mp4id = resources.getIdentifier(<span class="string">&quot;trailer&quot;</span>,<span class="string">&quot;raw&quot;</span>,<span class="keyword">this</span>.packageName)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>VideoView</tag>
       </tags>
   </entry>
   <entry>
@@ -1110,6 +1112,67 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       </tags>
   </entry>
   <entry>
+    <title>RePlugin(360)和 Shadow(tencent)</title>
+    <url>/2021/10/23/Android/rePlugin/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="Replugin-AndroidPlugin-4-0-0-插件6-1-1"><a href="#Replugin-AndroidPlugin-4-0-0-插件6-1-1" class="headerlink" title="Replugin (AndroidPlugin 4.0.0,插件6.1.1)"></a>Replugin (AndroidPlugin 4.0.0,插件6.1.1)</h4><p>该插件很久没有更新，最新Androidstudio 需要降级，很麻烦 故不再研究 ，原理大概了解。</p>
+<h4 id="Shadow-更新维护"><a href="#Shadow-更新维护" class="headerlink" title="Shadow 更新维护"></a>Shadow 更新维护</h4><p>Java11 ：Android Studio Arctic Fox内置的JDK<br>File-&gt;prefenece-gradle<br>配置Android_HOME</p>
+<p>window:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./gradlew build</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>sample-host是宿主应用</p>
+</blockquote>
+<blockquote>
+<p>sample-manager是插件管理器的动态实现</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-loader是loader的动态实现，业务主要在这里定义插件组件和壳子代理组件的配对关系等。</p>
+</blockquote>
+<blockquote>
+<p>sample-constant是在前3者中共用的相同字符串常量。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-runtime是runtime的动态实现，业务主要在这里定义壳子代理组件的实际类。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-app-lib是业务App的主要代码，是一个aar库。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-normal-app是一个apk模块壳子，将sample-app-lib打包在其中，演示业务App是可以正常安装运行的。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-plugin-app也是一个apk模块壳子，同样将sample-app-lib打包在其中，但是额外应用了Shadow插件，生成的apk不能正常安装运行。</p>
+</blockquote>
+<h3 id="接入Shadow-插件"><a href="#接入Shadow-插件" class="headerlink" title="接入Shadow 插件"></a>接入Shadow 插件</h3><blockquote>
+<p>发布本地仓库<br>可以先在 buildScripts/gradle/common.gradle 路径下，修改发布版本或其他信息：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">./gradew publish</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>C:\Users\caiyuhao.m2\repository\com\tencent\shadow\dynamic<br>C:\Users\caiyuhao.m2\repository\com\tencent\shadow\core</p>
+<p>插件的包名和宿主的包名要保持一致。</p>
+<p>这个演示工程没有实现下载功能，而是假设下载的文件直接位于指定路径。 因此运行前需要手工用adb命令将指定内容push到指定位置。</p>
+<p>编译插件，在plugin-project目录中运行：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">./gradlew packageDebugPlugin</span><br><span class="line"></span><br><span class="line">adb push build/plugin-debug.zip /data/local/tmp</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>编译PluginManager，在manager-project目录中运行：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">./gradlew assembleDebug</span><br><span class="line"></span><br><span class="line">adb push sample-manager/build/outputs/apk/debug/sample-manager-debug.apk /data/local/tmp</span><br></pre></td></tr></table></figure>
+<p>最后可以用Android Studio打开host-project直接运行sample-host模块。</p>
+<p>plugin-project中的plugin-normal-apk模块也可以直接安装运行，演示不使用Shadow时插件的运行情况。</p>
+<p>cd /data/local/tmp<br>然后在文件夹中创建一个文件夹。例</p>
+<p>1<br>mkdir folder<br>接下来更改权限</p>
+<p>1<br>chmod - R 777 folder</p>
+<p>adb shell ls -ld /data/ /data/local/ /data/local/tmp/<br>查看权限<br>确实有讲究。这个tmp目录是一个Android系统的特殊目录。这个目录的特点是adb可以直接push写入。app都能读取，但不能写入。同时这个目录还是手机的内置存储，可以直接用DexClassLoader加载这个目录中的apk，而sdcard不行。所以，如果我们用adb push到sdcard上，想动态加载还要将apk再复制到应用的data目录才行。</p>
+<p>正是环境肯定没法用这个目录，因为应用没有这个目录的写入权限。建议应用把插件包下载到宿主的data私有目录中，以保证数据安全，其他应用不能篡改。</p>
+</font>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>plugin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Network</title>
     <url>/2021/10/20/Android/network/</url>
     <content><![CDATA[<font size="2.9">
@@ -1187,67 +1250,6 @@ IP直连方案有下面几大优势：
       </tags>
   </entry>
   <entry>
-    <title>RePlugin(360)和 Shadow(tencent)</title>
-    <url>/2021/10/23/Android/rePlugin/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="Replugin-AndroidPlugin-4-0-0-插件6-1-1"><a href="#Replugin-AndroidPlugin-4-0-0-插件6-1-1" class="headerlink" title="Replugin (AndroidPlugin 4.0.0,插件6.1.1)"></a>Replugin (AndroidPlugin 4.0.0,插件6.1.1)</h4><p>该插件很久没有更新，最新Androidstudio 需要降级，很麻烦 故不再研究 ，原理大概了解。</p>
-<h4 id="Shadow-更新维护"><a href="#Shadow-更新维护" class="headerlink" title="Shadow 更新维护"></a>Shadow 更新维护</h4><p>Java11 ：Android Studio Arctic Fox内置的JDK<br>File-&gt;prefenece-gradle<br>配置Android_HOME</p>
-<p>window:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./gradlew build</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>sample-host是宿主应用</p>
-</blockquote>
-<blockquote>
-<p>sample-manager是插件管理器的动态实现</p>
-</blockquote>
-<blockquote>
-<p>sample-plugin/sample-loader是loader的动态实现，业务主要在这里定义插件组件和壳子代理组件的配对关系等。</p>
-</blockquote>
-<blockquote>
-<p>sample-constant是在前3者中共用的相同字符串常量。</p>
-</blockquote>
-<blockquote>
-<p>sample-plugin/sample-runtime是runtime的动态实现，业务主要在这里定义壳子代理组件的实际类。</p>
-</blockquote>
-<blockquote>
-<p>sample-plugin/sample-app-lib是业务App的主要代码，是一个aar库。</p>
-</blockquote>
-<blockquote>
-<p>sample-plugin/sample-normal-app是一个apk模块壳子，将sample-app-lib打包在其中，演示业务App是可以正常安装运行的。</p>
-</blockquote>
-<blockquote>
-<p>sample-plugin/sample-plugin-app也是一个apk模块壳子，同样将sample-app-lib打包在其中，但是额外应用了Shadow插件，生成的apk不能正常安装运行。</p>
-</blockquote>
-<h3 id="接入Shadow-插件"><a href="#接入Shadow-插件" class="headerlink" title="接入Shadow 插件"></a>接入Shadow 插件</h3><blockquote>
-<p>发布本地仓库<br>可以先在 buildScripts/gradle/common.gradle 路径下，修改发布版本或其他信息：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">./gradew publish</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>C:\Users\caiyuhao.m2\repository\com\tencent\shadow\dynamic<br>C:\Users\caiyuhao.m2\repository\com\tencent\shadow\core</p>
-<p>插件的包名和宿主的包名要保持一致。</p>
-<p>这个演示工程没有实现下载功能，而是假设下载的文件直接位于指定路径。 因此运行前需要手工用adb命令将指定内容push到指定位置。</p>
-<p>编译插件，在plugin-project目录中运行：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">./gradlew packageDebugPlugin</span><br><span class="line"></span><br><span class="line">adb push build/plugin-debug.zip /data/local/tmp</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>编译PluginManager，在manager-project目录中运行：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">./gradlew assembleDebug</span><br><span class="line"></span><br><span class="line">adb push sample-manager/build/outputs/apk/debug/sample-manager-debug.apk /data/local/tmp</span><br></pre></td></tr></table></figure>
-<p>最后可以用Android Studio打开host-project直接运行sample-host模块。</p>
-<p>plugin-project中的plugin-normal-apk模块也可以直接安装运行，演示不使用Shadow时插件的运行情况。</p>
-<p>cd /data/local/tmp<br>然后在文件夹中创建一个文件夹。例</p>
-<p>1<br>mkdir folder<br>接下来更改权限</p>
-<p>1<br>chmod - R 777 folder</p>
-<p>adb shell ls -ld /data/ /data/local/ /data/local/tmp/<br>查看权限<br>确实有讲究。这个tmp目录是一个Android系统的特殊目录。这个目录的特点是adb可以直接push写入。app都能读取，但不能写入。同时这个目录还是手机的内置存储，可以直接用DexClassLoader加载这个目录中的apk，而sdcard不行。所以，如果我们用adb push到sdcard上，想动态加载还要将apk再复制到应用的data目录才行。</p>
-<p>正是环境肯定没法用这个目录，因为应用没有这个目录的写入权限。建议应用把插件包下载到宿主的data私有目录中，以保证数据安全，其他应用不能篡改。</p>
-</font>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>plugin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Android二维码扫描</title>
     <url>/2021/02/09/Android/scans-md/</url>
     <content><![CDATA[<font size="2.9">
@@ -1304,25 +1306,6 @@ IP直连方案有下面几大优势：
       </tags>
   </entry>
   <entry>
-    <title>harmonyos</title>
-    <url>/2022/09/19/Harmonyos/harmonyos/</url>
-    <content><![CDATA[<font size='2.9'>
-
-<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><ol>
-<li><p>获取源码 </p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    # 安装repo 工具</span><br><span class="line">    $ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 &gt; repo</span><br><span class="line">    $ chmod a+x repo</span><br><span class="line">    $ sudo mv repo /usr/local/bin/repo</span><br><span class="line">    $ sudo apt install python3-pip</span><br><span class="line">    $ pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">获取标准系统源码</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir OpenHarmony</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> OpenHarmony</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync -c  <span class="comment"># -c 获取当前分支代码</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">&#x27;git lfs pull&#x27;</span></span></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>如果 repo init 出现以下错误 </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">jackie@USER-20200124ZG:~$ repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify</span><br><span class="line">    Downloading Repo source from http://mirrors.tuna.tsinghua.edu.cn/git/git-repo/</span><br><span class="line">    remote: Enumerating objects: 7113, done.</span><br><span class="line">    remote: Counting objects: 100% (7113/7113), done.</span><br><span class="line">    remote: Compressing objects: 100% (3728/3728), done.</span><br><span class="line">    remote: Total 7113 (delta 4590), reused 5464 (delta 3311)s   s</span><br><span class="line">    Receiving objects: 100% (7113/7113), 3.09 MiB | 1.76 MiB/s, done.</span><br><span class="line">    Resolving deltas: 100% (4590/4590), done.</span><br><span class="line">    repo: warning: verification of repo code has been disabled;</span><br><span class="line">    repo will not be able to verify the integrity of itself.</span><br><span class="line"></span><br><span class="line">    repo: error: unable to resolve &quot;fork_flow&quot;</span><br><span class="line">    fatal: cloning the git-repo repository failed, will remove &#x27;.repo/repo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><code>切换到root 权限 sudo</code> 可以解决</p>
-</font></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Harmonyos</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Cocos_creator_3.6.1</title>
     <url>/2022/10/16/Cocos/Cocos-creator-3-6-1/</url>
     <content><![CDATA[<font size="2.9">
@@ -1343,6 +1326,26 @@ IP直连方案有下面几大优势：
 
 cocos run -d androd 
 </code></pre>
+</font>
+]]></content>
+      <tags>
+        <tag>cocos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cocos2dx</title>
+    <url>/2023/10/12/Cocos/cocos2dx/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="cocos2dx-4-0-ios-少库"><a href="#cocos2dx-4-0-ios-少库" class="headerlink" title="cocos2dx-4.0 ios 少库"></a>cocos2dx-4.0 ios 少库</h4><p>can build setting find linking and replace</p>
+<p>step1</p>
+<p>/usr/lib/libz.dylib</p>
+<p>replace</p>
+<p>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libiconv.dylib</p>
+<p>step2</p>
+<p>/usr/lib/libiconv.dylib</p>
+<p>replace</p>
+<p>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libz.dylib</p>
 </font>
 ]]></content>
       <tags>
@@ -1426,23 +1429,74 @@ cocos run -d androd
       </tags>
   </entry>
   <entry>
-    <title>cocos2dx</title>
-    <url>/2023/10/12/Cocos/cocos2dx/</url>
+    <title>harmonyos</title>
+    <url>/2022/09/19/Harmonyos/harmonyos/</url>
+    <content><![CDATA[<font size='2.9'>
+
+<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><ol>
+<li><p>获取源码 </p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    # 安装repo 工具</span><br><span class="line">    $ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 &gt; repo</span><br><span class="line">    $ chmod a+x repo</span><br><span class="line">    $ sudo mv repo /usr/local/bin/repo</span><br><span class="line">    $ sudo apt install python3-pip</span><br><span class="line">    $ pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">获取标准系统源码</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir OpenHarmony</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> OpenHarmony</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync -c  <span class="comment"># -c 获取当前分支代码</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">&#x27;git lfs pull&#x27;</span></span></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>如果 repo init 出现以下错误 </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">jackie@USER-20200124ZG:~$ repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify</span><br><span class="line">    Downloading Repo source from http://mirrors.tuna.tsinghua.edu.cn/git/git-repo/</span><br><span class="line">    remote: Enumerating objects: 7113, done.</span><br><span class="line">    remote: Counting objects: 100% (7113/7113), done.</span><br><span class="line">    remote: Compressing objects: 100% (3728/3728), done.</span><br><span class="line">    remote: Total 7113 (delta 4590), reused 5464 (delta 3311)s   s</span><br><span class="line">    Receiving objects: 100% (7113/7113), 3.09 MiB | 1.76 MiB/s, done.</span><br><span class="line">    Resolving deltas: 100% (4590/4590), done.</span><br><span class="line">    repo: warning: verification of repo code has been disabled;</span><br><span class="line">    repo will not be able to verify the integrity of itself.</span><br><span class="line"></span><br><span class="line">    repo: error: unable to resolve &quot;fork_flow&quot;</span><br><span class="line">    fatal: cloning the git-repo repository failed, will remove &#x27;.repo/repo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>切换到root 权限 sudo</code> 可以解决</p>
+</font></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Harmonyos</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ios_block</title>
+    <url>/2023/10/08/IOS/ios-block/</url>
     <content><![CDATA[<font size="2.9">
 
-<h4 id="cocos2dx-4-0-ios-少库"><a href="#cocos2dx-4-0-ios-少库" class="headerlink" title="cocos2dx-4.0 ios 少库"></a>cocos2dx-4.0 ios 少库</h4><p>can build setting find linking and replace</p>
-<p>step1</p>
-<p>/usr/lib/libz.dylib</p>
-<p>replace</p>
-<p>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libiconv.dylib</p>
-<p>step2</p>
-<p>/usr/lib/libiconv.dylib</p>
-<p>replace</p>
-<p>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libz.dylib</p>
-</font>
-]]></content>
+<h4 id="block"><a href="#block" class="headerlink" title="block"></a>block</h4><blockquote>
+<p>Block：带有自动变量（局部变量）的匿名函数。它是C语言的扩充功能。之所以是拓展，是因为C语言不允许存在这样匿名函数。<br>block的应用场景<br> block声明属性要用copy修饰<br> 因为只有copy后的Block才会在堆中，栈中的Block的生命周期是和栈绑定的<br> &lt;栈 :由系统维护的局部变量 是存在栈上的，其生命周期随函数的生命周期&gt;<br> &lt;堆 :由程序员申请空间地址，由程序员手动释放，生命周期受到程序员控制&gt;<br> 使用retain也可以，因为block的retain行为默认是用copy的行为实现的，block变量默认是声明为栈变量的，为了能够在block的声明域外使用，所以要把block拷贝（copy）到堆，所以说为了block属性声明和实际的操作一致，最好声明为copy。</p>
+</blockquote>
+<blockquote>
+<p>1.1 匿名函数<br>匿名函数是指不带函数名称函数。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> count)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> result = func(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以通过指针调用函数，看起来没用到函数名：</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> result = (*funcptr)(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//实际，在赋值给函数指针时，必须通过函数的名称才能获得该函数的地址。完整的步骤应该是</span></span><br><span class="line"><span class="keyword">int</span> (*funcptr)(<span class="keyword">int</span>) = &amp;func;</span><br><span class="line"><span class="keyword">int</span> result = (*funcptr)(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>而通过Block，就能够使用匿名函数，即不带函数名称的函数。</p>
+<blockquote>
+<p>1.2 捕获外部变量，看一个经典block面试题：</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> val = <span class="number">10</span>; </span><br><span class="line"><span class="keyword">void</span> (^blk)(<span class="keyword">void</span>) = ^&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;val=%d\n&quot;</span>,val);</span><br><span class="line">&#125;; </span><br><span class="line">val = <span class="number">2</span>; </span><br><span class="line">blk(); </span><br><span class="line"></span><br><span class="line"><span class="comment">//上面这段代码，输出值是：val = 10，而不是2。</span></span><br><span class="line"><span class="comment">//block 在实现时就会对它引用到的它所在方法中定义的栈变量进行一次只读拷贝，然后在 block 块内使用该只读拷贝；换句话说block截获自动变量的瞬时值；或者block捕获的是自动变量的副本。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>解决block不能修改自动变量的值，这一问题的另外一个办法是使用__block修饰符。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">__block <span class="keyword">int</span> val = <span class="number">10</span>;  </span><br><span class="line"><span class="keyword">void</span> (^blk)(<span class="keyword">void</span>) = ^&#123;<span class="built_in">printf</span>(<span class="string">&quot;val=%d\n&quot;</span>,val);&#125;;  </span><br><span class="line">val = <span class="number">2</span>;  </span><br><span class="line">blk(); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//上面的代码，跟第一个代码段相比只是多了一个__block修饰符。但是输出结果确是2。</span></span><br></pre></td></tr></table></figure>
+
+<p>2.1   Block声明及定义语法，及其变形<br>(1) 标准声明与定义</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">return_type (^blockName)(var_type) = ^return_type (var_type varName) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName(var);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当返回类型为void</span></span><br><span class="line"><span class="keyword">void</span> (^blockName)(var_type) = ^<span class="keyword">void</span> (var_type varName) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName(var);</span><br><span class="line"><span class="comment">//省略void 写法</span></span><br><span class="line"><span class="keyword">void</span> (^blockName)(var_type) = ^(var_type varName) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName(var);</span><br><span class="line"><span class="comment">//https://xiaozhuanlan.com/topic/2953746180</span></span><br><span class="line"> <span class="comment">//当返回类型和参数类型都为void</span></span><br><span class="line"><span class="keyword">void</span> (^blockName)(<span class="keyword">void</span>) = ^&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName();</span><br><span class="line"></span><br><span class="line"><span class="comment">//匿名Block</span></span><br><span class="line"><span class="comment">//Block实现时，等号右边就是一个匿名Block，它没有blockName，称之为匿名Block：</span></span><br><span class="line">^return_type (var_type varName)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="ios-中id-类型-和底层理解"><a href="#ios-中id-类型-和底层理解" class="headerlink" title="ios 中id 类型 和底层理解"></a>ios 中id 类型 和底层理解</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">objc_object</span> &#123;</span></span><br><span class="line">    Class isa;</span><br><span class="line">&#125; *id;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>id是一个一个比较灵活的对象指针，并且是一个指向任何一个继承了Object（或者NSObject）类的对象。而在cocoa的开发环境里，NSObject是所有类的根类。所以id可以指向任何一个cocoa的合法对象。</p>
+</blockquote>
+<blockquote>
+<p>Objective-C中的id这种数据类型存在的价值是什么？</p>
+</blockquote>
+<p>id是一种通用的对象类型，她可以用类存储属于任何类的对象，可以理解为万能指针<br>＊＊＊在id的定义中，已经包装好了＊号，id指针只能指向os的对象<br>NSObject 和id都可以指向任何对象<br>NSObject对象会惊醒编译时检查（需要强制类型转换）<br>id不需要强制类型转换，id可以直接使用<br>编译器看到id以后，认为是动态类型，不在检查类型</p>
+<blockquote>
+<p>id类型:</p>
+</blockquote>
+<p>　　id是一个数据类型, 并且是一个动态数据类型<br>　　既然是数据类型, 所以就可以用来</p>
+<p>1、定义变量<br>2、作为函数的参数<br>3、作为函数的返回值<br>4、id == NSObject *   万能指针</p>
+<blockquote>
+<p>id和NSObject *的区别:</p>
+</blockquote>
+<p>NSObject *是一个静态数据类型<br>id  是一个动态数据类型<br>默认情况下所有的数据类型都是静态数据类型</p>
+</font>]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
       <tags>
-        <tag>cocos</tag>
+        <tag>iOS block</tag>
       </tags>
   </entry>
   <entry>
@@ -1483,42 +1537,6 @@ cocos run -d androd
       </categories>
       <tags>
         <tag>iOS nstring</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ios_block</title>
-    <url>/2023/10/08/IOS/ios-block/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="block"><a href="#block" class="headerlink" title="block"></a>block</h4><blockquote>
-<p>Block：带有自动变量（局部变量）的匿名函数。它是C语言的扩充功能。之所以是拓展，是因为C语言不允许存在这样匿名函数。</p>
-</blockquote>
-<blockquote>
-<p>1.1 匿名函数<br>匿名函数是指不带函数名称函数。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> count)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> result = func(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以通过指针调用函数，看起来没用到函数名：</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> result = (*funcptr)(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//实际，在赋值给函数指针时，必须通过函数的名称才能获得该函数的地址。完整的步骤应该是</span></span><br><span class="line"><span class="keyword">int</span> (*funcptr)(<span class="keyword">int</span>) = &amp;func;</span><br><span class="line"><span class="keyword">int</span> result = (*funcptr)(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<p>而通过Block，就能够使用匿名函数，即不带函数名称的函数。</p>
-<blockquote>
-<p>1.2 捕获外部变量，看一个经典block面试题：</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> val = <span class="number">10</span>; </span><br><span class="line"><span class="keyword">void</span> (^blk)(<span class="keyword">void</span>) = ^&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;val=%d\n&quot;</span>,val);</span><br><span class="line">&#125;; </span><br><span class="line">val = <span class="number">2</span>; </span><br><span class="line">blk(); </span><br><span class="line"></span><br><span class="line"><span class="comment">//上面这段代码，输出值是：val = 10，而不是2。</span></span><br><span class="line"><span class="comment">//block 在实现时就会对它引用到的它所在方法中定义的栈变量进行一次只读拷贝，然后在 block 块内使用该只读拷贝；换句话说block截获自动变量的瞬时值；或者block捕获的是自动变量的副本。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>解决block不能修改自动变量的值，这一问题的另外一个办法是使用__block修饰符。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">__block <span class="keyword">int</span> val = <span class="number">10</span>;  </span><br><span class="line"><span class="keyword">void</span> (^blk)(<span class="keyword">void</span>) = ^&#123;<span class="built_in">printf</span>(<span class="string">&quot;val=%d\n&quot;</span>,val);&#125;;  </span><br><span class="line">val = <span class="number">2</span>;  </span><br><span class="line">blk(); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//上面的代码，跟第一个代码段相比只是多了一个__block修饰符。但是输出结果确是2。</span></span><br></pre></td></tr></table></figure>
-
-<p>2.1   Block声明及定义语法，及其变形<br>(1) 标准声明与定义</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">return_type (^blockName)(var_type) = ^return_type (var_type varName) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName(var);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当返回类型为void</span></span><br><span class="line"><span class="keyword">void</span> (^blockName)(var_type) = ^<span class="keyword">void</span> (var_type varName) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName(var);</span><br><span class="line"><span class="comment">//省略void 写法</span></span><br><span class="line"><span class="keyword">void</span> (^blockName)(var_type) = ^(var_type varName) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName(var);</span><br><span class="line"><span class="comment">//https://xiaozhuanlan.com/topic/2953746180</span></span><br><span class="line"> <span class="comment">//当返回类型和参数类型都为void</span></span><br><span class="line"><span class="keyword">void</span> (^blockName)(<span class="keyword">void</span>) = ^&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">blockName();</span><br><span class="line"></span><br><span class="line"><span class="comment">//匿名Block</span></span><br><span class="line"><span class="comment">//Block实现时，等号右边就是一个匿名Block，它没有blockName，称之为匿名Block：</span></span><br><span class="line">^return_type (var_type varName)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-</font>]]></content>
-      <categories>
-        <category>IOS</category>
-      </categories>
-      <tags>
-        <tag>iOS block</tag>
       </tags>
   </entry>
   <entry>
@@ -1897,39 +1915,6 @@ self-&gt;deviceType和deviceType是等价的。
       </tags>
   </entry>
   <entry>
-    <title>Linux_command</title>
-    <url>/2023/04/06/Linux/Linux-command/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="Linux-command"><a href="#Linux-command" class="headerlink" title="Linux_command"></a>Linux_command</h4><blockquote>
-<p>find 用于搜索文件</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;test1.txt&quot;</span></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;*.txt&quot;</span></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;dira&quot;</span></span><br><span class="line">find . -name <span class="string">&quot;*.txt&quot;</span></span><br><span class="line"><span class="comment"># 默认是当前路径</span></span><br><span class="line">find -name <span class="string">&quot;*.txt&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p>grep 查找文件中符合条件的字符串</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#在test1.txt中查找字符串abc,-n 表示显示行号</span></span><br><span class="line">grep -n <span class="string">&quot;abc&quot;</span> test1.txt</span><br><span class="line"><span class="comment">#当前目录下递归查找字符串</span></span><br><span class="line">grep -R <span class="string">&quot;abc&quot;</span> .</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>文件压缩命令</p>
-</blockquote>
-<p>tar 用于打包压缩和解压</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">c(create)：表示创建用来生成文件包 。</span><br><span class="line">-x：表示提取，从文件包中提取文件。</span><br><span class="line">-t：可以查看压缩的文件。</span><br><span class="line">-z：使用 gzip 方式进行处理，它与 <span class="string">&quot;c&quot;</span> 结合就表示压缩，与 <span class="string">&quot;x&quot;</span> 结合就表示解压缩。</span><br><span class="line">-j：使用 bzip2 方式进行处理，它与 <span class="string">&quot;c&quot;</span> 结合就表示压缩，与”x“结合就表示解压缩。</span><br><span class="line">-v(verbose)：详细报告 tar 处理的信息。</span><br><span class="line">-f(file)：表示文件，后面接着一个文件名。 -C &lt;指定目录&gt; 解压到指定目录。</span><br><span class="line"></span><br><span class="line">把目录 dira 压缩、打包为 dira.tar.gz 文件</span><br><span class="line">tar czvf dira.tar.gz dira</span><br><span class="line"><span class="comment">#解压到当前目录</span></span><br><span class="line">tar xzvf dira.tar.gz</span><br><span class="line"><span class="comment">#解压到 /home/book</span></span><br><span class="line">tar xzvf dira.tar.gz -C /home/book</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="网络管理相关命令"><a href="#网络管理相关命令" class="headerlink" title="网络管理相关命令"></a>网络管理相关命令</h4><blockquote>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"> ping 用于测试主机之间网络的连通性</span><br><span class="line"> ping www.baidu.com</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">wget 用于在网络上下载文件</span><br><span class="line"></span><br><span class="line">wget http://</span><br><span class="line"></span><br><span class="line">curl 用于在网络上下载文件</span><br><span class="line"></span><br><span class="line">curl https://</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ifconfig 用于查看网络情况</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h4 id="软件安装相关命令"><a href="#软件安装相关命令" class="headerlink" title="软件安装相关命令"></a>软件安装相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">搜索软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt search 关键字</span><br><span class="line">安装软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt install 软件包名</span><br><span class="line">卸载软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#卸载软件</span></span><br><span class="line">sudo apt remove 软件包名</span><br><span class="line"><span class="comment">#卸载软件并删除配置文件</span></span><br><span class="line">sudo apt remove 软件包名 --purge</span><br><span class="line"><span class="comment">#卸载软件并移除软件依赖</span></span><br><span class="line">sudo apt autoremove 软件包名</span><br><span class="line">软件更新</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt upgrade 软件包名</span><br><span class="line"><span class="comment"># 升级所有可以升级的软件</span></span><br><span class="line">sudo apt upgrade</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h4 id="系统管理相关命令"><a href="#系统管理相关命令" class="headerlink" title="系统管理相关命令"></a>系统管理相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">useradd 用于添加用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">useradd hello</span><br><span class="line">passwd 用于设置或者修改用户密码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">passwd hello</span><br><span class="line">userdel 用于删除用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># -r 选项可以删除用户家目录</span></span><br><span class="line">sudo userdel username</span><br><span class="line">usermod 用来修改用户帐号的各项设定</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#最常用于将用户加入指定的组</span></span><br><span class="line"><span class="comment">#将用户myfreax添加到games组</span></span><br><span class="line"><span class="comment">#应该始终使用-a追加选项。如果省略-a选项，则用户将从-G选项之后未列出的组中删除</span></span><br><span class="line">sudo usermod -a -G games myfreax</span><br><span class="line">free 用于查看系统内存</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">free -m <span class="comment">#以 MB 为单位</span></span><br><span class="line">free -g <span class="comment">#以 GB 为单位</span></span><br><span class="line">whoami 用于查看当前用户名</span><br><span class="line"></span><br><span class="line">ps 用于查看进程信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ps -a <span class="comment">#查看所有进程</span></span><br><span class="line">ps -e <span class="comment">#查看除内核以外的所有进程</span></span><br><span class="line">ps -f <span class="comment">#全格式输出</span></span><br><span class="line">top 动态查看进程信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</font>]]></content>
-  </entry>
-  <entry>
     <title>mysql</title>
     <url>/2023/08/24/JavaWeb/mysql/</url>
     <content><![CDATA[<font size="2.9">
@@ -2011,6 +1996,145 @@ self-&gt;deviceType和deviceType是等价的。
       </categories>
       <tags>
         <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux_command</title>
+    <url>/2023/04/06/Linux/Linux-command/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="Linux-command"><a href="#Linux-command" class="headerlink" title="Linux_command"></a>Linux_command</h4><blockquote>
+<p>find 用于搜索文件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;test1.txt&quot;</span></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;*.txt&quot;</span></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;dira&quot;</span></span><br><span class="line">find . -name <span class="string">&quot;*.txt&quot;</span></span><br><span class="line"><span class="comment"># 默认是当前路径</span></span><br><span class="line">find -name <span class="string">&quot;*.txt&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>grep 查找文件中符合条件的字符串</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#在test1.txt中查找字符串abc,-n 表示显示行号</span></span><br><span class="line">grep -n <span class="string">&quot;abc&quot;</span> test1.txt</span><br><span class="line"><span class="comment">#当前目录下递归查找字符串</span></span><br><span class="line">grep -R <span class="string">&quot;abc&quot;</span> .</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>文件压缩命令</p>
+</blockquote>
+<p>tar 用于打包压缩和解压</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">c(create)：表示创建用来生成文件包 。</span><br><span class="line">-x：表示提取，从文件包中提取文件。</span><br><span class="line">-t：可以查看压缩的文件。</span><br><span class="line">-z：使用 gzip 方式进行处理，它与 <span class="string">&quot;c&quot;</span> 结合就表示压缩，与 <span class="string">&quot;x&quot;</span> 结合就表示解压缩。</span><br><span class="line">-j：使用 bzip2 方式进行处理，它与 <span class="string">&quot;c&quot;</span> 结合就表示压缩，与”x“结合就表示解压缩。</span><br><span class="line">-v(verbose)：详细报告 tar 处理的信息。</span><br><span class="line">-f(file)：表示文件，后面接着一个文件名。 -C &lt;指定目录&gt; 解压到指定目录。</span><br><span class="line"></span><br><span class="line">把目录 dira 压缩、打包为 dira.tar.gz 文件</span><br><span class="line">tar czvf dira.tar.gz dira</span><br><span class="line"><span class="comment">#解压到当前目录</span></span><br><span class="line">tar xzvf dira.tar.gz</span><br><span class="line"><span class="comment">#解压到 /home/book</span></span><br><span class="line">tar xzvf dira.tar.gz -C /home/book</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="网络管理相关命令"><a href="#网络管理相关命令" class="headerlink" title="网络管理相关命令"></a>网络管理相关命令</h4><blockquote>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"> ping 用于测试主机之间网络的连通性</span><br><span class="line"> ping www.baidu.com</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">wget 用于在网络上下载文件</span><br><span class="line"></span><br><span class="line">wget http://</span><br><span class="line"></span><br><span class="line">curl 用于在网络上下载文件</span><br><span class="line"></span><br><span class="line">curl https://</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ifconfig 用于查看网络情况</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="软件安装相关命令"><a href="#软件安装相关命令" class="headerlink" title="软件安装相关命令"></a>软件安装相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">搜索软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt search 关键字</span><br><span class="line">安装软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt install 软件包名</span><br><span class="line">卸载软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#卸载软件</span></span><br><span class="line">sudo apt remove 软件包名</span><br><span class="line"><span class="comment">#卸载软件并删除配置文件</span></span><br><span class="line">sudo apt remove 软件包名 --purge</span><br><span class="line"><span class="comment">#卸载软件并移除软件依赖</span></span><br><span class="line">sudo apt autoremove 软件包名</span><br><span class="line">软件更新</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt upgrade 软件包名</span><br><span class="line"><span class="comment"># 升级所有可以升级的软件</span></span><br><span class="line">sudo apt upgrade</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="系统管理相关命令"><a href="#系统管理相关命令" class="headerlink" title="系统管理相关命令"></a>系统管理相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">useradd 用于添加用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">useradd hello</span><br><span class="line">passwd 用于设置或者修改用户密码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">passwd hello</span><br><span class="line">userdel 用于删除用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># -r 选项可以删除用户家目录</span></span><br><span class="line">sudo userdel username</span><br><span class="line">usermod 用来修改用户帐号的各项设定</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#最常用于将用户加入指定的组</span></span><br><span class="line"><span class="comment">#将用户myfreax添加到games组</span></span><br><span class="line"><span class="comment">#应该始终使用-a追加选项。如果省略-a选项，则用户将从-G选项之后未列出的组中删除</span></span><br><span class="line">sudo usermod -a -G games myfreax</span><br><span class="line">free 用于查看系统内存</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">free -m <span class="comment">#以 MB 为单位</span></span><br><span class="line">free -g <span class="comment">#以 GB 为单位</span></span><br><span class="line">whoami 用于查看当前用户名</span><br><span class="line"></span><br><span class="line">ps 用于查看进程信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ps -a <span class="comment">#查看所有进程</span></span><br><span class="line">ps -e <span class="comment">#查看除内核以外的所有进程</span></span><br><span class="line">ps -f <span class="comment">#全格式输出</span></span><br><span class="line">top 动态查看进程信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</font>]]></content>
+  </entry>
+  <entry>
+    <title>Git相关</title>
+    <url>/2021/04/16/Tools/Git/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h5 id="关于Merge"><a href="#关于Merge" class="headerlink" title="关于Merge"></a>关于Merge</h5><p>1&gt;从其他地方 负责了一个覆盖本地 出行 未合并报错<br><strong>您尚未结束您的合并（存在 MERGE_HEAD</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf .git/MERGE*</span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</font>
+
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>评论配置</title>
+    <url>/2020/12/23/Tools/LeanCloud-md/</url>
+    <content><![CDATA[<font size="2.9">
+
+<p><strong>Hexo的Next主题集成了多种评论系统，在这里介绍两种个人感觉还不错的评论系统：Valine和Gitment。这里介绍前者</strong></p>
+<h4 id="Valine-评论系统"><a href="#Valine-评论系统" class="headerlink" title="Valine 评论系统"></a>Valine 评论系统</h4><blockquote>
+<p>使用 Valine 评论系统，这款系统不需要登录便可以登录，没有后端，Next 主题最新已经支持安装。</p>
+</blockquote>
+<ul>
+<li><p>基于 Leancloud 的系统</p>
+</li>
+<li><p>支持 MarkDown 语法</p>
+</li>
+<li><p>无后端实现，快速高效</p>
+<span id="more"></span>
+<h4 id="关于配置"><a href="#关于配置" class="headerlink" title="关于配置"></a>关于配置</h4><blockquote>
+<p>注册 LeanCloud<br>因为 Valine 是基于 LeanCloud 系统的，所以先在 LeanCloud 中注册账号</p>
+</blockquote>
+</li>
+<li><p><a href="https://leancloud.cn/dashboard/login.html#/signin">官网入口</a></p>
+</li>
+</ul>
+<h4 id="关于设置-Next-主题"><a href="#关于设置-Next-主题" class="headerlink" title="关于设置 Next 主题"></a>关于设置 Next 主题</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># Valine.</span><br><span class="line"># You can get your appid and appkey from https://leancloud.cn</span><br><span class="line"># more info please open https://valine.js.org</span><br><span class="line">valine:</span><br><span class="line">  enable: true # 是否开启</span><br><span class="line">  appid:   # 上一步获取的 App ID</span><br><span class="line">  appkey:  # 上一步获取的 App Key</span><br><span class="line">  notify: false # 新留言是否需要通知 https://github.com/xCss/Valine/wiki</span><br><span class="line">  verify: false # 是否需要验证，验证比较反人类建议false关闭</span><br><span class="line">  placeholder: 请在此输入您的留言 # 默认留言框内的文字</span><br><span class="line">  avatar: mm # 默认头像</span><br><span class="line">  guest_info: nick,mail # 默认留言框的头部需要访问者输入的信息</span><br><span class="line">  pageSize: 10 # pagination size #默认单页的留言条数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="关于评论"><a href="#关于评论" class="headerlink" title="关于评论"></a>关于评论</h4><blockquote>
+<p>如果想要管理评论，进入 leancloud 官网，找到 控制台-&gt;存储-&gt;结构化数据-&gt;Commet 中进行管理</p>
+</blockquote>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">INFO  Deploying: git</span><br><span class="line">INFO  Clearing .deploy_git folder...</span><br><span class="line">INFO  Copying files from public folder...</span><br><span class="line">fatal: 位于未检出的子模组 &#x27;.deploy_git&#x27;</span><br><span class="line">Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>直接删除 <strong>.deploy_git</strong> 即可</p>
+</blockquote>
+</font>
+]]></content>
+      <categories>
+        <category>Hexo评论</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>调研记录一下</title>
+    <url>/2020/12/21/Tools/MoreLear/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="1-能力考试院"><a href="#1-能力考试院" class="headerlink" title="1.能力考试院"></a>1.能力考试院</h4><span id="more"></span>
+<blockquote>
+<p><a href="http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384">http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384</a> </p>
+</blockquote>
+<h4 id="2-查询"><a href="#2-查询" class="headerlink" title="2.查询"></a>2.查询</h4><blockquote>
+<p><a href="http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/">http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://sh.offcn.com/html/2020/11/191560.html">http://sh.offcn.com/html/2020/11/191560.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://sh.offcn.com/zg/shsydwdg/">http://sh.offcn.com/zg/shsydwdg/</a></p>
+</blockquote>
+</font>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Link</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>charles</title>
+    <url>/2021/06/01/Tools/charles/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h5 id="https-破解"><a href="#https-破解" class="headerlink" title="https 破解"></a>https 破解</h5><p> 1.基本配置  mac + android</p>
+<p> 2.手机浏览器  <strong><a href="http://charlesproxy.com/getssl">http://charlesproxy.com/getssl</a></strong> 下载证书  Mac下面</p>
+<p><a href="'charles/txBDmwpCkj.png'"></a> 在钥匙串找到，双击选择信任</p>
+<p> 3.res/raw/charles.perm   res/xml/network_security_config.xml </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">network-security-config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">domain-config</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 域名--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>api.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>canye.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>felix.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>mori.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>jumbo.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>lynn.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>canye.milicat.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>s-cdn.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">trust-anchors</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">certificates</span> <span class="attr">src</span>=<span class="string">&quot;@raw/charles&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trust-anchors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">domain-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">network-security-config</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>4.官方描述<strong><a href="https://developer.android.google.cn/training/articles/security-config.html">https://developer.android.google.cn/training/articles/security-config.html</a></strong></p>
+<p>5.在Android application标签配置</p>
+<p>6.去掉代理这个包无法使用，需要删除androidmanifest.xml配置</p>
+</font>]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>charles</tag>
       </tags>
   </entry>
   <entry>
@@ -2164,6 +2288,35 @@ self-&gt;deviceType和deviceType是等价的。
       </categories>
       <tags>
         <tag>Lua,Unlua</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unity加载AB包</title>
+    <url>/2021/02/01/Unity/Unity-AssetBundle/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="AssetBundle"><a href="#AssetBundle" class="headerlink" title="AssetBundle"></a>AssetBundle</h4><blockquote>
+<p>加载AB包</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + <span class="string">&quot;/&quot;</span>+ <span class="string">&quot;model&quot;</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>加载AB包资源 <strong>用泛型 或者 typeof 类型</strong><br><strong>AB包不能重复加载否则报错</strong></p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">GameObject gameobject =  ab.LoadAsset&lt;GameObject&gt;(<span class="string">&quot;cube&quot;</span>);</span><br><span class="line">GameObject gameobject2 = ab.LoadAsset(<span class="string">&quot;cube&quot;</span>,<span class="keyword">typeof</span>(GameObject)) <span class="keyword">as</span> GameObject;</span><br><span class="line">Instantiate(gameobject);</span><br><span class="line"><span class="comment">// false 卸载ab 包但 不卸载资源</span></span><br><span class="line">ab.unpack(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>利用主包获取依赖信息</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">  AssetBundle abMain = AssetBundle.LoadFromFile(Application.streamingAssetsPath + <span class="string">&quot;/&quot;</span>+ <span class="string">&quot;PC&quot;</span>);</span><br><span class="line">  </span><br><span class="line">        AssetBundleManifest asBundleManifest = abMain.LoadAsset&lt;AssetBundleManifest&gt;(<span class="string">&quot;AssetBundleManifest&quot;</span>);</span><br><span class="line"><span class="comment">//加载主包中的固定文件</span></span><br><span class="line"><span class="built_in">string</span>[] strs = asBundleManifest.GetAllDependencies(<span class="string">&quot;model&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; strs.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(strs[i]);</span><br><span class="line">            AssetBundle.LoadFromFile(Application.streamingAssetsPath+<span class="string">&quot;/&quot;</span>+strs[i]);</span><br><span class="line">        &#125;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+
+
+<span id="more"></span>
+
+</font>]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>AssetBundle</tag>
       </tags>
   </entry>
   <entry>
@@ -2385,6 +2538,27 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </tags>
   </entry>
   <entry>
+    <title>UnityBase</title>
+    <url>/2021/10/14/Unity/UnityBase/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="1-Unity基础-ref-和-out"><a href="#1-Unity基础-ref-和-out" class="headerlink" title="1.Unity基础  ref 和 out"></a>1.Unity基础  ref 和 out</h4><p>影响外部传入，让其被修改</p>
+<p>ref: 变量先初始化</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueRef</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> a</span>)</span>&#123;</span><br><span class="line">  a = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> b = <span class="number">99</span>;</span><br><span class="line">ChagneValueRef(<span class="keyword">ref</span> b);</span><br><span class="line">Debug.Log(b);<span class="comment">//b = 9</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>out: 方法里初始化</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueOut</span>(<span class="params"><span class="keyword">out</span> <span class="built_in">int</span> <span class="keyword">value</span></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">value</span> = <span class="number">88</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> cc ;</span><br><span class="line">ChangeValueOut(<span class="keyword">out</span> cc);</span><br><span class="line">Debug.Log(cc);<span class="comment">//b = 88</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-冒泡排序优化"><a href="#2-冒泡排序优化" class="headerlink" title="2.冒泡排序优化"></a>2.冒泡排序优化</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span>[] arrs = &#123;<span class="number">7</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">bool</span> isShot = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> m =<span class="number">0</span>;m &lt; arrs.Length;m++)&#123;</span><br><span class="line">    isShot = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> n =<span class="number">0</span>;n&lt;arrs.Length<span class="number">-1</span>-m;n++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arrs[n]&gt; arrs[n+<span class="number">1</span>])&#123;</span><br><span class="line">            isShot = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">int</span> temp =  arrs[n];</span><br><span class="line">            arrs[n] = arrs[n+<span class="number">1</span>];</span><br><span class="line">            arrs[n+<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//正常情况 每次都交换，如果达到 没有进入交换 就不需要了</span></span><br><span class="line">    <span class="keyword">if</span>(!isShot)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</font>]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>UnityBase</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>UnityPluginForMac</title>
     <url>/2019/06/09/Unity/UnityPluginForMac/</url>
     <content><![CDATA[<font size="2.9">
@@ -2417,56 +2591,6 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </tags>
   </entry>
   <entry>
-    <title>UnityBase</title>
-    <url>/2021/10/14/Unity/UnityBase/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="1-Unity基础-ref-和-out"><a href="#1-Unity基础-ref-和-out" class="headerlink" title="1.Unity基础  ref 和 out"></a>1.Unity基础  ref 和 out</h4><p>影响外部传入，让其被修改</p>
-<p>ref: 变量先初始化</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueRef</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> a</span>)</span>&#123;</span><br><span class="line">  a = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> b = <span class="number">99</span>;</span><br><span class="line">ChagneValueRef(<span class="keyword">ref</span> b);</span><br><span class="line">Debug.Log(b);<span class="comment">//b = 9</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>out: 方法里初始化</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ChagneValueOut</span>(<span class="params"><span class="keyword">out</span> <span class="built_in">int</span> <span class="keyword">value</span></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">value</span> = <span class="number">88</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> cc ;</span><br><span class="line">ChangeValueOut(<span class="keyword">out</span> cc);</span><br><span class="line">Debug.Log(cc);<span class="comment">//b = 88</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-冒泡排序优化"><a href="#2-冒泡排序优化" class="headerlink" title="2.冒泡排序优化"></a>2.冒泡排序优化</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span>[] arrs = &#123;<span class="number">7</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">bool</span> isShot = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> m =<span class="number">0</span>;m &lt; arrs.Length;m++)&#123;</span><br><span class="line">    isShot = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> n =<span class="number">0</span>;n&lt;arrs.Length<span class="number">-1</span>-m;n++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arrs[n]&gt; arrs[n+<span class="number">1</span>])&#123;</span><br><span class="line">            isShot = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">int</span> temp =  arrs[n];</span><br><span class="line">            arrs[n] = arrs[n+<span class="number">1</span>];</span><br><span class="line">            arrs[n+<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//正常情况 每次都交换，如果达到 没有进入交换 就不需要了</span></span><br><span class="line">    <span class="keyword">if</span>(!isShot)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</font>]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>UnityBase</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Unity加载AB包</title>
-    <url>/2021/02/01/Unity/Unity-AssetBundle/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="AssetBundle"><a href="#AssetBundle" class="headerlink" title="AssetBundle"></a>AssetBundle</h4><blockquote>
-<p>加载AB包</p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">AssetBundle ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + <span class="string">&quot;/&quot;</span>+ <span class="string">&quot;model&quot;</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>加载AB包资源 <strong>用泛型 或者 typeof 类型</strong><br><strong>AB包不能重复加载否则报错</strong></p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">GameObject gameobject =  ab.LoadAsset&lt;GameObject&gt;(<span class="string">&quot;cube&quot;</span>);</span><br><span class="line">GameObject gameobject2 = ab.LoadAsset(<span class="string">&quot;cube&quot;</span>,<span class="keyword">typeof</span>(GameObject)) <span class="keyword">as</span> GameObject;</span><br><span class="line">Instantiate(gameobject);</span><br><span class="line"><span class="comment">// false 卸载ab 包但 不卸载资源</span></span><br><span class="line">ab.unpack(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>利用主包获取依赖信息</p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">  AssetBundle abMain = AssetBundle.LoadFromFile(Application.streamingAssetsPath + <span class="string">&quot;/&quot;</span>+ <span class="string">&quot;PC&quot;</span>);</span><br><span class="line">  </span><br><span class="line">        AssetBundleManifest asBundleManifest = abMain.LoadAsset&lt;AssetBundleManifest&gt;(<span class="string">&quot;AssetBundleManifest&quot;</span>);</span><br><span class="line"><span class="comment">//加载主包中的固定文件</span></span><br><span class="line"><span class="built_in">string</span>[] strs = asBundleManifest.GetAllDependencies(<span class="string">&quot;model&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; strs.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(strs[i]);</span><br><span class="line">            AssetBundle.LoadFromFile(Application.streamingAssetsPath+<span class="string">&quot;/&quot;</span>+strs[i]);</span><br><span class="line">        &#125;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-
-
-<span id="more"></span>
-
-</font>]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>AssetBundle</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Steam接入记录</title>
     <url>/2021/01/26/Unity/steam/</url>
     <content><![CDATA[<h5 id="Steam-for-Mac"><a href="#Steam-for-Mac" class="headerlink" title="Steam for Mac"></a>Steam for Mac</h5><p>SDK <strong><a href="http://steamworks.github.io/installation">http://steamworks.github.io/installation</a></strong></p>
@@ -2480,112 +2604,6 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
       </categories>
       <tags>
         <tag>Steam</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git相关</title>
-    <url>/2021/04/16/Tools/Git/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h5 id="关于Merge"><a href="#关于Merge" class="headerlink" title="关于Merge"></a>关于Merge</h5><p>1&gt;从其他地方 负责了一个覆盖本地 出行 未合并报错<br><strong>您尚未结束您的合并（存在 MERGE_HEAD</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf .git/MERGE*</span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</font>
-
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>评论配置</title>
-    <url>/2020/12/23/Tools/LeanCloud-md/</url>
-    <content><![CDATA[<font size="2.9">
-
-<p><strong>Hexo的Next主题集成了多种评论系统，在这里介绍两种个人感觉还不错的评论系统：Valine和Gitment。这里介绍前者</strong></p>
-<h4 id="Valine-评论系统"><a href="#Valine-评论系统" class="headerlink" title="Valine 评论系统"></a>Valine 评论系统</h4><blockquote>
-<p>使用 Valine 评论系统，这款系统不需要登录便可以登录，没有后端，Next 主题最新已经支持安装。</p>
-</blockquote>
-<ul>
-<li><p>基于 Leancloud 的系统</p>
-</li>
-<li><p>支持 MarkDown 语法</p>
-</li>
-<li><p>无后端实现，快速高效</p>
-<span id="more"></span>
-<h4 id="关于配置"><a href="#关于配置" class="headerlink" title="关于配置"></a>关于配置</h4><blockquote>
-<p>注册 LeanCloud<br>因为 Valine 是基于 LeanCloud 系统的，所以先在 LeanCloud 中注册账号</p>
-</blockquote>
-</li>
-<li><p><a href="https://leancloud.cn/dashboard/login.html#/signin">官网入口</a></p>
-</li>
-</ul>
-<h4 id="关于设置-Next-主题"><a href="#关于设置-Next-主题" class="headerlink" title="关于设置 Next 主题"></a>关于设置 Next 主题</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># Valine.</span><br><span class="line"># You can get your appid and appkey from https://leancloud.cn</span><br><span class="line"># more info please open https://valine.js.org</span><br><span class="line">valine:</span><br><span class="line">  enable: true # 是否开启</span><br><span class="line">  appid:   # 上一步获取的 App ID</span><br><span class="line">  appkey:  # 上一步获取的 App Key</span><br><span class="line">  notify: false # 新留言是否需要通知 https://github.com/xCss/Valine/wiki</span><br><span class="line">  verify: false # 是否需要验证，验证比较反人类建议false关闭</span><br><span class="line">  placeholder: 请在此输入您的留言 # 默认留言框内的文字</span><br><span class="line">  avatar: mm # 默认头像</span><br><span class="line">  guest_info: nick,mail # 默认留言框的头部需要访问者输入的信息</span><br><span class="line">  pageSize: 10 # pagination size #默认单页的留言条数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="关于评论"><a href="#关于评论" class="headerlink" title="关于评论"></a>关于评论</h4><blockquote>
-<p>如果想要管理评论，进入 leancloud 官网，找到 控制台-&gt;存储-&gt;结构化数据-&gt;Commet 中进行管理</p>
-</blockquote>
-<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">INFO  Deploying: git</span><br><span class="line">INFO  Clearing .deploy_git folder...</span><br><span class="line">INFO  Copying files from public folder...</span><br><span class="line">fatal: 位于未检出的子模组 &#x27;.deploy_git&#x27;</span><br><span class="line">Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>直接删除 <strong>.deploy_git</strong> 即可</p>
-</blockquote>
-</font>
-]]></content>
-      <categories>
-        <category>Hexo评论</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>调研记录一下</title>
-    <url>/2020/12/21/Tools/MoreLear/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="1-能力考试院"><a href="#1-能力考试院" class="headerlink" title="1.能力考试院"></a>1.能力考试院</h4><span id="more"></span>
-<blockquote>
-<p><a href="http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384">http://sydw.rsj.sh.gov.cn/ksybaoming/website/online/list.zul?planId=d27d2a48-657d-4b15-bbe1-9511495bf384</a> </p>
-</blockquote>
-<h4 id="2-查询"><a href="#2-查询" class="headerlink" title="2.查询"></a>2.查询</h4><blockquote>
-<p><a href="http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/">http://sh.offcn.com/html/shiyedanwei/zhaokaoxinxi/cjcx/</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://sh.offcn.com/html/2020/11/191560.html">http://sh.offcn.com/html/2020/11/191560.html</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://sh.offcn.com/zg/shsydwdg/">http://sh.offcn.com/zg/shsydwdg/</a></p>
-</blockquote>
-</font>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>Link</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>charles</title>
-    <url>/2021/06/01/Tools/charles/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h5 id="https-破解"><a href="#https-破解" class="headerlink" title="https 破解"></a>https 破解</h5><p> 1.基本配置  mac + android</p>
-<p> 2.手机浏览器  <strong><a href="http://charlesproxy.com/getssl">http://charlesproxy.com/getssl</a></strong> 下载证书  Mac下面</p>
-<p><a href="'charles/txBDmwpCkj.png'"></a> 在钥匙串找到，双击选择信任</p>
-<p> 3.res/raw/charles.perm   res/xml/network_security_config.xml </p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">network-security-config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">domain-config</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 域名--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>api.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>canye.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>felix.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>mori.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>jumbo.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>lynn.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>canye.milicat.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">domain</span> <span class="attr">includeSubdomains</span>=<span class="string">&quot;true&quot;</span>&gt;</span>s-cdn.xxgame.cn<span class="tag">&lt;/<span class="name">domain</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">trust-anchors</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">certificates</span> <span class="attr">src</span>=<span class="string">&quot;@raw/charles&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trust-anchors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">domain-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">network-security-config</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>4.官方描述<strong><a href="https://developer.android.google.cn/training/articles/security-config.html">https://developer.android.google.cn/training/articles/security-config.html</a></strong></p>
-<p>5.在Android application标签配置</p>
-<p>6.去掉代理这个包无法使用，需要删除androidmanifest.xml配置</p>
-</font>]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>charles</tag>
       </tags>
   </entry>
   <entry>
@@ -3200,6 +3218,45 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       </tags>
   </entry>
   <entry>
+    <title>视频流H264的组装</title>
+    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A303-%E5%88%87%E7%89%87/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="1-H264介绍"><a href="#1-H264介绍" class="headerlink" title="1 H264介绍"></a>1 H264介绍</h4><blockquote>
+<p> 我们了解了什么是宏快，宏快作为压缩视频的最小的一部分，需要被组织，然后在网络之间做相互传输。</p>
+</blockquote>
+<p>H264更深层次    —》宏块   太浅了</p>
+<p>​        如果单纯的用<strong>宏快</strong>来发送数据是<strong>杂乱无章</strong>的，就好像在没有<strong>集装箱</strong> 出现之前，货物总是随意被堆放到船上。</p>
+<p>上货（编码），下货是非常痛苦的。 当集装箱出现之后，一切都发生了改变，传输效率大大增高。</p>
+<p>​        集装箱可以理解成<strong>H264编码标准</strong>，他制定了相互传输的格式，将宏快 有组织，有结构，有顺序的形成一系列的码流。这种码流既可 通过 InputStream 网络流的数据进行传输，也可以封装成一个文件进行保存</p>
+<p><strong>H264: H264/AVC是广泛采用的一种编码方式。</strong>主要作用是为了传输</p>
+<h4 id="1-1-H264码流组成"><a href="#1-1-H264码流组成" class="headerlink" title="1.1 H264码流组成"></a>1.1 H264码流组成</h4><p><strong>组成H264码流的结构中 包含以下几部分 ，从大到小排序依次是</strong> </p>
+<blockquote>
+<p><strong>H264视频序列，图像，片组，片，NALU，宏块 ，像素。</strong> </p>
+<p>类似 地球 国家 城市  镇 村落</p>
+</blockquote>
+<p><img src="/images/66.png"></p>
+<h5 id="1-1-1-H264编码分层"><a href="#1-1-1-H264编码分层" class="headerlink" title="1.1.1  H264编码分层"></a>1.1.1  H264编码分层</h5><ul>
+<li><strong>NAL层:（Network Abstraction Layer,视频数据网络抽象层）</strong>：  它的作用是H264只要在网络上传输，在传输的过程每个包以太网是1500字节，而H264的帧往往会大于1500字节，所以要进行拆包，将一个帧拆成多个包进行传输，所有的拆包或者组包都是通过NAL层去处理的。</li>
+<li><strong>VCL层:（Video Coding Layer,视频数据编码层）</strong>： 对视频原始数据进行压缩</li>
+</ul>
+<h5 id="1-1-2-H264的传输"><a href="#1-1-2-H264的传输" class="headerlink" title="1.1.2  H264的传输"></a>1.1.2  H264的传输</h5><p>​    <strong>H264是一种码流</strong>  类似与一种不见头，也不见尾的一条<strong>河流</strong>。如何从和流中取到自己想要的<strong>数据</strong>呢，</p>
+<p>在H264的标砖中有这样的一个封装格式叫做”Annex-B”的字节流格式。 它是H264编码的主要字节流格式。</p>
+<p>几乎市面上的编码器是以这种格式进行输出的。<strong>起始码0x 00 00 00 01 或者 0x 00 00 01</strong> 作为<strong>分隔符</strong>。 </p>
+<p>两个 0x 00 00 00 01之间的字节数据 是表示一个NAL Unit</p>
+<p><img src="/images/67.png"></p>
+<h5 id="1-1-3-编码结构"><a href="#1-1-3-编码结构" class="headerlink" title="1.1.3  编码结构"></a>1.1.3  编码结构</h5><p><img src="/images/68.jpg"></p>
+<p> <strong>切片头</strong>：包含了一组片的信息，比如片的数量，顺序等等 </p>
+<h5 id="1-1-4-H264码流分层结构图"><a href="#1-1-4-H264码流分层结构图" class="headerlink" title="1.1.4  H264码流分层结构图"></a>1.1.4  H264码流分层结构图</h5><p><img src="/images/69.jpg"></p>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>H264</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>H264的分层</title>
     <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A304-H264%E5%88%86%E5%B1%82/</url>
     <content><![CDATA[<font size="2.9">
@@ -3255,36 +3312,110 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       </tags>
   </entry>
   <entry>
-    <title>视频流H264的组装</title>
-    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A303-%E5%88%87%E7%89%87/</url>
+    <title>H.265与H.264的差异详解</title>
+    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/</url>
     <content><![CDATA[<font size="2.9">
 
-<h4 id="1-H264介绍"><a href="#1-H264介绍" class="headerlink" title="1 H264介绍"></a>1 H264介绍</h4><blockquote>
-<p> 我们了解了什么是宏快，宏快作为压缩视频的最小的一部分，需要被组织，然后在网络之间做相互传输。</p>
+
+<h2 id="H-265与H-264的差异详解"><a href="#H-265与H-264的差异详解" class="headerlink" title="H.265与H.264的差异详解"></a>H.265与H.264的差异详解</h2><blockquote>
+<p><strong>码牛只为跟牛逼的你</strong></p>
 </blockquote>
-<p>H264更深层次    —》宏块   太浅了</p>
-<p>​        如果单纯的用<strong>宏快</strong>来发送数据是<strong>杂乱无章</strong>的，就好像在没有<strong>集装箱</strong> 出现之前，货物总是随意被堆放到船上。</p>
-<p>上货（编码），下货是非常痛苦的。 当集装箱出现之后，一切都发生了改变，传输效率大大增高。</p>
-<p>​        集装箱可以理解成<strong>H264编码标准</strong>，他制定了相互传输的格式，将宏快 有组织，有结构，有顺序的形成一系列的码流。这种码流既可 通过 InputStream 网络流的数据进行传输，也可以封装成一个文件进行保存</p>
-<p><strong>H264: H264/AVC是广泛采用的一种编码方式。</strong>主要作用是为了传输</p>
-<h4 id="1-1-H264码流组成"><a href="#1-1-H264码流组成" class="headerlink" title="1.1 H264码流组成"></a>1.1 H264码流组成</h4><p><strong>组成H264码流的结构中 包含以下几部分 ，从大到小排序依次是</strong> </p>
+<p>通过以下几种来对比H264与H265的差异</p>
 <blockquote>
-<p><strong>H264视频序列，图像，片组，片，NALU，宏块 ，像素。</strong> </p>
-<p>类似 地球 国家 城市  镇 村落</p>
+<p>1.编解码框架差异</p>
+<p>2.压缩性能比较</p>
+<p>3.各模块技术差异汇总</p>
+<p>4.块划分结构</p>
+<p>5.帧内预测</p>
+<p>6.帧间预测</p>
+<p>7.去块滤波</p>
+<p>8.SAO滤波</p>
+<p>9.Tile</p>
+<p>10.WPP</p>
+<p>11.Dependent slice</p>
+<p>12.其他技术</p>
 </blockquote>
-<p><img src="/images/66.png"></p>
-<h5 id="1-1-1-H264编码分层"><a href="#1-1-1-H264编码分层" class="headerlink" title="1.1.1  H264编码分层"></a>1.1.1  H264编码分层</h5><ul>
-<li><strong>NAL层:（Network Abstraction Layer,视频数据网络抽象层）</strong>：  它的作用是H264只要在网络上传输，在传输的过程每个包以太网是1500字节，而H264的帧往往会大于1500字节，所以要进行拆包，将一个帧拆成多个包进行传输，所有的拆包或者组包都是通过NAL层去处理的。</li>
-<li><strong>VCL层:（Video Coding Layer,视频数据编码层）</strong>： 对视频原始数据进行压缩</li>
-</ul>
-<h5 id="1-1-2-H264的传输"><a href="#1-1-2-H264的传输" class="headerlink" title="1.1.2  H264的传输"></a>1.1.2  H264的传输</h5><p>​    <strong>H264是一种码流</strong>  类似与一种不见头，也不见尾的一条<strong>河流</strong>。如何从和流中取到自己想要的<strong>数据</strong>呢，</p>
-<p>在H264的标砖中有这样的一个封装格式叫做”Annex-B”的字节流格式。 它是H264编码的主要字节流格式。</p>
-<p>几乎市面上的编码器是以这种格式进行输出的。<strong>起始码0x 00 00 00 01 或者 0x 00 00 01</strong> 作为<strong>分隔符</strong>。 </p>
-<p>两个 0x 00 00 00 01之间的字节数据 是表示一个NAL Unit</p>
-<p><img src="/images/67.png"></p>
-<h5 id="1-1-3-编码结构"><a href="#1-1-3-编码结构" class="headerlink" title="1.1.3  编码结构"></a>1.1.3  编码结构</h5><p><img src="/images/68.jpg"></p>
-<p> <strong>切片头</strong>：包含了一组片的信息，比如片的数量，顺序等等 </p>
-<h5 id="1-1-4-H264码流分层结构图"><a href="#1-1-4-H264码流分层结构图" class="headerlink" title="1.1.4  H264码流分层结构图"></a>1.1.4  H264码流分层结构图</h5><p><img src="/images/69.jpg"></p>
+<h4 id="1-1-H-264与H-265的主要差异"><a href="#1-1-H-264与H-265的主要差异" class="headerlink" title="1.1  H.264与H.265的主要差异"></a>1.1  H.264与H.265的主要差异</h4><p>H.265仍然采用混合编解码，编解码结构域H.264基本一致，</p>
+<p>主要的不同在于：</p>
+<p>Ø 编码块划分结构：采用CU (CodingUnit)、PU(PredictionUnit)和TU(TransformUnit)的递归结构。</p>
+<p>Ø 基本细节：各功能块的内部细节有很多差异</p>
+<p>Ø 并行工具：增加了Tile以及WPP等并行工具集以提高编码速度</p>
+<p>Ø 滤波器：在去块滤波之后增加了SAO（sample adaptive offset）滤波模块</p>
+<p><img src="https://img-blog.csdn.net/20170903222110391?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>Fig.H.265的框架图</p>
+<h4 id="2-压缩性能比较"><a href="#2-压缩性能比较" class="headerlink" title="2.  压缩性能比较"></a>2.  压缩性能比较</h4><p>PSNR计算方式</p>
+<p><img src="https://img-blog.csdn.net/20170903222300500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265/HEVC HM-9.0 和H.264 JM-18.4 的BD-rate 比较：</p>
+<p> AllIntra case:           22%</p>
+<p> RandomAccess case:       34%</p>
+<p> LowDelay case:          37%</p>
+<h4 id="3-各模块技术差异汇总"><a href="#3-各模块技术差异汇总" class="headerlink" title="3.  各模块技术差异汇总"></a>3.  各模块技术差异汇总</h4><p><img src="https://img-blog.csdn.net/20170903222335956?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p><img src="https://img-blog.csdn.net/20170903222351940?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="4-块划分结构"><a href="#4-块划分结构" class="headerlink" title="4.  块划分结构"></a>4.  块划分结构</h4><p>在H.265中，将宏块的大小从H.264的16×16扩展到了64×64，以便于高分辨率视频的压缩。</p>
+<p>同时，采用了更加灵活的编码结构来提高编码效率，</p>
+<p>包括编码单元（CodingUnit）、预测单元（PredictUnit）和变换单元（TransformUnit）。</p>
+<p>如下图所示:</p>
+<p><img src="https://img-blog.csdn.net/20170903222441671?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>其中:</p>
+<p>编码单元类似于H.264/AVC中的宏块的概念，用于编码的过程。</p>
+<p>预测单元是进行预测的基本单元，</p>
+<p>变换单元是进行变换和量化的基本单元。</p>
+<p>这三个单元的分离，使得变换、预测和编码各个处理环节更加灵活，</p>
+<p>也有利于各环节的划分更加符合视频图像的纹理特征，</p>
+<p>有利于各个单元更优化的完成各自的功能。</p>
+<p><img src="https://img-blog.csdn.net/20170903222542263?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>RQT是一种自适应的变换技术，这种思想是对H.264/AVC中ABT（AdaptiveBlock-size Transform）技术的延伸和扩展。</p>
+<p>对于帧间编码来说，它允许变换块的大小根据运动补偿块的大小进行自适应的调整；</p>
+<p>对于帧内编码来说，它允许变换块的大小根据帧内预测残差的特性进行自适应的调整。</p>
+<p>大块的变换相对于小块的变换，一方面能够提供更好的能量集中效果，并能在量化后保存更多的图像细节，但是另一方面在量化后却会带来更多的振铃效应。</p>
+<p>因此，根据当前块信号的特性，自适应的选择变换块大小，如下图所示，可以得到能量集中、细节保留程度以及图像的振铃效应三者最优的折中。</p>
+<p><img src="https://img-blog.csdn.net/20170903222512555?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>Fig. 灵活的块结构示意图</p>
+<h4 id="5-帧内预测模式"><a href="#5-帧内预测模式" class="headerlink" title="5.  帧内预测模式"></a>5.  帧内预测模式</h4><p>本质上H.265是在H.264的预测方向基础上增加了更多的预测方向</p>
+<p>H.265：所有尺寸的CU块，亮度有35种预测方向，色度有5种预测方向</p>
+<p>H.264：亮度 4x4块9个方向，8x8块9个方向，16x16块4种方向，色度4种方向</p>
+<p> <img src="https://img-blog.csdn.net/20170903222603597?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.264的帧内预测方向:</p>
+<p> <img src="https://img-blog.csdn.net/20170903222635669?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265的帧内预测方向：</p>
+<h4 id="6-帧间预测"><a href="#6-帧间预测" class="headerlink" title="6.  帧间预测"></a>6.  帧间预测</h4><p>本质上H.265是在H.264基础上增加插值的抽头系数个数，改变抽头系数值以及增加运动矢量预测值的候选个数，以达到减少预测残差的目的。</p>
+<p>H.265与H.264一样插值精度都是亮度到1/4，色度到1/8精度，但插值滤波器抽头长度和系数不同.</p>
+<p>H.265的增加了运动矢量预测值候选的个数，而H.264预测值只有一个</p>
+<p> <img src="https://img-blog.csdn.net/20170903222712796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265的空域候选项：</p>
+<p><img src="https://img-blog.csdn.net/20170903222726452?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265时域共同位置候选项</p>
+<h4 id="7-去块滤波"><a href="#7-去块滤波" class="headerlink" title="7.  去块滤波"></a>7.  去块滤波</h4><p>本质上H.265的去块滤波与H.264的去块滤波及流程是一致的，做了如下最显著的改变：</p>
+<p>Ø 滤波边界： H.264最小到4x4边界滤波；而H.265适应最新的CU、PU和TU划分结构的滤波边缘，最小滤波边界为8x8，</p>
+<p>Ø 滤波顺序：H264先宏块内采用垂直边界，再当前宏块内水平边界；而H.265先整帧的垂直边界，再整帧的水平边界</p>
+<p>ALF在编解码环路内，位于Deblock和SAO之后，</p>
+<p>用于恢复重建图像以达到重建图像与原始图像之间的均方差（MSE）最小。</p>
+<p>ALF的系数是在帧级计算和传输的，可以整帧应用ALF，</p>
+<p>也可以对于基于块或基于量化树（quadtree）的部分区域进行ALF，</p>
+<p>如果是基于部分区域的ALF，还必须传递指示区域信息的附加信息。</p>
+<h4 id="8-采样点自适应偏移（Sample-AdaptiveOffset）滤波"><a href="#8-采样点自适应偏移（Sample-AdaptiveOffset）滤波" class="headerlink" title="8.  采样点自适应偏移（Sample AdaptiveOffset）滤波"></a>8.  采样点自适应偏移（Sample AdaptiveOffset）滤波</h4><p>SAO(sample adaptive offset)滤波其实就是对去块滤波后的重建像素按照不同的模板进行分类，并对每一种分类像素进行补偿, 分类模板分为BO(Band offset)和EO(Edge offset)。</p>
+<p> <img src="https://img-blog.csdn.net/20170903222824890?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>BO分类：</p>
+<p> <img src="https://img-blog.csdn.net/20170903222838657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>EO分类模块：</p>
+<p>SAO在编解码环路内，位于Deblock之后，通过对重建图像的分类，对每一类图像像素值加减一个偏移，达到减少失真的目的，从而提高压缩率，减少码流。</p>
+<p>采用SAO后，平均可以减少2%~6%的码流,而编码器和解码器的性能消耗仅仅增加了约2%。</p>
+<h4 id="9-Tile划分"><a href="#9-Tile划分" class="headerlink" title="9.  Tile划分"></a>9.  Tile划分</h4><p>Tile： 将图像分割为矩形区域。</p>
+<p>其主要目的是增强并行处理性能。</p>
+<p>每个tile区域相当于一幅子图像，可独立的以LCU块为单位进行编解码。</p>
+<p>一个Tile块为基本的并行单元，每个Tile为一个子码流</p>
+<p> <img src="https://img-blog.csdn.net/20170903222909352?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\10. WPP</p>
+<p>WPP:  全称为wavefront parallel process，以LCU行为基本的编码单位。</p>
+<p>以一行LCU块为基本的并行单元，每一行LCU为一个子码流</p>
+<p> <img src="https://img-blog.csdn.net/20170903222931315?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\11. Dependentslice</p>
+<p>Dependent slice：该技术可以理解为对原先Slice NALU的数据划分，使其可以适合更加灵活的打包方式。</p>
+<p>Slice 和dependent slice 的示意图如下</p>
+<p><img src="https://img-blog.csdn.net/20170903223007796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\12. 其他相关技术</p>
+<p>Ø Transform_skip模式：transform_skip_flag，该模式不进行变换，但是要进行量化，该模式对文本桌面视频有较好效果</p>
+<p>Ø 内部比特深度增加：为了保证中间预测、变换以及量化过程中的内部比特精度，以达到更好的压缩性能</p>
 </font>]]></content>
       <categories>
         <category>Android</category>
@@ -3892,119 +4023,6 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
 <td>扩展</td>
 </tr>
 </tbody></table>
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>H264</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>H.265与H.264的差异详解</title>
-    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/</url>
-    <content><![CDATA[<font size="2.9">
-
-
-<h2 id="H-265与H-264的差异详解"><a href="#H-265与H-264的差异详解" class="headerlink" title="H.265与H.264的差异详解"></a>H.265与H.264的差异详解</h2><blockquote>
-<p><strong>码牛只为跟牛逼的你</strong></p>
-</blockquote>
-<p>通过以下几种来对比H264与H265的差异</p>
-<blockquote>
-<p>1.编解码框架差异</p>
-<p>2.压缩性能比较</p>
-<p>3.各模块技术差异汇总</p>
-<p>4.块划分结构</p>
-<p>5.帧内预测</p>
-<p>6.帧间预测</p>
-<p>7.去块滤波</p>
-<p>8.SAO滤波</p>
-<p>9.Tile</p>
-<p>10.WPP</p>
-<p>11.Dependent slice</p>
-<p>12.其他技术</p>
-</blockquote>
-<h4 id="1-1-H-264与H-265的主要差异"><a href="#1-1-H-264与H-265的主要差异" class="headerlink" title="1.1  H.264与H.265的主要差异"></a>1.1  H.264与H.265的主要差异</h4><p>H.265仍然采用混合编解码，编解码结构域H.264基本一致，</p>
-<p>主要的不同在于：</p>
-<p>Ø 编码块划分结构：采用CU (CodingUnit)、PU(PredictionUnit)和TU(TransformUnit)的递归结构。</p>
-<p>Ø 基本细节：各功能块的内部细节有很多差异</p>
-<p>Ø 并行工具：增加了Tile以及WPP等并行工具集以提高编码速度</p>
-<p>Ø 滤波器：在去块滤波之后增加了SAO（sample adaptive offset）滤波模块</p>
-<p><img src="https://img-blog.csdn.net/20170903222110391?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>Fig.H.265的框架图</p>
-<h4 id="2-压缩性能比较"><a href="#2-压缩性能比较" class="headerlink" title="2.  压缩性能比较"></a>2.  压缩性能比较</h4><p>PSNR计算方式</p>
-<p><img src="https://img-blog.csdn.net/20170903222300500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265/HEVC HM-9.0 和H.264 JM-18.4 的BD-rate 比较：</p>
-<p> AllIntra case:           22%</p>
-<p> RandomAccess case:       34%</p>
-<p> LowDelay case:          37%</p>
-<h4 id="3-各模块技术差异汇总"><a href="#3-各模块技术差异汇总" class="headerlink" title="3.  各模块技术差异汇总"></a>3.  各模块技术差异汇总</h4><p><img src="https://img-blog.csdn.net/20170903222335956?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p><img src="https://img-blog.csdn.net/20170903222351940?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="4-块划分结构"><a href="#4-块划分结构" class="headerlink" title="4.  块划分结构"></a>4.  块划分结构</h4><p>在H.265中，将宏块的大小从H.264的16×16扩展到了64×64，以便于高分辨率视频的压缩。</p>
-<p>同时，采用了更加灵活的编码结构来提高编码效率，</p>
-<p>包括编码单元（CodingUnit）、预测单元（PredictUnit）和变换单元（TransformUnit）。</p>
-<p>如下图所示:</p>
-<p><img src="https://img-blog.csdn.net/20170903222441671?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>其中:</p>
-<p>编码单元类似于H.264/AVC中的宏块的概念，用于编码的过程。</p>
-<p>预测单元是进行预测的基本单元，</p>
-<p>变换单元是进行变换和量化的基本单元。</p>
-<p>这三个单元的分离，使得变换、预测和编码各个处理环节更加灵活，</p>
-<p>也有利于各环节的划分更加符合视频图像的纹理特征，</p>
-<p>有利于各个单元更优化的完成各自的功能。</p>
-<p><img src="https://img-blog.csdn.net/20170903222542263?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>RQT是一种自适应的变换技术，这种思想是对H.264/AVC中ABT（AdaptiveBlock-size Transform）技术的延伸和扩展。</p>
-<p>对于帧间编码来说，它允许变换块的大小根据运动补偿块的大小进行自适应的调整；</p>
-<p>对于帧内编码来说，它允许变换块的大小根据帧内预测残差的特性进行自适应的调整。</p>
-<p>大块的变换相对于小块的变换，一方面能够提供更好的能量集中效果，并能在量化后保存更多的图像细节，但是另一方面在量化后却会带来更多的振铃效应。</p>
-<p>因此，根据当前块信号的特性，自适应的选择变换块大小，如下图所示，可以得到能量集中、细节保留程度以及图像的振铃效应三者最优的折中。</p>
-<p><img src="https://img-blog.csdn.net/20170903222512555?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>Fig. 灵活的块结构示意图</p>
-<h4 id="5-帧内预测模式"><a href="#5-帧内预测模式" class="headerlink" title="5.  帧内预测模式"></a>5.  帧内预测模式</h4><p>本质上H.265是在H.264的预测方向基础上增加了更多的预测方向</p>
-<p>H.265：所有尺寸的CU块，亮度有35种预测方向，色度有5种预测方向</p>
-<p>H.264：亮度 4x4块9个方向，8x8块9个方向，16x16块4种方向，色度4种方向</p>
-<p> <img src="https://img-blog.csdn.net/20170903222603597?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.264的帧内预测方向:</p>
-<p> <img src="https://img-blog.csdn.net/20170903222635669?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265的帧内预测方向：</p>
-<h4 id="6-帧间预测"><a href="#6-帧间预测" class="headerlink" title="6.  帧间预测"></a>6.  帧间预测</h4><p>本质上H.265是在H.264基础上增加插值的抽头系数个数，改变抽头系数值以及增加运动矢量预测值的候选个数，以达到减少预测残差的目的。</p>
-<p>H.265与H.264一样插值精度都是亮度到1/4，色度到1/8精度，但插值滤波器抽头长度和系数不同.</p>
-<p>H.265的增加了运动矢量预测值候选的个数，而H.264预测值只有一个</p>
-<p> <img src="https://img-blog.csdn.net/20170903222712796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265的空域候选项：</p>
-<p><img src="https://img-blog.csdn.net/20170903222726452?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265时域共同位置候选项</p>
-<h4 id="7-去块滤波"><a href="#7-去块滤波" class="headerlink" title="7.  去块滤波"></a>7.  去块滤波</h4><p>本质上H.265的去块滤波与H.264的去块滤波及流程是一致的，做了如下最显著的改变：</p>
-<p>Ø 滤波边界： H.264最小到4x4边界滤波；而H.265适应最新的CU、PU和TU划分结构的滤波边缘，最小滤波边界为8x8，</p>
-<p>Ø 滤波顺序：H264先宏块内采用垂直边界，再当前宏块内水平边界；而H.265先整帧的垂直边界，再整帧的水平边界</p>
-<p>ALF在编解码环路内，位于Deblock和SAO之后，</p>
-<p>用于恢复重建图像以达到重建图像与原始图像之间的均方差（MSE）最小。</p>
-<p>ALF的系数是在帧级计算和传输的，可以整帧应用ALF，</p>
-<p>也可以对于基于块或基于量化树（quadtree）的部分区域进行ALF，</p>
-<p>如果是基于部分区域的ALF，还必须传递指示区域信息的附加信息。</p>
-<h4 id="8-采样点自适应偏移（Sample-AdaptiveOffset）滤波"><a href="#8-采样点自适应偏移（Sample-AdaptiveOffset）滤波" class="headerlink" title="8.  采样点自适应偏移（Sample AdaptiveOffset）滤波"></a>8.  采样点自适应偏移（Sample AdaptiveOffset）滤波</h4><p>SAO(sample adaptive offset)滤波其实就是对去块滤波后的重建像素按照不同的模板进行分类，并对每一种分类像素进行补偿, 分类模板分为BO(Band offset)和EO(Edge offset)。</p>
-<p> <img src="https://img-blog.csdn.net/20170903222824890?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>BO分类：</p>
-<p> <img src="https://img-blog.csdn.net/20170903222838657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>EO分类模块：</p>
-<p>SAO在编解码环路内，位于Deblock之后，通过对重建图像的分类，对每一类图像像素值加减一个偏移，达到减少失真的目的，从而提高压缩率，减少码流。</p>
-<p>采用SAO后，平均可以减少2%~6%的码流,而编码器和解码器的性能消耗仅仅增加了约2%。</p>
-<h4 id="9-Tile划分"><a href="#9-Tile划分" class="headerlink" title="9.  Tile划分"></a>9.  Tile划分</h4><p>Tile： 将图像分割为矩形区域。</p>
-<p>其主要目的是增强并行处理性能。</p>
-<p>每个tile区域相当于一幅子图像，可独立的以LCU块为单位进行编解码。</p>
-<p>一个Tile块为基本的并行单元，每个Tile为一个子码流</p>
-<p> <img src="https://img-blog.csdn.net/20170903222909352?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\10. WPP</p>
-<p>WPP:  全称为wavefront parallel process，以LCU行为基本的编码单位。</p>
-<p>以一行LCU块为基本的并行单元，每一行LCU为一个子码流</p>
-<p> <img src="https://img-blog.csdn.net/20170903222931315?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\11. Dependentslice</p>
-<p>Dependent slice：该技术可以理解为对原先Slice NALU的数据划分，使其可以适合更加灵活的打包方式。</p>
-<p>Slice 和dependent slice 的示意图如下</p>
-<p><img src="https://img-blog.csdn.net/20170903223007796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\12. 其他相关技术</p>
-<p>Ø Transform_skip模式：transform_skip_flag，该模式不进行变换，但是要进行量化，该模式对文本桌面视频有较好效果</p>
-<p>Ø 内部比特深度增加：为了保证中间预测、变换以及量化过程中的内部比特精度，以达到更好的压缩性能</p>
 </font>]]></content>
       <categories>
         <category>Android</category>
