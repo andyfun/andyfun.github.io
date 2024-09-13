@@ -49,6 +49,129 @@
       </tags>
   </entry>
   <entry>
+    <title>Cocos_creator_3.6.1</title>
+    <url>/2022/10/16/Cocos/Cocos-creator-3-6-1/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="cocos"><a href="#cocos" class="headerlink" title="cocos"></a>cocos</h4><ol>
+<li><a href="https://docs.cocos.com/creator/manual/zh/getting-started/first-game/">cocos</a></li>
+<li>使用TypeScript</li>
+<li>保存玩，回到编辑器页面刷新</li>
+<li>开发小游戏</li>
+</ol>
+<h4 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="keyword">import</span> &#123; _decorator, Component, Vec3, input, Input, EventMouse, Animation, SkeletalAnimation &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&quot;PlayerController&quot;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">PlayerController</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    start () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="title">update</span>(<span class="params">deltaTime: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//都是组件 和Unity 相似</span></span><br><span class="line"><span class="comment">//cc.sys 系统类 判断手机 或者浏览器</span></span><br><span class="line"><span class="comment">//input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this); 鼠标监听</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//手机滑动监听  input.on(Input.EventType.TOUCH_START,this.onTouchStar,this);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//this._deltaPos.x = this._curJumpSpeed * deltaTime; 距离= 速度*时间</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h4><ol>
+<li>assets 目录下放资源</li>
+<li>Animations ,Prefabs,Scenes,Scripts</li>
+</ol>
+<h4 id="cocos2dx-4-0"><a href="#cocos2dx-4-0" class="headerlink" title="cocos2dx-4.0"></a>cocos2dx-4.0</h4><pre><code>cocos new -p com.test  -l cpp Test
+
+cocos run -d androd 
+</code></pre>
+</font>
+]]></content>
+      <tags>
+        <tag>cocos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cocos2dx</title>
+    <url>/2023/10/12/Cocos/cocos2dx/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="cocos2dx-4-0-ios-少库"><a href="#cocos2dx-4-0-ios-少库" class="headerlink" title="cocos2dx-4.0 ios 少库"></a>cocos2dx-4.0 ios 少库</h4><p>can build setting find linking and replace</p>
+<p>step1</p>
+<p>/usr/lib/libz.dylib</p>
+<p>replace</p>
+<p>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libiconv.dylib</p>
+<p>step2</p>
+<p>/usr/lib/libiconv.dylib</p>
+<p>replace</p>
+<p>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libz.dylib</p>
+</font>
+]]></content>
+      <tags>
+        <tag>cocos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker</title>
+    <url>/2023/02/08/Docker/docker/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h5 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h5><blockquote>
+<p>首先我们使用 docker ps -a 命令查看本机所有的容器。</p>
+</blockquote>
+<blockquote>
+<p>启动</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> docker run my/python:v1 cal <span class="comment">##my/python:v1为镜像名和标签  cal 日历</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">## 我们还可以通过指定参数，启动一个bash交互终端。</span></span><br><span class="line">docker run -it my/python:v1 /bin/bash</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>stop docker</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker stop my/python:v1  </span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>导出镜像</p>
+</blockquote>
+<p>使用 docker export 命令根据容器 ID 将镜像导出成一个文件。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker <span class="built_in">export</span> f299f501774c &gt; hangger_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>导入镜像</p>
+</blockquote>
+<p>使用 docker import 命令则可将这个镜像文件导入进来。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker import - new_hangger_server &lt; hangger_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查看本机的容器</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker  images</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h5 id="save-and-load"><a href="#save-and-load" class="headerlink" title="save and load"></a>save and load</h5><p>1，保存镜像<br>  下面使用 docker save 命令根据 ID 将镜像保存成一个文件。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker save 0fdf2b4c26d3 &gt; save_hangge_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 我们还可以同时将多个 image 打包成一个文件，比如下面将镜像库中的 postgres 和 mongo 打包：</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker save -o images.tar postgres:9.6 mongo:3.4</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>2，载入镜像</p>
+<pre><code>使用 docker load 命令则可将这个镜像文件载入进来。
+</code></pre>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker load &lt; save_hangge_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>两种方法不可混用。启动容器会报错  import 和 save </code></p>
+<h5 id="使用load-数据丢失了-待查。。"><a href="#使用load-数据丢失了-待查。。" class="headerlink" title="使用load 数据丢失了 待查。。"></a>使用load 数据丢失了 待查。。</h5><h5 id="误删除-重新配置了"><a href="#误删除-重新配置了" class="headerlink" title="误删除 重新配置了"></a>误删除 重新配置了</h5><ol>
+<li>权限问题 </li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">chmod 777 .</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>pytest + allure + jenkins + docker</li>
+</ol>
+<blockquote>
+<p>jenkins 容器 安装 allure 设置环境变量 export path=/var/jenkins_home/allure/bin:$PATH<br>source 无法使用</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">RUN /bin/bash -c <span class="string">&quot;source ~/.bashrc&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>jenkins web插件安装  和 全局配置 容器中路径</p>
+</blockquote>
+<blockquote>
+<p>pip3 install pytest-allure</p>
+</blockquote>
+<font/>]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Android架构</title>
     <url>/2018/08/07/Android/Android-Jetpack/</url>
     <content><![CDATA[<font size="2.9">
@@ -759,6 +882,31 @@
       </tags>
   </entry>
   <entry>
+    <title>android-emulator</title>
+    <url>/2022/08/28/Android/android-emulator/</url>
+    <content><![CDATA[<font size="2.6">
+
+<h5 id="emulator-命令"><a href="#emulator-命令" class="headerlink" title="emulator 命令"></a>emulator 命令</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb shell getprop ro.product.cpu.abi</span><br><span class="line"></span><br><span class="line">手机模拟器的名称	默认端口号</span><br><span class="line">Genymotion模拟器	5555</span><br><span class="line">夜神模拟器	62001/52001 x86_64  libhounidi</span><br><span class="line">海马玩模拟器	26944</span><br><span class="line">mumu模拟器	7555 x86_64 libhounidi</span><br><span class="line">天天模拟器	6555</span><br><span class="line">逍遥安卓模拟器	21503</span><br><span class="line">BlueStacks 蓝叠3模拟器	5555</span><br><span class="line">雷神安卓模拟器	5555</span><br><span class="line">腾讯手游助手	5555  x86_64 libhounidi</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="Harbor"><a href="#Harbor" class="headerlink" title="Harbor"></a>Harbor</h5><pre><code>1. 下载Harbor 切换到harbor 目录执行命令
+1. sudo ./install.sh
+</code></pre>
+<h5 id="atxserver"><a href="#atxserver" class="headerlink" title="atxserver"></a>atxserver</h5> <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line">docker-compose up </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">修改</span></span><br><span class="line"></span><br><span class="line">docker-compose build</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="vmware固定IP"><a href="#vmware固定IP" class="headerlink" title="vmware固定IP"></a>vmware固定IP</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">sudo vim /etc/netplan/01-network-manager-all.yaml</span><br><span class="line"></span><br><span class="line">network:</span><br><span class="line">version: 2</span><br><span class="line">renderer: NetworkManager</span><br><span class="line">ethernets:</span><br><span class="line">     ens33:</span><br><span class="line">        dhcp4: no #关闭dhcp</span><br><span class="line">        addresses: [192.168.94.48/24] #ip/掩码(255.255.255.0)</span><br><span class="line">        gateway4: 192.168.94.1 #网关</span><br><span class="line">        nameservers:</span><br><span class="line">                addresses: [8.8.8.8,114.114.114.114] #DNS</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="gitlab-runner-配置"><a href="#gitlab-runner-配置" class="headerlink" title="gitlab-runner 配置"></a>gitlab-runner 配置</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">vim ~/.gitlab-runner/config.toml</span><br><span class="line"><span class="meta">#</span><span class="bash">镜像是公司同事搭建的docker镜像</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="docker-编译"><a href="#docker-编译" class="headerlink" title="docker 编译"></a>docker 编译</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    # 编译</span><br><span class="line">    docker build -t xxx:xxx .</span><br><span class="line">    # 运行</span><br><span class="line">    docker run -d -p 8080:8080 xxx:xxx</span><br><span class="line"></span><br><span class="line">    # 删除</span><br><span class="line">    docker rm -f xxx</span><br><span class="line">    docker rmi xxx</span><br><span class="line">    # 进入容器</span><br><span class="line">    docker exec -it xxx bash</span><br><span class="line">    docker run -it xxx /bin/bash</span><br><span class="line"></span><br><span class="line">    docker images </span><br><span class="line">    docker ps -a</span><br><span class="line"></span><br><span class="line">    # 推送到私有库</span><br><span class="line"></span><br><span class="line">    docker login -u admin -p 123456  http://192.168.94.48:5000</span><br><span class="line">    #如果登陆不成功 需要授权</span><br><span class="line">    #docker守护进程 添加授权</span><br><span class="line">    sudo  vim  /etc/docker/daemon.json</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"> &quot;insecure-registries&quot;:[&quot;192.168.94.48:5000&quot;],</span><br><span class="line"> &quot;registry-mirrors&quot;:[</span><br><span class="line">   &quot;https://hub.uuuadc.top&quot;,</span><br><span class="line">        &quot;https://docker.anyhub.us.kg&quot;,</span><br><span class="line">        &quot;https://dockerhub.jobcher.com&quot;,</span><br><span class="line">        &quot;https://dockerhub.icu&quot;,</span><br><span class="line">        &quot;https://docker.ckyl.me&quot;,</span><br><span class="line">        &quot;https://docker.awsl9527.cn&quot;</span><br><span class="line"> ]</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">  #</span><span class="bash"> docker push</span></span><br><span class="line">  docker login  </span><br><span class="line">  docker build -t xxx:xxx .</span><br><span class="line">  docker tag xxx:xxx 192.168.94.48:5000/xxx:xxx</span><br><span class="line">  docker push 192.168.94.48:5000/xxx:xxx</span><br></pre></td></tr></table></figure>
+
+
+</font>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>emulator,harbor,spring-boot,atxserver,docker,vmware固定IP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>android_framework</title>
     <url>/2022/08/28/Android/android-framework/</url>
     <content><![CDATA[<font size="2.6">
@@ -1112,67 +1260,6 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       </tags>
   </entry>
   <entry>
-    <title>RePlugin(360)和 Shadow(tencent)</title>
-    <url>/2021/10/23/Android/rePlugin/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="Replugin-AndroidPlugin-4-0-0-插件6-1-1"><a href="#Replugin-AndroidPlugin-4-0-0-插件6-1-1" class="headerlink" title="Replugin (AndroidPlugin 4.0.0,插件6.1.1)"></a>Replugin (AndroidPlugin 4.0.0,插件6.1.1)</h4><p>该插件很久没有更新，最新Androidstudio 需要降级，很麻烦 故不再研究 ，原理大概了解。</p>
-<h4 id="Shadow-更新维护"><a href="#Shadow-更新维护" class="headerlink" title="Shadow 更新维护"></a>Shadow 更新维护</h4><p>Java11 ：Android Studio Arctic Fox内置的JDK<br>File-&gt;prefenece-gradle<br>配置Android_HOME</p>
-<p>window:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./gradlew build</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>sample-host是宿主应用</p>
-</blockquote>
-<blockquote>
-<p>sample-manager是插件管理器的动态实现</p>
-</blockquote>
-<blockquote>
-<p>sample-plugin/sample-loader是loader的动态实现，业务主要在这里定义插件组件和壳子代理组件的配对关系等。</p>
-</blockquote>
-<blockquote>
-<p>sample-constant是在前3者中共用的相同字符串常量。</p>
-</blockquote>
-<blockquote>
-<p>sample-plugin/sample-runtime是runtime的动态实现，业务主要在这里定义壳子代理组件的实际类。</p>
-</blockquote>
-<blockquote>
-<p>sample-plugin/sample-app-lib是业务App的主要代码，是一个aar库。</p>
-</blockquote>
-<blockquote>
-<p>sample-plugin/sample-normal-app是一个apk模块壳子，将sample-app-lib打包在其中，演示业务App是可以正常安装运行的。</p>
-</blockquote>
-<blockquote>
-<p>sample-plugin/sample-plugin-app也是一个apk模块壳子，同样将sample-app-lib打包在其中，但是额外应用了Shadow插件，生成的apk不能正常安装运行。</p>
-</blockquote>
-<h3 id="接入Shadow-插件"><a href="#接入Shadow-插件" class="headerlink" title="接入Shadow 插件"></a>接入Shadow 插件</h3><blockquote>
-<p>发布本地仓库<br>可以先在 buildScripts/gradle/common.gradle 路径下，修改发布版本或其他信息：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">./gradew publish</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>C:\Users\caiyuhao.m2\repository\com\tencent\shadow\dynamic<br>C:\Users\caiyuhao.m2\repository\com\tencent\shadow\core</p>
-<p>插件的包名和宿主的包名要保持一致。</p>
-<p>这个演示工程没有实现下载功能，而是假设下载的文件直接位于指定路径。 因此运行前需要手工用adb命令将指定内容push到指定位置。</p>
-<p>编译插件，在plugin-project目录中运行：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">./gradlew packageDebugPlugin</span><br><span class="line"></span><br><span class="line">adb push build/plugin-debug.zip /data/local/tmp</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>编译PluginManager，在manager-project目录中运行：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">./gradlew assembleDebug</span><br><span class="line"></span><br><span class="line">adb push sample-manager/build/outputs/apk/debug/sample-manager-debug.apk /data/local/tmp</span><br></pre></td></tr></table></figure>
-<p>最后可以用Android Studio打开host-project直接运行sample-host模块。</p>
-<p>plugin-project中的plugin-normal-apk模块也可以直接安装运行，演示不使用Shadow时插件的运行情况。</p>
-<p>cd /data/local/tmp<br>然后在文件夹中创建一个文件夹。例</p>
-<p>1<br>mkdir folder<br>接下来更改权限</p>
-<p>1<br>chmod - R 777 folder</p>
-<p>adb shell ls -ld /data/ /data/local/ /data/local/tmp/<br>查看权限<br>确实有讲究。这个tmp目录是一个Android系统的特殊目录。这个目录的特点是adb可以直接push写入。app都能读取，但不能写入。同时这个目录还是手机的内置存储，可以直接用DexClassLoader加载这个目录中的apk，而sdcard不行。所以，如果我们用adb push到sdcard上，想动态加载还要将apk再复制到应用的data目录才行。</p>
-<p>正是环境肯定没法用这个目录，因为应用没有这个目录的写入权限。建议应用把插件包下载到宿主的data私有目录中，以保证数据安全，其他应用不能篡改。</p>
-</font>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>plugin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Network</title>
     <url>/2021/10/20/Android/network/</url>
     <content><![CDATA[<font size="2.9">
@@ -1250,6 +1337,67 @@ IP直连方案有下面几大优势：
       </tags>
   </entry>
   <entry>
+    <title>RePlugin(360)和 Shadow(tencent)</title>
+    <url>/2021/10/23/Android/rePlugin/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="Replugin-AndroidPlugin-4-0-0-插件6-1-1"><a href="#Replugin-AndroidPlugin-4-0-0-插件6-1-1" class="headerlink" title="Replugin (AndroidPlugin 4.0.0,插件6.1.1)"></a>Replugin (AndroidPlugin 4.0.0,插件6.1.1)</h4><p>该插件很久没有更新，最新Androidstudio 需要降级，很麻烦 故不再研究 ，原理大概了解。</p>
+<h4 id="Shadow-更新维护"><a href="#Shadow-更新维护" class="headerlink" title="Shadow 更新维护"></a>Shadow 更新维护</h4><p>Java11 ：Android Studio Arctic Fox内置的JDK<br>File-&gt;prefenece-gradle<br>配置Android_HOME</p>
+<p>window:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./gradlew build</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>sample-host是宿主应用</p>
+</blockquote>
+<blockquote>
+<p>sample-manager是插件管理器的动态实现</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-loader是loader的动态实现，业务主要在这里定义插件组件和壳子代理组件的配对关系等。</p>
+</blockquote>
+<blockquote>
+<p>sample-constant是在前3者中共用的相同字符串常量。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-runtime是runtime的动态实现，业务主要在这里定义壳子代理组件的实际类。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-app-lib是业务App的主要代码，是一个aar库。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-normal-app是一个apk模块壳子，将sample-app-lib打包在其中，演示业务App是可以正常安装运行的。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-plugin-app也是一个apk模块壳子，同样将sample-app-lib打包在其中，但是额外应用了Shadow插件，生成的apk不能正常安装运行。</p>
+</blockquote>
+<h3 id="接入Shadow-插件"><a href="#接入Shadow-插件" class="headerlink" title="接入Shadow 插件"></a>接入Shadow 插件</h3><blockquote>
+<p>发布本地仓库<br>可以先在 buildScripts/gradle/common.gradle 路径下，修改发布版本或其他信息：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">./gradew publish</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>C:\Users\caiyuhao.m2\repository\com\tencent\shadow\dynamic<br>C:\Users\caiyuhao.m2\repository\com\tencent\shadow\core</p>
+<p>插件的包名和宿主的包名要保持一致。</p>
+<p>这个演示工程没有实现下载功能，而是假设下载的文件直接位于指定路径。 因此运行前需要手工用adb命令将指定内容push到指定位置。</p>
+<p>编译插件，在plugin-project目录中运行：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">./gradlew packageDebugPlugin</span><br><span class="line"></span><br><span class="line">adb push build/plugin-debug.zip /data/local/tmp</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>编译PluginManager，在manager-project目录中运行：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">./gradlew assembleDebug</span><br><span class="line"></span><br><span class="line">adb push sample-manager/build/outputs/apk/debug/sample-manager-debug.apk /data/local/tmp</span><br></pre></td></tr></table></figure>
+<p>最后可以用Android Studio打开host-project直接运行sample-host模块。</p>
+<p>plugin-project中的plugin-normal-apk模块也可以直接安装运行，演示不使用Shadow时插件的运行情况。</p>
+<p>cd /data/local/tmp<br>然后在文件夹中创建一个文件夹。例</p>
+<p>1<br>mkdir folder<br>接下来更改权限</p>
+<p>1<br>chmod - R 777 folder</p>
+<p>adb shell ls -ld /data/ /data/local/ /data/local/tmp/<br>查看权限<br>确实有讲究。这个tmp目录是一个Android系统的特殊目录。这个目录的特点是adb可以直接push写入。app都能读取，但不能写入。同时这个目录还是手机的内置存储，可以直接用DexClassLoader加载这个目录中的apk，而sdcard不行。所以，如果我们用adb push到sdcard上，想动态加载还要将apk再复制到应用的data目录才行。</p>
+<p>正是环境肯定没法用这个目录，因为应用没有这个目录的写入权限。建议应用把插件包下载到宿主的data私有目录中，以保证数据安全，其他应用不能篡改。</p>
+</font>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>plugin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Android二维码扫描</title>
     <url>/2021/02/09/Android/scans-md/</url>
     <content><![CDATA[<font size="2.9">
@@ -1304,148 +1452,6 @@ IP直连方案有下面几大优势：
       <tags>
         <tag>shadowsocks</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Cocos_creator_3.6.1</title>
-    <url>/2022/10/16/Cocos/Cocos-creator-3-6-1/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="cocos"><a href="#cocos" class="headerlink" title="cocos"></a>cocos</h4><ol>
-<li><a href="https://docs.cocos.com/creator/manual/zh/getting-started/first-game/">cocos</a></li>
-<li>使用TypeScript</li>
-<li>保存玩，回到编辑器页面刷新</li>
-<li>开发小游戏</li>
-</ol>
-<h4 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="keyword">import</span> &#123; _decorator, Component, Vec3, input, Input, EventMouse, Animation, SkeletalAnimation &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&quot;PlayerController&quot;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">PlayerController</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    start () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="title">update</span>(<span class="params">deltaTime: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//都是组件 和Unity 相似</span></span><br><span class="line"><span class="comment">//cc.sys 系统类 判断手机 或者浏览器</span></span><br><span class="line"><span class="comment">//input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this); 鼠标监听</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//手机滑动监听  input.on(Input.EventType.TOUCH_START,this.onTouchStar,this);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//this._deltaPos.x = this._curJumpSpeed * deltaTime; 距离= 速度*时间</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h4><ol>
-<li>assets 目录下放资源</li>
-<li>Animations ,Prefabs,Scenes,Scripts</li>
-</ol>
-<h4 id="cocos2dx-4-0"><a href="#cocos2dx-4-0" class="headerlink" title="cocos2dx-4.0"></a>cocos2dx-4.0</h4><pre><code>cocos new -p com.test  -l cpp Test
-
-cocos run -d androd 
-</code></pre>
-</font>
-]]></content>
-      <tags>
-        <tag>cocos</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cocos2dx</title>
-    <url>/2023/10/12/Cocos/cocos2dx/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h4 id="cocos2dx-4-0-ios-少库"><a href="#cocos2dx-4-0-ios-少库" class="headerlink" title="cocos2dx-4.0 ios 少库"></a>cocos2dx-4.0 ios 少库</h4><p>can build setting find linking and replace</p>
-<p>step1</p>
-<p>/usr/lib/libz.dylib</p>
-<p>replace</p>
-<p>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libiconv.dylib</p>
-<p>step2</p>
-<p>/usr/lib/libiconv.dylib</p>
-<p>replace</p>
-<p>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libz.dylib</p>
-</font>
-]]></content>
-      <tags>
-        <tag>cocos</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker</title>
-    <url>/2023/02/08/Docker/docker/</url>
-    <content><![CDATA[<font size="2.9">
-
-<h5 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h5><blockquote>
-<p>首先我们使用 docker ps -a 命令查看本机所有的容器。</p>
-</blockquote>
-<blockquote>
-<p>启动</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> docker run my/python:v1 cal <span class="comment">##my/python:v1为镜像名和标签  cal 日历</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">## 我们还可以通过指定参数，启动一个bash交互终端。</span></span><br><span class="line">docker run -it my/python:v1 /bin/bash</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p>stop docker</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker stop my/python:v1  </span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p>导出镜像</p>
-</blockquote>
-<p>使用 docker export 命令根据容器 ID 将镜像导出成一个文件。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker <span class="built_in">export</span> f299f501774c &gt; hangger_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>导入镜像</p>
-</blockquote>
-<p>使用 docker import 命令则可将这个镜像文件导入进来。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker import - new_hangger_server &lt; hangger_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>查看本机的容器</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker  images</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h5 id="save-and-load"><a href="#save-and-load" class="headerlink" title="save and load"></a>save and load</h5><p>1，保存镜像<br>  下面使用 docker save 命令根据 ID 将镜像保存成一个文件。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker save 0fdf2b4c26d3 &gt; save_hangge_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p> 我们还可以同时将多个 image 打包成一个文件，比如下面将镜像库中的 postgres 和 mongo 打包：</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker save -o images.tar postgres:9.6 mongo:3.4</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>2，载入镜像</p>
-<pre><code>使用 docker load 命令则可将这个镜像文件载入进来。
-</code></pre>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">docker load &lt; save_hangge_server.tar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><code>两种方法不可混用。启动容器会报错  import 和 save </code></p>
-<h5 id="使用load-数据丢失了-待查。。"><a href="#使用load-数据丢失了-待查。。" class="headerlink" title="使用load 数据丢失了 待查。。"></a>使用load 数据丢失了 待查。。</h5><h5 id="误删除-重新配置了"><a href="#误删除-重新配置了" class="headerlink" title="误删除 重新配置了"></a>误删除 重新配置了</h5><ol>
-<li>权限问题 </li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">chmod 777 .</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>pytest + allure + jenkins + docker</li>
-</ol>
-<blockquote>
-<p>jenkins 容器 安装 allure 设置环境变量 export path=/var/jenkins_home/allure/bin:$PATH<br>source 无法使用</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">RUN /bin/bash -c <span class="string">&quot;source ~/.bashrc&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>jenkins web插件安装  和 全局配置 容器中路径</p>
-</blockquote>
-<blockquote>
-<p>pip3 install pytest-allure</p>
-</blockquote>
-<font/>]]></content>
-      <categories>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>harmonyos</title>
-    <url>/2022/09/19/Harmonyos/harmonyos/</url>
-    <content><![CDATA[<font size='2.9'>
-
-<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><ol>
-<li><p>获取源码 </p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    # 安装repo 工具</span><br><span class="line">    $ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 &gt; repo</span><br><span class="line">    $ chmod a+x repo</span><br><span class="line">    $ sudo mv repo /usr/local/bin/repo</span><br><span class="line">    $ sudo apt install python3-pip</span><br><span class="line">    $ pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">获取标准系统源码</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir OpenHarmony</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> OpenHarmony</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync -c  <span class="comment"># -c 获取当前分支代码</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">&#x27;git lfs pull&#x27;</span></span></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>如果 repo init 出现以下错误 </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">jackie@USER-20200124ZG:~$ repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify</span><br><span class="line">    Downloading Repo source from http://mirrors.tuna.tsinghua.edu.cn/git/git-repo/</span><br><span class="line">    remote: Enumerating objects: 7113, done.</span><br><span class="line">    remote: Counting objects: 100% (7113/7113), done.</span><br><span class="line">    remote: Compressing objects: 100% (3728/3728), done.</span><br><span class="line">    remote: Total 7113 (delta 4590), reused 5464 (delta 3311)s   s</span><br><span class="line">    Receiving objects: 100% (7113/7113), 3.09 MiB | 1.76 MiB/s, done.</span><br><span class="line">    Resolving deltas: 100% (4590/4590), done.</span><br><span class="line">    repo: warning: verification of repo code has been disabled;</span><br><span class="line">    repo will not be able to verify the integrity of itself.</span><br><span class="line"></span><br><span class="line">    repo: error: unable to resolve &quot;fork_flow&quot;</span><br><span class="line">    fatal: cloning the git-repo repository failed, will remove &#x27;.repo/repo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><code>切换到root 权限 sudo</code> 可以解决</p>
-</font></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Harmonyos</category>
-      </categories>
   </entry>
   <entry>
     <title>ios_block</title>
@@ -1999,37 +2005,23 @@ self-&gt;deviceType和deviceType是等价的。
       </tags>
   </entry>
   <entry>
-    <title>Linux_command</title>
-    <url>/2023/04/06/Linux/Linux-command/</url>
-    <content><![CDATA[<font size="2.9">
+    <title>harmonyos</title>
+    <url>/2022/09/19/Harmonyos/harmonyos/</url>
+    <content><![CDATA[<font size='2.9'>
 
-<h4 id="Linux-command"><a href="#Linux-command" class="headerlink" title="Linux_command"></a>Linux_command</h4><blockquote>
-<p>find 用于搜索文件</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;test1.txt&quot;</span></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;*.txt&quot;</span></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;dira&quot;</span></span><br><span class="line">find . -name <span class="string">&quot;*.txt&quot;</span></span><br><span class="line"><span class="comment"># 默认是当前路径</span></span><br><span class="line">find -name <span class="string">&quot;*.txt&quot;</span></span><br></pre></td></tr></table></figure>
+<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><ol>
+<li><p>获取源码 </p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    # 安装repo 工具</span><br><span class="line">    $ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 &gt; repo</span><br><span class="line">    $ chmod a+x repo</span><br><span class="line">    $ sudo mv repo /usr/local/bin/repo</span><br><span class="line">    $ sudo apt install python3-pip</span><br><span class="line">    $ pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">获取标准系统源码</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir OpenHarmony</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> OpenHarmony</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo sync -c  <span class="comment"># -c 获取当前分支代码</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> repo forall -c <span class="string">&#x27;git lfs pull&#x27;</span></span></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-
-<blockquote>
-<p>grep 查找文件中符合条件的字符串</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#在test1.txt中查找字符串abc,-n 表示显示行号</span></span><br><span class="line">grep -n <span class="string">&quot;abc&quot;</span> test1.txt</span><br><span class="line"><span class="comment">#当前目录下递归查找字符串</span></span><br><span class="line">grep -R <span class="string">&quot;abc&quot;</span> .</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>文件压缩命令</p>
-</blockquote>
-<p>tar 用于打包压缩和解压</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">c(create)：表示创建用来生成文件包 。</span><br><span class="line">-x：表示提取，从文件包中提取文件。</span><br><span class="line">-t：可以查看压缩的文件。</span><br><span class="line">-z：使用 gzip 方式进行处理，它与 <span class="string">&quot;c&quot;</span> 结合就表示压缩，与 <span class="string">&quot;x&quot;</span> 结合就表示解压缩。</span><br><span class="line">-j：使用 bzip2 方式进行处理，它与 <span class="string">&quot;c&quot;</span> 结合就表示压缩，与”x“结合就表示解压缩。</span><br><span class="line">-v(verbose)：详细报告 tar 处理的信息。</span><br><span class="line">-f(file)：表示文件，后面接着一个文件名。 -C &lt;指定目录&gt; 解压到指定目录。</span><br><span class="line"></span><br><span class="line">把目录 dira 压缩、打包为 dira.tar.gz 文件</span><br><span class="line">tar czvf dira.tar.gz dira</span><br><span class="line"><span class="comment">#解压到当前目录</span></span><br><span class="line">tar xzvf dira.tar.gz</span><br><span class="line"><span class="comment">#解压到 /home/book</span></span><br><span class="line">tar xzvf dira.tar.gz -C /home/book</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="网络管理相关命令"><a href="#网络管理相关命令" class="headerlink" title="网络管理相关命令"></a>网络管理相关命令</h4><blockquote>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"> ping 用于测试主机之间网络的连通性</span><br><span class="line"> ping www.baidu.com</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">wget 用于在网络上下载文件</span><br><span class="line"></span><br><span class="line">wget http://</span><br><span class="line"></span><br><span class="line">curl 用于在网络上下载文件</span><br><span class="line"></span><br><span class="line">curl https://</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ifconfig 用于查看网络情况</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h4 id="软件安装相关命令"><a href="#软件安装相关命令" class="headerlink" title="软件安装相关命令"></a>软件安装相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">搜索软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt search 关键字</span><br><span class="line">安装软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt install 软件包名</span><br><span class="line">卸载软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#卸载软件</span></span><br><span class="line">sudo apt remove 软件包名</span><br><span class="line"><span class="comment">#卸载软件并删除配置文件</span></span><br><span class="line">sudo apt remove 软件包名 --purge</span><br><span class="line"><span class="comment">#卸载软件并移除软件依赖</span></span><br><span class="line">sudo apt autoremove 软件包名</span><br><span class="line">软件更新</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt upgrade 软件包名</span><br><span class="line"><span class="comment"># 升级所有可以升级的软件</span></span><br><span class="line">sudo apt upgrade</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h4 id="系统管理相关命令"><a href="#系统管理相关命令" class="headerlink" title="系统管理相关命令"></a>系统管理相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">useradd 用于添加用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">useradd hello</span><br><span class="line">passwd 用于设置或者修改用户密码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">passwd hello</span><br><span class="line">userdel 用于删除用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># -r 选项可以删除用户家目录</span></span><br><span class="line">sudo userdel username</span><br><span class="line">usermod 用来修改用户帐号的各项设定</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#最常用于将用户加入指定的组</span></span><br><span class="line"><span class="comment">#将用户myfreax添加到games组</span></span><br><span class="line"><span class="comment">#应该始终使用-a追加选项。如果省略-a选项，则用户将从-G选项之后未列出的组中删除</span></span><br><span class="line">sudo usermod -a -G games myfreax</span><br><span class="line">free 用于查看系统内存</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">free -m <span class="comment">#以 MB 为单位</span></span><br><span class="line">free -g <span class="comment">#以 GB 为单位</span></span><br><span class="line">whoami 用于查看当前用户名</span><br><span class="line"></span><br><span class="line">ps 用于查看进程信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ps -a <span class="comment">#查看所有进程</span></span><br><span class="line">ps -e <span class="comment">#查看除内核以外的所有进程</span></span><br><span class="line">ps -f <span class="comment">#全格式输出</span></span><br><span class="line">top 动态查看进程信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</font>]]></content>
+<p>如果 repo init 出现以下错误 </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">jackie@USER-20200124ZG:~$ repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify</span><br><span class="line">    Downloading Repo source from http://mirrors.tuna.tsinghua.edu.cn/git/git-repo/</span><br><span class="line">    remote: Enumerating objects: 7113, done.</span><br><span class="line">    remote: Counting objects: 100% (7113/7113), done.</span><br><span class="line">    remote: Compressing objects: 100% (3728/3728), done.</span><br><span class="line">    remote: Total 7113 (delta 4590), reused 5464 (delta 3311)s   s</span><br><span class="line">    Receiving objects: 100% (7113/7113), 3.09 MiB | 1.76 MiB/s, done.</span><br><span class="line">    Resolving deltas: 100% (4590/4590), done.</span><br><span class="line">    repo: warning: verification of repo code has been disabled;</span><br><span class="line">    repo will not be able to verify the integrity of itself.</span><br><span class="line"></span><br><span class="line">    repo: error: unable to resolve &quot;fork_flow&quot;</span><br><span class="line">    fatal: cloning the git-repo repository failed, will remove &#x27;.repo/repo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>切换到root 权限 sudo</code> 可以解决</p>
+</font></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Harmonyos</category>
+      </categories>
   </entry>
   <entry>
     <title>Git相关</title>
@@ -2136,6 +2128,39 @@ self-&gt;deviceType和deviceType是等价的。
       <tags>
         <tag>charles</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Linux_command</title>
+    <url>/2023/04/06/Linux/Linux-command/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="Linux-command"><a href="#Linux-command" class="headerlink" title="Linux_command"></a>Linux_command</h4><blockquote>
+<p>find 用于搜索文件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;test1.txt&quot;</span></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;*.txt&quot;</span></span><br><span class="line">find /home/book/dira/ -name <span class="string">&quot;dira&quot;</span></span><br><span class="line">find . -name <span class="string">&quot;*.txt&quot;</span></span><br><span class="line"><span class="comment"># 默认是当前路径</span></span><br><span class="line">find -name <span class="string">&quot;*.txt&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>grep 查找文件中符合条件的字符串</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#在test1.txt中查找字符串abc,-n 表示显示行号</span></span><br><span class="line">grep -n <span class="string">&quot;abc&quot;</span> test1.txt</span><br><span class="line"><span class="comment">#当前目录下递归查找字符串</span></span><br><span class="line">grep -R <span class="string">&quot;abc&quot;</span> .</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>文件压缩命令</p>
+</blockquote>
+<p>tar 用于打包压缩和解压</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">c(create)：表示创建用来生成文件包 。</span><br><span class="line">-x：表示提取，从文件包中提取文件。</span><br><span class="line">-t：可以查看压缩的文件。</span><br><span class="line">-z：使用 gzip 方式进行处理，它与 <span class="string">&quot;c&quot;</span> 结合就表示压缩，与 <span class="string">&quot;x&quot;</span> 结合就表示解压缩。</span><br><span class="line">-j：使用 bzip2 方式进行处理，它与 <span class="string">&quot;c&quot;</span> 结合就表示压缩，与”x“结合就表示解压缩。</span><br><span class="line">-v(verbose)：详细报告 tar 处理的信息。</span><br><span class="line">-f(file)：表示文件，后面接着一个文件名。 -C &lt;指定目录&gt; 解压到指定目录。</span><br><span class="line"></span><br><span class="line">把目录 dira 压缩、打包为 dira.tar.gz 文件</span><br><span class="line">tar czvf dira.tar.gz dira</span><br><span class="line"><span class="comment">#解压到当前目录</span></span><br><span class="line">tar xzvf dira.tar.gz</span><br><span class="line"><span class="comment">#解压到 /home/book</span></span><br><span class="line">tar xzvf dira.tar.gz -C /home/book</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="网络管理相关命令"><a href="#网络管理相关命令" class="headerlink" title="网络管理相关命令"></a>网络管理相关命令</h4><blockquote>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"> ping 用于测试主机之间网络的连通性</span><br><span class="line"> ping www.baidu.com</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">wget 用于在网络上下载文件</span><br><span class="line"></span><br><span class="line">wget http://</span><br><span class="line"></span><br><span class="line">curl 用于在网络上下载文件</span><br><span class="line"></span><br><span class="line">curl https://</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ifconfig 用于查看网络情况</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="软件安装相关命令"><a href="#软件安装相关命令" class="headerlink" title="软件安装相关命令"></a>软件安装相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">搜索软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt search 关键字</span><br><span class="line">安装软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt install 软件包名</span><br><span class="line">卸载软件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#卸载软件</span></span><br><span class="line">sudo apt remove 软件包名</span><br><span class="line"><span class="comment">#卸载软件并删除配置文件</span></span><br><span class="line">sudo apt remove 软件包名 --purge</span><br><span class="line"><span class="comment">#卸载软件并移除软件依赖</span></span><br><span class="line">sudo apt autoremove 软件包名</span><br><span class="line">软件更新</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo apt upgrade 软件包名</span><br><span class="line"><span class="comment"># 升级所有可以升级的软件</span></span><br><span class="line">sudo apt upgrade</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="系统管理相关命令"><a href="#系统管理相关命令" class="headerlink" title="系统管理相关命令"></a>系统管理相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">useradd 用于添加用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">useradd hello</span><br><span class="line">passwd 用于设置或者修改用户密码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">passwd hello</span><br><span class="line">userdel 用于删除用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># -r 选项可以删除用户家目录</span></span><br><span class="line">sudo userdel username</span><br><span class="line">usermod 用来修改用户帐号的各项设定</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#最常用于将用户加入指定的组</span></span><br><span class="line"><span class="comment">#将用户myfreax添加到games组</span></span><br><span class="line"><span class="comment">#应该始终使用-a追加选项。如果省略-a选项，则用户将从-G选项之后未列出的组中删除</span></span><br><span class="line">sudo usermod -a -G games myfreax</span><br><span class="line">free 用于查看系统内存</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">free -m <span class="comment">#以 MB 为单位</span></span><br><span class="line">free -g <span class="comment">#以 GB 为单位</span></span><br><span class="line">whoami 用于查看当前用户名</span><br><span class="line"></span><br><span class="line">ps 用于查看进程信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ps -a <span class="comment">#查看所有进程</span></span><br><span class="line">ps -e <span class="comment">#查看除内核以外的所有进程</span></span><br><span class="line">ps -f <span class="comment">#全格式输出</span></span><br><span class="line">top 动态查看进程信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</font>]]></content>
   </entry>
   <entry>
     <title>MonoBehaviourTree</title>
@@ -3312,119 +3337,6 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       </tags>
   </entry>
   <entry>
-    <title>H.265与H.264的差异详解</title>
-    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/</url>
-    <content><![CDATA[<font size="2.9">
-
-
-<h2 id="H-265与H-264的差异详解"><a href="#H-265与H-264的差异详解" class="headerlink" title="H.265与H.264的差异详解"></a>H.265与H.264的差异详解</h2><blockquote>
-<p><strong>码牛只为跟牛逼的你</strong></p>
-</blockquote>
-<p>通过以下几种来对比H264与H265的差异</p>
-<blockquote>
-<p>1.编解码框架差异</p>
-<p>2.压缩性能比较</p>
-<p>3.各模块技术差异汇总</p>
-<p>4.块划分结构</p>
-<p>5.帧内预测</p>
-<p>6.帧间预测</p>
-<p>7.去块滤波</p>
-<p>8.SAO滤波</p>
-<p>9.Tile</p>
-<p>10.WPP</p>
-<p>11.Dependent slice</p>
-<p>12.其他技术</p>
-</blockquote>
-<h4 id="1-1-H-264与H-265的主要差异"><a href="#1-1-H-264与H-265的主要差异" class="headerlink" title="1.1  H.264与H.265的主要差异"></a>1.1  H.264与H.265的主要差异</h4><p>H.265仍然采用混合编解码，编解码结构域H.264基本一致，</p>
-<p>主要的不同在于：</p>
-<p>Ø 编码块划分结构：采用CU (CodingUnit)、PU(PredictionUnit)和TU(TransformUnit)的递归结构。</p>
-<p>Ø 基本细节：各功能块的内部细节有很多差异</p>
-<p>Ø 并行工具：增加了Tile以及WPP等并行工具集以提高编码速度</p>
-<p>Ø 滤波器：在去块滤波之后增加了SAO（sample adaptive offset）滤波模块</p>
-<p><img src="https://img-blog.csdn.net/20170903222110391?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>Fig.H.265的框架图</p>
-<h4 id="2-压缩性能比较"><a href="#2-压缩性能比较" class="headerlink" title="2.  压缩性能比较"></a>2.  压缩性能比较</h4><p>PSNR计算方式</p>
-<p><img src="https://img-blog.csdn.net/20170903222300500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265/HEVC HM-9.0 和H.264 JM-18.4 的BD-rate 比较：</p>
-<p> AllIntra case:           22%</p>
-<p> RandomAccess case:       34%</p>
-<p> LowDelay case:          37%</p>
-<h4 id="3-各模块技术差异汇总"><a href="#3-各模块技术差异汇总" class="headerlink" title="3.  各模块技术差异汇总"></a>3.  各模块技术差异汇总</h4><p><img src="https://img-blog.csdn.net/20170903222335956?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p><img src="https://img-blog.csdn.net/20170903222351940?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="4-块划分结构"><a href="#4-块划分结构" class="headerlink" title="4.  块划分结构"></a>4.  块划分结构</h4><p>在H.265中，将宏块的大小从H.264的16×16扩展到了64×64，以便于高分辨率视频的压缩。</p>
-<p>同时，采用了更加灵活的编码结构来提高编码效率，</p>
-<p>包括编码单元（CodingUnit）、预测单元（PredictUnit）和变换单元（TransformUnit）。</p>
-<p>如下图所示:</p>
-<p><img src="https://img-blog.csdn.net/20170903222441671?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>其中:</p>
-<p>编码单元类似于H.264/AVC中的宏块的概念，用于编码的过程。</p>
-<p>预测单元是进行预测的基本单元，</p>
-<p>变换单元是进行变换和量化的基本单元。</p>
-<p>这三个单元的分离，使得变换、预测和编码各个处理环节更加灵活，</p>
-<p>也有利于各环节的划分更加符合视频图像的纹理特征，</p>
-<p>有利于各个单元更优化的完成各自的功能。</p>
-<p><img src="https://img-blog.csdn.net/20170903222542263?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>RQT是一种自适应的变换技术，这种思想是对H.264/AVC中ABT（AdaptiveBlock-size Transform）技术的延伸和扩展。</p>
-<p>对于帧间编码来说，它允许变换块的大小根据运动补偿块的大小进行自适应的调整；</p>
-<p>对于帧内编码来说，它允许变换块的大小根据帧内预测残差的特性进行自适应的调整。</p>
-<p>大块的变换相对于小块的变换，一方面能够提供更好的能量集中效果，并能在量化后保存更多的图像细节，但是另一方面在量化后却会带来更多的振铃效应。</p>
-<p>因此，根据当前块信号的特性，自适应的选择变换块大小，如下图所示，可以得到能量集中、细节保留程度以及图像的振铃效应三者最优的折中。</p>
-<p><img src="https://img-blog.csdn.net/20170903222512555?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>Fig. 灵活的块结构示意图</p>
-<h4 id="5-帧内预测模式"><a href="#5-帧内预测模式" class="headerlink" title="5.  帧内预测模式"></a>5.  帧内预测模式</h4><p>本质上H.265是在H.264的预测方向基础上增加了更多的预测方向</p>
-<p>H.265：所有尺寸的CU块，亮度有35种预测方向，色度有5种预测方向</p>
-<p>H.264：亮度 4x4块9个方向，8x8块9个方向，16x16块4种方向，色度4种方向</p>
-<p> <img src="https://img-blog.csdn.net/20170903222603597?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.264的帧内预测方向:</p>
-<p> <img src="https://img-blog.csdn.net/20170903222635669?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265的帧内预测方向：</p>
-<h4 id="6-帧间预测"><a href="#6-帧间预测" class="headerlink" title="6.  帧间预测"></a>6.  帧间预测</h4><p>本质上H.265是在H.264基础上增加插值的抽头系数个数，改变抽头系数值以及增加运动矢量预测值的候选个数，以达到减少预测残差的目的。</p>
-<p>H.265与H.264一样插值精度都是亮度到1/4，色度到1/8精度，但插值滤波器抽头长度和系数不同.</p>
-<p>H.265的增加了运动矢量预测值候选的个数，而H.264预测值只有一个</p>
-<p> <img src="https://img-blog.csdn.net/20170903222712796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265的空域候选项：</p>
-<p><img src="https://img-blog.csdn.net/20170903222726452?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265时域共同位置候选项</p>
-<h4 id="7-去块滤波"><a href="#7-去块滤波" class="headerlink" title="7.  去块滤波"></a>7.  去块滤波</h4><p>本质上H.265的去块滤波与H.264的去块滤波及流程是一致的，做了如下最显著的改变：</p>
-<p>Ø 滤波边界： H.264最小到4x4边界滤波；而H.265适应最新的CU、PU和TU划分结构的滤波边缘，最小滤波边界为8x8，</p>
-<p>Ø 滤波顺序：H264先宏块内采用垂直边界，再当前宏块内水平边界；而H.265先整帧的垂直边界，再整帧的水平边界</p>
-<p>ALF在编解码环路内，位于Deblock和SAO之后，</p>
-<p>用于恢复重建图像以达到重建图像与原始图像之间的均方差（MSE）最小。</p>
-<p>ALF的系数是在帧级计算和传输的，可以整帧应用ALF，</p>
-<p>也可以对于基于块或基于量化树（quadtree）的部分区域进行ALF，</p>
-<p>如果是基于部分区域的ALF，还必须传递指示区域信息的附加信息。</p>
-<h4 id="8-采样点自适应偏移（Sample-AdaptiveOffset）滤波"><a href="#8-采样点自适应偏移（Sample-AdaptiveOffset）滤波" class="headerlink" title="8.  采样点自适应偏移（Sample AdaptiveOffset）滤波"></a>8.  采样点自适应偏移（Sample AdaptiveOffset）滤波</h4><p>SAO(sample adaptive offset)滤波其实就是对去块滤波后的重建像素按照不同的模板进行分类，并对每一种分类像素进行补偿, 分类模板分为BO(Band offset)和EO(Edge offset)。</p>
-<p> <img src="https://img-blog.csdn.net/20170903222824890?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>BO分类：</p>
-<p> <img src="https://img-blog.csdn.net/20170903222838657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>EO分类模块：</p>
-<p>SAO在编解码环路内，位于Deblock之后，通过对重建图像的分类，对每一类图像像素值加减一个偏移，达到减少失真的目的，从而提高压缩率，减少码流。</p>
-<p>采用SAO后，平均可以减少2%~6%的码流,而编码器和解码器的性能消耗仅仅增加了约2%。</p>
-<h4 id="9-Tile划分"><a href="#9-Tile划分" class="headerlink" title="9.  Tile划分"></a>9.  Tile划分</h4><p>Tile： 将图像分割为矩形区域。</p>
-<p>其主要目的是增强并行处理性能。</p>
-<p>每个tile区域相当于一幅子图像，可独立的以LCU块为单位进行编解码。</p>
-<p>一个Tile块为基本的并行单元，每个Tile为一个子码流</p>
-<p> <img src="https://img-blog.csdn.net/20170903222909352?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\10. WPP</p>
-<p>WPP:  全称为wavefront parallel process，以LCU行为基本的编码单位。</p>
-<p>以一行LCU块为基本的并行单元，每一行LCU为一个子码流</p>
-<p> <img src="https://img-blog.csdn.net/20170903222931315?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\11. Dependentslice</p>
-<p>Dependent slice：该技术可以理解为对原先Slice NALU的数据划分，使其可以适合更加灵活的打包方式。</p>
-<p>Slice 和dependent slice 的示意图如下</p>
-<p><img src="https://img-blog.csdn.net/20170903223007796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\12. 其他相关技术</p>
-<p>Ø Transform_skip模式：transform_skip_flag，该模式不进行变换，但是要进行量化，该模式对文本桌面视频有较好效果</p>
-<p>Ø 内部比特深度增加：为了保证中间预测、变换以及量化过程中的内部比特精度，以达到更好的压缩性能</p>
-</font>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>H264</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>视频流H264的编码器</title>
     <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A305-%E6%89%8B%E5%86%99H264%E7%BC%96%E7%A0%81%E5%99%A8/</url>
     <content><![CDATA[<font size="2.9">
@@ -4023,6 +3935,119 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
 <td>扩展</td>
 </tr>
 </tbody></table>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>H264</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H.265与H.264的差异详解</title>
+    <url>/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/</url>
+    <content><![CDATA[<font size="2.9">
+
+
+<h2 id="H-265与H-264的差异详解"><a href="#H-265与H-264的差异详解" class="headerlink" title="H.265与H.264的差异详解"></a>H.265与H.264的差异详解</h2><blockquote>
+<p><strong>码牛只为跟牛逼的你</strong></p>
+</blockquote>
+<p>通过以下几种来对比H264与H265的差异</p>
+<blockquote>
+<p>1.编解码框架差异</p>
+<p>2.压缩性能比较</p>
+<p>3.各模块技术差异汇总</p>
+<p>4.块划分结构</p>
+<p>5.帧内预测</p>
+<p>6.帧间预测</p>
+<p>7.去块滤波</p>
+<p>8.SAO滤波</p>
+<p>9.Tile</p>
+<p>10.WPP</p>
+<p>11.Dependent slice</p>
+<p>12.其他技术</p>
+</blockquote>
+<h4 id="1-1-H-264与H-265的主要差异"><a href="#1-1-H-264与H-265的主要差异" class="headerlink" title="1.1  H.264与H.265的主要差异"></a>1.1  H.264与H.265的主要差异</h4><p>H.265仍然采用混合编解码，编解码结构域H.264基本一致，</p>
+<p>主要的不同在于：</p>
+<p>Ø 编码块划分结构：采用CU (CodingUnit)、PU(PredictionUnit)和TU(TransformUnit)的递归结构。</p>
+<p>Ø 基本细节：各功能块的内部细节有很多差异</p>
+<p>Ø 并行工具：增加了Tile以及WPP等并行工具集以提高编码速度</p>
+<p>Ø 滤波器：在去块滤波之后增加了SAO（sample adaptive offset）滤波模块</p>
+<p><img src="https://img-blog.csdn.net/20170903222110391?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>Fig.H.265的框架图</p>
+<h4 id="2-压缩性能比较"><a href="#2-压缩性能比较" class="headerlink" title="2.  压缩性能比较"></a>2.  压缩性能比较</h4><p>PSNR计算方式</p>
+<p><img src="https://img-blog.csdn.net/20170903222300500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265/HEVC HM-9.0 和H.264 JM-18.4 的BD-rate 比较：</p>
+<p> AllIntra case:           22%</p>
+<p> RandomAccess case:       34%</p>
+<p> LowDelay case:          37%</p>
+<h4 id="3-各模块技术差异汇总"><a href="#3-各模块技术差异汇总" class="headerlink" title="3.  各模块技术差异汇总"></a>3.  各模块技术差异汇总</h4><p><img src="https://img-blog.csdn.net/20170903222335956?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p><img src="https://img-blog.csdn.net/20170903222351940?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<h4 id="4-块划分结构"><a href="#4-块划分结构" class="headerlink" title="4.  块划分结构"></a>4.  块划分结构</h4><p>在H.265中，将宏块的大小从H.264的16×16扩展到了64×64，以便于高分辨率视频的压缩。</p>
+<p>同时，采用了更加灵活的编码结构来提高编码效率，</p>
+<p>包括编码单元（CodingUnit）、预测单元（PredictUnit）和变换单元（TransformUnit）。</p>
+<p>如下图所示:</p>
+<p><img src="https://img-blog.csdn.net/20170903222441671?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>其中:</p>
+<p>编码单元类似于H.264/AVC中的宏块的概念，用于编码的过程。</p>
+<p>预测单元是进行预测的基本单元，</p>
+<p>变换单元是进行变换和量化的基本单元。</p>
+<p>这三个单元的分离，使得变换、预测和编码各个处理环节更加灵活，</p>
+<p>也有利于各环节的划分更加符合视频图像的纹理特征，</p>
+<p>有利于各个单元更优化的完成各自的功能。</p>
+<p><img src="https://img-blog.csdn.net/20170903222542263?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>RQT是一种自适应的变换技术，这种思想是对H.264/AVC中ABT（AdaptiveBlock-size Transform）技术的延伸和扩展。</p>
+<p>对于帧间编码来说，它允许变换块的大小根据运动补偿块的大小进行自适应的调整；</p>
+<p>对于帧内编码来说，它允许变换块的大小根据帧内预测残差的特性进行自适应的调整。</p>
+<p>大块的变换相对于小块的变换，一方面能够提供更好的能量集中效果，并能在量化后保存更多的图像细节，但是另一方面在量化后却会带来更多的振铃效应。</p>
+<p>因此，根据当前块信号的特性，自适应的选择变换块大小，如下图所示，可以得到能量集中、细节保留程度以及图像的振铃效应三者最优的折中。</p>
+<p><img src="https://img-blog.csdn.net/20170903222512555?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>Fig. 灵活的块结构示意图</p>
+<h4 id="5-帧内预测模式"><a href="#5-帧内预测模式" class="headerlink" title="5.  帧内预测模式"></a>5.  帧内预测模式</h4><p>本质上H.265是在H.264的预测方向基础上增加了更多的预测方向</p>
+<p>H.265：所有尺寸的CU块，亮度有35种预测方向，色度有5种预测方向</p>
+<p>H.264：亮度 4x4块9个方向，8x8块9个方向，16x16块4种方向，色度4种方向</p>
+<p> <img src="https://img-blog.csdn.net/20170903222603597?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.264的帧内预测方向:</p>
+<p> <img src="https://img-blog.csdn.net/20170903222635669?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265的帧内预测方向：</p>
+<h4 id="6-帧间预测"><a href="#6-帧间预测" class="headerlink" title="6.  帧间预测"></a>6.  帧间预测</h4><p>本质上H.265是在H.264基础上增加插值的抽头系数个数，改变抽头系数值以及增加运动矢量预测值的候选个数，以达到减少预测残差的目的。</p>
+<p>H.265与H.264一样插值精度都是亮度到1/4，色度到1/8精度，但插值滤波器抽头长度和系数不同.</p>
+<p>H.265的增加了运动矢量预测值候选的个数，而H.264预测值只有一个</p>
+<p> <img src="https://img-blog.csdn.net/20170903222712796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265的空域候选项：</p>
+<p><img src="https://img-blog.csdn.net/20170903222726452?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>H.265时域共同位置候选项</p>
+<h4 id="7-去块滤波"><a href="#7-去块滤波" class="headerlink" title="7.  去块滤波"></a>7.  去块滤波</h4><p>本质上H.265的去块滤波与H.264的去块滤波及流程是一致的，做了如下最显著的改变：</p>
+<p>Ø 滤波边界： H.264最小到4x4边界滤波；而H.265适应最新的CU、PU和TU划分结构的滤波边缘，最小滤波边界为8x8，</p>
+<p>Ø 滤波顺序：H264先宏块内采用垂直边界，再当前宏块内水平边界；而H.265先整帧的垂直边界，再整帧的水平边界</p>
+<p>ALF在编解码环路内，位于Deblock和SAO之后，</p>
+<p>用于恢复重建图像以达到重建图像与原始图像之间的均方差（MSE）最小。</p>
+<p>ALF的系数是在帧级计算和传输的，可以整帧应用ALF，</p>
+<p>也可以对于基于块或基于量化树（quadtree）的部分区域进行ALF，</p>
+<p>如果是基于部分区域的ALF，还必须传递指示区域信息的附加信息。</p>
+<h4 id="8-采样点自适应偏移（Sample-AdaptiveOffset）滤波"><a href="#8-采样点自适应偏移（Sample-AdaptiveOffset）滤波" class="headerlink" title="8.  采样点自适应偏移（Sample AdaptiveOffset）滤波"></a>8.  采样点自适应偏移（Sample AdaptiveOffset）滤波</h4><p>SAO(sample adaptive offset)滤波其实就是对去块滤波后的重建像素按照不同的模板进行分类，并对每一种分类像素进行补偿, 分类模板分为BO(Band offset)和EO(Edge offset)。</p>
+<p> <img src="https://img-blog.csdn.net/20170903222824890?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>BO分类：</p>
+<p> <img src="https://img-blog.csdn.net/20170903222838657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>EO分类模块：</p>
+<p>SAO在编解码环路内，位于Deblock之后，通过对重建图像的分类，对每一类图像像素值加减一个偏移，达到减少失真的目的，从而提高压缩率，减少码流。</p>
+<p>采用SAO后，平均可以减少2%~6%的码流,而编码器和解码器的性能消耗仅仅增加了约2%。</p>
+<h4 id="9-Tile划分"><a href="#9-Tile划分" class="headerlink" title="9.  Tile划分"></a>9.  Tile划分</h4><p>Tile： 将图像分割为矩形区域。</p>
+<p>其主要目的是增强并行处理性能。</p>
+<p>每个tile区域相当于一幅子图像，可独立的以LCU块为单位进行编解码。</p>
+<p>一个Tile块为基本的并行单元，每个Tile为一个子码流</p>
+<p> <img src="https://img-blog.csdn.net/20170903222909352?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\10. WPP</p>
+<p>WPP:  全称为wavefront parallel process，以LCU行为基本的编码单位。</p>
+<p>以一行LCU块为基本的并行单元，每一行LCU为一个子码流</p>
+<p> <img src="https://img-blog.csdn.net/20170903222931315?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\11. Dependentslice</p>
+<p>Dependent slice：该技术可以理解为对原先Slice NALU的数据划分，使其可以适合更加灵活的打包方式。</p>
+<p>Slice 和dependent slice 的示意图如下</p>
+<p><img src="https://img-blog.csdn.net/20170903223007796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
+<p>\12. 其他相关技术</p>
+<p>Ø Transform_skip模式：transform_skip_flag，该模式不进行变换，但是要进行量化，该模式对文本桌面视频有较好效果</p>
+<p>Ø 内部比特深度增加：为了保证中间预测、变换以及量化过程中的内部比特精度，以达到更好的压缩性能</p>
 </font>]]></content>
       <categories>
         <category>Android</category>

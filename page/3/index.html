@@ -119,7 +119,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">50</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">51</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -129,7 +129,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">69</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -189,6 +189,106 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/12/Android/AndroidHandler/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/12/Android/AndroidHandler/" class="post-title-link" itemprop="url">AndroidHandler</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-12 20:21:34" itemprop="dateCreated datePublished" datetime="2021-12-12T20:21:34+08:00">2021-12-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-15 23:44:03" itemprop="dateModified" datetime="2023-09-15T23:44:03+08:00">2023-09-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>953</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <font size="2.9">
+
+<h3 id="App-启动流程"><a href="#App-启动流程" class="headerlink" title="App 启动流程"></a>App 启动流程</h3><img src="/2021/12/12/Android/AndroidHandler/1.webp" class="">
+
+
+<h3 id="webP"><a href="#webP" class="headerlink" title="webP"></a>webP</h3><p>WebP 对图片进行分块，然后对待填充的宏块使用了帧间预测技术，根据其附近已编码宏块的数据，预测出当前块数据。相比 JEPG 对图像原值进行编码，WebP 编码的是预测值和原值的差值，这是 WebP 体积更小的主要原因。最后，WebP 使用了更优秀的算数编码</p>
+<p>WebP 完全兼容 Android 4.4 及其以上版本，而在另一大移动平台 iOS 上，则是完全不兼容 WebP。因此，我们需要在前端进行平台检测，对于支持 WebP 的平台输出 WebP，在不支持的平台上采用降级方案。</p>
+<h3 id="模拟ANR"><a href="#模拟ANR" class="headerlink" title="模拟ANR"></a>模拟ANR</h3><ol>
+<li>在oncreate,onstart,onresum  写一个耗时操作</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="comment">// android 前台服务 &gt; 5秒 ，卡主 ，这时候 请求主线程操作 比如更新UI 等 点击按钮等 出现ANR 。</span></span><br><span class="line">  <span class="comment">//1</span></span><br><span class="line">  Thread.sleep(<span class="number">10000</span>); <span class="comment">//</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//2 比较容易出现</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">new</span> Handler().post(<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">    <span class="meta">@overide</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">             <span class="keyword">long</span> current = System.currentTimeMillis();</span><br><span class="line">                <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">                    <span class="keyword">long</span> time2 = System.currentTimeMillis();</span><br><span class="line">                    <span class="keyword">if</span> ((time2 - current) &gt;= <span class="number">10000</span>)&#123;</span><br><span class="line">                        Log.d(TAG, <span class="string">&quot;run: ---------toatal----&quot;</span>+ (time2 -current));</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+</font>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1469,195 +1569,6 @@ Source：代码存放位置
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/18/Android/audioVideo/%E6%96%87%E6%A1%A307-H264%E4%B8%8EH265%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BA%8E%E5%B7%AE%E5%BC%82/" class="post-title-link" itemprop="url">H.265与H.264的差异详解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-11-18 18:34:24" itemprop="dateCreated datePublished" datetime="2021-11-18T18:34:24+08:00">2021-11-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-13 11:36:48" itemprop="dateModified" datetime="2022-08-13T11:36:48+08:00">2022-08-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <font size="2.9">
-
-
-<h2 id="H-265与H-264的差异详解"><a href="#H-265与H-264的差异详解" class="headerlink" title="H.265与H.264的差异详解"></a>H.265与H.264的差异详解</h2><blockquote>
-<p><strong>码牛只为跟牛逼的你</strong></p>
-</blockquote>
-<p>通过以下几种来对比H264与H265的差异</p>
-<blockquote>
-<p>1.编解码框架差异</p>
-<p>2.压缩性能比较</p>
-<p>3.各模块技术差异汇总</p>
-<p>4.块划分结构</p>
-<p>5.帧内预测</p>
-<p>6.帧间预测</p>
-<p>7.去块滤波</p>
-<p>8.SAO滤波</p>
-<p>9.Tile</p>
-<p>10.WPP</p>
-<p>11.Dependent slice</p>
-<p>12.其他技术</p>
-</blockquote>
-<h4 id="1-1-H-264与H-265的主要差异"><a href="#1-1-H-264与H-265的主要差异" class="headerlink" title="1.1  H.264与H.265的主要差异"></a>1.1  H.264与H.265的主要差异</h4><p>H.265仍然采用混合编解码，编解码结构域H.264基本一致，</p>
-<p>主要的不同在于：</p>
-<p>Ø 编码块划分结构：采用CU (CodingUnit)、PU(PredictionUnit)和TU(TransformUnit)的递归结构。</p>
-<p>Ø 基本细节：各功能块的内部细节有很多差异</p>
-<p>Ø 并行工具：增加了Tile以及WPP等并行工具集以提高编码速度</p>
-<p>Ø 滤波器：在去块滤波之后增加了SAO（sample adaptive offset）滤波模块</p>
-<p><img src="https://img-blog.csdn.net/20170903222110391?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>Fig.H.265的框架图</p>
-<h4 id="2-压缩性能比较"><a href="#2-压缩性能比较" class="headerlink" title="2.  压缩性能比较"></a>2.  压缩性能比较</h4><p>PSNR计算方式</p>
-<p><img src="https://img-blog.csdn.net/20170903222300500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265/HEVC HM-9.0 和H.264 JM-18.4 的BD-rate 比较：</p>
-<p> AllIntra case:           22%</p>
-<p> RandomAccess case:       34%</p>
-<p> LowDelay case:          37%</p>
-<h4 id="3-各模块技术差异汇总"><a href="#3-各模块技术差异汇总" class="headerlink" title="3.  各模块技术差异汇总"></a>3.  各模块技术差异汇总</h4><p><img src="https://img-blog.csdn.net/20170903222335956?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p><img src="https://img-blog.csdn.net/20170903222351940?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<h4 id="4-块划分结构"><a href="#4-块划分结构" class="headerlink" title="4.  块划分结构"></a>4.  块划分结构</h4><p>在H.265中，将宏块的大小从H.264的16×16扩展到了64×64，以便于高分辨率视频的压缩。</p>
-<p>同时，采用了更加灵活的编码结构来提高编码效率，</p>
-<p>包括编码单元（CodingUnit）、预测单元（PredictUnit）和变换单元（TransformUnit）。</p>
-<p>如下图所示:</p>
-<p><img src="https://img-blog.csdn.net/20170903222441671?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>其中:</p>
-<p>编码单元类似于H.264/AVC中的宏块的概念，用于编码的过程。</p>
-<p>预测单元是进行预测的基本单元，</p>
-<p>变换单元是进行变换和量化的基本单元。</p>
-<p>这三个单元的分离，使得变换、预测和编码各个处理环节更加灵活，</p>
-<p>也有利于各环节的划分更加符合视频图像的纹理特征，</p>
-<p>有利于各个单元更优化的完成各自的功能。</p>
-<p><img src="https://img-blog.csdn.net/20170903222542263?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>RQT是一种自适应的变换技术，这种思想是对H.264/AVC中ABT（AdaptiveBlock-size Transform）技术的延伸和扩展。</p>
-<p>对于帧间编码来说，它允许变换块的大小根据运动补偿块的大小进行自适应的调整；</p>
-<p>对于帧内编码来说，它允许变换块的大小根据帧内预测残差的特性进行自适应的调整。</p>
-<p>大块的变换相对于小块的变换，一方面能够提供更好的能量集中效果，并能在量化后保存更多的图像细节，但是另一方面在量化后却会带来更多的振铃效应。</p>
-<p>因此，根据当前块信号的特性，自适应的选择变换块大小，如下图所示，可以得到能量集中、细节保留程度以及图像的振铃效应三者最优的折中。</p>
-<p><img src="https://img-blog.csdn.net/20170903222512555?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>Fig. 灵活的块结构示意图</p>
-<h4 id="5-帧内预测模式"><a href="#5-帧内预测模式" class="headerlink" title="5.  帧内预测模式"></a>5.  帧内预测模式</h4><p>本质上H.265是在H.264的预测方向基础上增加了更多的预测方向</p>
-<p>H.265：所有尺寸的CU块，亮度有35种预测方向，色度有5种预测方向</p>
-<p>H.264：亮度 4x4块9个方向，8x8块9个方向，16x16块4种方向，色度4种方向</p>
-<p> <img src="https://img-blog.csdn.net/20170903222603597?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.264的帧内预测方向:</p>
-<p> <img src="https://img-blog.csdn.net/20170903222635669?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265的帧内预测方向：</p>
-<h4 id="6-帧间预测"><a href="#6-帧间预测" class="headerlink" title="6.  帧间预测"></a>6.  帧间预测</h4><p>本质上H.265是在H.264基础上增加插值的抽头系数个数，改变抽头系数值以及增加运动矢量预测值的候选个数，以达到减少预测残差的目的。</p>
-<p>H.265与H.264一样插值精度都是亮度到1/4，色度到1/8精度，但插值滤波器抽头长度和系数不同.</p>
-<p>H.265的增加了运动矢量预测值候选的个数，而H.264预测值只有一个</p>
-<p> <img src="https://img-blog.csdn.net/20170903222712796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265的空域候选项：</p>
-<p><img src="https://img-blog.csdn.net/20170903222726452?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>H.265时域共同位置候选项</p>
-<h4 id="7-去块滤波"><a href="#7-去块滤波" class="headerlink" title="7.  去块滤波"></a>7.  去块滤波</h4><p>本质上H.265的去块滤波与H.264的去块滤波及流程是一致的，做了如下最显著的改变：</p>
-<p>Ø 滤波边界： H.264最小到4x4边界滤波；而H.265适应最新的CU、PU和TU划分结构的滤波边缘，最小滤波边界为8x8，</p>
-<p>Ø 滤波顺序：H264先宏块内采用垂直边界，再当前宏块内水平边界；而H.265先整帧的垂直边界，再整帧的水平边界</p>
-<p>ALF在编解码环路内，位于Deblock和SAO之后，</p>
-<p>用于恢复重建图像以达到重建图像与原始图像之间的均方差（MSE）最小。</p>
-<p>ALF的系数是在帧级计算和传输的，可以整帧应用ALF，</p>
-<p>也可以对于基于块或基于量化树（quadtree）的部分区域进行ALF，</p>
-<p>如果是基于部分区域的ALF，还必须传递指示区域信息的附加信息。</p>
-<h4 id="8-采样点自适应偏移（Sample-AdaptiveOffset）滤波"><a href="#8-采样点自适应偏移（Sample-AdaptiveOffset）滤波" class="headerlink" title="8.  采样点自适应偏移（Sample AdaptiveOffset）滤波"></a>8.  采样点自适应偏移（Sample AdaptiveOffset）滤波</h4><p>SAO(sample adaptive offset)滤波其实就是对去块滤波后的重建像素按照不同的模板进行分类，并对每一种分类像素进行补偿, 分类模板分为BO(Band offset)和EO(Edge offset)。</p>
-<p> <img src="https://img-blog.csdn.net/20170903222824890?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>BO分类：</p>
-<p> <img src="https://img-blog.csdn.net/20170903222838657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>EO分类模块：</p>
-<p>SAO在编解码环路内，位于Deblock之后，通过对重建图像的分类，对每一类图像像素值加减一个偏移，达到减少失真的目的，从而提高压缩率，减少码流。</p>
-<p>采用SAO后，平均可以减少2%~6%的码流,而编码器和解码器的性能消耗仅仅增加了约2%。</p>
-<h4 id="9-Tile划分"><a href="#9-Tile划分" class="headerlink" title="9.  Tile划分"></a>9.  Tile划分</h4><p>Tile： 将图像分割为矩形区域。</p>
-<p>其主要目的是增强并行处理性能。</p>
-<p>每个tile区域相当于一幅子图像，可独立的以LCU块为单位进行编解码。</p>
-<p>一个Tile块为基本的并行单元，每个Tile为一个子码流</p>
-<p> <img src="https://img-blog.csdn.net/20170903222909352?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\10. WPP</p>
-<p>WPP:  全称为wavefront parallel process，以LCU行为基本的编码单位。</p>
-<p>以一行LCU块为基本的并行单元，每一行LCU为一个子码流</p>
-<p> <img src="https://img-blog.csdn.net/20170903222931315?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\11. Dependentslice</p>
-<p>Dependent slice：该技术可以理解为对原先Slice NALU的数据划分，使其可以适合更加灵活的打包方式。</p>
-<p>Slice 和dependent slice 的示意图如下</p>
-<p><img src="https://img-blog.csdn.net/20170903223007796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmlyZXJvbGw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="img"></p>
-<p>\12. 其他相关技术</p>
-<p>Ø Transform_skip模式：transform_skip_flag，该模式不进行变换，但是要进行量化，该模式对文本桌面视频有较好效果</p>
-<p>Ø 内部比特深度增加：为了保证中间预测、变换以及量化过程中的内部比特精度，以达到更好的压缩性能</p>
-</font>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1727,7 +1638,7 @@ Source：代码存放位置
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-count">69</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1740,7 +1651,7 @@ Source：代码存放位置
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1767,7 +1678,7 @@ Source：代码存放位置
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1777,13 +1688,13 @@ Source：代码存放位置
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">220k</span>
+    <span title="站点总字数">222k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:20</span>
+    <span title="站点阅读时长">3:21</span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
