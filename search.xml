@@ -330,8 +330,18 @@ cocos run -d androd
 <li>在oncreate,onstart,onresum  写一个耗时操作</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="comment">// android 前台服务 &gt; 5秒 ，卡主 ，这时候 请求主线程操作 比如更新UI 等 点击按钮等 出现ANR 。</span></span><br><span class="line">  <span class="comment">//1</span></span><br><span class="line">  Thread.sleep(<span class="number">10000</span>); <span class="comment">//</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//2 比较容易出现</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">new</span> Handler().post(<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">    <span class="meta">@overide</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">             <span class="keyword">long</span> current = System.currentTimeMillis();</span><br><span class="line">                <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">                    <span class="keyword">long</span> time2 = System.currentTimeMillis();</span><br><span class="line">                    <span class="keyword">if</span> ((time2 - current) &gt;= <span class="number">10000</span>)&#123;</span><br><span class="line">                        Log.d(TAG, <span class="string">&quot;run: ---------toatal----&quot;</span>+ (time2 -current));</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-
+<blockquote>
+<p>Hander 机制</p>
+</blockquote>
+<blockquote>
+<p>首先说下Handler机制 ,大伙都知道 android 基于linux 内核 , 其实无论什么内核 , 只要创建出进程 , 当进程内的代码跑完了进程就退出了 , 所以要想进程不退出就只有一个办法 , 一直死循环下去 。 但是一直死循环有个问题 , 那就是cpu一直在空转 , cpu是硬件会一直消耗电量啊 , 所以得想个办法让cpu只在这个线程有活干的时候才调度 , 没活干得时候就阻塞，让出cpu的使用权 。让出cpu的使用权啊 ， 这个简单，线程不是给我们提供了使用Thread.sleep(long millis) ， 我直接使用Thread.sleep(一年) 不就行了 ， 应用不可能存活一年吧 ， 但是这个不支持主动唤醒 ，所以Thread.sleep肯定是不行的。那有人会问不是还有Object.wait() 和 notify ，以及其他的方式吗 ， 用这些方法不行吗 ，没活干的时候我就wait() 阻塞，有活的时候我就调用notify 唤醒。</p>
+</blockquote>
+<blockquote>
+<p>如果是那种翻盖非智能手机，只运行在java虚拟机上的话这样做肯定是没问题，但是android 是基于linux 内核的 ，每一个app应用都是zygote fork出来的 ，都有自己art 虚拟机，art虚拟机也只是一个so库而已，这个so库唯一作用就是用来执行经java文件转化而来的这些dex文件。事件从硬件到 linux 内核 再由内核分发给进程，内核唤醒主进程，最后在native主线程中通过 jni 调用Java 方法。可以看到这种做法相当麻烦，有什么什么比线程的阻塞系列方法更高效的？<br>android 基于linux ，linux中万物皆文件 ，比如dlopen 动态库会返回一个fd ， 打开binder驱动会返回一个fd ，读写文件会返回一个fd ，使用socket 会返回sockfd ，等等 。所有事件都和fd挂钩。有没有可以同时监控这些的fd的？当然是有的linux 提供了多路复用的epoll 就可以。handler 机制中使用epoll_wait 阻塞当前线程让出cpu使用权 ， 当监听到fd有变化时 epoll_wait会结束等待阻塞，恢复执行。<br>handler机制和事件分发有什么联系？ 那当然是有联系的，事件从硬件产生最终到应用层的主线程的looper.loop死循环中被处理 。应用进程通过binder 和 wms、ims 通信时，wms创建一对socket pair,用InputChannel封装，一个给app,一个给InputFlinger , 之后InputFlinger通过这个 socket fd把touch数据发给InputChannel 应用进程端。应用进程端 native 层通过jni调用到java层，事件分发到java层后 ， 大致流程ViewRootImpl——&gt;DecorView——&gt;Activity——&gt;PhoneWindow——&gt;DecorView——&gt;ViewGroup /view -&gt; ViewRootImpl $WindowInputEventReceiver#finishInputEvent -&gt; native 层通过 socket 通信去把事件从 waitQueue 移除，从waitQueue移除表示已经处理完此次事件。</p>
+</blockquote>
+<blockquote>
+<p>若窗口 waitQueue 非空 且 头事件分发超时 500ms, 则无法分发事件 ， 然后安放定时器, 默认 5s 之后重试，重试的时候, 若仍然分发失败, 则调用 onANRLocked 弹出 ANR 弹窗 。可以看到当handler 机制 中消息处理卡顿的时候，会导致事件不会及时从 waitQueue 中移除，然后无法分发新事件重试的时候还是无法分发便会弹ANR 。</p>
+</blockquote>
 </font>]]></content>
       <categories>
         <category>Android</category>
@@ -2016,9 +2026,18 @@ self-&gt;deviceType和deviceType是等价的。
 <p>如果 repo init 出现以下错误 </p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">jackie@USER-20200124ZG:~$ repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony_1.0.1_release --no-repo-verify</span><br><span class="line">    Downloading Repo source from http://mirrors.tuna.tsinghua.edu.cn/git/git-repo/</span><br><span class="line">    remote: Enumerating objects: 7113, done.</span><br><span class="line">    remote: Counting objects: 100% (7113/7113), done.</span><br><span class="line">    remote: Compressing objects: 100% (3728/3728), done.</span><br><span class="line">    remote: Total 7113 (delta 4590), reused 5464 (delta 3311)s   s</span><br><span class="line">    Receiving objects: 100% (7113/7113), 3.09 MiB | 1.76 MiB/s, done.</span><br><span class="line">    Resolving deltas: 100% (4590/4590), done.</span><br><span class="line">    repo: warning: verification of repo code has been disabled;</span><br><span class="line">    repo will not be able to verify the integrity of itself.</span><br><span class="line"></span><br><span class="line">    repo: error: unable to resolve &quot;fork_flow&quot;</span><br><span class="line">    fatal: cloning the git-repo repository failed, will remove &#x27;.repo/repo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p><code>切换到root 权限 sudo</code> 可以解决</p>
-</font></li>
+<p>#RN 原生 without framework</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npx react-native init AwesomeProject</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> AwesomeProject&amp; npx react-native run-ios</span> </span><br><span class="line"><span class="meta">#</span><span class="bash">编译</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> android</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./gradlew assembleRelease</span></span><br><span class="line"><span class="meta"> </span></span><br><span class="line"><span class="meta">#</span><span class="bash">安装包</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npx react-native run-android --variant=release</span></span><br><span class="line"></span><br><span class="line">style=&#123;[</span><br><span class="line">          styles.text,</span><br><span class="line">          &#123;</span><br><span class="line">            color: isDarkMode ? Colors.white : Colors.black,</span><br><span class="line">          &#125;,</span><br><span class="line">        ]&#125;</span><br><span class="line"></span><br><span class="line">        # style=&#123;[</span><br><span class="line">        #   styles.text,</span><br><span class="line">        #   &#123;</span><br><span class="line">        #     color: isDarkMode ? Colors.white : Colors.black,</span><br><span class="line">        #   &#125;,</span><br><span class="line">        # ]&#125;</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+<p>#ios  添加导航 报错No component found for view with name “RNSScreenStackHeaderConfig”</p>
+</li>
 </ol>
-]]></content>
+<p>npx pod-install ios </p>
+<p>@react-navigation/native<br>@react-navigation/native-stack<br>@react-native-safe-area-context<br>@react-native-screens<br>要退出iOS 模拟器</p>
+<p> #RN 框架 expo</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npx expo start</span> </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</font>]]></content>
       <categories>
         <category>Harmonyos</category>
       </categories>
@@ -2709,6 +2728,11 @@ https://www.cnblogs.com/unity3ds/p/11047784.html
 <blockquote>
 <ol start="5">
 <li>AGP 4.x  gradle-4.1.1-all.zip 默认使用dx.jar,class 字节码 转dex, 7.x 开始用d8.jar ,31开始不提供 dx.jar </li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="6">
+<li>Apple M3 芯片 无法打开 Android studio 最新版本。 xattr -rd com.apple.quarantine  Androidstudio/xxxx.app/xx</li>
 </ol>
 </blockquote>
  </font>]]></content>
@@ -4063,6 +4087,43 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
       </categories>
       <tags>
         <tag>H264</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu</title>
+    <url>/2023/04/06/Linux/ubuntu/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="虚拟终端（Teletypewriter，简称TTY）"><a href="#虚拟终端（Teletypewriter，简称TTY）" class="headerlink" title="虚拟终端（Teletypewriter，简称TTY）"></a>虚拟终端（Teletypewriter，简称TTY）</h4><blockquote>
+<p>因为卸载python </p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> sudo apt remove python3</span><br><span class="line"> sudo apt purge python3</span><br><span class="line"> sudo apt autoremove</span><br><span class="line"><span class="meta"> #</span><span class="bash">导致ubuntu desktop 被卸载</span></span><br><span class="line"><span class="meta"> #</span><span class="bash">出现虚拟终端</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> sudo apt install ubuntu-desktop</span><br><span class="line"><span class="meta"> #</span><span class="bash">发现 不能解析源</span></span><br><span class="line"></span><br><span class="line"> sudo vim /etc/apt/sources.list   #更新清华源</span><br><span class="line"></span><br><span class="line"> sudo apt update</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"> #</span><span class="bash"> 发现不能上网</span></span><br><span class="line"><span class="meta"> #</span><span class="bash"> 查看DNS 解析</span> </span><br><span class="line"></span><br><span class="line"> sudo vim /etc/resolv.conf  #改为 8.8.8.8</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"> #</span><span class="bash"> 重启</span></span><br><span class="line"> sudo reboot</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"> #</span><span class="bash"> 安装VMwareTools</span> </span><br><span class="line"> sudo mkdir -p /mnt/cdrom</span><br><span class="line"> sudo mount /dev/cdrom /mnt/cdrom</span><br><span class="line"> cp /mnt/cdrom/VMwareTools-*.tar.gz /tmp/</span><br><span class="line"></span><br><span class="line"> cd /tmp</span><br><span class="line"> sudo tar zxvf VMwareTools-*.tar.gz</span><br><span class="line"> sudo ./vmware-install.pl</span><br><span class="line"> sudo reboot</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">还是不行</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tty  联网</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 尝试联网</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo dhclient eth0</span></span><br><span class="line"><span class="meta"> </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 失败的话，查看网卡名称</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> dmesg | grep eth</span></span><br><span class="line"><span class="meta"> </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 发现eth0被重命名成了exxx0</span></span><br><span class="line"><span class="meta"> </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重新联网</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo dhclient exxx0</span></span><br><span class="line"><span class="meta"> </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 测试是否成功</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ping www.baidu.com</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">重新安装 ubuntu desktop</span></span><br><span class="line"></span><br><span class="line">sudo apt install ubuntu-desktop #成功</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</font>]]></content>
+  </entry>
+  <entry>
+    <title>RSA</title>
+    <url>/2021/10/23/Android/RSA/</url>
+    <content><![CDATA[<font size="2.9">
+
+<h4 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h4><blockquote>
+<p>RSA算法  加密和解密 算法保持一致 </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Cipher cipher = Cipher.getInstance(<span class="string">&quot;RSA/ECB/PKCS1Padding&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>RSA 加解密</p>
+</blockquote>
+<p>私钥加密 公钥解密</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">String str =<span class="string">&quot;2645afdf653d435ab6e088369d3da48b2bf7b4eeb7383e5cb22a5e79529b03be&quot;</span>;</span><br><span class="line">       Map&lt;String, Object&gt; keys = initRSAKey();</span><br><span class="line">       </span><br><span class="line">       String key =  loadPrivateKeyFromResources(<span class="string">&quot;./rsa_private_key.pem&quot;</span>) ;<span class="comment">//new String(Base64Utils.encode(k.getEncoded()));</span></span><br><span class="line">       String key2 =  loadPublicKeyFromResources(<span class="string">&quot;./rsa_public_key.pem&quot;</span>);<span class="comment">// new String(Base64Utils.encode(k2.getEncoded()));</span></span><br><span class="line">       System.out.println(<span class="string">&quot;私钥:\n&quot;</span> + key);</span><br><span class="line">       System.out.println(<span class="string">&quot;公钥:\n&quot;</span> + key2);</span><br><span class="line">       System.out.println(<span class="string">&quot;加密字符串:\n&quot;</span> + str);</span><br><span class="line">       String result = RSAEncryptByPrivateKey(str, key);</span><br><span class="line">       System.out.println(<span class="string">&quot;加密后的字符串:\n&quot;</span> + result);</span><br><span class="line">       result = RSADecryptByPublicKey(result, key2);</span><br><span class="line">       System.out.println(<span class="string">&quot;解密后的字符串:\n&quot;</span> + result);</span><br></pre></td></tr></table></figure>
+
+<p>公钥加密，私钥解密</p>
+</font>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>RSA</tag>
       </tags>
   </entry>
 </search>

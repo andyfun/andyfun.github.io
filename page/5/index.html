@@ -119,7 +119,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">51</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">52</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -129,7 +129,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">69</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">71</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -189,6 +189,243 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/23/Android/rePlugin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/23/Android/rePlugin/" class="post-title-link" itemprop="url">RePlugin(360)和 Shadow(tencent)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-23 11:02:03" itemprop="dateCreated datePublished" datetime="2021-10-23T11:02:03+08:00">2021-10-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-13 11:30:54" itemprop="dateModified" datetime="2022-08-13T11:30:54+08:00">2022-08-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <font size="2.9">
+
+<h4 id="Replugin-AndroidPlugin-4-0-0-插件6-1-1"><a href="#Replugin-AndroidPlugin-4-0-0-插件6-1-1" class="headerlink" title="Replugin (AndroidPlugin 4.0.0,插件6.1.1)"></a>Replugin (AndroidPlugin 4.0.0,插件6.1.1)</h4><p>该插件很久没有更新，最新Androidstudio 需要降级，很麻烦 故不再研究 ，原理大概了解。</p>
+<h4 id="Shadow-更新维护"><a href="#Shadow-更新维护" class="headerlink" title="Shadow 更新维护"></a>Shadow 更新维护</h4><p>Java11 ：Android Studio Arctic Fox内置的JDK<br>File-&gt;prefenece-gradle<br>配置Android_HOME</p>
+<p>window:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./gradlew build</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>sample-host是宿主应用</p>
+</blockquote>
+<blockquote>
+<p>sample-manager是插件管理器的动态实现</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-loader是loader的动态实现，业务主要在这里定义插件组件和壳子代理组件的配对关系等。</p>
+</blockquote>
+<blockquote>
+<p>sample-constant是在前3者中共用的相同字符串常量。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-runtime是runtime的动态实现，业务主要在这里定义壳子代理组件的实际类。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-app-lib是业务App的主要代码，是一个aar库。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-normal-app是一个apk模块壳子，将sample-app-lib打包在其中，演示业务App是可以正常安装运行的。</p>
+</blockquote>
+<blockquote>
+<p>sample-plugin/sample-plugin-app也是一个apk模块壳子，同样将sample-app-lib打包在其中，但是额外应用了Shadow插件，生成的apk不能正常安装运行。</p>
+</blockquote>
+<h3 id="接入Shadow-插件"><a href="#接入Shadow-插件" class="headerlink" title="接入Shadow 插件"></a>接入Shadow 插件</h3><blockquote>
+<p>发布本地仓库<br>可以先在 buildScripts/gradle/common.gradle 路径下，修改发布版本或其他信息：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">./gradew publish</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>C:\Users\caiyuhao.m2\repository\com\tencent\shadow\dynamic<br>C:\Users\caiyuhao.m2\repository\com\tencent\shadow\core</p>
+<p>插件的包名和宿主的包名要保持一致。</p>
+<p>这个演示工程没有实现下载功能，而是假设下载的文件直接位于指定路径。 因此运行前需要手工用adb命令将指定内容push到指定位置。</p>
+<p>编译插件，在plugin-project目录中运行：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./gradlew packageDebugPlugin</span><br><span class="line"></span><br><span class="line">adb push build/plugin-debug.zip /data/local/tmp</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>编译PluginManager，在manager-project目录中运行：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./gradlew assembleDebug</span><br><span class="line"></span><br><span class="line">adb push sample-manager/build/outputs/apk/debug/sample-manager-debug.apk /data/local/tmp</span><br></pre></td></tr></table></figure>
+<p>最后可以用Android Studio打开host-project直接运行sample-host模块。</p>
+<p>plugin-project中的plugin-normal-apk模块也可以直接安装运行，演示不使用Shadow时插件的运行情况。</p>
+<p>cd /data/local/tmp<br>然后在文件夹中创建一个文件夹。例</p>
+<p>1<br>mkdir folder<br>接下来更改权限</p>
+<p>1<br>chmod - R 777 folder</p>
+<p>adb shell ls -ld /data/ /data/local/ /data/local/tmp/<br>查看权限<br>确实有讲究。这个tmp目录是一个Android系统的特殊目录。这个目录的特点是adb可以直接push写入。app都能读取，但不能写入。同时这个目录还是手机的内置存储，可以直接用DexClassLoader加载这个目录中的apk，而sdcard不行。所以，如果我们用adb push到sdcard上，想动态加载还要将apk再复制到应用的data目录才行。</p>
+<p>正是环境肯定没法用这个目录，因为应用没有这个目录的写入权限。建议应用把插件包下载到宿主的data私有目录中，以保证数据安全，其他应用不能篡改。</p>
+</font>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/23/Android/RSA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="andy">
+      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyFun">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/23/Android/RSA/" class="post-title-link" itemprop="url">RSA</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-23 11:02:03" itemprop="dateCreated datePublished" datetime="2021-10-23T11:02:03+08:00">2021-10-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-10-30 19:05:41" itemprop="dateModified" datetime="2024-10-30T19:05:41+08:00">2024-10-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>937</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <font size="2.9">
+
+<h4 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h4><blockquote>
+<p>RSA算法  加密和解密 算法保持一致 </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Cipher cipher = Cipher.getInstance(<span class="string">&quot;RSA/ECB/PKCS1Padding&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>RSA 加解密</p>
+</blockquote>
+<p>私钥加密 公钥解密</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">String str =<span class="string">&quot;2645afdf653d435ab6e088369d3da48b2bf7b4eeb7383e5cb22a5e79529b03be&quot;</span>;</span><br><span class="line">       Map&lt;String, Object&gt; keys = initRSAKey();</span><br><span class="line">       </span><br><span class="line">       String key =  loadPrivateKeyFromResources(<span class="string">&quot;./rsa_private_key.pem&quot;</span>) ;<span class="comment">//new String(Base64Utils.encode(k.getEncoded()));</span></span><br><span class="line">       String key2 =  loadPublicKeyFromResources(<span class="string">&quot;./rsa_public_key.pem&quot;</span>);<span class="comment">// new String(Base64Utils.encode(k2.getEncoded()));</span></span><br><span class="line">       System.out.println(<span class="string">&quot;私钥:\n&quot;</span> + key);</span><br><span class="line">       System.out.println(<span class="string">&quot;公钥:\n&quot;</span> + key2);</span><br><span class="line">       System.out.println(<span class="string">&quot;加密字符串:\n&quot;</span> + str);</span><br><span class="line">       String result = RSAEncryptByPrivateKey(str, key);</span><br><span class="line">       System.out.println(<span class="string">&quot;加密后的字符串:\n&quot;</span> + result);</span><br><span class="line">       result = RSADecryptByPublicKey(result, key2);</span><br><span class="line">       System.out.println(<span class="string">&quot;解密后的字符串:\n&quot;</span> + result);</span><br></pre></td></tr></table></figure>
+
+<p>公钥加密，私钥解密</p>
+</font>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1051,455 +1288,10 @@ IP直连方案有下面几大优势：
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/18/Android/androidJvm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/18/Android/androidJvm/" class="post-title-link" itemprop="url">androidJvm</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-18 17:04:59" itemprop="dateCreated datePublished" datetime="2021-10-18T17:04:59+08:00">2021-10-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-13 11:25:30" itemprop="dateModified" datetime="2022-08-13T11:25:30+08:00">2022-08-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <font size="2.9">
-
-<h3 id="Android-热修复"><a href="#Android-热修复" class="headerlink" title="Android 热修复"></a>Android 热修复</h3><pre><code>下发补丁（内含修复好的class）到用户手机，即让app从服务器上下载（网络传输）
-
-app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app调用（本地更新）
-
-这里的某种方式，对本篇而言，就是使用Android的类加载器，通过类加载器加载这些修复好的class，覆盖对应有问题的class，理论上就能修复bug了。
-</code></pre>
-<h3 id="一、类加载机制"><a href="#一、类加载机制" class="headerlink" title="一、类加载机制"></a>一、类加载机制</h3><h4 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h4><p> 验证多个类是同一个类的成立条件：</p>
-<pre><code>相同的className
-相同的packageName
-被相同的classLoader加载
-</code></pre>
-<h4 id="loadClass"><a href="#loadClass" class="headerlink" title="loadClass()"></a>loadClass()</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> Class&lt;?&gt; loadClass(String name) <span class="keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">    <span class="keyword">return</span> loadClass(name, <span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="keyword">boolean</span> resolve)</span><br><span class="line">    <span class="keyword">throws</span> ClassNotFoundException</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// First, check if the class has already been loaded</span></span><br><span class="line">    Class&lt;?&gt; c = findLoadedClass(name);</span><br><span class="line">    <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (parent != <span class="keyword">null</span>) &#123;</span><br><span class="line">                c = parent.loadClass(name, <span class="keyword">false</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                c = findBootstrapClassOrNull(name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            <span class="comment">// ClassNotFoundException thrown if class not found</span></span><br><span class="line">            <span class="comment">// from the non-null parent class loader</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// If still not found, then invoke findClass in order</span></span><br><span class="line">            <span class="comment">// to find the class.</span></span><br><span class="line">            c = findClass(name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-
-<h3 id="Android中的ClassLoader"><a href="#Android中的ClassLoader" class="headerlink" title="Android中的ClassLoader"></a>Android中的ClassLoader</h3><p>1、类加载器类型<br>Android跟java有很大的渊源，基于jvm的java应用是通过ClassLoader来加载应用中的class的，Android对jvm优化过，使用的是dalvik虚拟机，且class文件会被打包进一个dex文件中，底层虚拟机有所不同，那么它们的类加载器当然也是会有所区别。</p>
-<p>Android中最主要的类加载器有如下4个：</p>
-<p>BootClassLoader：加载Android Framework层中的class字节码文件（类似java的Bootstrap ClassLoader）<br>PathClassLoader：加载已经安装到系统中的Apk的class字节码文件（类似java的App ClassLoader）<br>DexClassLoader：加载制定目录的class字节码文件（类似java中的Custom ClassLoader）<br>BaseDexClassLoader：PathClassLoader和DexClassLoader的父类</p>
-<p>一个app一定会用到BootClassLoader、PathClassLoader这2个类加载器，可通过如下代码进行验证：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        ClassLoader classLoader = getClassLoader();</span><br><span class="line">        if (classLoader != null) &#123;</span><br><span class="line">            Log.e(TAG, &quot;classLoader = &quot; + classLoader);</span><br><span class="line">            while (classLoader.getParent() != null) &#123;</span><br><span class="line">                classLoader = classLoader.getParent();</span><br><span class="line">                Log.e(TAG, &quot;classLoader = &quot; + classLoader);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="热修复的实现原理"><a href="#热修复的实现原理" class="headerlink" title="热修复的实现原理"></a>热修复的实现原理</h3><p>经过对PathClassLoader、DexClassLoader、BaseDexClassLoader、DexPathList的分析，我们知道，安卓的类加载器在加载一个类时会先从自身DexPathList对象中的Element数组中获取（Element[] dexElements）到对应的类，之后再加载。采用的是数组遍历的方式，不过注意，遍历出来的是一个个的dex文件。在for循环中，首先遍历出来的是dex文件，然后再是从dex文件中获取class，所以，我们只要让修复好的class打包成一个dex文件，放于Element数组的第一个元素，这样就能保证获取到的class是最新修复好的class了（当然，有bug的class也是存在的，不过是放在了Element数组的最后一个元素中，所以没有机会被拿到而已。</p>
-<h3 id="Object类"><a href="#Object类" class="headerlink" title="Object类"></a>Object类</h3><p>(1) hashCode</p>
-<pre><code>    返回对象的哈希值（散列码），不是实际地址值，不过可以理解为地址值。
-</code></pre>
-<p>(2)finalize()</p>
-<pre><code>在对象将被垃圾回收器清除前调用，但不确定时间，并且对象的finalize()方法只会被调用一次，调用后也不一定马上清除该对象。
-</code></pre>
-<p>(3)clone()</p>
-<pre><code>以实现对象的克隆，包括成员变量的数据复制，但是它和两个引用指向同一个对象是有区别的。
-分类：
-浅拷贝: 仅拷贝对象,不拷贝成员变量,仅复制了变量的引用,拷贝前后变量使用同一块内存,内存销毁后,必须重新定义(两者同生共死)
-深拷贝: 不仅拷贝对象,也拷贝成员变量(真正意义上的复制, 两者独立无关)
-</code></pre>
-<p>(4)toString()——重要</p>
-<p>(5)equals()——重要</p>
-<p>比较两个对象是否相同</p>
-<p>默认情况下，比较的是地址值是否相同。</p>
-<p>而比较地址值是没有意义的，所以，一般子类也会重写该方法。</p>
-<p>在诸多子类，如String、Integer、Date 等均重写了equals()方法</p>
-<p>改进思路：</p>
-<p>我们可以将比较地址值转变为比较成员变量</p>
-<p>因为name为String类型，而String类型为引用类型，所以不能够用==比较，应该用equal()<br>String中默认重写过的equal()方法是用来比较字符串内容是否相同<br>我们要使用的是学生类的成员变量，所以父类 Object不能调用子类Student的特有功能<br>所以使用向下转型</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//重写v2.0 (可作为最终版)</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (<span class="keyword">this</span>.name == o) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//测试它左边的对象是否是它右边的类的实例，返回 boolean 的数据类型。</span></span><br><span class="line">       <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Student)) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       Student s = (Student) o;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">this</span>.name.equals(s.name) &amp;&amp; <span class="keyword">this</span>.age == s.age;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>equals() 和 == 的区别<br> == 的作用： 　　</p>
-<p>基本类型：比较值是否相同 　　</p>
-<p>引用类型：比较的就是堆内存地址是否相同</p>
-<p>equals 的作用:</p>
-<p>引用类型：默认情况下，比较的是地址值。</p>
-<p>注：一般选择重写方法，比较对象的成员变量值是否相同 ，不过一般重写都是自动生成。</p>
-</font>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/14/Android/AndroidJNI/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="andy">
-      <meta itemprop="description" content="stay hungry,stay foolish(进取源自保持饥饿，成功在于守住初心)">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="andyFun">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/14/Android/AndroidJNI/" class="post-title-link" itemprop="url">AndroidJNI</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-14 15:43:06" itemprop="dateCreated datePublished" datetime="2021-10-14T15:43:06+08:00">2021-10-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-08-03 18:10:23" itemprop="dateModified" datetime="2023-08-03T18:10:23+08:00">2023-08-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <font size="2.9">
-
-<h3 id="一、谈谈你对-JNI-和-NDK-的理解"><a href="#一、谈谈你对-JNI-和-NDK-的理解" class="headerlink" title="一、谈谈你对 JNI 和 NDK 的理解"></a>一、谈谈你对 JNI 和 NDK 的理解</h3><h4 id="JNI："><a href="#JNI：" class="headerlink" title="JNI："></a>JNI：</h4><p>JNI 是 <code>Java Native Interface</code> 的缩写，即 Java 的本地接口。</p>
-<p>目的是使得 Java 与本地其他语言（如 C/C++）进行交互。</p>
-<p>JNI 是属于 Java 的，与 Android 无直接关系。</p>
-<h4 id="NDK："><a href="#NDK：" class="headerlink" title="NDK："></a>NDK：</h4><p>NDK 是 <code>Native Development Kit</code> 的缩写，是 Android 的工具开发包。</p>
-<p>作用是更方便和快速开发 C/C++ 的动态库，并自动将动态库与应用一起打包到 apk。</p>
-<p>NDK 是属于 Android 的，与 Java 无直接关系。</p>
-<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>JNI 是实现的目的，NDK 是 Android 中实现 JNI 的手段。</p>
-<h3 id="二、谈谈你对-JNIEnv-和-JavaVM-理解"><a href="#二、谈谈你对-JNIEnv-和-JavaVM-理解" class="headerlink" title="二、谈谈你对 JNIEnv 和 JavaVM 理解"></a>二、谈谈你对 JNIEnv 和 JavaVM 理解</h3><h4 id="JavaVM"><a href="#JavaVM" class="headerlink" title="JavaVM"></a>JavaVM</h4><p>JavaVM 是虚拟机在 JNI 层的代表。</p>
-<p>一个进程只有一个 JavaVM。（重要！）</p>
-<p>所有的线程共用一个 JavaVM。（重要！）</p>
-<h4 id="JNIEnv"><a href="#JNIEnv" class="headerlink" title="JNIEnv"></a>JNIEnv</h4><p>JNIEnv 表示 Java 调用 native 语言的环境，封装了几乎全部 JNI 方法的指针。</p>
-<p>JNIEnv 只在创建它的线程生效，不能跨线程传递，不同线程的 JNIEnv 彼此独立。（重要！）</p>
-<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p>在 native 环境下创建的线程，要想和 java 通信，即需要获取一个 JNIEnv 对象。我们通过 <code>AttachCurrentThread</code> 和 <code>DetachCurrentThread</code> 方法将 native 的线程与 JavaVM 关联和解除关联。</p>
-<h3 id="三、解释一下-JNI-中全局引用和局部引用的区别和使用"><a href="#三、解释一下-JNI-中全局引用和局部引用的区别和使用" class="headerlink" title="三、解释一下 JNI 中全局引用和局部引用的区别和使用"></a>三、解释一下 JNI 中全局引用和局部引用的区别和使用</h3><h4 id="全局引用"><a href="#全局引用" class="headerlink" title="全局引用"></a>全局引用</h4><p>通过 <code>NewGlobalRef</code> 和 <code>DeleteGlobalRef</code> 方法创建和释放一个全局引用。</p>
-<p>全局引用能在多个线程中被使用，且不会被 GC 回收，只能手动释放。</p>
-<h4 id="局部引用"><a href="#局部引用" class="headerlink" title="局部引用"></a>局部引用</h4><p>通过 <code>NewLocalRef</code> 和 <code>DeleteLocalRef</code> 方法创建和释放一个局部引用。</p>
-<p>局部引用只在创建它的 native 方法中有效，包括其调用的其它函数中有效。因此我们不能寄望于将一个局部引用直接保存在全局变量中下次使用（请使用全局引用实现该需求）。</p>
-<p>我们可以不用删除局部引用，它们会在 native 方法返回时全部自动释放，但是建议对于不再使用的局部引用手动释放，避免内存过度使用。</p>
-<h4 id="扩展：弱全局引用"><a href="#扩展：弱全局引用" class="headerlink" title="扩展：弱全局引用"></a>扩展：弱全局引用</h4><p>通过 <code>NewWeakGlobalRef</code> 和 <code>DeleteWeakGlobalRef</code> 创建和释放一个弱全局引用。</p>
-<p>弱全局引用类似于全局引用，唯一的区别是它不会阻止被 GC 回收。</p>
-<h3 id="四、JNI-线程间数据怎么互相访问"><a href="#四、JNI-线程间数据怎么互相访问" class="headerlink" title="四、JNI 线程间数据怎么互相访问"></a>四、JNI 线程间数据怎么互相访问</h3><p>考察点和上体类似，线程本来就是共享内存区域的，因此我们需要使用 <code>全局引用</code></p>
-<h3 id="查看签名"><a href="#查看签名" class="headerlink" title="查看签名"></a>查看签名</h3><ol>
-<li>javac -h .  xxx.java<br>生成jni 头文件</li>
-</ol>
-<h3 id="动态注册"><a href="#动态注册" class="headerlink" title="动态注册"></a>动态注册</h3><p>原理：利用 RegisterNatives 方法来注册 java 方法与 JNI 函数的一一对应关系；</p>
-<p>实现流程：</p>
-<ol>
-<li>利用结构体 JNINativeMethod 数组记录 java 方法与 JNI 函数的对应关系；</li>
-<li>实现 JNI_OnLoad 方法，在加载动态库后，执行动态注册；</li>
-<li>调用 FindClass 方法，获取 java 对象；</li>
-<li>调用 RegisterNatives 方法，传入 java 对象，以及 JNINativeMethod 数组，以及注册数目完成注册；</li>
-</ol>
-<p>优点：</p>
-<ol>
-<li>流程更加清晰可控；</li>
-<li>效率更高；</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function">jstring <span class="title">stringFromJNI</span><span class="params">(JNIEnv *env, jobject thiz)</span></span>&#123;</span><br><span class="line">    std::string hello = <span class="string">&quot;Hello from C++&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> env-&gt;<span class="built_in">NewStringUTF</span>(hello.<span class="built_in">c_str</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> JNINativeMethod gMethods[] = &#123;</span><br><span class="line">        &#123;<span class="string">&quot;stringFromJNI&quot;</span>, <span class="string">&quot;()Ljava/lang/String;&quot;</span>, (jstring*)stringFromJNI&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">JNIEXPORT jint <span class="title">JNI_OnLoad</span><span class="params">(JavaVM* vm, <span class="keyword">void</span>* reserved)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    __android_log_print(ANDROID_LOG_INFO, <span class="string">&quot;native&quot;</span>, <span class="string">&quot;Jni_OnLoad&quot;</span>);</span><br><span class="line">    JNIEnv* env = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">if</span>(vm-&gt;<span class="built_in">GetEnv</span>((<span class="keyword">void</span>**)&amp;env, JNI_VERSION_1_4) != JNI_OK) <span class="comment">//从JavaVM获取JNIEnv，一般使用1.4的版本</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    jclass clazz = env-&gt;<span class="built_in">FindClass</span>(<span class="string">&quot;com/example/efan/jni_learn2/MainActivity&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!clazz)&#123;</span><br><span class="line">        __android_log_print(ANDROID_LOG_INFO, <span class="string">&quot;native&quot;</span>, <span class="string">&quot;cannot get class: com/example/efan/jni_learn2/MainActivity&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(env-&gt;<span class="built_in">RegisterNatives</span>(clazz, gMethods, <span class="built_in"><span class="keyword">sizeof</span></span>(gMethods)/<span class="built_in"><span class="keyword">sizeof</span></span>(gMethods[<span class="number">0</span>])))</span><br><span class="line">    &#123;</span><br><span class="line">        __android_log_print(ANDROID_LOG_INFO, <span class="string">&quot;native&quot;</span>, <span class="string">&quot;register native method failed!\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> JNI_VERSION_1_4;</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">12345678910111213141516171819202122232425262728</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="JNINativeMethod"><a href="#JNINativeMethod" class="headerlink" title="JNINativeMethod"></a>JNINativeMethod</h2><p>在动态注册的过程中使用到了结构体 JNINativeMethod 用于记录 java 方法与 jni 函数的对应关系</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* name;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* signature;</span><br><span class="line">    <span class="keyword">void</span>*       fnPtr;</span><br><span class="line">&#125; JNINativeMethod;<span class="number">12345</span></span><br></pre></td></tr></table></figure>
-
-<p>结构体的第一个参数 name 是java 方法名；</p>
-<p>第二个参数 signature 用于描述方法的参数与返回值；</p>
-<p>第三个参数 fnPtr 是函数指针，指向 jni 函数；</p>
-<p>其中，第二个参数 signature 使用字符串记录方法的参数与返回值，具体格式形如“()V”、“(II)V”，其中分为两部分，括号内表示的是参数，括号右侧表示的是返回值；</p>
-<h2 id="数据类型映射"><a href="#数据类型映射" class="headerlink" title="数据类型映射"></a>数据类型映射</h2><ol>
-<li>基本数据类型</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>java 类型</th>
-<th>native 类型</th>
-<th>域描述符</th>
-<th>补充</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>boolean</td>
-<td>jboolean</td>
-<td>Z</td>
-<td></td>
-</tr>
-<tr>
-<td>byte</td>
-<td>jbyte</td>
-<td>B</td>
-<td></td>
-</tr>
-<tr>
-<td>char</td>
-<td>jchar</td>
-<td>C</td>
-<td></td>
-</tr>
-<tr>
-<td>short</td>
-<td>jshort</td>
-<td>S</td>
-<td></td>
-</tr>
-<tr>
-<td>int</td>
-<td>jint</td>
-<td>I</td>
-<td></td>
-</tr>
-<tr>
-<td>long</td>
-<td>jlong</td>
-<td>J</td>
-<td></td>
-</tr>
-<tr>
-<td>float</td>
-<td>jfloat</td>
-<td>F</td>
-<td></td>
-</tr>
-<tr>
-<td>double</td>
-<td>jdouble</td>
-<td>D</td>
-<td></td>
-</tr>
-<tr>
-<td>void</td>
-<td>void</td>
-<td>V</td>
-<td></td>
-</tr>
-</tbody></table>
-<ol start="2">
-<li>数组引用类型</li>
-</ol>
-<p>如果是一维数组则遵循下表，如果是二维数组或更高维数组则对应的 native 类型为 jobjectArray，域描述符中使用 ‘[’ 的个数表示维数</p>
-<table>
-<thead>
-<tr>
-<th>java 类型</th>
-<th>native 类型</th>
-<th>域描述符</th>
-<th>补充</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>int[]</td>
-<td>jintArray</td>
-<td>[I</td>
-<td></td>
-</tr>
-<tr>
-<td>float[]</td>
-<td>jfloatArray</td>
-<td>[f</td>
-<td></td>
-</tr>
-<tr>
-<td>byte[]</td>
-<td>jbyteArray</td>
-<td>[B</td>
-<td></td>
-</tr>
-<tr>
-<td>char[]</td>
-<td>jcharArray</td>
-<td>[C</td>
-<td></td>
-</tr>
-<tr>
-<td>short[]</td>
-<td>jshortArray</td>
-<td>[S</td>
-<td></td>
-</tr>
-<tr>
-<td>double[]</td>
-<td>jdoubleArray</td>
-<td>[D</td>
-<td></td>
-</tr>
-<tr>
-<td>long[]</td>
-<td>jlongArray</td>
-<td>[F</td>
-<td></td>
-</tr>
-<tr>
-<td>boolean[]</td>
-<td>jbooleanArray</td>
-<td>[Z</td>
-<td></td>
-</tr>
-</tbody></table>
-<ol start="3">
-<li>对象引用类型</li>
-</ol>
-<p>对于其它引用类型，即 java 中的对象，其映射规则为</p>
-<table>
-<thead>
-<tr>
-<th>java 类型</th>
-<th>native 类型</th>
-<th>域描述符</th>
-<th>补充</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>类名（如 Surface）</td>
-<td>通常是 jobject，仅有一种例外，如果 java 类型是 String，则对应的native 类型是 jstring</td>
-<td>以”L”开头，以”;”结尾中间是用”/” 隔开的包及类名（如 Landroid/view/Surface;）如果内部类则使用$连接内部类；</td>
-<td></td>
-</tr>
-</tbody></table>
-<ol start="4">
-<li>对象数组引用类型</li>
-</ol>
-<p>如果是一维数组则遵循下表，如果是二维数组或更高维数组则对应的 native 类型为 jobjectArray，域描述符中使用 ‘[’ 的个数表示维数</p>
-<table>
-<thead>
-<tr>
-<th>java 类型</th>
-<th>native 类型</th>
-<th>域描述符</th>
-<th>补充</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>类名（如 Surface）</td>
-<td>通常是 jobject，仅有一种例外，如果 java 类型是 String，则对应的native 类型是 jstring</td>
-<td>在对象引用类型的域描述符的基础上在左边添加’[‘字符</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="jni-函数默认参数"><a href="#jni-函数默认参数" class="headerlink" title="jni 函数默认参数"></a>jni 函数默认参数</h2><p>在 jni 函数中有两个默认参数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JNIEnv *env, jobject thiz1</span><br></pre></td></tr></table></figure>
-
-<p>其中 JNIEnv 指代的是当前 java 环境，可以利用 JNIEnv 可以操作 java 层代码；jobject 指代的是 jni 函数对应的 java native 方法的类实例，如果 java 方法是 static，则代表的是 class 对象；</p>
-</font>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1565,7 +1357,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">69</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1578,7 +1370,7 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">52</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1615,13 +1407,13 @@ app通过某种方式，使补丁（apk、dex、jar等文件）中的class被app
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">194k</span>
+    <span title="站点总字数">199k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:57</span>
+    <span title="站点阅读时长">3:01</span>
 </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
