@@ -318,10 +318,10 @@ cocos run -d androd
   </entry>
   <entry>
     <title>AndroidHandler</title>
-    <url>/2021/12/12/Android/AndroidHandler/</url>
+    <url>/2024/11/12/Android/AndroidHandler/</url>
     <content><![CDATA[<font size="2.9">
 
-<h3 id="App-启动流程"><a href="#App-启动流程" class="headerlink" title="App 启动流程"></a>App 启动流程</h3><img src="/2021/12/12/Android/AndroidHandler/1.webp" class="">
+<h3 id="App-启动流程"><a href="#App-启动流程" class="headerlink" title="App 启动流程"></a>App 启动流程</h3><img src="/2024/11/12/Android/AndroidHandler/1.webp" class="">
 
 
 <h3 id="webP"><a href="#webP" class="headerlink" title="webP"></a>webP</h3><p>WebP 对图片进行分块，然后对待填充的宏块使用了帧间预测技术，根据其附近已编码宏块的数据，预测出当前块数据。相比 JEPG 对图像原值进行编码，WebP 编码的是预测值和原值的差值，这是 WebP 体积更小的主要原因。最后，WebP 使用了更优秀的算数编码</p>
@@ -2180,6 +2180,12 @@ self-&gt;deviceType和deviceType是等价的。
 
 <h4 id="系统管理相关命令"><a href="#系统管理相关命令" class="headerlink" title="系统管理相关命令"></a>系统管理相关命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">useradd 用于添加用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">useradd hello</span><br><span class="line">passwd 用于设置或者修改用户密码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">passwd hello</span><br><span class="line">userdel 用于删除用户</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># -r 选项可以删除用户家目录</span></span><br><span class="line">sudo userdel username</span><br><span class="line">usermod 用来修改用户帐号的各项设定</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#最常用于将用户加入指定的组</span></span><br><span class="line"><span class="comment">#将用户myfreax添加到games组</span></span><br><span class="line"><span class="comment">#应该始终使用-a追加选项。如果省略-a选项，则用户将从-G选项之后未列出的组中删除</span></span><br><span class="line">sudo usermod -a -G games myfreax</span><br><span class="line">free 用于查看系统内存</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">free -m <span class="comment">#以 MB 为单位</span></span><br><span class="line">free -g <span class="comment">#以 GB 为单位</span></span><br><span class="line">whoami 用于查看当前用户名</span><br><span class="line"></span><br><span class="line">ps 用于查看进程信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ps -a <span class="comment">#查看所有进程</span></span><br><span class="line">ps -e <span class="comment">#查看除内核以外的所有进程</span></span><br><span class="line">ps -f <span class="comment">#全格式输出</span></span><br><span class="line">top 动态查看进程信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </font>]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+      </tags>
   </entry>
   <entry>
     <title>MonoBehaviourTree</title>
@@ -4101,6 +4107,12 @@ bEnableSignInWithAppleSupport=True //key-value, key 容易写错
 
 
 </font>]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+      </tags>
   </entry>
   <entry>
     <title>RSA</title>
